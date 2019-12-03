@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="navbar.master.cs" Inherits="WISLEY.navbar" %>
+
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+    <title>WISLEY</title>
+    <link href="Public/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Public/css/mdb.min.css" rel="stylesheet" />
+    <link href="Public/css/fontawesome.min.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">WISLEY</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                    <i class="fas fa-bell text-white"></i></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fas fa-user text-white"></i></a>
+
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="profileDD">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
+
+    <div class="containter my-5">
+        <div class="row justify-content-center">
+            <div class="col-3 mx-4">
+                <div class="card card-body mb-4 border-primary">
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <img src="https://picsum.photos/100" class="mx-auto md-block">
+                            <!-- Social shares button -->
+                        </div>
+
+                        <div class="col-8">
+                            <h5 class="text-center">Name: John Smith</h4>
+                                <p class="text-center">Level: 1</p>
+                                <p class="text-center">Badges: Weee</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-body border-primary">
+                    <div class="col-12 justify-content-center">
+                        <h4 class="text-center mx-auto">Modules</h4>
+                        <hr class="hr-primary">
+                        <button class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1"> Test </button>
+                        <button class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1"> Test </button>
+                        <button class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1"> Test </button>
+                        <button class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1"> Test </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-7">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="Public/js/jquery.min.js"></script>
+    <script src="Public/js/popper.min.js"></script>
+    <script src="Public/js/bootstrap.min.js"></script>
+    <script src="Public/js/mdb.min.js"></script>
+</body>
+
+</html>
