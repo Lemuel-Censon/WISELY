@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WISLEY.DAL.Collab;
 
 namespace WISLEY.BLL.Collab
 {
@@ -21,8 +22,26 @@ namespace WISLEY.BLL.Collab
         {
             this.title = title;
             this.content = content;
-            datecreated = DateTime.Now;
+            datecreated = DateTime.Today;
             this.userId = userId;
+        }
+
+        public int AddPost()
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.Insert(this);
+        }
+
+        public List<Post> SelectAll()
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.SelectAll();
+        }
+
+        public int UpdatePost(string userId, string title, string content, DateTime datecreate)
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.UpdatePost(userId, title, content, datecreate);
         }
     }
 }
