@@ -12,18 +12,20 @@ namespace WISLEY.BLL.Collab
         public string content { get; set; }
         public DateTime datecreated { get; set; }
         public string userId { get; set; }
+        public string groupId { get; set; }
 
         public Post()
         {
 
         }
 
-        public Post(string title, string content, string userId)
+        public Post(string title, string content, string userId, string groupId)
         {
             this.title = title;
             this.content = content;
             datecreated = DateTime.Today;
             this.userId = userId;
+            this.groupId = groupId;
         }
 
         public int AddPost()

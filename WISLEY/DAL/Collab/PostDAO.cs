@@ -16,13 +16,14 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Post (userId, title, content, datecreated)" +
-                             "VALUES (@paraUserID, @paraTitle, @paraContent, @paraDatecreate)";
+            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated)" +
+                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
             sqlCmd.Parameters.AddWithValue("@paraUserID", post.userId);
+            sqlCmd.Parameters.AddWithValue("@paraGroupID", post.groupId);
             sqlCmd.Parameters.AddWithValue("@paraTitle", post.title);
             sqlCmd.Parameters.AddWithValue("@paraContent", post.content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", post.datecreated);
@@ -57,7 +58,8 @@ namespace WISLEY.DAL.Collab
                     string userId = row["userId"].ToString();
                     string title = row["title"].ToString();
                     string content = row["content"].ToString();
-                    obj = new Post(title, content, userId);
+                    string group = row["groupId"].ToString();
+                    obj = new Post(title, content, userId, group);
                     postlist.Add(obj);
                 }
             }
