@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WISLEY
 {
-    public partial class sidebar : System.Web.UI.MasterPage
+    public partial class NestedMasterPage1 : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
