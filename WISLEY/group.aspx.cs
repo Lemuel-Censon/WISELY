@@ -12,6 +12,9 @@ namespace WISLEY
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
         }
+
+        public List<string> Sites = new List<string> { "StackOverflow", "Super User", "Meta SO", "lol" };
     }
 }
