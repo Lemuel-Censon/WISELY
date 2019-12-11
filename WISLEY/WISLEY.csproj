@@ -123,6 +123,7 @@
     <Content Include="Public\js\modules\wow.min.js" />
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
+    <Content Include="schedule.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,23 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="schedule.aspx.cs">
+      <DependentUpon>schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="schedule.aspx.designer.cs">
+      <DependentUpon>schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sidebar.Master.cs">
+      <DependentUpon>sidebar.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sidebar.Master.designer.cs">
+      <DependentUpon>sidebar.Master</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Content Include="navbar.Master" />
