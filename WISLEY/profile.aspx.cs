@@ -14,8 +14,13 @@ namespace WISLEY
 
         }
 
-
         protected void btneditProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        protected void btnchangeAvatar_Click(object sender, EventArgs e)
         {
 
         }

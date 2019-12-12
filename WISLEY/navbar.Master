@@ -53,9 +53,11 @@
     </nav>
     <!--/.Navbar-->
 
-    <div class="container-fluid row justify-content-around border border-danger mx-auto mt-3"> 
+    <div class="container-fluid border border-danger mx-auto mt-3"> 
+        <div class="row justify-content-around">
             <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
             </asp:ContentPlaceHolder>
+            </div>
     </div>
 
 

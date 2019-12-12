@@ -80,6 +80,7 @@
     <Content Include="profile.aspx" />
     <Content Include="Public\css\bootstrap.css" />
     <Content Include="Public\css\bootstrap.min.css" />
+    <Content Include="Public\css\fontawesome.min.css" />
     <Content Include="Public\css\mdb.css" />
     <Content Include="Public\css\mdb.lite.css" />
     <Content Include="Public\css\mdb.lite.min.css" />

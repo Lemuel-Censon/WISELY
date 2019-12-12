@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sidebar.Master" AutoEventWireup="true" CodeBehind="collab.aspx.cs" Inherits="WISLEY.collab" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <h3 class="font-weight-bold text-center">Collaboration Board</h3>
     <form runat="server">
         <div class="card">
