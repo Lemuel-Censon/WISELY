@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sidebar.Master" AutoEventWireup="true" CodeBehind="group.aspx.cs" Inherits="WISLEY.group" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/sidebar.Master" AutoEventWireup="true" CodeBehind="sidebar.master.cs" Inherits="WISLEY.NestedMasterPage1" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="sidebarContent" runat="server">
     <div class="card card-body border-primary rounded-top mb-3">
         <div class="row justify-content-center">
             <h1 class="text-center">Test </h1>
@@ -37,49 +37,44 @@
     <div class="tab-content min-vh-80 border" id="myClassicTabContentShadow">
         <div class="tab-pane fade active show" id="posts-classic-shadow" role="tabpanel"
             aria-labelledby="posts-tab-classic-shadow">
-
-            <div class="card card-body border-primary mx-5">
-                <div class="row justify-content-start">
-
-                    <img src="https://picsum.photos/50" class="col-1 img-fluid">
-                    <div class="col-3 align-content-center">
-                        <h5 class="">John Smith </h5>
-                    </div>
-                </div>
-
-                <div class="row justify-content-start">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias amet, cumque beatae vero facilis 
-                        veritatis corporis nemo, quo culpa aliquid sapiente quasi hic sint doloremque aliquam? Quo consequuntur quis numquam?
-                    </p>
-                </div>
+            <div>
+                <asp:ContentPlaceHolder ID="groupPosts" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
+
         </div>
 
         <div class="tab-pane fade" id="resources-classic-shadow" role="tabpanel"
             aria-labelledby="resources-tab-classic-shadow">
-            Hi
-            <% foreach (var site in Sites) { %>
+            <%--Hi
+            <% foreach (var site in Sites) { %>--%>
             <!-- loop through the list -->
-            <div>
-                <%= site %>
-                <!-- write out the name of the site -->
-            </div>
-            <% } %>
+            <%--<div>
+                <%= site %>--%>
+            <!-- write out the name of the site -->
+            <%--</div>
+            <% } %>--%>
             <!--End the for loop -->
+            <div>
+                <asp:ContentPlaceHolder ID="groupResources" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
 
         <div class="tab-pane fade" id="assignments-classic-shadow" role="tabpanel"
             aria-labelledby="assignments-tab-classic-shadow">
-            Hi
+            <div>
+                <asp:ContentPlaceHolder ID="groupAssignments" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
 
         <div class="tab-pane fade" id="members-classic-shadow" role="tabpanel"
             aria-labelledby="members-tab-classic-shadow">
-            Hi
+            <div>
+                <asp:ContentPlaceHolder ID="groupMembers" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
     </div>
-
-
-
 </asp:Content>

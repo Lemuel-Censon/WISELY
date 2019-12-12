@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sidebar.Master" AutoEventWireup="true" CodeBehind="collab.aspx.cs" Inherits="WISLEY.collab" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/group.Master" AutoEventWireup="true" CodeBehind="collab.aspx.cs" Inherits="WISLEY.collab" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <h3 class="font-weight-bold text-center">Collaboration Board</h3>
     <form runat="server">
         <div class="container">
@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <asp:FileUpload ID="fileUpload" runat="server" />
-                            <asp:Button ID="btnUpload" runat="server" Text="Upload" CssClass="btn btn-sm btn-info" OnClick="btnUpload_Click"/>
+                            <asp:Button ID="btnUpload" runat="server" Text="Upload" CssClass="btn btn-sm btn-info" OnClick="btnUpload_Click" />
                             <br />
                             <asp:Label ID="LbStatus" runat="server"></asp:Label>
                         </div>
@@ -29,7 +29,7 @@
             </div>
             <% if (allPosts.Count > 0)
                 { %><% foreach (var post in allPosts)
-                { %>
+                        { %>
             <div class="card mt-3">
                 <div class="card-body">
                     <h4 class="card-title"><% =post.title %></h4>
@@ -41,7 +41,7 @@
             </div>
 
             <%} %>            <%} %><% else
-                { %>
+                                        { %>
             <div class="text-center mt-3">
                 <h4 class="font-weight-bold">No posts</h4>
             </div>

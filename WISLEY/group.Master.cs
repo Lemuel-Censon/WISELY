@@ -7,14 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace WISLEY
 {
-    public partial class group : System.Web.UI.Page
+    public partial class group1 : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
         }
-
-        public List<string> Sites = new List<string> { "StackOverflow", "Super User", "Meta SO", "lol" };
     }
 }

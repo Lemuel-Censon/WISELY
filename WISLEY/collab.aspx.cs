@@ -48,7 +48,7 @@ namespace WISLEY
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
 
-                Post post = new Post("Test", "How to do", "1", "1");
+                Post post = new Post(title, content, "100", "100");
                 int result = post.AddPost();
 
                 if (result == 1)
