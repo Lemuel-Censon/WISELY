@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using WISLEY.BLL.Collab;
+
+namespace WISLEY.DAL.Collab
+{
+    public class CommentDAO
+    {
+        public int Insert(Comment comment)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "INSERT INTO Comment (postId, userId, content, datecreated)" +
+                             "VALUES (@paraPostID, @paraUserID, @paraContent, @paraDatecreate)";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraPostID", comment.postid);
+            sqlCmd.Parameters.AddWithValue("@paraUserID", comment.userid);
+            sqlCmd.Parameters.AddWithValue("@paraContent", comment.content);
+            sqlCmd.Parameters.AddWithValue("@paraDatecreate", comment.datecreate);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public List<Comment> SelectAll()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from Comment";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Comment obj = null;
+            List<Comment> commlist = new List<Comment>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string postId = row["postId"].ToString();
+                    string userId = row["userId"].ToString();
+                    string content = row["content"].ToString();
+                    obj = new Comment(postId, userId, content);
+                    commlist.Add(obj);
+                }
+            }
+            return commlist;
+        }
+
+        public int UpdateComment(string postId, string content, DateTime datecreate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Comment " +
+                "SET content = @paraContent, content = @paraContent, datecreated = @paraDatecreate " +
+                "WHERE postId = @parapostID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@parapostID", postId);
+            sqlCmd.Parameters.AddWithValue("@paraContent", content);
+            sqlCmd.Parameters.AddWithValue("@paraDatecreate", datecreate);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+
+        }
+    }
+}

@@ -28,7 +28,7 @@
             <div class="card-body">
                 <h4 class="card-title"><% =post.title %></h4>
                 <p class="card-text">By: </p>
-                <i class="far fa-clock"></i><span>Created on: <% =post.datecreated.ToShortDateString() %></span>
+                <i class="fas fa-clock"></i><span class="card-text">Created on: <% =post.datecreated.ToShortDateString() %></span>
                 <hr />
                 <p class="card-text"><% =post.content %></p>
             </div>

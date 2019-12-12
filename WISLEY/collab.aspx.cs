@@ -21,18 +21,20 @@ namespace WISLEY
         public bool ValidateInput()
         {
             LblMsg.Text = String.Empty;
-            bool valid = true;
+            bool valid = false;
             if (String.IsNullOrEmpty(tbtitle.Text))
             {
                 LblMsg.Text += "Please enter a title!<br/>";
                 LblMsg.ForeColor = Color.Red;
-                valid = false;
             }
             if (String.IsNullOrEmpty(tbcontent.Text))
             {
                 LblMsg.Text += "Please enter some content!<br/>";
                 LblMsg.ForeColor = Color.Red;
-                valid = false;
+            }
+            if (String.IsNullOrEmpty(LblMsg.Text))
+            {
+                valid = true;
             }
             return valid;
         }
@@ -41,7 +43,7 @@ namespace WISLEY
         {
             if (ValidateInput())
             {
-                LblMsg.Text = "";
+                LblMsg.Text = String.Empty;
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
 
@@ -55,7 +57,7 @@ namespace WISLEY
                 }
                 else
                 {
-                    LblMsg.Text = "Unable to Add Post. Please inform system administrator!";
+                    LblMsg.Text = "Unable to add post. Please inform system administrator!";
                     LblMsg.ForeColor = Color.Red;
                 }
             }
