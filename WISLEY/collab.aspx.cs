@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -59,6 +60,25 @@ namespace WISLEY
                 {
                     LblMsg.Text = "Unable to add post. Please inform system administrator!";
                     LblMsg.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (fileUpload.HasFile)
+            {
+                try
+                {
+                    string filename = Path.GetFileName(fileUpload.FileName);
+                    fileUpload.SaveAs(Server.MapPath("/Uploads/") + filename);
+                    LbStatus.Text = "File uploaded!";
+                    LbStatus.ForeColor = Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    LbStatus.Text = "The file could not be uploaded. The following error occured: " + ex.Message;
+                    LbStatus.ForeColor = Color.Red;
                 }
             }
         }

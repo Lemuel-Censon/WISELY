@@ -21,43 +21,51 @@
     <nav class="navbar navbar-expand-lg navbar-dark primary-color">
 
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">WISLEY</a>
+        <a class="navbar-brand" href="index.aspx">WISLEY</a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
             aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link rounded" href="index.aspx">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded" href="gacha.aspx">Gachas</a>
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-bell text-white"></i></a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown my-auto d-none d-md-block">
                     <a class="nav-link dropdown-toggle" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"><i class="fas fa-user text-white"></i></a>
 
-                    <div class="dropdown-menu dropdown-primary" aria-labelledby="profileDD">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-1" aria-labelledby="profileDD">
+                        <a class="dropdown-item" href="/profile.aspx">
+                            <i class="fas fa-id-card mr-1"></i>My Profile</a>
+                        <a class="dropdown-item" href="/collab.aspx">
+                            <i class="fas fa-handshake mr-1"></i>Collaboration Board</a>
+                        <a class="dropdown-item" href="/schedule.aspx">
+                            <i class="fas fa-calendar mr-1"></i>My Schedule</a>
                     </div>
                 </li>
             </ul>
         </div>
-        <!-- Collapsible content -->
-
     </nav>
     <!--/.Navbar-->
 
-    <div class="container-fluid border border-danger mx-auto mt-3"> 
+    <div class="container-fluid border border-danger mx-auto mt-3">
         <div class="row justify-content-around">
             <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
             </asp:ContentPlaceHolder>
-            </div>
+        </div>
     </div>
 
 
