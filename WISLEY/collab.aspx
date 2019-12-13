@@ -14,8 +14,6 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <asp:FileUpload ID="fileUpload" runat="server" />
-                            <asp:Button ID="btnUpload" runat="server" Text="Upload" CssClass="btn btn-sm btn-info" OnClick="btnUpload_Click" />
-                            <br />
                             <asp:Label ID="LbStatus" runat="server"></asp:Label>
                         </div>
                         <div class="col-lg-4">
