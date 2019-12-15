@@ -26,7 +26,7 @@ namespace WISLEY.BLL.Collab
             datecreate = DateTime.Today;
         }
 
-        public int Insert()
+        public int AddComment()
         {
             CommentDAO commdao = new CommentDAO();
             return commdao.Insert(this);

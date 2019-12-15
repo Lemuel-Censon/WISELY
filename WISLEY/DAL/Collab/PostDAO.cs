@@ -63,7 +63,34 @@ namespace WISLEY.DAL.Collab
                     postlist.Add(obj);
                 }
             }
+
             return postlist;
+        }
+
+        public List<string> SelectIDs()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select Id from Post";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            List<string> IDList = new List<string>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string id = row["Id"].ToString();
+                    IDList.Add(id);
+                }
+            }
+
+            return IDList;
         }
 
         public int UpdatePost(string userId, string title, string content, DateTime datecreate)

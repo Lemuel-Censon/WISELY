@@ -26,8 +26,11 @@
                 </div>
             </div>
             <% if (allPosts.Count > 0)
-                { %><% foreach (var post in allPosts)
-                        { %>
+                { %>
+            <% foreach (var post in allPosts)
+                { %>
+            <%foreach (var id in post.SelectIDs())
+                { %>
             <div class="card mt-3">
                 <div class="card-body">
                     <h4 class="card-title"><% =post.title %></h4>
@@ -35,15 +38,57 @@
                     <i class="fas fa-clock"></i><span class="card-text">Created on: <% =post.datecreated.ToShortDateString() %></span>
                     <hr />
                     <p class="card-text"><% =post.content %></p>
-                </div>
-            </div>
-
-            <%} %>            <%} %><% else
+                    <div class="accordion" role="tablist" id="commentacc<%=id %>" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="commhead">
+                                <a data-toggle="collapse" data-parent="#commentacc<%=id %>" href="#comms<%=id %>" aria-expanded="true"
+                                    aria-controls="comms<%=id %>">
+                                    <h5 class="mb-0">Comments (<%=allComments.Count.ToString() %>)<i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+                            <div id="comms<%=id %>" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
+                                <div class="card-body">
+                                    <asp:Button ID="btnAddComment" runat="server" Text="Add Comment" CssClass="btn btn-sm btn-info" OnClick="btnAddComment_Click" />
+                                    <% if (allComments.Count > 0)
+                                        { %><% foreach (var comment in allComments)
+                                                { %>
+                                    <div class="border border-dark">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <p class="card-text"></p>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <i class="fas fa-clock"></i><span class="card-text">Posted on: <% =comment.datecreate.ToShortDateString() %></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-left p-2">
+                                            <p>
+                                                <% =comment.content %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <%} %>
+                                    <%} %>
+                                    <% else
                                         { %>
-            <div class="text-center mt-3">
-                <h4 class="font-weight-bold">No posts</h4>
+                                    <h5 class="mt-3 font-weight-bold">No Comments</h5>
+                                    <%} %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%} %>
+
+
+                <%} %>            <%} %><% else
+                                            { %>
+                <div class="text-center mt-3">
+                    <h4 class="font-weight-bold">No Posts</h4>
+                </div>
+                <% } %>
             </div>
-            <% } %>
         </div>
     </form>
 </asp:Content>

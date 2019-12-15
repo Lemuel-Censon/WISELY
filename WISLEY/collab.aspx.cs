@@ -13,6 +13,7 @@ namespace WISLEY
     public partial class collab : System.Web.UI.Page
     {
         public List<Post> allPosts = new Post().SelectAll();
+        public List<Comment> allComments = new Comment().SelectAll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -86,6 +87,11 @@ namespace WISLEY
                     LblMsg.ForeColor = Color.Red;
                 }
             }
+        }
+
+        protected void btnAddComment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddComment.aspx");
         }
     }
 }

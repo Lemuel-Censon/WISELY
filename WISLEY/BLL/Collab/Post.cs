@@ -40,6 +40,12 @@ namespace WISLEY.BLL.Collab
             return postdao.SelectAll();
         }
 
+        public List<string> SelectIDs()
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.SelectIDs();
+        }
+
         public int UpdatePost(string userId, string title, string content, DateTime datecreate)
         {
             PostDAO postdao = new PostDAO();
