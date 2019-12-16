@@ -17,7 +17,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <asp:FileUpload ID="fileUpload" runat="server" />
+                            <div class="custom-file">
+                                <asp:FileUpload ID="fileUpload" runat="server" CssClass="custom-file-input" />
+                                <asp:Label ID="LbFile" AssociatedControlID="fileUpload" runat="server" Text="Upload a file" CssClass="custom-file-label"></asp:Label>
+                            </div>
                             <asp:Label ID="LbStatus" runat="server"></asp:Label>
                         </div>
                         <div class="col-lg-4">
@@ -38,17 +41,31 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <h4 class="card-title"><% =post.title %></h4>
-                    <p class="card-text">By: </p>
-                    <i class="fas fa-clock"></i><span class="card-text">Created on: <% =post.datecreated.ToShortDateString() %></span>
+                    <div class="media mt-4 px-1">
+                        <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                            alt="Generic placeholder image">
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="font-weight-bold mt-0">
+                                        <a href="#">Danny Newman</a>
+                                    </h5>
+                                </div>
+                                <div class="col-lg-6">
+                                    <i class="fas fa-clock"></i><span>Created on: <% =post.datecreated.ToShortDateString() %></span>
+                                </div>
+                            </div>
+                            <% =post.content %>
+                        </div>
+                    </div>
                     <hr />
-                    <p class="card-text"><% =post.content %></p>
+                    <h5 class="text-center my-3">Comments</h5>
                     <div class="accordion" role="tablist" id="commentacc<%=id %>" aria-multiselectable="true">
                         <div class="card">
                             <div class="card-header" role="tab" id="commhead">
                                 <a data-toggle="collapse" data-parent="#commentacc<%=id %>" href="#comms<%=id %>" aria-expanded="true"
                                     aria-controls="comms<%=id %>">
-                                    <h5 class="mb-0">Comments (<%=allComments.Count.ToString() %>)<i class="fas fa-angle-down rotate-icon"></i>
-                                    </h5>
+                                    <div class="card-header border-0 font-weight-bold"><%=allComments.Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon"></i></div>
                                 </a>
                             </div>
                             <div id="comms<%=id %>" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
@@ -57,27 +74,22 @@
                                     <% if (allComments.Count > 0)
                                         { %><% foreach (var comment in allComments)
                                                 { %>
-                                    <div class="border border-dark">
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <p class="card-text"></p>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <i class="fas fa-clock"></i><span class="card-text">Posted on: <% =comment.datecreate.ToShortDateString() %></span>
-                                            </div>
+                                    <div class="media d-block d-md-flex mt-4">
+                                        <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                            <h5 class="font-weight-bold mt-0">
+                                                <a href="#">Howard</a>
+                                            </h5>
+                                            <%=comment.content %>
                                         </div>
-                                        <div class="text-left p-2">
-                                            <p>
-                                                <% =comment.content %>
-                                            </p>
-                                        </div>
+                                        <%} %>
+                                        <%} %>
+                                        <% else
+                                            { %>
+                                        <h5 class="mt-3 font-weight-bold">No Comments</h5>
+                                        <%} %>
                                     </div>
-                                    <%} %>
-                                    <%} %>
-                                    <% else
-                                        { %>
-                                    <h5 class="mt-3 font-weight-bold">No Comments</h5>
-                                    <%} %>
                                 </div>
                             </div>
                         </div>
