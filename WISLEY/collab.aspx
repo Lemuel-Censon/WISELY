@@ -78,9 +78,16 @@
                                         <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
                                             alt="Generic placeholder image">
                                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                            <h5 class="font-weight-bold mt-0">
-                                                <a href="#">Howard</a>
-                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h5 class="font-weight-bold mt-0">
+                                                        <a href="#">Howard</a>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <i class="fas fa-clock"></i><span>Posted on: <% =comment.datecreate.ToShortDateString() %></span>
+                                                </div>
+                                            </div>
                                             <%=comment.content %>
                                         </div>
                                         <%} %>
