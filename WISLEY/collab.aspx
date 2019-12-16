@@ -6,11 +6,15 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <label for="tbtitle">Post title: </label>
-                    <asp:TextBox ID="tbtitle" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="md-form md-outline">
+                        <asp:Label ID="LbPost" AssociatedControlID="tbtitle" runat="server" Text="Post Title"></asp:Label>
+                        <asp:TextBox ID="tbtitle" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
                     <hr />
-                    <label for="tbcontent">Description: </label>
-                    <asp:TextBox ID="tbcontent" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="6"></asp:TextBox>
+                    <div class="md-form md-outline">
+                        <asp:Label ID="LbDesc" AssociatedControlID="tbcontent" runat="server" Text="Post Description"></asp:Label>
+                        <asp:TextBox ID="tbcontent" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="6"></asp:TextBox>
+                    </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <asp:FileUpload ID="fileUpload" runat="server" />

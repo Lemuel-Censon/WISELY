@@ -83,7 +83,7 @@ namespace WISLEY
                 }
                 else
                 {
-                    LblMsg.Text = "Unable to add post. Please inform system administrator!";
+                    LblMsg.Text = "Unable to add post, please inform system administrator!";
                     LblMsg.ForeColor = Color.Red;
                 }
             }
@@ -91,7 +91,7 @@ namespace WISLEY
 
         protected void btnAddComment_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddComment.aspx");
+            Response.Redirect("comment.aspx");
         }
     }
 }

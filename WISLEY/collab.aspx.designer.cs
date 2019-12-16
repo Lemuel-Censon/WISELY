@@ -13,6 +13,15 @@ namespace WISLEY {
     public partial class collab {
         
         /// <summary>
+        /// LbPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbPost;
+        
+        /// <summary>
         /// tbtitle control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbtitle;
+        
+        /// <summary>
+        /// LbDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbDesc;
         
         /// <summary>
         /// tbcontent control.
