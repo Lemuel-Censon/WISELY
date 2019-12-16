@@ -94,6 +94,24 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Button btnpost;
         
         /// <summary>
+        /// LinkEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkEdit;
+        
+        /// <summary>
+        /// LinkDel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkDel;
+        
+        /// <summary>
         /// btnAddComment control.
         /// </summary>
         /// <remarks>

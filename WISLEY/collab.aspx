@@ -40,7 +40,20 @@
                 { %>
             <div class="card mt-3">
                 <div class="card-body">
-                    <h4 class="card-title"><% =post.title %></h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4 class="card-title"><% =post.title %></h4>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <div class="dropup">
+                                <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">More Options</button>
+                                <div class="dropdown-menu">
+                                    <asp:LinkButton ID="LinkEdit" CssClass="dropdown-item" runat="server">Edit<i class="fas fa-pencil mr-1"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkDel" CssClass="dropdown-item" runat="server">Delete<i class="fas fa-trash mr-1"></i></asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="media mt-4 px-1">
                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
                             alt="Generic placeholder image">
@@ -52,7 +65,8 @@
                                     </h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <i class="fas fa-clock"></i><span>Created on: <% =post.datecreated.ToShortDateString() %></span>
+                                    <i class="fas fa-clock mr-1"></i><span>Created on: <% =post.datecreated.ToShortDateString() %>
+                                    </span>
                                 </div>
                             </div>
                             <% =post.content %>
@@ -65,7 +79,7 @@
                             <div class="card-header" role="tab" id="commhead">
                                 <a data-toggle="collapse" data-parent="#commentacc<%=id %>" href="#comms<%=id %>" aria-expanded="true"
                                     aria-controls="comms<%=id %>">
-                                    <div class="card-header border-0 font-weight-bold"><%=allComments.Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon"></i></div>
+                                    <div class="card-header border-0 font-weight-bold"><%=allComments.Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon mr-1"></i></div>
                                 </a>
                             </div>
                             <div id="comms<%=id %>" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
@@ -85,7 +99,7 @@
                                                     </h5>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <i class="fas fa-clock"></i><span>Posted on: <% =comment.datecreate.ToShortDateString() %></span>
+                                                    <i class="fas fa-clock mr-1"></i><span>Posted on: <% =comment.datecreate.ToShortDateString() %></span>
                                                 </div>
                                             </div>
                                             <%=comment.content %>
