@@ -125,6 +125,7 @@
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
     <Content Include="schedule.aspx" />
+    <Content Include="todoplan.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -144,7 +145,6 @@
     </Compile>
     <Compile Include="group.aspx.cs">
       <DependentUpon>group.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="group.aspx.designer.cs">
       <DependentUpon>group.aspx</DependentUpon>
@@ -187,6 +187,13 @@
     </Compile>
     <Compile Include="schedule.aspx.designer.cs">
       <DependentUpon>schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="todoplan.aspx.cs">
+      <DependentUpon>todoplan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="todoplan.aspx.designer.cs">
+      <DependentUpon>todoplan.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

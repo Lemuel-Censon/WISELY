@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body" style="margin:0 auto;">
                     <h3 class="text-center font-weight-bold">My Calendar</h3>
-                    <asp:Calendar ID="calendarPlan" runat="server" BackColor="White" BorderColor="Black" Font-Names="Arial Black" Font-Size="10pt" ForeColor="Black" Height="430px" Width="878px" ShowGridLines="True">
+                    <asp:Calendar ID="calendarPlan" runat="server" BackColor="White" BorderColor="Black" Font-Names="Arial Black" Font-Size="10pt" ForeColor="Black" Height="430px" Width="878px" ShowGridLines="True" OnSelectionChanged="calendarPlan_SelectionChanged">
                         <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" VerticalAlign="Middle" />
                         <DayStyle Width="14%" Font-Bold="True" />
                         <NextPrevStyle Font-Size="8pt" ForeColor="White" Font-Bold="True" />
@@ -26,9 +26,10 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center font-weight-bold">Your personal To-Do-List</h3>
+                    <h3 class="text-center font-weight-bold">Your personal To-Do-List(s)</h3>
                     <br />
-                    <h5 class="text-center font-weight-bold">Currently Empty</h5>
+                    <h5 class="text-center font-weight-bold">Currently Empty
+                    </h5>
                 </div>
             </div>
         </form>
