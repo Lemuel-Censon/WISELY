@@ -22,15 +22,6 @@ namespace WISLEY {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnchangeAvatar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnchangeAvatar;
-        
-        /// <summary>
         /// LbUsername control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// btnchangeAvatar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnchangeAvatar;
         
         /// <summary>
         /// btneditProfile control.

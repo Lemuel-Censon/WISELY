@@ -74,6 +74,8 @@
     <Content Include="bin\WISLEY.dll" />
     <Content Include="bin\WISLEY.pdb" />
     <Content Include="collab.aspx" />
+    <Content Include="comment.aspx" />
+    <Content Include="editprofile.aspx" />
     <Content Include="Global.asax" />
     <Content Include="group.aspx" />
     <Content Include="index.aspx" />
@@ -139,7 +141,21 @@
     <Compile Include="collab.aspx.designer.cs">
       <DependentUpon>collab.aspx</DependentUpon>
     </Compile>
+    <Compile Include="comment.aspx.cs">
+      <DependentUpon>comment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comment.aspx.designer.cs">
+      <DependentUpon>comment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Collab\PostDAO.cs" />
+    <Compile Include="editprofile.aspx.cs">
+      <DependentUpon>editprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editprofile.aspx.designer.cs">
+      <DependentUpon>editprofile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,6 +164,13 @@
     </Compile>
     <Compile Include="group.aspx.designer.cs">
       <DependentUpon>group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="group.Master.cs">
+      <DependentUpon>group.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="group.Master.designer.cs">
+      <DependentUpon>group.Master</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -201,6 +224,7 @@
     <Content Include="obj\Release\WISLEY.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Release\WISLEY.csprojAssemblyReference.cache" />
     <Content Include="sidebar.master" />
+    <Content Include="group.Master" />
     <None Include="packages.config" />
     <Content Include="Public\font\roboto\Roboto-Bold.eot" />
     <Content Include="Public\font\roboto\Roboto-Bold.ttf" />

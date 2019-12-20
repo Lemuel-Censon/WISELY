@@ -16,7 +16,7 @@ namespace WISLEY
 
         protected void btneditProfile_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("editprofile.aspx");
         }
 
 
