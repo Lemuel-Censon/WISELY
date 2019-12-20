@@ -16,27 +16,21 @@
                         <asp:TextBox ID="tbcontent" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="6"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="custom-file">
                                 <asp:FileUpload ID="fileUpload" runat="server" CssClass="custom-file-input" />
                                 <asp:Label ID="LbFile" AssociatedControlID="fileUpload" runat="server" Text="Upload a file" CssClass="custom-file-label"></asp:Label>
                             </div>
-                            <asp:Label ID="LbStatus" runat="server"></asp:Label>
-                        </div>
-                        <div class="col-lg-4">
-                            <asp:Label ID="LblMsg" runat="server"></asp:Label>
-                        </div>
-                        <div class="col-lg-4 text-right">
+                        </div>   
+                        <div class="col-lg-6 text-right">
                             <asp:Button CssClass="btn btn-success ml-auto" ID="btnpost" runat="server" Text="Post" OnClick="btnpost_Click" />
                         </div>
                     </div>
                 </div>
             </div>
-            <% if (allPosts.Count > 0)
+            <% if (allPosts().Count > 0)
                 { %>
-            <% foreach (var post in allPosts)
-                { %>
-            <%foreach (var id in post.SelectIDs())
+            <% foreach (var post in allPosts())
                 { %>
             <div class="card mt-3">
                 <div class="card-body">
@@ -74,15 +68,15 @@
                     </div>
                     <hr />
                     <h5 class="text-center my-3">Comments</h5>
-                    <div class="accordion" role="tablist" id="commentacc<%=id %>" aria-multiselectable="true">
+                    <div class="accordion" role="tablist" id="commentacc" aria-multiselectable="true">
                         <div class="card">
                             <div class="card-header" role="tab" id="commhead">
-                                <a data-toggle="collapse" data-parent="#commentacc<%=id %>" href="#comms<%=id %>" aria-expanded="true"
-                                    aria-controls="comms<%=id %>">
+                                <a data-toggle="collapse" data-parent="#commentacc" href="#comms" aria-expanded="true"
+                                    aria-controls="comms">
                                     <div class="card-header border-0 font-weight-bold"><%=allComments.Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon mr-1"></i></div>
                                 </a>
                             </div>
-                            <div id="comms<%=id %>" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
+                            <div id="comms" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
                                 <div class="card-body">
                                     <asp:Button ID="btnAddComment" runat="server" Text="Add Comment" CssClass="btn btn-sm btn-info" OnClick="btnAddComment_Click" />
                                     <% if (allComments.Count > 0)
@@ -116,7 +110,6 @@
                         </div>
                     </div>
                 </div>
-                <%} %>
 
 
                 <%} %>            <%} %><% else

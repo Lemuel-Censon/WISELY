@@ -9,7 +9,25 @@
     <link href="Public/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Public/css/mdb.min.css" rel="stylesheet" />
     <link href="Public/css/fontawesome.min.css" rel="stylesheet" />
-
+    <link href="content/toastr.css" rel="stylesheet" />
+    <script src="Public/js/jquery.min.js"></script>
+    <script src="scripts/toastr.js"></script>
+    <script type="text/javascript">
+        function toastnotif(msg, title, type) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": true,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "hideDuration": "300",
+                "timeOut": "3000",
+                "extendedTimeOut": "1500",
+            }
+            toastr[type](msg, title);
+        }
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -71,10 +89,12 @@
     </div>
 
 
-    <script src="Public/js/jquery.min.js"></script>
+
+
     <script src="Public/js/popper.min.js"></script>
     <script src="Public/js/bootstrap.min.js"></script>
     <script src="Public/js/mdb.min.js"></script>
+
 </body>
 
 </html>

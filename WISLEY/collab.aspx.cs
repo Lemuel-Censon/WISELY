@@ -12,29 +12,35 @@ namespace WISLEY
 {
     public partial class collab : System.Web.UI.Page
     {
-        public List<Post> allPosts = new Post().SelectAll();
         public List<Comment> allComments = new Comment().SelectAll();
+        public List<Post> allPosts()
+        {
+            List<Post> allPosts = new Post().SelectAll();
+            return allPosts;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            allPosts();
+        }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         public bool ValidateInput()
         {
-            LblMsg.Text = String.Empty;
             bool valid = false;
             if (String.IsNullOrEmpty(tbtitle.Text))
             {
-                LblMsg.Text += "Please enter a title!<br/>";
-                LblMsg.ForeColor = Color.Red;
+                toast(this.Page, "Please enter a title!", "Error", "error");
             }
             if (String.IsNullOrEmpty(tbcontent.Text))
             {
-                LblMsg.Text += "Please enter some content!<br/>";
-                LblMsg.ForeColor = Color.Red;
+                toast(this.Page, "Please enter some content!", "Error", "error");
             }
-            if (String.IsNullOrEmpty(LblMsg.Text))
+            else
             {
                 valid = true;
             }
@@ -51,15 +57,17 @@ namespace WISLEY
                 {
                     string filename = Path.GetFileName(fileUpload.FileName);
                     fileUpload.SaveAs(Server.MapPath("/Uploads/") + filename);
-                    LbStatus.Text = "File uploaded!";
-                    LbStatus.ForeColor = Color.Green;
+                    toast(this.Page, "File uploaded!", "Success", "success");
                     save = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    LbStatus.Text = "The file could not be uploaded. The following error occured: " + ex.Message;
-                    LbStatus.ForeColor = Color.Red;
+                    toast(this.Page, "The file could not be uploaded.", "Error", "error");
                 }
+            }
+            else
+            {
+                save = true;
             }
 
             return save;
@@ -69,7 +77,6 @@ namespace WISLEY
         {
             if (ValidateInput() && storeFile())
             {
-                LblMsg.Text = String.Empty;
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
 
@@ -78,13 +85,11 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    LblMsg.Text = "Post Added!";
-                    LblMsg.ForeColor = Color.Green;
+                    toast(this.Page, "Post Added!", "Success", "success");
                 }
                 else
                 {
-                    LblMsg.Text = "Unable to add post, please inform system administrator!";
-                    LblMsg.ForeColor = Color.Red;
+                    toast(this.Page, "Unable to add post, please inform system administrator!", "Error", "error");
                 }
             }
         }

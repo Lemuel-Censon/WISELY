@@ -67,24 +67,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbFile;
         
         /// <summary>
-        /// LbStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbStatus;
-        
-        /// <summary>
-        /// LblMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMsg;
-        
-        /// <summary>
         /// btnpost control.
         /// </summary>
         /// <remarks>
