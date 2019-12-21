@@ -10,16 +10,25 @@
 namespace WISLEY {
     
     
-    public partial class comment {
+    public partial class viewpost {
         
         /// <summary>
-        /// form1 control.
+        /// LinkEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.LinkButton LinkEdit;
+        
+        /// <summary>
+        /// LinkDel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkDel;
         
         /// <summary>
         /// LbComment control.
@@ -31,30 +40,39 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbComment;
         
         /// <summary>
-        /// tbComment control.
+        /// tbcomment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbComment;
+        protected global::System.Web.UI.WebControls.TextBox tbcomment;
         
         /// <summary>
-        /// LbMsg control.
+        /// fileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbMsg;
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
         
         /// <summary>
-        /// btnComment control.
+        /// LbFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComment;
+        protected global::System.Web.UI.WebControls.Label LbFile;
+        
+        /// <summary>
+        /// btncomment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btncomment;
     }
 }

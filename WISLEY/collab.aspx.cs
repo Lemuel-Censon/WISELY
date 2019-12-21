@@ -94,9 +94,9 @@ namespace WISLEY
             }
         }
 
-        protected void btnAddComment_Click(object sender, EventArgs e)
+        protected void btnView_Click(object sender, EventArgs e)
         {
-            Response.Redirect("comment.aspx");
+            Response.Redirect("viewpost.aspx");
         }
     }
 }
