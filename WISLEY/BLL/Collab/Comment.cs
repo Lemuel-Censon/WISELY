@@ -38,6 +38,12 @@ namespace WISLEY.BLL.Collab
             return commdao.SelectAll();
         }
 
+        public List<Comment> SelectByPost(string postId)
+        {
+            CommentDAO commdao = new CommentDAO();
+            return commdao.SelectByPost(postId);
+        }
+
         public int UpdateComment(string postId, string content, DateTime datecreate)
         {
             CommentDAO commdao = new CommentDAO();

@@ -43,8 +43,8 @@
                             <div class="dropup">
                                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">More Options</button>
                                 <div class="dropdown-menu">
-                                    <asp:LinkButton ID="LinkEdit" CssClass="dropdown-item" runat="server">Edit<i class="fas fa-pencil mr-1"></i></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkDel" CssClass="dropdown-item" runat="server">Delete<i class="fas fa-trash mr-1"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkEdit" CssClass="dropdown-item" runat="server">Edit<i class="fas fa-pen ml-1"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkDel" CssClass="dropdown-item" runat="server">Delete<i class="fas fa-trash ml-1"></i></asp:LinkButton>
                                 </div>
                             </div>
                         </div>

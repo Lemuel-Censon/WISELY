@@ -5,20 +5,7 @@
         <div class="container">
             <div class="card mt-3">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h4 class="card-title"><% =post.title %></h4>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <div class="dropup">
-                                <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">More Options</button>
-                                <div class="dropdown-menu">
-                                    <asp:LinkButton ID="LinkEdit" CssClass="dropdown-item" runat="server">Edit<i class="fas fa-pencil mr-1"></i></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkDel" CssClass="dropdown-item" runat="server">Delete<i class="fas fa-trash mr-1"></i></asp:LinkButton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h4 class="card-title"><% =post.title %></h4>
                     <div class="media mt-4 px-1">
                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
                             alt="Generic placeholder image">
