@@ -47,22 +47,14 @@
                                     <div class="card-header border-0 font-weight-bold"><%=allComments().Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon mr-1"></i></div>
                                 </a>
                             </div>
-                            <div id="comms" class="collapse" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
+                            <div id="comms" class="show" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
                                 <div class="card-body">
                                     <div class="md-form md-outline">
                                         <asp:Label ID="LbComment" AssociatedControlID="tbcomment" runat="server" Text="Comment"></asp:Label>
                                         <asp:TextBox ID="tbcomment" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="custom-file">
-                                                <asp:FileUpload ID="fileUpload" runat="server" CssClass="custom-file-input" />
-                                                <asp:Label ID="LbFile" AssociatedControlID="fileUpload" runat="server" Text="Upload a file" CssClass="custom-file-label"></asp:Label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 text-right">
-                                            <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
-                                        </div>
+                                    <div class="text-right">
+                                        <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
                                     </div>
                                     <hr />
                                     <% if (allComments().Count > 0)
@@ -84,14 +76,14 @@
                                             </div>
                                             <%=comment.content %>
                                         </div>
-                                        <hr />
-                                        <%} %>
-                                        <%} %>
-                                        <% else
-                                            { %>
-                                        <h5 class="mt-3 font-weight-bold">No Comments</h5>
-                                        <%} %>
                                     </div>
+                                    <hr />
+                                    <%} %>
+                                    <%} %>
+                                    <% else
+                                        { %>
+                                    <h5 class="mt-3 font-weight-bold">No Comments</h5>
+                                    <%} %>
                                 </div>
                             </div>
                         </div>
