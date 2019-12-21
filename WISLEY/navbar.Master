@@ -36,18 +36,18 @@
 
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color-dark" style="padding-left: 12px 1rem !important;">
 
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="index.aspx">WISLEY</a>
+        <a class="navbar-brand" href="index.aspx">WISELY</a>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
             aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
         </button>
 
-        <div class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link rounded" href="index.aspx">Home</a>
@@ -57,14 +57,16 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-bell text-white"></i></a>
+                <li class="nav-item mr-2 d-none d-md-block">
+                    <a class="nav-link rounded" href="#">
+                        <i class="fas fa-bell"></i></a>
                 </li>
                 <li class="nav-item dropdown my-auto d-none d-md-block">
-                    <a class="nav-link dropdown-toggle" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><i class="fas fa-user text-white"></i></a>
-
+                    <a class="nav-link chip primary-reverse-light-gradient dropdown-toggle m-0 z-depth-1-half" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img class="deep-purple lighten-5 z-depth-0 rounded-circle" height="35" src="https://picsum.photos/100">
+                        <i class="fas fa-user animated faster"></i>Bryan
+                    </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-1" aria-labelledby="profileDD">
                         <a class="dropdown-item" href="/profile.aspx">
                             <i class="fas fa-id-card mr-1"></i>My Profile</a>
@@ -81,12 +83,12 @@
     </nav>
     <!--/.Navbar-->
 
-    <div class="container-fluid border border-danger mx-auto mt-3">
+    <main class="container-fluid mx-auto mt-3">
         <div class="row justify-content-around">
             <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </div>
+    </main>
 
 
 
