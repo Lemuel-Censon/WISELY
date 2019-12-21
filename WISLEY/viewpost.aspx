@@ -30,7 +30,7 @@
                                     </h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <i class="fas fa-clock mr-1"></i><span>Created on: <% =post.datecreated.ToShortDateString() %>
+                                    <i class="fas fa-clock mr-1 "></i><span>Created on: <% =post.datecreated.ToShortDateString() %>
                                     </span>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="card-header" role="tab" id="commhead">
                                 <a data-toggle="collapse" data-parent="#commentacc" href="#comms" aria-expanded="true"
                                     aria-controls="comms">
-                                    <div class="card-header border-0 font-weight-bold"><%=allComments().Count.ToString() %> comment(s)<i class="fas fa-angle-down rotate-icon mr-1"></i></div>
+                                    <div class="card-header border-0 font-weight-bold"><%=allComments().Count.ToString() %> comment(s)<i class="fas fa-angle-down mr-1"></i></div>
                                 </a>
                             </div>
                             <div id="comms" class="show" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
