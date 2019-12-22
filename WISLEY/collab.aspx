@@ -70,14 +70,14 @@
                     <hr />
                     <div class="row card-header border-0 font-weight-bold">
                         <div class="col-lg-6">
-                        <%=allComments.Count.ToString() %> comment(s)
+                            <%=allComments.Count.ToString() %> comment(s)
                         </div>
                         <div class="col-lg-6 text-right">
-                        <asp:Button ID="btnView" CssClass="btn btn-sm btn-success btn-block" Text="View >>" runat="server" OnClick="btnView_Click" />
+                            <asp:Button ID="btnView" CssClass="btn btn-sm btn-success" Text="View >>" runat="server" OnClick="btnView_Click" />
                         </div>
                     </div>
+                    <hr />
                 </div>
-                <hr />
 
 
                 <%} %>
