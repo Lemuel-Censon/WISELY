@@ -56,7 +56,20 @@
             </div>
         </div>
         <br />
-        <div class="col-8 p-1">
+        <div class="col-4 p-2">
+            <div class="card-body">
+                <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
+                <ul style="list-style-type: none; line-height: 4;">
+                    <li><a href="index.aspx"><i class="fa fa-home"></i>&nbsp;Home Page</a></li>
+                    <li><a href="index.aspx"><i class="fa fa-graduation-cap"></i>&nbsp;My Grades</a></li>
+                    <li><a href="index.aspx"><i class="fa fa-calendar"></i>&nbsp;My Calendar</a></li>
+                    <li><a href="index.aspx"><i class="fa fa-code"></i>&nbsp;My Resources</a></li>
+                    <li><a href="index.aspx"><i class="fa fa-group"></i>&nbsp;My Groups</a></li>
+                    <li><a href="index.aspx"><i class="fa fa-photo"></i>&nbsp;Gacha</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-8 p-2">
             <ul class="nav nav-pills" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#about">About</a>
@@ -68,7 +81,7 @@
                     <a class="nav-link" data-toggle="tab" href="#friends">Friends List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#blogs">Blogs</a>
+                    <a class="nav-link" data-toggle="tab" href="#posts">Posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#badges">Badges</a>
@@ -87,27 +100,14 @@
                     <br>
                     <asp:Label ID="Label5" runat="server" Text="My Friends"></asp:Label>
                 </div>
-                <div id="blogs" class="container tab-pane fade">
+                <div id="posts" class="container tab-pane fade">
                     <br>
-                    <asp:Label ID="Label6" runat="server" Text="My Blogs"></asp:Label>
+                    <asp:Label ID="Label6" runat="server" Text="My Posts"></asp:Label>
                 </div>
                 <div id="badges" class="container tab-pane fade">
                     <br>
                     <asp:Label ID="Label7" runat="server" Text="My Badges"></asp:Label>
                 </div>
-            </div>
-        </div>
-        <div class="col-4 border border-danger p-1">
-            <div class="card-body">
-                <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
-                <ul style="list-style-type: none; line-height: 4;">
-                    <li><a href="index.aspx"><i class="fa fa-home"></i>&nbsp;Home Page</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-graduation-cap"></i>&nbsp;My Grades</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-calendar"></i>&nbsp;My Calendar</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-code"></i>&nbsp;My Resources</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-group"></i>&nbsp;My Groups</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-photo"></i>&nbsp;Gacha</a></li>
-                </ul>
             </div>
         </div>
     </form>
