@@ -5,40 +5,42 @@
 </asp:content>--%>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contentHolder1" runat="server">
-    <div class="col-3 border border-secondary">
+    <div class="row justify-content-around">
+        <div class="col-3 border border-secondary">
 
-        <div class="card card-body mb-4 border-primary">
-            <div class="row justify-content-center">
-                <div class="col-4">
-                    <img src="https://picsum.photos/100" class="mx-auto md-block">
-                    <!-- Social shares button -->
-                </div>
+            <div class="card card-body mb-4 border-primary">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <img src="https://picsum.photos/100" class="mx-auto md-block">
+                        <!-- Social shares button -->
+                    </div>
 
-                <div class="col-8">
-                    <h5 class="text-center">Name: John Smith</h5>
-                    <p class="text-center">Level: 1</p>
-                    <p class="text-center">Badges: Weee</p>
+                    <div class="col-8">
+                        <h5 class="text-center">Name: John Smith</h5>
+                        <p class="text-center">Level: 1</p>
+                        <p class="text-center">Badges: Weee</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card card-body border-primary">
-            <div class="col-12 justify-content-center">
-                <h4 class="text-center mx-auto">Modules</h4>
-                <hr class="hr-primary">
-                <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+            <div class="card card-body border-primary">
+                <div class="col-12 justify-content-center">
+                    <h4 class="text-center mx-auto">Modules</h4>
+                    <hr class="hr-primary">
+                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
 
+                </div>
             </div>
+
         </div>
 
-    </div>
-
-    <div class="col-7 border border-secondary">
-        <asp:ContentPlaceHolder ID="sidebarContent" runat="server">
-        </asp:ContentPlaceHolder>
+        <div class="col-7 border border-secondary">
+            <asp:ContentPlaceHolder ID="sidebarContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </div>
 </asp:Content>
 

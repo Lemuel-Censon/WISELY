@@ -84,18 +84,16 @@
     <!--/.Navbar-->
 
     <main class="container-fluid mx-auto mt-3">
-        <div class="row justify-content-around">
-            <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </main>
 
-    <footer class="page-footer font-small blue">
+    <footer class="page-footer font-small blue mt-4">
         <div class="footer-copyright p-3">
             <a href="index.aspx">
                 <img src="https://picsum.photos/100" height="30" alt="WISELY">
             </a>
-            <span class="m-0">&copy; <%DateTime.Now.Year.ToString(); %> <a href="index.aspx">WISELY</a> All Rights Reserved
+            <span class="m-0">&copy; <%=DateTime.Now.Year.ToString() %> <a href="index.aspx">WISELY</a> All Rights Reserved
             </span>
         </div>
     </footer>
