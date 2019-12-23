@@ -90,7 +90,15 @@
         </div>
     </main>
 
-
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright p-3">
+            <a href="index.aspx">
+                <img src="https://picsum.photos/100" height="30" alt="WISELY">
+            </a>
+            <span class="m-0">&copy; <%DateTime.Now.Year.ToString(); %> <a href="index.aspx">WISELY</a> All Rights Reserved
+            </span>
+        </div>
+    </footer>
 
 
     <script src="Public/js/popper.min.js"></script>
