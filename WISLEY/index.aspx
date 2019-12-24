@@ -4,45 +4,23 @@
 </asp:Content>--%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-    <div id="carousel" class="carousel slide carousel-fade z-depth-3">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <div class="view">
-                    <img class="d-block w-100" src="https://picsum.photos/1600/600" alt="Learning" />
-                </div>
-                <div class="carousel-caption d-flex align-items-center">
-                    <div class="animated fadeInDown mask rgba-black-light rounded z-depth-1 p-4 w-100">
-                        <h1 class="h1-responsive mb-0 mb-md-2">Welcome to WISELY</h1>
-                        <p class="d-none d-md-block">
-                            A platform for students and teachers to learn and teach in a fun way.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="view">
-                    <img class="d-block w-100" src="https://picsum.photos/1600/600" alt="Gacha" />
-                </div>
-                <div class="carousel-caption d-flex align-items-center">
-                    <div class="animated fadeInDown mask rgba-black-light rounded z-depth-1 p-4 w-100">
-                        <h1 class="h1-responsive mb-0 mb-md-2">Register on WISELY</h1>
-                        <p class="d-none d-md-block">
-                            Join us today as a Student or Teacher for a fun experience in learning!
-                        </p>
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="https://picsum.photos/800/400" class="img-fluid" alt="WISELY" />
+        </div>
+        <div class="col-lg-6">
 
-                        <a class="btn btn-md btn-info" href="register.aspx">
-                            <i class="fas fa-user-plus mr-1"></i>Get Started
-                        </a>
-                    </div>
-                </div>
+        <div class="text-left py-5 px-4">
+            <div class="py-5">
+                <h2 class="h1-responsive mb-0 mb-md-2">Welcome to WISELY</h2>
+                <p class="d-none d-md-block">WISELY is a platform for students and teachers to teach and learn in a fun way.</p>
+                <p class="d-none d-md-block">Join us today as a student or teacher for a fun experience in learning!</p>
+                <a class="btn btn-md btn-info" href="register.aspx">
+                    <i class="fas fa-user-plus mr-1"></i>Get Started
+                </a>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <i class="fas fa-chevron-left fa-lg"></i>
-        </a>
-        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <i class="fas fa-chevron-right fa-lg"></i>
-        </a>
+    </div>
     </div>
     <div class="mt-3">
         <h1 class="text-center font-weight-bold">Why WISELY?</h1>
