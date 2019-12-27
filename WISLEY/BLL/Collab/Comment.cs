@@ -44,10 +44,10 @@ namespace WISLEY.BLL.Collab
             return commdao.SelectByPost(postId);
         }
 
-        public int UpdateComment(string postId, string content, DateTime datecreate)
+        public int UpdateComment(string commmId, string content, DateTime datecreate)
         {
             CommentDAO commdao = new CommentDAO();
-            return commdao.UpdateComment(postId, content, datecreate);
+            return commdao.UpdateComment(commId, content, datecreate);
         }
     }
 }

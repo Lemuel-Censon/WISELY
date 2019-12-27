@@ -94,19 +94,19 @@ namespace WISLEY.DAL.Collab
             return commpostlist;
         }
 
-        public int UpdateComment(string postId, string content, DateTime datecreate)
+        public int UpdateComment(string commId, string content, DateTime datecreate)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlStmt = "UPDATE Comment " +
                 "SET content = @paraContent, content = @paraContent, datecreated = @paraDatecreate " +
-                "WHERE postId = @parapostID";
+                "WHERE Id = @paracommID";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@parapostID", postId);
+            sqlCmd.Parameters.AddWithValue("@paracommID", commId);
             sqlCmd.Parameters.AddWithValue("@paraContent", content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", datecreate);
 

@@ -52,10 +52,10 @@ namespace WISLEY.BLL.Collab
             return postdao.SelectByUser(userId);
         }
 
-        public int UpdatePost(string userId, string title, string content, DateTime datecreate)
+        public int UpdatePost(string postId, string title, string content, DateTime datecreate)
         {
             PostDAO postdao = new PostDAO();
-            return postdao.UpdatePost(userId, title, content, datecreate);
+            return postdao.UpdatePost(postId, title, content, datecreate);
         }
     }
 }
