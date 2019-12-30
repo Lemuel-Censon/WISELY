@@ -29,12 +29,13 @@
                 </div>
             </div>
             <% if (allPosts().Count > 0)
-                { %>
+                {
+                    int counter = 0; %>
             <div class="card mt-3">
                 <% foreach (var post in allPosts())
                     { %>
 
-                <div class="card-body">
+                <div class="card-body" id="post<%=post.SelectIDs()[counter] %>">
                     <h4 class="card-title"><% =post.title %></h4>
                     <div class="media mt-4 px-1">
                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
@@ -67,7 +68,8 @@
                 </div>
 
 
-                <%} %>
+                <%counter++;
+                    } %>
             </div>
             <%} %><% else
                       { %>

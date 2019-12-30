@@ -40,6 +40,13 @@ namespace WISLEY.BLL.Collab
             return postdao.SelectAll();
         }
 
+        public List<string> SelectIDs()
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.SelectIDs();
+        }
+
+
         public List<Post> SelectByGrp(string grpId)
         {
             PostDAO postdao = new PostDAO();
