@@ -25,7 +25,7 @@ namespace WISLEY.DAL.Collab
             sqlCmd.Parameters.AddWithValue("@paraPostID", comment.postid);
             sqlCmd.Parameters.AddWithValue("@paraUserID", comment.userid);
             sqlCmd.Parameters.AddWithValue("@paraContent", comment.content);
-            sqlCmd.Parameters.AddWithValue("@paraDatecreate", comment.datecreate);
+            sqlCmd.Parameters.AddWithValue("@paraDatecreate", comment.datecreated);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -40,7 +40,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment";
+            string sqlstmt = "Select * from Comment ORDER BY datecreated DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
 
             DataSet ds = new DataSet();
@@ -57,7 +57,8 @@ namespace WISLEY.DAL.Collab
                     string postId = row["postId"].ToString();
                     string userId = row["userId"].ToString();
                     string content = row["content"].ToString();
-                    obj = new Comment(postId, userId, content);
+                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    obj = new Comment(postId, userId, content, datecreated);
                     commlist.Add(obj);
                 }
             }
@@ -69,7 +70,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment where postId = @paraPostId";
+            string sqlstmt = "Select * from Comment where postId = @paraPostId ORDER BY datecreated DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraPostId", postId);
 
@@ -86,7 +87,8 @@ namespace WISLEY.DAL.Collab
                     DataRow row = ds.Tables[0].Rows[i];
                     string userId = row["userId"].ToString();
                     string content = row["content"].ToString();
-                    obj = new Comment(postId, userId, content);
+                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    obj = new Comment(postId, userId, content, datecreated);
                     commpostlist.Add(obj);
                 }
             }

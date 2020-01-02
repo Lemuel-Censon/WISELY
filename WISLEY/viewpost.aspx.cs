@@ -18,7 +18,7 @@ namespace WISLEY
 
         public List<Comment> allComments()
         {
-            List<Comment> allComments = new Comment().SelectAll();
+            List<Comment> allComments = new Comment().SelectByPost(Session["postId"].ToString());
             return allComments;
         }
 
@@ -57,12 +57,13 @@ namespace WISLEY
             {
                 string content = tbcomment.Text;
 
-                Comment comment = new Comment("100", "100", content);
+                Comment comment = new Comment("2", "100", content, DateTime.Today);
                 int result = comment.AddComment();
 
                 if (result == 1)
                 {
                     toast(this.Page, "Comment posted!", "Success", "success");
+                    tbcomment.Text = "";
                 }
                 else
                 {

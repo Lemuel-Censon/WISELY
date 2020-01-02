@@ -12,7 +12,7 @@ namespace WISLEY
 {
     public partial class collab : System.Web.UI.Page
     {
-        public List<Comment> allComments = new Comment().SelectAll();
+        public Comment postComments = new Comment();
 
         public List<Post> allPosts()
         {
@@ -20,14 +20,13 @@ namespace WISLEY
             return allPosts;
         }
 
-        public void Displaybtns()
+        public void displaybtns()
         {
-            Post post = new Post();
-            foreach (var id in post.SelectIDs())
+            foreach (var id in new Post().SelectIDs())
             {
                 Button btn = new Button();
                 btn.ID = id;
-                btn.Text = post.SelectByID(id).title;
+                btn.Text = new Post().SelectByID(id).title;
                 btn.CssClass = "btn btn-sm btn-success";
                 btn.Click += new EventHandler(btnView_Click);
                 btncontainer.Controls.Add(btn);
@@ -37,7 +36,7 @@ namespace WISLEY
         protected void Page_Load(object sender, EventArgs e)
         {
             allPosts();
-            Displaybtns();
+            displaybtns();
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -96,12 +95,14 @@ namespace WISLEY
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
 
-                Post post = new Post(title, content, "100", "100");
+                Post post = new Post(title, content, "100", "100", DateTime.Today);
                 int result = post.AddPost();
 
                 if (result == 1)
                 {
                     toast(this.Page, "Post Added!", "Success", "success");
+                    tbtitle.Text = "";
+                    tbcontent.Text = "";
                 }
                 else
                 {

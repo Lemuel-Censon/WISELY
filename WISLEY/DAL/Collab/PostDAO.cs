@@ -83,7 +83,8 @@ namespace WISLEY.DAL.Collab
                 string title = row["title"].ToString();
                 string content = row["content"].ToString();
                 string group = row["groupId"].ToString();
-                obj = new Post(title, content, userId, group);
+                DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                obj = new Post(title, content, userId, group, datecreated);
             }
 
             return obj;
@@ -95,7 +96,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Post";
+            string sqlstmt = "Select * from Post ORDER BY datecreated DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
 
             DataSet ds = new DataSet();
@@ -113,7 +114,8 @@ namespace WISLEY.DAL.Collab
                     string title = row["title"].ToString();
                     string content = row["content"].ToString();
                     string group = row["groupId"].ToString();
-                    obj = new Post(title, content, userId, group);
+                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    obj = new Post(title, content, userId, group, datecreated);
                     postlist.Add(obj);
                 }
             }
@@ -126,7 +128,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Post where groupId = @paraGrpId";
+            string sqlstmt = "Select * from Post where groupId = @paraGrpId ORDER BY datecreated DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraGrpId", groupId);
 
@@ -144,7 +146,8 @@ namespace WISLEY.DAL.Collab
                     string userId = row["userId"].ToString();
                     string title = row["title"].ToString();
                     string content = row["content"].ToString();
-                    obj = new Post(title, content, userId, groupId);
+                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    obj = new Post(title, content, userId, groupId, datecreated);
                     grppostlist.Add(obj);
                 }
             }
@@ -157,7 +160,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Post where userId = @paraUserId";
+            string sqlstmt = "Select * from Post where userId = @paraUserId ORDER BY datecreated DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
 
@@ -175,7 +178,8 @@ namespace WISLEY.DAL.Collab
                     string title = row["title"].ToString();
                     string content = row["content"].ToString();
                     string group = row["groupId"].ToString();
-                    obj = new Post(title, content, userId, group);
+                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    obj = new Post(title, content, userId, group, datecreated);
                     userpostlist.Add(obj);
                 }
             }
