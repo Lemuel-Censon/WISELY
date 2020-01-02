@@ -62,6 +62,36 @@ namespace WISLEY.DAL.Collab
             return IDList;
         }
 
+        public Post SelectByID(string postId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from Post where Id = @parapostId";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@parapostId", postId);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Post obj = null;
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string userId = row["userId"].ToString();
+                    string title = row["title"].ToString();
+                    string content = row["content"].ToString();
+                    string group = row["groupId"].ToString();
+                    obj = new Post(title, content, userId, group);
+                }
+            }
+
+            return obj;
+        }
+
 
         public List<Post> SelectAll()
         {

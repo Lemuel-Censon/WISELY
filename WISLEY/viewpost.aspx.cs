@@ -10,7 +10,12 @@ namespace WISLEY
 {
     public partial class viewpost : System.Web.UI.Page
     {
-        public Post post = new Post();
+        public Post post()
+        {
+            Post post = new Post().SelectByID(Session["postId"].ToString());
+            return post;
+        }
+
         public List<Comment> allComments()
         {
             List<Comment> allComments = new Comment().SelectAll();
@@ -19,7 +24,15 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            allComments();
+            if (Session["postId"] != null)
+            {
+                post();
+                allComments();
+            }
+            else
+            {
+                Response.Redirect("collab.aspx");
+            }
         }
 
         public void toast(Page page, string message, string title, string type)

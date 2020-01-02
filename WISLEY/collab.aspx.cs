@@ -13,15 +13,31 @@ namespace WISLEY
     public partial class collab : System.Web.UI.Page
     {
         public List<Comment> allComments = new Comment().SelectAll();
+
         public List<Post> allPosts()
         {
             List<Post> allPosts = new Post().SelectAll();
             return allPosts;
         }
 
+        public void Displaybtns()
+        {
+            Post post = new Post();
+            foreach (var id in post.SelectIDs())
+            {
+                Button btn = new Button();
+                btn.ID = id;
+                btn.Text = post.SelectByID(id).title;
+                btn.CssClass = "btn btn-link";
+                btn.Click += new EventHandler(btnView_Click);
+                btncontainer.Controls.Add(btn);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             allPosts();
+            Displaybtns();
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -96,6 +112,8 @@ namespace WISLEY
 
         protected void btnView_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            Session["postId"] = btn.ID;
             Response.Redirect("viewpost.aspx");
         }
     }

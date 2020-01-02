@@ -5,7 +5,7 @@
         <div class="container">
             <div class="card mt-3">
                 <div class="card-body">
-                    <h4 class="card-title"><% =post.title %></h4>
+                    <h4 class="card-title"><% =post().title %></h4>
                     <div class="media mt-4 px-1">
                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
                             alt="Generic placeholder image">
@@ -17,11 +17,11 @@
                                     </h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <i class="fas fa-clock mr-1 "></i><span>Created on: <% =post.datecreated.ToShortDateString() %>
+                                    <i class="fas fa-clock mr-1 "></i><span>Created on: <% =post().datecreated.ToShortDateString() %>
                                     </span>
                                 </div>
                             </div>
-                            <% =post.content %>
+                            <% =post().content %>
                         </div>
                     </div>
                     <hr />
