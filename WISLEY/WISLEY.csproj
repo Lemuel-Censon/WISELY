@@ -79,6 +79,7 @@
     <Content Include="editprofile.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\WISLEY.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\WISLEY.dll" />
@@ -130,6 +131,7 @@
     <Content Include="Public\js\modules\wow.min.js" />
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
+    <Content Include="register.aspx" />
     <Content Include="schedule.aspx" />
     <Content Include="scripts\toastr.js" />
     <Content Include="scripts\toastr.min.js" />
@@ -143,6 +145,7 @@
     <Compile Include="BLL\Collab\Post.cs" />
     <Compile Include="collab.aspx.cs">
       <DependentUpon>collab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="collab.aspx.designer.cs">
       <DependentUpon>collab.aspx</DependentUpon>
@@ -172,12 +175,26 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="navbar.Master.cs">
       <DependentUpon>navbar.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="navbar.Master.designer.cs">
       <DependentUpon>navbar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
     </Compile>
     <Compile Include="sidebar.master.cs">
       <DependentUpon>sidebar.master</DependentUpon>
@@ -196,6 +213,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="schedule.aspx.cs">
       <DependentUpon>schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="schedule.aspx.designer.cs">
       <DependentUpon>schedule.aspx</DependentUpon>
@@ -209,6 +227,7 @@
     </Compile>
     <Compile Include="viewpost.aspx.cs">
       <DependentUpon>viewpost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="viewpost.aspx.designer.cs">
       <DependentUpon>viewpost.aspx</DependentUpon>

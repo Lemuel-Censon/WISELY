@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/navbar.Master" AutoEventWireup="true" CodeBehind="profile.aspx.cs" Inherits="WISLEY.profile" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <form id="form1" class="col-12 row justify-content-around" runat="server">
         <h3 class="font-weight-bold text-center col-12">Your Dashboard</h3>
@@ -60,12 +57,12 @@
             <div class="card-body">
                 <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
                 <ul style="list-style-type: none; line-height: 4;">
-                    <li><a href="index.aspx"><i class="fa fa-home"></i>&nbsp;Home Page</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-graduation-cap"></i>&nbsp;My Grades</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-calendar"></i>&nbsp;My Calendar</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-code"></i>&nbsp;My Resources</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-group"></i>&nbsp;My Groups</a></li>
-                    <li><a href="index.aspx"><i class="fa fa-photo"></i>&nbsp;Gacha</a></li>
+                    <li><a href="index.aspx"><i class="fas fa-home"></i>&nbsp;Home Page</a></li>
+                    <li><a href="grades.aspx"><i class="fas fa-graduation-cap"></i>&nbsp;My Grades</a></li>
+                    <li><a href="calendar.aspx"><i class="fas fa-calendar"></i>&nbsp;My Calendar</a></li>
+                    <li><a href="index.aspx"><i class="fas fa-code"></i>&nbsp;My Resources</a></li>
+                    <li><a href="collab.aspx"><i class="fas fa-group"></i>&nbsp;My Groups</a></li>
+                    <li><a href="group.aspx"><i class="fas fa-photo"></i>&nbsp;Gacha</a></li>
                 </ul>
             </div>
         </div>
