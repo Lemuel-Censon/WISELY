@@ -36,14 +36,13 @@
 
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color-dark sticky-top" style="padding-left: 12px 1rem !important;">
+    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color-dark sticky-top scrolling-navbar" style="padding-left: 12px 1rem !important;">
 
         <!-- Navbar brand -->
         <a class="navbar-brand" href="index.aspx">WISELY</a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <i class="fas fa-bars"></i>
         </button>
 
@@ -62,20 +61,24 @@
                         <i class="fas fa-bell"></i></a>
                 </li>
                 <li class="nav-item dropdown my-auto d-none d-md-block">
-                    <a class="nav-link chip primary-reverse-light-gradient dropdown-toggle m-0 z-depth-1-half" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle m-0 z-depth-1-half" id="profileDD" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <img class="deep-purple lighten-5 z-depth-0 rounded-circle" height="35" src="https://picsum.photos/100">
                         <i class="fas fa-user animated faster"></i>Bryan
                     </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-1" aria-labelledby="profileDD">
-                        <a class="dropdown-item" href="/profile.aspx">
+                        <a class="dropdown-item" href="profile.aspx">
                             <i class="fas fa-id-card mr-1"></i>My Profile</a>
-                        <a class="dropdown-item" href="/collab.aspx">
+                        <a class="dropdown-item" href="collab.aspx">
                             <i class="fas fa-users mr-1"></i>My Groups</a>
-                        <a class="dropdown-item" href="/schedule.aspx">
+                        <a class="dropdown-item" href="schedule.aspx">
                             <i class="fas fa-calendar mr-1"></i>My Schedule</a>
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-cogs mr-1"></i>Settings</a>
+                        <hr class="mt-0 mb-3" />
+                        <a class="dropdown-item text-danger" href="#">
+                            <i class="fas fa-power-off mr-1"></i>Sign Out
+                        </a>
                     </div>
                 </li>
             </ul>
