@@ -19,11 +19,11 @@ namespace WISLEY.BLL.Collab
 
         }
 
-        public Post(string title, string content, string userId, string groupId)
+        public Post(string title, string content, string userId, string groupId, DateTime datecreated)
         {
             this.title = title;
             this.content = content;
-            datecreated = DateTime.Today;
+            this.datecreated = datecreated;
             this.userId = userId;
             this.groupId = groupId;
         }

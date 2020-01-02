@@ -11,19 +11,19 @@ namespace WISLEY.BLL.Collab
         public string postid { get; set; }
         public string userid { get; set; }
         public string content { get; set; }
-        public DateTime datecreate { get; set; }
+        public DateTime datecreated { get; set; }
 
         public Comment()
         {
 
         }
 
-        public Comment(string postid, string userid, string content)
+        public Comment(string postid, string userid, string content, DateTime datecreated)
         {
             this.postid = postid;
             this.userid = userid;
             this.content = content;
-            datecreate = DateTime.Today;
+            this.datecreated = datecreated;
         }
 
         public int AddComment()

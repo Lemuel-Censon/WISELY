@@ -58,7 +58,7 @@
                     <hr />
                     <div class="row card-header border-0 font-weight-bold">
                         <div class="col-lg-6">
-                            <%=allComments.Count.ToString() %> comment(s)
+                            <%=postComments.SelectByPost(post.SelectIDs()[counter]).Count.ToString() %> comment(s)
                         </div>
                         <div class="col-lg-6 text-right">
                             <div runat="server" id="btncontainer"></div>
