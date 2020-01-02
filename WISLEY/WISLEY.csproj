@@ -73,12 +73,14 @@
     </Content>
     <Content Include="bin\WISLEY.dll" />
     <Content Include="bin\WISLEY.pdb" />
+    <Content Include="changepassword.aspx" />
     <Content Include="collab.aspx" />
     <Content Include="content\toastr.css" />
     <Content Include="content\toastr.min.css" />
     <Content Include="editprofile.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
+    <Content Include="leaderboard.aspx" />
     <Content Include="login.aspx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\WISLEY.csproj.FileListAbsolute.txt" />
@@ -131,11 +133,13 @@
     <Content Include="Public\js\modules\wow.min.js" />
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
+    <Content Include="recoveraccount.aspx" />
     <Content Include="register.aspx" />
     <Content Include="schedule.aspx" />
     <Content Include="scripts\toastr.js" />
     <Content Include="scripts\toastr.min.js" />
     <Content Include="todoplan.aspx" />
+    <Content Include="verifyaccount.aspx" />
     <Content Include="viewpost.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -143,6 +147,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Collab\Post.cs" />
+    <Compile Include="changepassword.aspx.cs">
+      <DependentUpon>changepassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="changepassword.aspx.designer.cs">
+      <DependentUpon>changepassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="collab.aspx.cs">
       <DependentUpon>collab.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,6 +186,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="leaderboard.aspx.cs">
+      <DependentUpon>leaderboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leaderboard.aspx.designer.cs">
+      <DependentUpon>leaderboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -188,6 +206,13 @@
     </Compile>
     <Compile Include="navbar.Master.designer.cs">
       <DependentUpon>navbar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="recoveraccount.aspx.cs">
+      <DependentUpon>recoveraccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recoveraccount.aspx.designer.cs">
+      <DependentUpon>recoveraccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -224,6 +249,13 @@
     </Compile>
     <Compile Include="todoplan.aspx.designer.cs">
       <DependentUpon>todoplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verifyaccount.aspx.cs">
+      <DependentUpon>verifyaccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verifyaccount.aspx.designer.cs">
+      <DependentUpon>verifyaccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewpost.aspx.cs">
       <DependentUpon>viewpost.aspx</DependentUpon>

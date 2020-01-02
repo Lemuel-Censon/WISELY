@@ -7,16 +7,6 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <asp:Label ID="LbUsername" runat="server" Text="Username"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="TbUsername" runat="server" Width="720px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <asp:Label ID="LbEmail" runat="server" Text="Email Address"></asp:Label>
                     </td>
                 </tr>
@@ -27,12 +17,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="LbNewPassword" runat="server" Text="New Password"></asp:Label>
+                        <asp:Label ID="LbPassword" runat="server" Text="Password"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TbNewPassword" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbPassword" runat="server" Width="720px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -47,15 +37,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="LbUserType" runat="server" Text="What are you?"></asp:Label>
+                        <asp:Label ID="LbUserType" runat="server" Text="Get started as a..."></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:CheckBoxList ID="CheckBoxList1" runat="server" RepeatDirection="Vertical">
+                        <asp:RadioButtonList ID="cblUserType" runat="server" RepeatDirection="Vertical">
                             <asp:ListItem>Student</asp:ListItem>
                             <asp:ListItem>Teacher</asp:ListItem>
-                        </asp:CheckBoxList>
+                        </asp:RadioButtonList>
                     </td>
                 </tr>
                 <tr>

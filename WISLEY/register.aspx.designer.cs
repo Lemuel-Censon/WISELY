@@ -22,24 +22,6 @@ namespace WISLEY {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// LbUsername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbUsername;
-        
-        /// <summary>
-        /// TbUsername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbUsername;
-        
-        /// <summary>
         /// LbEmail control.
         /// </summary>
         /// <remarks>
@@ -58,22 +40,22 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox TbEmail;
         
         /// <summary>
-        /// LbNewPassword control.
+        /// LbPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbNewPassword;
+        protected global::System.Web.UI.WebControls.Label LbPassword;
         
         /// <summary>
-        /// TbNewPassword control.
+        /// TbPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbNewPassword;
+        protected global::System.Web.UI.WebControls.TextBox TbPassword;
         
         /// <summary>
         /// LbConfirmPassword control.
@@ -103,13 +85,13 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbUserType;
         
         /// <summary>
-        /// CheckBoxList1 control.
+        /// cblUserType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
+        protected global::System.Web.UI.WebControls.RadioButtonList cblUserType;
         
         /// <summary>
         /// btnRegister control.

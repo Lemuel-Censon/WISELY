@@ -7,12 +7,12 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <asp:Label ID="LbUsername" runat="server" Text="Enter your username or email address"></asp:Label>
+                        <asp:Label ID="LbEmail" runat="server" Text="Enter your email address"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TbUsername" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbEmail" runat="server" Width="720px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="index.aspx">Forgot your password?</a>
+                        <a href="recoveraccount.aspx">Forgot your password?</a>
                     </td>
                 </tr>
                 <tr>

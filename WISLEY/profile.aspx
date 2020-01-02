@@ -12,10 +12,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <h3 class="font-weight-bold">John Smith </h3>
-                        <p>
-                            <asp:Label ID="LbUsername" runat="server" Text="@johnsmith"></asp:Label>
-                        </p>
+                        <h3 class="font-weight-bold">Bryan</h3>
                         <h5>Email: 
                         <asp:Label ID="LbEmail" runat="server" Text="abc@mail.com"></asp:Label>
                         </h5>
@@ -56,13 +53,13 @@
         <div class="col-4 p-2">
             <div class="card-body">
                 <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
-                <ul style="list-style-type: none; line-height: 4;">
-                    <li><a href="index.aspx"><i class="fas fa-home"></i>&nbsp;Home Page</a></li>
-                    <li><a href="grades.aspx"><i class="fas fa-graduation-cap"></i>&nbsp;My Grades</a></li>
-                    <li><a href="calendar.aspx"><i class="fas fa-calendar"></i>&nbsp;My Calendar</a></li>
-                    <li><a href="index.aspx"><i class="fas fa-code"></i>&nbsp;My Resources</a></li>
-                    <li><a href="collab.aspx"><i class="fas fa-group"></i>&nbsp;My Groups</a></li>
-                    <li><a href="group.aspx"><i class="fas fa-photo"></i>&nbsp;Gacha</a></li>
+                <ul class="fa-ul" style="line-height: 2;">
+                    <li><span class="fa-li"><i class="fas fa-home"></i></span><a href="index.aspx">Home Page</a></li>
+                    <li><span class="fa-li"><i class="fas fa-graduation-cap"></i></span><a href="grades.aspx">My Grades</a></li>
+                    <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span><a href="calendar.aspx">My Calendar</a></li>
+                    <li><span class="fa-li"><i class="fas fa-code"></i></span><a href="resources.aspx">My Resources</a></li>
+                    <li><span class="fa-li"><i class="fas fa-users"></i></span><a href="collab.aspx">My Groups</a></li>
+                    <li><span class="fa-li"><i class="fas fa-portrait"></i></span><a href="gacha.aspx">Gacha</a></li>
                 </ul>
             </div>
         </div>
