@@ -30,46 +30,45 @@
             </div>
             <% if (allPosts().Count > 0)
                 {
-                    int counter = 0; %>
+            %>
             <div class="card mt-3">
-                <% foreach (var post in allPosts())
-                    { %>
-
-                <div class="card-body" id="post<%=post.SelectIDs()[counter] %>">
-                    <h4 class="card-title"><% =post.title %></h4>
-                    <div class="media mt-4 px-1">
-                        <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
-                            alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="font-weight-bold mt-0">
-                                        <a href="#">Danny Newman</a>
-                                    </h5>
-                                </div>
-                                <div class="col-lg-6">
-                                    <i class="fas fa-clock mr-1"></i><span>Created on: <% =post.datecreated.ToShortDateString() %>
-                                    </span>
+                <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand">
+                    <ItemTemplate>
+                        <div class="card-body" id="post<%#Eval("Id") %>">
+                            <h4 class="card-title"><%#Eval("title") %></h4>
+                            <div class="media mt-4 px-1">
+                                <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                                    alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <h5 class="font-weight-bold mt-0">
+                                                <a href="#">Danny Newman</a>
+                                            </h5>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <i class="fas fa-clock mr-1"></i><span>Created on: <%#Eval("datecreated") %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <%#Eval("content") %>
                                 </div>
                             </div>
-                            <% =post.content %>
+                            <hr />
+                            <div class="card-header border-0 font-weight-bold">
+                                <div class="text-right">
+                                    <asp:HiddenField runat="server" ID="LbID" Value='<%#Eval("Id") %>' />
+                                    <asp:Button runat="server" ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                </div>
+                            </div>
+                            <hr />
                         </div>
-                    </div>
-                    <hr />
-                    <div class="row card-header border-0 font-weight-bold">
-                        <div class="col-lg-6">
-                            <%=postComments.SelectByPost(post.SelectIDs()[counter]).Count.ToString() %> comment(s)
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <div runat="server" id="btncontainer"></div>
-                        </div>
-                    </div>
-                    <hr />
-                </div>
-
-
-                <%counter++;
-                    } %>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <asp:SqlDataSource ID="postdata"
+                    ConnectionString="<%$ connectionStrings: ConnStr%>"
+                    SelectCommand="SELECT * FROM POST ORDER BY datecreated DESC"
+                    runat="server"></asp:SqlDataSource>
             </div>
             <%} %><% else
                       { %>

@@ -57,7 +57,7 @@ namespace WISLEY.DAL.Collab
                     string postId = row["postId"].ToString();
                     string userId = row["userId"].ToString();
                     string content = row["content"].ToString();
-                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    string datecreated = row["datecreated"].ToString();
                     obj = new Comment(postId, userId, content, datecreated);
                     commlist.Add(obj);
                 }
@@ -87,7 +87,7 @@ namespace WISLEY.DAL.Collab
                     DataRow row = ds.Tables[0].Rows[i];
                     string userId = row["userId"].ToString();
                     string content = row["content"].ToString();
-                    DateTime datecreated = DateTime.Parse(row["datecreated"].ToString());
+                    string datecreated = row["datecreated"].ToString();
                     obj = new Comment(postId, userId, content, datecreated);
                     commpostlist.Add(obj);
                 }
@@ -96,7 +96,7 @@ namespace WISLEY.DAL.Collab
             return commpostlist;
         }
 
-        public int UpdateComment(string commId, string content, DateTime datecreate)
+        public int UpdateComment(string commId, string content, string datecreate)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);

@@ -12,13 +12,13 @@ namespace WISLEY
     {
         public Post post()
         {
-            Post post = new Post().SelectByID(Session["postId"].ToString());
+            Post post = new Post().SelectByID(LbPostID.Text);
             return post;
         }
 
         public List<Comment> allComments()
         {
-            List<Comment> allComments = new Comment().SelectByPost(Session["postId"].ToString());
+            List<Comment> allComments = new Comment().SelectByPost(LbPostID.Text);
             return allComments;
         }
 
@@ -26,6 +26,7 @@ namespace WISLEY
         {
             if (Session["postId"] != null)
             {
+                LbPostID.Text = Session["postId"].ToString();
                 post();
                 allComments();
             }
@@ -56,8 +57,9 @@ namespace WISLEY
             if (ValidateInput())
             {
                 string content = tbcomment.Text;
+                string date = DateTime.Now.ToString("dd/MM/yyyy");
 
-                Comment comment = new Comment("2", "100", content, DateTime.Today);
+                Comment comment = new Comment("2", "100", content, date);
                 int result = comment.AddComment();
 
                 if (result == 1)

@@ -11,14 +11,14 @@ namespace WISLEY.BLL.Collab
         public string postid { get; set; }
         public string userid { get; set; }
         public string content { get; set; }
-        public DateTime datecreated { get; set; }
+        public string datecreated { get; set; }
 
         public Comment()
         {
 
         }
 
-        public Comment(string postid, string userid, string content, DateTime datecreated)
+        public Comment(string postid, string userid, string content, string datecreated)
         {
             this.postid = postid;
             this.userid = userid;
@@ -44,7 +44,7 @@ namespace WISLEY.BLL.Collab
             return commdao.SelectByPost(postId);
         }
 
-        public int UpdateComment(string commId, string content, DateTime datecreate)
+        public int UpdateComment(string commId, string content, string datecreate)
         {
             CommentDAO commdao = new CommentDAO();
             return commdao.UpdateComment(commId, content, datecreate);

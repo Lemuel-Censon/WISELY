@@ -10,7 +10,7 @@ namespace WISLEY.BLL.Collab
     {
         public string title { get; set; }
         public string content { get; set; }
-        public DateTime datecreated { get; set; }
+        public string datecreated { get; set; }
         public string userId { get; set; }
         public string groupId { get; set; }
 
@@ -19,7 +19,7 @@ namespace WISLEY.BLL.Collab
 
         }
 
-        public Post(string title, string content, string userId, string groupId, DateTime datecreated)
+        public Post(string title, string content, string userId, string groupId, string datecreated)
         {
             this.title = title;
             this.content = content;
@@ -38,12 +38,6 @@ namespace WISLEY.BLL.Collab
         {
             PostDAO postdao = new PostDAO();
             return postdao.SelectAll();
-        }
-
-        public List<string> SelectIDs()
-        {
-            PostDAO postdao = new PostDAO();
-            return postdao.SelectIDs();
         }
 
         public Post SelectByID(string postId)
@@ -65,7 +59,7 @@ namespace WISLEY.BLL.Collab
             return postdao.SelectByUser(userId);
         }
 
-        public int UpdatePost(string postId, string title, string content, DateTime datecreate)
+        public int UpdatePost(string postId, string title, string content, string datecreate)
         {
             PostDAO postdao = new PostDAO();
             return postdao.UpdatePost(postId, title, content, datecreate);

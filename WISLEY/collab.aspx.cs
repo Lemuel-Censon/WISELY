@@ -12,31 +12,15 @@ namespace WISLEY
 {
     public partial class collab : System.Web.UI.Page
     {
-        public Comment postComments = new Comment();
-
         public List<Post> allPosts()
         {
             List<Post> allPosts = new Post().SelectAll();
             return allPosts;
         }
 
-        public void displaybtns()
-        {
-            foreach (var id in new Post().SelectIDs())
-            {
-                Button btn = new Button();
-                btn.ID = id;
-                btn.Text = new Post().SelectByID(id).title;
-                btn.CssClass = "btn btn-sm btn-success";
-                btn.Click += new EventHandler(btnView_Click);
-                btncontainer.Controls.Add(btn);
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             allPosts();
-            displaybtns();
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -94,8 +78,9 @@ namespace WISLEY
             {
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
+                string date = DateTime.Now.ToString("dd/MM/yyyy");
 
-                Post post = new Post(title, content, "100", "100", DateTime.Today);
+                Post post = new Post(title, content, "100", "100", date);
                 int result = post.AddPost();
 
                 if (result == 1)
@@ -103,6 +88,7 @@ namespace WISLEY
                     toast(this.Page, "Post Added!", "Success", "success");
                     tbtitle.Text = "";
                     tbcontent.Text = "";
+                    postinfo.DataSourceID = "postdata";
                 }
                 else
                 {
@@ -111,10 +97,9 @@ namespace WISLEY
             }
         }
 
-        protected void btnView_Click(object sender, EventArgs e)
+        protected void postinfo_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            Button btn = (Button)sender;
-            Session["postId"] = btn.ID;
+            Session["postId"] = ((HiddenField)e.Item.FindControl("LbID")).Value;
             Response.Redirect("viewpost.aspx");
         }
     }

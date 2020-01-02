@@ -76,12 +76,21 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Button btnpost;
         
         /// <summary>
-        /// btncontainer control.
+        /// postinfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btncontainer;
+        protected global::System.Web.UI.WebControls.Repeater postinfo;
+        
+        /// <summary>
+        /// postdata control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource postdata;
     }
 }
