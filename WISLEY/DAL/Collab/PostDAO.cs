@@ -78,15 +78,12 @@ namespace WISLEY.DAL.Collab
             Post obj = null;
             if (rec_cnt > 0)
             {
-                for (int i = 0; i < rec_cnt; i++)
-                {
-                    DataRow row = ds.Tables[0].Rows[i];
-                    string userId = row["userId"].ToString();
-                    string title = row["title"].ToString();
-                    string content = row["content"].ToString();
-                    string group = row["groupId"].ToString();
-                    obj = new Post(title, content, userId, group);
-                }
+                DataRow row = ds.Tables[0].Rows[0];
+                string userId = row["userId"].ToString();
+                string title = row["title"].ToString();
+                string content = row["content"].ToString();
+                string group = row["groupId"].ToString();
+                obj = new Post(title, content, userId, group);
             }
 
             return obj;

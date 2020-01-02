@@ -28,7 +28,7 @@ namespace WISLEY
                 Button btn = new Button();
                 btn.ID = id;
                 btn.Text = post.SelectByID(id).title;
-                btn.CssClass = "btn btn-link";
+                btn.CssClass = "btn btn-sm btn-success";
                 btn.Click += new EventHandler(btnView_Click);
                 btncontainer.Controls.Add(btn);
             }
