@@ -6,31 +6,38 @@
         <div class="row justify-content-center">
             <h1 class="col-12 text-center">Create Group</h1>
             <div class="col-8 card-body border border-primary">
-                <form action="POST">
+                <form runat="server">
 
                     <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
                             <label for="groupName">Group Name</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="groupName" class="form-control">
+                            <asp:TextBox ID="groupNameTB" class="form-control" runat="server"></asp:TextBox>
+                            <%--<input type="text" id="groupName" class="form-control">--%>
                         </div>
                     </div>
 
-                    
+
                     <div class="form-row justify-content-start">
                         <div class="col-2">
                             <label for="groupDescription">Group Description</label>
                         </div>
                         <div class="col-6">
-                        <textarea class="form-control rounded-0" id="groupDescription" rows="3" placeholder="Message">
-                        </textarea>
-  
-                        
+                            <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" class="form-control" runat="server"></asp:TextBox>
+
+                            <%--<textarea class="form-control rounded-0" id="groupDescription" rows="3" placeholder="">
+                        </textarea>--%>
                         </div>
                     </div>
 
-                    div.row
+                    <div class="row justify-content-end">
+                        <asp:Button ID="createGroupBtn" runat="server" Text="Create" class="btn btn-primary"/>
+               
+                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel"  class="btn btn-danger"/>
+                 
+
+                    </div>
 
                 </form>
             </div>
@@ -38,4 +45,4 @@
     </div>
 
 
-</asp:Content>  
+</asp:Content>

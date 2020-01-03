@@ -13,5 +13,23 @@ namespace WISLEY.Views.Group
         {
 
         }
+
+        public void CreateGroup()
+        {
+            bool noError = true;
+            string grpName = groupNameTB.Text.ToString().Trim();
+            string grpDescription = groupNameTB.Text.ToString().Trim();
+
+            if (string.IsNullOrEmpty(grpName))
+            {
+                noError = false;
+            }
+            if (string.IsNullOrEmpty(grpDescription))
+            {
+                noError = false;
+            }
+
+
+        }
     }
 }

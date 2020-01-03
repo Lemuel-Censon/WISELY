@@ -400,6 +400,7 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Public\uploads\" />
     <Folder Include="Views\Gacha\" />
+    <Folder Include="Views\Resources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
