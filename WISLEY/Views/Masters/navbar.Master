@@ -12,8 +12,6 @@
     <link href="~/Public/css/mdb.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
     <link href="~/Public/css/toast/toastr.css" rel="stylesheet" />
-        <link href="~/Public/css/style.css" rel="stylesheet" />
-
 
     <script src="<%= ResolveUrl("~/Public/js/jquery.js") %>""></script>
     <script src="<%= ResolveUrl("~/Public/js/toast/toastr.js") %>""></script>
@@ -57,10 +55,10 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link rounded" href="index.aspx">Home</a>
+                    <a class="nav-link rounded" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded" href="gacha.aspx">Gachas</a>
+                    <a class="nav-link rounded" href="<%= Page.ResolveUrl("~/Views/Gacha/gacha.aspx") %>">Gachas</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -94,7 +92,7 @@
     </nav>
     <!--/.Navbar-->
 
-    <main class="container-fluid mx-auto mt-3 min-vh-85">
+    <main class="container-fluid mx-auto mt-3">
         <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </main>
