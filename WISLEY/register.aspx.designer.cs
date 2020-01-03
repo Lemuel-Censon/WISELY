@@ -76,22 +76,22 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox TbConfirmPassword;
         
         /// <summary>
-        /// LbUserType control.
+        /// rbtnStud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbUserType;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbtnStud;
         
         /// <summary>
-        /// cblUserType control.
+        /// rbtnTeach control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList cblUserType;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbtnTeach;
         
         /// <summary>
         /// btnRegister control.
@@ -100,6 +100,6 @@ namespace WISLEY {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegister;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnRegister;
     }
 }

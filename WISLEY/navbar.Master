@@ -91,7 +91,7 @@
         </asp:ContentPlaceHolder>
     </main>
 
-    <footer class="page-footer font-small blue mt-4 fixed-bottom">
+    <footer class="page-footer font-small mt-4 blue">
         <div class="footer-copyright p-3">
             <a href="index.aspx">
                 <img src="https://picsum.photos/100" height="30" alt="WISELY">

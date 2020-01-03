@@ -32,7 +32,7 @@ namespace WISLEY
             }
             else
             {
-                Response.Redirect("collab.aspx");
+                Response.Redirect("index.aspx");
             }
         }
 
@@ -56,10 +56,11 @@ namespace WISLEY
         {
             if (ValidateInput())
             {
+                string postId = LbPostID.Text;
                 string content = tbcomment.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
 
-                Comment comment = new Comment("2", "100", content, date);
+                Comment comment = new Comment(postId, "100", content, date);
                 int result = comment.AddComment();
 
                 if (result == 1)

@@ -1,64 +1,44 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/navbar.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WISLEY.register" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-    <form id="form1" class="col-12 row justify-content-around" runat="server">
-        <h3 class="font-weight-bold text-center col-12">Create an Account</h3>
-        <div>
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <asp:Label ID="LbEmail" runat="server" Text="Email Address"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="TbEmail" runat="server" Width="720px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="LbPassword" runat="server" Text="Password"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="TbPassword" runat="server" Width="720px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="LbConfirmPassword" runat="server" Text="Confirm Password"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="TbConfirmPassword" runat="server" Width="720px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="LbUserType" runat="server" Text="Get started as a..."></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:RadioButtonList ID="cblUserType" runat="server" RepeatDirection="Vertical">
-                            <asp:ListItem>Student</asp:ListItem>
-                            <asp:ListItem>Teacher</asp:ListItem>
-                        </asp:RadioButtonList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Button CssClass="btn btn-primary p-2" ID="btnRegister" runat="server" Text="Create Account" Font-Size="Large" OnClick="btnRegister_Click"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="login.aspx">Already have an account? Click here to log in.</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </form>
+
+    <div class="container">
+        <form id="form1" class="text-center" runat="server">
+            <div class="card z-depth-3 pb-0 px-0">
+                <div class="card-body px-5">
+                    <h5 class="card-title text-center mb-4">Register an Account</h5>
+                    <div class="md-form md-outline">
+                        <asp:Label AssociatedControlID="TbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
+                        <asp:TextBox ID="TbEmail" runat="server" TextMode="Email" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="md-form md-outline">
+                        <asp:Label AssociatedControlID="TbPassword" ID="LbPassword" runat="server" Text="Password"></asp:Label>
+                        <asp:TextBox ID="TbPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="md-form md-outline">
+                        <asp:Label AssociatedControlID="TbConfirmPassword" ID="LbConfirmPassword" runat="server" Text="Confirm Password"></asp:Label>
+                        <asp:TextBox ID="TbConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <p>Get started as a...</p>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" runat="server" class="custom-control-input" id="rbtnStud" />
+                        <label class="custom-control-label" for="rbtnStud">Student</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" runat="server" class="custom-control-input" id="rbtnTeach" />
+                        <label class="custom-control-label" for="rbtnTeach">Teacher</label>
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-md btn-block btn-primary" id="btnRegister" runat="server" onserverclick="btnRegister_Click">Join</button>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-center small m-0">
+                            Already a member? <a href="login.aspx">Sign in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </asp:Content>
