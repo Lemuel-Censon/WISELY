@@ -35,7 +35,16 @@
                 <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand">
                     <ItemTemplate>
                         <div class="card-body" id="post<%#Eval("Id") %>">
-                            <h4 class="card-title"><%#Eval("title") %></h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4 class="card-title" runat="server" id="posttitle"><%#Eval("title") %></h4>
+                                    <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Visible="false" Text='<%#Eval("title") %>'></asp:TextBox>
+                                </div>
+                                <div class="col-lg-6 text-right">
+                                    <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
+                                </div>
+                            </div>
+
                             <div class="media mt-4 px-1">
                                 <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
                                     alt="Generic placeholder image">
@@ -51,14 +60,22 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <%#Eval("content") %>
+                                    <div runat="server" id="postcontent">
+                                        <%#Eval("content") %>
+                                    </div>
+                                    <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Visible="false" Text='<%#Eval("content") %>'></asp:TextBox>
                                 </div>
                             </div>
                             <hr />
                             <div class="card-header border-0 font-weight-bold">
-                                <div class="text-right">
-                                    <asp:HiddenField runat="server" ID="LbID" Value='<%#Eval("Id") %>' />
-                                    <asp:Button runat="server" ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" Visible="false" />
+                                    </div>
+                                    <div class="text-right col-lg-6">
+                                        <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnSave" Text="Save Changes" CssClass="btn btn-sm btn-success" Visible="false" />
+                                        <asp:Button runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                    </div>
                                 </div>
                             </div>
                             <hr />

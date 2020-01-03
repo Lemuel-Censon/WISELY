@@ -28,14 +28,14 @@ namespace WISLEY
             page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
-        public bool ValidateInput()
+        public bool ValidateInput(string title, string content)
         {
             bool valid = false;
-            if (String.IsNullOrEmpty(tbtitle.Text))
+            if (String.IsNullOrEmpty(title))
             {
                 toast(this.Page, "Please enter a title!", "Error", "error");
             }
-            if (String.IsNullOrEmpty(tbcontent.Text))
+            if (String.IsNullOrEmpty(content))
             {
                 toast(this.Page, "Please enter some content!", "Error", "error");
             }
@@ -74,7 +74,7 @@ namespace WISLEY
 
         protected void btnpost_Click(object sender, EventArgs e)
         {
-            if (ValidateInput() && storeFile())
+            if (ValidateInput(tbtitle.Text, tbcontent.Text) && storeFile())
             {
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
@@ -93,14 +93,77 @@ namespace WISLEY
                 else
                 {
                     toast(this.Page, "Unable to add post, please inform system administrator!", "Error", "error");
+                    tbtitle.Text = "";
+                    tbcontent.Text = "";
                 }
             }
         }
 
         protected void postinfo_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            Session["postId"] = ((HiddenField)e.Item.FindControl("LbID")).Value;
-            Response.Redirect("viewpost.aspx");
+            if (e.CommandName == "viewpost")
+            {
+                Session["postId"] = e.CommandArgument.ToString();
+                Response.Redirect("viewpost.aspx");
+            }
+
+            if (e.CommandName == "editpost")
+            {
+                e.Item.FindControl("posttitle").Visible = false;
+                e.Item.FindControl("postcontent").Visible = false;
+                e.Item.FindControl("btnView").Visible = false;
+                e.Item.FindControl("tbUptitle").Visible = true;
+                e.Item.FindControl("tbUpcontent").Visible = true;
+                e.Item.FindControl("btncancel").Visible = true;
+                e.Item.FindControl("btnsave").Visible = true;
+            }
+
+            if (e.CommandName == "cancel")
+            {
+                e.Item.FindControl("posttitle").Visible = true;
+                e.Item.FindControl("postcontent").Visible = true;
+                e.Item.FindControl("btnView").Visible = true;
+                e.Item.FindControl("tbUptitle").Visible = false;
+                e.Item.FindControl("tbUpcontent").Visible = false;
+                e.Item.FindControl("btncancel").Visible = false;
+                e.Item.FindControl("btnsave").Visible = false;
+            }
+
+            if (e.CommandName == "save")
+            {
+                string postId = e.CommandArgument.ToString();
+                TextBox title = e.Item.FindControl("tbUptitle") as TextBox;
+                TextBox content = e.Item.FindControl("tbUpcontent") as TextBox;
+                string dateedit = DateTime.Now.ToString("dd/MM/yyyy");
+                if (ValidateInput(title.Text, content.Text)){
+                    Post post = new Post();
+                    int result = post.UpdatePost(postId, title.Text, content.Text, dateedit);
+                    if (result == 1)
+                    {
+                        toast(this.Page, "Changes saved!", "Sucess", "success");
+                        e.Item.FindControl("posttitle").Visible = true;
+                        e.Item.FindControl("postcontent").Visible = true;
+                        e.Item.FindControl("btnView").Visible = true;
+                        e.Item.FindControl("tbUptitle").Visible = false;
+                        e.Item.FindControl("tbUpcontent").Visible = false;
+                        e.Item.FindControl("btncancel").Visible = false;
+                        e.Item.FindControl("btnsave").Visible = false;
+                        postinfo.DataSourceID = "postdata";
+                    }
+                    else
+                    {
+                        toast(this.Page, "Changes were unable to save, please inform system administrator!", "Error", "error");
+                        e.Item.FindControl("posttitle").Visible = true;
+                        e.Item.FindControl("postcontent").Visible = true;
+                        e.Item.FindControl("btnView").Visible = true;
+                        e.Item.FindControl("tbUptitle").Visible = false;
+                        e.Item.FindControl("tbUpcontent").Visible = false;
+                        e.Item.FindControl("btncancel").Visible = false;
+                        e.Item.FindControl("btnsave").Visible = false;
+                    }
+                }
+            }
         }
+
     }
 }
