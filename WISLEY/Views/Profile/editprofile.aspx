@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Personal Information</h4>
                         <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="tbEmail" ID="LbUsername" runat="server" Text="Email"></asp:Label>
+                            <asp:Label AssociatedControlID="tbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
                             <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                         </div>
                         <div class="row">

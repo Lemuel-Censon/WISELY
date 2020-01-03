@@ -54,12 +54,12 @@
             <div class="card-body">
                 <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
                 <ul class="fa-ul" style="line-height: 2;">
-                    <li><span class="fa-li"><i class="fas fa-home"></i></span><a href="index.aspx">Home Page</a></li>
-                    <li><span class="fa-li"><i class="fas fa-graduation-cap"></i></span><a href="grades.aspx">My Grades</a></li>
-                    <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span><a href="calendar.aspx">My Calendar</a></li>
-                    <li><span class="fa-li"><i class="fas fa-code"></i></span><a href="resources.aspx">My Resources</a></li>
-                    <li><span class="fa-li"><i class="fas fa-users"></i></span><a href="collab.aspx">My Groups</a></li>
-                    <li><span class="fa-li"><i class="fas fa-portrait"></i></span><a href="gacha.aspx">Gacha</a></li>
+                    <li><span class="fa-li"><i class="fas fa-home"></i></span><a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">Home Page</a></li>
+                    <li><span class="fa-li"><i class="fas fa-graduation-cap"></i></span><a href="<%= Page.ResolveUrl("~/Views/Resources/resource.aspx") %>">My Grades</a></li>
+                    <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span><a href="<%= Page.ResolveUrl("~/Views/Schedule/schedule.aspx") %>">My Calendar</a></li>
+                    <li><span class="fa-li"><i class="fas fa-code"></i></span><a href="<%= Page.ResolveUrl("~/Views/Resources/resource.aspx") %>">My Resources</a></li>
+                    <li><span class="fa-li"><i class="fas fa-users"></i></span><a href="<%= Page.ResolveUrl("~/Views/Board/collab.aspx") %>">My Groups</a></li>
+                    <li><span class="fa-li"><i class="fas fa-portrait"></i></span><a href="<%= Page.ResolveUrl("~/Views/Gacha/gacha.aspx") %>">Gacha</a></li>
                 </ul>
             </div>
         </div>
