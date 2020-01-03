@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-footer">
                         <p class="text-center small m-0">
-                            Already a member? <a href="login.aspx">Sign in</a>
+                            Already a member? <a href="<%= Page.ResolveUrl("~/Views/profile/login.aspx") %>">Sign in</a>
                         </p>
                     </div>
                 </div>
