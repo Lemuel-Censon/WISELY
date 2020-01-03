@@ -8,11 +8,11 @@
                     <h5 class="card-title text-center mb-4">Login</h5>
                     <div class="md-form md-outline">
                         <asp:Label AssociatedControlID="TbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
-                        <asp:TextBox ID="TbEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TbEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                     </div>
                     <div class="md-form md-outline">
                         <asp:Label AssociatedControlID="TbPassword" ID="LbPassword" runat="server" Text="Password"></asp:Label>
-                        <asp:TextBox ID="TbPassword" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TbPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                     <div>
                         <button class="btn btn-md btn-block btn-primary" id="btnLogin" runat="server" onserverclick="btnLogin_Click">Login</button>
