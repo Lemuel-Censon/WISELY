@@ -102,7 +102,7 @@ namespace WISLEY.DAL.Collab
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlStmt = "UPDATE Comment " +
-                "SET content = @paraContent, content = @paraContent, datecreated = @paraDatecreate " +
+                "SET content = @paraContent, datecreated = @paraDatecreate " +
                 "WHERE Id = @paracommID";
 
             int result = 0;    // Execute NonQuery return an integer value

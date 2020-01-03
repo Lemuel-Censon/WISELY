@@ -16,10 +16,10 @@ namespace WISLEY
             return post;
         }
 
-        public List<Comment> allComments()
+        public int commcount()
         {
             List<Comment> allComments = new Comment().SelectByPost(LbPostID.Text);
-            return allComments;
+            return allComments.Count;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,7 +28,8 @@ namespace WISLEY
             {
                 LbPostID.Text = Session["postId"].ToString();
                 post();
-                allComments();
+                commcount();
+                commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY datecreated DESC";
             }
             else
             {
@@ -41,10 +42,10 @@ namespace WISLEY
             page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
-        public bool ValidateInput()
+        public bool ValidateInput(string content)
         {
             bool valid = true;
-            if (String.IsNullOrEmpty(tbcomment.Text))
+            if (String.IsNullOrEmpty(content))
             {
                 toast(this.Page, "Please enter some content!", "Error", "error");
                 valid = false;
@@ -54,7 +55,7 @@ namespace WISLEY
 
         protected void btncomment_Click(object sender, EventArgs e)
         {
-            if (ValidateInput())
+            if (ValidateInput(tbcomment.Text))
             {
                 string postId = LbPostID.Text;
                 string content = tbcomment.Text;
@@ -71,6 +72,50 @@ namespace WISLEY
                 else
                 {
                     toast(this.Page, "Unable to post comment, please inform system administrator!", "Error", "error");
+                }
+            }
+        }
+
+        protected void commentinfo_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "editcomm")
+            {
+                e.Item.FindControl("commcontent").Visible = false;
+                e.Item.FindControl("tbUpcomm").Visible = true;
+                e.Item.FindControl("editbtns").Visible = true;
+            }
+
+            if (e.CommandName == "cancel")
+            {
+                e.Item.FindControl("commcontent").Visible = true;
+                e.Item.FindControl("tbUpcomm").Visible = false;
+                e.Item.FindControl("editbtns").Visible = false;
+            }
+
+            if (e.CommandName == "save")
+            {
+                string commId = e.CommandArgument.ToString();
+                TextBox content = e.Item.FindControl("tbUpcomm") as TextBox;
+                string dateedit = DateTime.Now.ToString("dd/MM/yyyy");
+                if (ValidateInput(content.Text))
+                {
+                    Comment comment = new Comment();
+                    int result = comment.UpdateComment(commId, content.Text, dateedit);
+                    if (result == 1)
+                    {
+                        toast(this.Page, "Changes Saved!", "Success", "success");
+                        e.Item.FindControl("commcontent").Visible = true;
+                        e.Item.FindControl("tbUpcomm").Visible = false;
+                        e.Item.FindControl("editbtns").Visible = false;
+                        commentinfo.DataSourceID = "commentdata";
+                    }
+                    else
+                    {
+                        toast(this.Page, "Changes were unable to save, please inform system administrator!", "Error", "error");
+                        e.Item.FindControl("commcontent").Visible = true;
+                        e.Item.FindControl("tbUpcomm").Visible = false;
+                        e.Item.FindControl("editbtns").Visible = false;
+                    }
                 }
             }
         }
