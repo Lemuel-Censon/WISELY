@@ -103,7 +103,7 @@
             <a href="index.aspx">
                 <img src="https://picsum.photos/100" height="30" alt="WISELY">
             </a>
-            <span class="m-0">&copy; <%=DateTime.Now.Year.ToString() %> <a href="index.aspx">WISELY</a> All Rights Reserved
+            <span class="m-0">&copy; <%=DateTime.Now.Year.ToString() %> <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a> All Rights Reserved
             </span>
         </div>
     </footer>

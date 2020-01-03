@@ -55,7 +55,7 @@ namespace WISLEY
                 try
                 {
                     string filename = Path.GetFileName(fileUpload.FileName);
-                    fileUpload.SaveAs(Server.MapPath("/Uploads/") + filename);
+                    fileUpload.SaveAs(Server.MapPath("~/Public/Uploads/") + filename);
                     toast(this.Page, "File uploaded!", "Success", "success");
                     save = true;
                 }
