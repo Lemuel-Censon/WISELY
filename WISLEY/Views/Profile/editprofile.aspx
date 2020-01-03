@@ -40,6 +40,10 @@
                             <asp:Label AssociatedControlID="tbContact" ID="Lbcontact" runat="server" Text="Contact"></asp:Label>
                             <asp:TextBox ID="tbContact" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
                         </div>
+                        <div class="text-right">
+                            <a href="<%= Page.ResolveUrl("~/Views/Profile/profile.aspx") %>" class="btn btn-danger">Cancel</a>
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save Changes" />
+                        </div>
                     </div>
                 </div>
             </div>
