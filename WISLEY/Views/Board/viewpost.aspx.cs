@@ -111,7 +111,7 @@ namespace WISLEY
                     }
                     else
                     {
-                        toast(this.Page, "Changes were unable to save, please inform system administrator!", "Error", "error");
+                        toast(this.Page, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
                         e.Item.FindControl("commcontent").Visible = true;
                         e.Item.FindControl("tbUpcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;

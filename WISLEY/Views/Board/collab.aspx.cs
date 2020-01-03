@@ -55,7 +55,7 @@ namespace WISLEY
                 try
                 {
                     string filename = Path.GetFileName(fileUpload.FileName);
-                    fileUpload.SaveAs(Server.MapPath("~/Public/Uploads/") + filename);
+                    fileUpload.SaveAs(Server.MapPath("~/Public/uploads/") + filename);
                     toast(this.Page, "File uploaded!", "Success", "success");
                     save = true;
                 }
@@ -152,7 +152,7 @@ namespace WISLEY
                     }
                     else
                     {
-                        toast(this.Page, "Changes were unable to save, please inform system administrator!", "Error", "error");
+                        toast(this.Page, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
                         e.Item.FindControl("posttitle").Visible = true;
                         e.Item.FindControl("postcontent").Visible = true;
                         e.Item.FindControl("btnView").Visible = true;
