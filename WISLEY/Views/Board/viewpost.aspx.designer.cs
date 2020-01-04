@@ -22,6 +22,24 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbPostID;
         
         /// <summary>
+        /// commscript control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager commscript;
+        
+        /// <summary>
+        /// addcommpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel addcommpanel;
+        
+        /// <summary>
         /// LbComment control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btncomment;
+        
+        /// <summary>
+        /// commpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel commpanel;
         
         /// <summary>
         /// commentinfo control.

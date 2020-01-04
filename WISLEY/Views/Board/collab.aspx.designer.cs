@@ -13,6 +13,24 @@ namespace WISLEY {
     public partial class collab {
         
         /// <summary>
+        /// postscript control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager postscript;
+        
+        /// <summary>
+        /// addpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel addpanel;
+        
+        /// <summary>
         /// LbPost control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnpost;
+        
+        /// <summary>
+        /// postpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel postpanel;
         
         /// <summary>
         /// postinfo control.

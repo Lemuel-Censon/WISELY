@@ -39,7 +39,7 @@ namespace WISLEY
 
         public void toast(Page page, string message, string title, string type)
         {
-            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+            ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         public bool ValidateInput(string content)
@@ -47,7 +47,7 @@ namespace WISLEY
             bool valid = true;
             if (String.IsNullOrEmpty(content))
             {
-                toast(this.Page, "Please enter some content!", "Error", "error");
+                toast(this, "Please enter some content!", "Error", "error");
                 valid = false;
             }
             return valid;
@@ -66,12 +66,12 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    toast(this.Page, "Comment posted!", "Success", "success");
+                    toast(this, "Comment posted!", "Success", "success");
                     tbcomment.Text = "";
                 }
                 else
                 {
-                    toast(this.Page, "Unable to post comment, please inform system administrator!", "Error", "error");
+                    toast(this, "Unable to post comment, please inform system administrator!", "Error", "error");
                 }
             }
         }
@@ -81,14 +81,14 @@ namespace WISLEY
             if (e.CommandName == "editcomm")
             {
                 e.Item.FindControl("commcontent").Visible = false;
-                e.Item.FindControl("Upcomm").Visible = true;
+                e.Item.FindControl("tbUpcomm").Visible = true;
                 e.Item.FindControl("editbtns").Visible = true;
             }
 
             if (e.CommandName == "cancel")
             {
                 e.Item.FindControl("commcontent").Visible = true;
-                e.Item.FindControl("Upcomm").Visible = false;
+                e.Item.FindControl("tbUpcomm").Visible = false;
                 e.Item.FindControl("editbtns").Visible = false;
             }
 
@@ -103,17 +103,17 @@ namespace WISLEY
                     int result = comment.UpdateComment(commId, content.Text, dateedit);
                     if (result == 1)
                     {
-                        toast(this.Page, "Changes Saved!", "Success", "success");
+                        toast(this, "Changes saved!", "Success", "success");
                         e.Item.FindControl("commcontent").Visible = true;
-                        e.Item.FindControl("Upcomm").Visible = false;
+                        e.Item.FindControl("tbUpcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;
                         commentinfo.DataSourceID = "commentdata";
                     }
                     else
                     {
-                        toast(this.Page, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
+                        toast(this, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
                         e.Item.FindControl("commcontent").Visible = true;
-                        e.Item.FindControl("Upcomm").Visible = false;
+                        e.Item.FindControl("tbUpcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;
                     }
                 }

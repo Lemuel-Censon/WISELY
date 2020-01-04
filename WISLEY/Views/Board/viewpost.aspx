@@ -37,52 +37,59 @@
                             </div>
                             <div id="comms" class="show" role="tabpanel" aria-labelledby="commhead" data-parent="#commentacc">
                                 <div class="card-body">
-                                    <div class="md-form md-outline">
-                                        <asp:Label ID="LbComment" AssociatedControlID="tbcomment" runat="server" Text="Comment"></asp:Label>
-                                        <asp:TextBox ID="tbcomment" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
-                                    </div>
-                                    <div class="text-right">
-                                        <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
-                                    </div>
+                                    <asp:ScriptManager runat="server" ID="commscript">
+                                    </asp:ScriptManager>
+                                    <asp:UpdatePanel runat="server" ID="addcommpanel" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <div class="md-form md-outline">
+                                                <asp:Label ID="LbComment" AssociatedControlID="tbcomment" runat="server" Text="Comment"></asp:Label>
+                                                <asp:TextBox ID="tbcomment" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
+                                            </div>
+                                            <div class="text-right">
+                                                <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
+                                            </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                     <hr />
                                     <% if (commcount() > 0)
                                         { %>
-                                    <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand">
-                                        <ItemTemplate>
-                                            <div class="media d-block d-md-flex mt-4">
-                                                <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
-                                                    alt="Generic placeholder image">
-                                                <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <h5 class="font-weight-bold mt-0">
-                                                                <a href="#">Howard</a>
-                                                            </h5>
+                                    <asp:UpdatePanel runat="server" ID="commpanel" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand">
+                                                <ItemTemplate>
+                                                    <div class="media d-block d-md-flex mt-4">
+                                                        <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
+                                                            alt="Generic placeholder image">
+                                                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <h5 class="font-weight-bold mt-0">
+                                                                        <a href="#">Howard</a>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <i class="fas fa-clock mr-1"></i><span>Posted on: <%#Eval("datecreated") %></span>
+                                                                    <asp:Button runat="server" CommandName="editcomm" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
+                                                                </div>
+                                                            </div>
+                                                            <div runat="server" id="commcontent">
+                                                                <%#Eval("content") %>
+                                                            </div>
+                                                            <asp:TextBox runat="server" ID="tbUpcomm" CssClass="form-control" Text='<%#Eval("content") %>' TextMode="MultiLine" Rows="4" Visible="false"></asp:TextBox>
+                                                            <div runat="server" id="editbtns" class="text-right" visible="false">
+                                                                <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" />
+                                                                <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnsave" Text="Save Changes" CssClass="btn btn-sm btn-success" />
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <i class="fas fa-clock mr-1"></i><span>Posted on: <%#Eval("datecreated") %></span>
-                                                            <asp:Button runat="server" CommandName="editcomm" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
-                                                        </div>
                                                     </div>
-                                                    <div runat="server" id="commcontent">
-                                                        <%#Eval("content") %>
-                                                    </div>
-                                                    <div class="md-form md-outline" id="Upcomm" runat="server" visible="false">
-                                                        <asp:Label runat="server" AssociatedControlID="tbUpcomm" ID="LbUpcomm" Text="Content"></asp:Label>
-                                                        <asp:TextBox runat="server" ID="tbUpcomm" CssClass="form-control" Text='<%#Eval("content") %>' TextMode="MultiLine" Rows="4"></asp:TextBox>
-                                                    </div>
-                                                    <div runat="server" id="editbtns" class="text-right" visible="false">
-                                                        <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" />
-                                                        <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnsave" Text="Save Changes" CssClass="btn btn-sm btn-success" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                    <asp:SqlDataSource ID="commentdata"
-                                        ConnectionString="<%$ connectionStrings: ConnStr%>"
-                                        runat="server"></asp:SqlDataSource>
+                                                    <hr />
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                            <asp:SqlDataSource ID="commentdata"
+                                                ConnectionString="<%$ connectionStrings: ConnStr%>"
+                                                runat="server"></asp:SqlDataSource>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                     <%} %>
                                     <% else
                                         { %>
