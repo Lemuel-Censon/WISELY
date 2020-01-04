@@ -81,14 +81,14 @@ namespace WISLEY
             if (e.CommandName == "editcomm")
             {
                 e.Item.FindControl("commcontent").Visible = false;
-                e.Item.FindControl("tbUpcomm").Visible = true;
+                e.Item.FindControl("Upcomm").Visible = true;
                 e.Item.FindControl("editbtns").Visible = true;
             }
 
             if (e.CommandName == "cancel")
             {
                 e.Item.FindControl("commcontent").Visible = true;
-                e.Item.FindControl("tbUpcomm").Visible = false;
+                e.Item.FindControl("Upcomm").Visible = false;
                 e.Item.FindControl("editbtns").Visible = false;
             }
 
@@ -105,7 +105,7 @@ namespace WISLEY
                     {
                         toast(this.Page, "Changes Saved!", "Success", "success");
                         e.Item.FindControl("commcontent").Visible = true;
-                        e.Item.FindControl("tbUpcomm").Visible = false;
+                        e.Item.FindControl("Upcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;
                         commentinfo.DataSourceID = "commentdata";
                     }
@@ -113,7 +113,7 @@ namespace WISLEY
                     {
                         toast(this.Page, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
                         e.Item.FindControl("commcontent").Visible = true;
-                        e.Item.FindControl("tbUpcomm").Visible = false;
+                        e.Item.FindControl("Upcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;
                     }
                 }

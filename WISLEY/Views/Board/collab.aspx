@@ -38,7 +38,10 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h4 class="card-title" runat="server" id="posttitle"><%#Eval("title") %></h4>
-                                    <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Visible="false" Text='<%#Eval("title") %>'></asp:TextBox>
+                                    <div class="md-form md-outline" id="Uptitle" runat="server" visible="false">
+                                        <asp:Label runat="server" AssociatedControlID="tbUptitle" ID="LbUptitle" Text="Title"></asp:Label>
+                                        <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>'></asp:TextBox>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 text-right">
                                     <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
@@ -63,7 +66,10 @@
                                     <div runat="server" id="postcontent">
                                         <%#Eval("content") %>
                                     </div>
-                                    <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Visible="false" Text='<%#Eval("content") %>'></asp:TextBox>
+                                    <div class="md-form md-outline" id="Upcontent" runat="server" visible="false">
+                                        <asp:Label runat="server" AssociatedControlID="tbUpcontent" ID="LbUpcontent" Text="Content"></asp:Label>
+                                        <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Text='<%#Eval("content") %>'></asp:TextBox>
+                                    </div>
                                 </div>
                             </div>
                             <hr />

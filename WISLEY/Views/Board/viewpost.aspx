@@ -67,7 +67,10 @@
                                                     <div runat="server" id="commcontent">
                                                         <%#Eval("content") %>
                                                     </div>
-                                                    <asp:TextBox runat="server" ID="tbUpcomm" CssClass="form-control" Text='<%#Eval("content") %>' TextMode="MultiLine" Rows="4" Visible="false"></asp:TextBox>
+                                                    <div class="md-form md-outline" id="Upcomm" runat="server" visible="false">
+                                                        <asp:Label runat="server" AssociatedControlID="tbUpcomm" ID="LbUpcomm" Text="Content"></asp:Label>
+                                                        <asp:TextBox runat="server" ID="tbUpcomm" CssClass="form-control" Text='<%#Eval("content") %>' TextMode="MultiLine" Rows="4"></asp:TextBox>
+                                                    </div>
                                                     <div runat="server" id="editbtns" class="text-right" visible="false">
                                                         <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" />
                                                         <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnsave" Text="Save Changes" CssClass="btn btn-sm btn-success" />

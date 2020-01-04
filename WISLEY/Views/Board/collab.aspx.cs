@@ -112,8 +112,8 @@ namespace WISLEY
                 e.Item.FindControl("posttitle").Visible = false;
                 e.Item.FindControl("postcontent").Visible = false;
                 e.Item.FindControl("btnView").Visible = false;
-                e.Item.FindControl("tbUptitle").Visible = true;
-                e.Item.FindControl("tbUpcontent").Visible = true;
+                e.Item.FindControl("Uptitle").Visible = true;
+                e.Item.FindControl("Upcontent").Visible = true;
                 e.Item.FindControl("btncancel").Visible = true;
                 e.Item.FindControl("btnsave").Visible = true;
             }
@@ -123,8 +123,8 @@ namespace WISLEY
                 e.Item.FindControl("posttitle").Visible = true;
                 e.Item.FindControl("postcontent").Visible = true;
                 e.Item.FindControl("btnView").Visible = true;
-                e.Item.FindControl("tbUptitle").Visible = false;
-                e.Item.FindControl("tbUpcontent").Visible = false;
+                e.Item.FindControl("Uptitle").Visible = false;
+                e.Item.FindControl("Upcontent").Visible = false;
                 e.Item.FindControl("btncancel").Visible = false;
                 e.Item.FindControl("btnsave").Visible = false;
             }
@@ -144,8 +144,8 @@ namespace WISLEY
                         e.Item.FindControl("posttitle").Visible = true;
                         e.Item.FindControl("postcontent").Visible = true;
                         e.Item.FindControl("btnView").Visible = true;
-                        e.Item.FindControl("tbUptitle").Visible = false;
-                        e.Item.FindControl("tbUpcontent").Visible = false;
+                        e.Item.FindControl("Uptitle").Visible = false;
+                        e.Item.FindControl("Upcontent").Visible = false;
                         e.Item.FindControl("btncancel").Visible = false;
                         e.Item.FindControl("btnsave").Visible = false;
                         postinfo.DataSourceID = "postdata";
@@ -156,8 +156,8 @@ namespace WISLEY
                         e.Item.FindControl("posttitle").Visible = true;
                         e.Item.FindControl("postcontent").Visible = true;
                         e.Item.FindControl("btnView").Visible = true;
-                        e.Item.FindControl("tbUptitle").Visible = false;
-                        e.Item.FindControl("tbUpcontent").Visible = false;
+                        e.Item.FindControl("Uptitle").Visible = false;
+                        e.Item.FindControl("Upcontent").Visible = false;
                         e.Item.FindControl("btncancel").Visible = false;
                         e.Item.FindControl("btnsave").Visible = false;
                     }
