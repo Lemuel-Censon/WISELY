@@ -54,10 +54,17 @@ namespace WISLEY
             {
                 try
                 {
-                    string filename = Path.GetFileName(fileUpload.FileName);
-                    fileUpload.SaveAs(Server.MapPath("~/Public/uploads/") + filename);
-                    toast(this.Page, "File uploaded!", "Success", "success");
-                    save = true;
+                    if (fileUpload.PostedFile.ContentLength < 3000000)
+                    {
+                        string filename = Path.GetFileName(fileUpload.FileName);
+                        fileUpload.SaveAs(Server.MapPath("~/Public/uploads/") + filename);
+                        toast(this.Page, "File uploaded!", "Success", "success");
+                        save = true;
+                    }
+                    else
+                    {
+                        toast(this.Page, "The file has to be less than 3MB!", "Error", "error");
+                    }
                 }
                 catch (Exception)
                 {
