@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="collab.aspx.cs" Inherits="WISLEY.collab" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
-    <h3 class="font-weight-bold text-center">Collaboration Board</h3>
+    <h3 class="font-weight-bold text-center mt-2">Collaboration Board</h3>
     <form runat="server">
         <div class="container">
             <asp:ScriptManager runat="server" ID="postscript">
@@ -45,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr />
                 </div>
                 <div id="postcon">
                     <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">

@@ -29,7 +29,7 @@ namespace WISLEY
                 LbPostID.Text = Session["postId"].ToString();
                 post();
                 commcount();
-                commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY datecreated DESC";
+                commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
             }
             else
             {
@@ -68,6 +68,7 @@ namespace WISLEY
                 {
                     toast(this, "Comment posted!", "Success", "success");
                     tbcomment.Text = "";
+                    commentinfo.DataSourceID = "commentdata";
                 }
                 else
                 {

@@ -89,7 +89,9 @@
                                     <%} %>
                                     <% else
                                         { %>
-                                    <h5 class="mt-3 font-weight-bold">No Comments</h5>
+                                    <div class="mt-3 text-center">
+                                        <h4 class="font-weight-bold">No Comments</h4>
+                                    </div>
                                     <%} %>
                                 </div>
                             </div>
