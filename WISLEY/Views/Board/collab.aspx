@@ -34,26 +34,36 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <% if (allPosts().Count > 0)
+            <% if (postcount() > 0)
                 {
             %>
             <div class="card mt-3">
                 <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                     <ContentTemplate>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-6 order-1 order-md-3 mt-2 mt-md-0">
+                                    <div class="input-group md-form md-outline">
+                                        <input type="text" id="search" class="form-control" placeholder="Search by Title" />
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-md btn-info m-0 px-3 py-2 waves-effect" id="searchbut"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand">
                             <ItemTemplate>
-
-                                <div class="card-body" id="post<%#Eval("Id") %>">
+                                <div class="card-body postcards" id="post<%#Eval("Id") %>">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <h4 class="card-title" runat="server" id="posttitle"><%#Eval("title") %></h4>
+                                            <h4 class="card-title posttitle" runat="server" id="posttitle" data-title='<%#Eval("title") %>'><%#Eval("title") %></h4>
                                             <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>' Visible="false"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
                                         </div>
                                     </div>
-
                                     <div class="media mt-4 px-1">
                                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
                                             alt="Generic placeholder image">
@@ -106,4 +116,5 @@
             <% } %>
         </div>
     </form>
+    <script src="<%= Page.ResolveUrl("~/Public/js/collabscript.js") %>" type="text/javascript"></script>
 </asp:Content>

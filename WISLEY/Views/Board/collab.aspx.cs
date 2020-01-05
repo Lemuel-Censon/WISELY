@@ -12,15 +12,15 @@ namespace WISLEY
 {
     public partial class collab : System.Web.UI.Page
     {
-        public List<Post> allPosts()
+        public int postcount()
         {
             List<Post> allPosts = new Post().SelectAll();
-            return allPosts;
+            return allPosts.Count;
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            allPosts();
+            postcount();
         }
 
         public void toast(Page page, string message, string title, string type)
