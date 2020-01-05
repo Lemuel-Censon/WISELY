@@ -39,17 +39,13 @@
                                 <div class="card-body">
                                     <asp:ScriptManager runat="server" ID="commscript">
                                     </asp:ScriptManager>
-                                    <asp:UpdatePanel runat="server" ID="addcommpanel" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <div class="md-form md-outline">
-                                                <asp:Label ID="LbComment" AssociatedControlID="tbcomment" runat="server" Text="Comment"></asp:Label>
-                                                <asp:TextBox ID="tbcomment" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
-                                            </div>
-                                            <div class="text-right">
-                                                <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
-                                            </div>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                    <div class="md-form md-outline">
+                                        <asp:Label ID="LbComment" AssociatedControlID="tbcomment" runat="server" Text="Comment"></asp:Label>
+                                        <asp:TextBox ID="tbcomment" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
+                                    </div>
+                                    <div class="text-right">
+                                        <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
+                                    </div>
                                     <hr />
                                     <% if (commcount() > 0)
                                         { %>
