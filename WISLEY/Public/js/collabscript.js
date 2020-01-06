@@ -38,3 +38,16 @@ function search() {
         }
     }
 }
+
+$('select.sort-select').on('change', function (e) {
+    let cards = $('.postcards');
+    let sort = $(this).find('option:selected').text();
+    if (sort == "Newest first") {
+        cards.sort(function (a, b) { return $(b).data("id") - $(a).data("id")});    
+        $("#postcon").html(cards);
+    }
+    else if (sort == "Oldest first"){
+        cards.sort(function (a, b) { return $(a).data("id") - $(b).data("id")});    
+        $("#postcon").html(cards);
+    }
+});

@@ -36,7 +36,14 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-md-12 order-1 order-md-3 mt-2 mt-md-0">
+                        <div class="col-12 col-md-6 order-3 order-md-2">
+                            <select class="md-form md-outline custom-select sort-select">
+                                <option selected disabled>Sort By</option>
+                                <option>Oldest first</option>
+                                <option>Newest first</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 order-1 order-md-3 mt-2 mt-md-0">
                             <div class="input-group md-form md-outline">
                                 <input type="text" id="search" class="form-control" placeholder="Search by Title" />
                                 <div class="input-group-append">
@@ -47,65 +54,67 @@
                     </div>
                     <hr />
                 </div>
-                <div id="postcon">
-                    <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
-                        <ContentTemplate>
+                <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div id="postcon">
                             <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand">
                                 <ItemTemplate>
-                                    <div class="card-body postcards" id="post<%#Eval("Id") %>">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <h4 class="card-title posttitle" runat="server" id="posttitle" data-title='<%#Eval("title") %>'><%#Eval("title") %></h4>
-                                                <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>' Visible="false"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-6 text-right">
-                                                <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
-                                            </div>
-                                        </div>
-                                        <div class="media mt-4 px-1">
-                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <h5 class="font-weight-bold mt-0">
-                                                            <a href="#">Danny Newman</a>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <i class="fas fa-clock mr-1"></i><span>Created on: <%#Eval("datecreated") %>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div runat="server" id="postcontent">
-                                                    <%#Eval("content") %>
-                                                </div>
-                                                <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Text='<%#Eval("content") %>' Visible="false"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="card-header border-0 font-weight-bold">
+                                    <div class="postcards" data-id='<%#Eval("Id") %>'>
+                                        <div class="card-body" id="post<%#Eval("Id") %>">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" Visible="false" />
+                                                    <h4 class="card-title posttitle" runat="server" id="posttitle" data-title='<%#Eval("title") %>'><%#Eval("title") %></h4>
+                                                    <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>' Visible="false"></asp:TextBox>
                                                 </div>
-                                                <div class="text-right col-lg-6">
-                                                    <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnSave" Text="Save Changes" CssClass="btn btn-sm btn-success" Visible="false" />
-                                                    <asp:Button runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                                <div class="col-lg-6 text-right">
+                                                    <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
                                                 </div>
                                             </div>
+                                            <div class="media mt-4 px-1">
+                                                <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                                                    alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <h5 class="font-weight-bold mt-0">
+                                                                <a href="#">Danny Newman</a>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <i class="fas fa-clock mr-1"></i><span>Created on: <%#Eval("datecreated") %>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div runat="server" id="postcontent">
+                                                        <%#Eval("content") %>
+                                                    </div>
+                                                    <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Text='<%#Eval("content") %>' Visible="false"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="card-header border-0 font-weight-bold">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" Visible="false" />
+                                                    </div>
+                                                    <div class="text-right col-lg-6">
+                                                        <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnSave" Text="Save Changes" CssClass="btn btn-sm btn-success" Visible="false" />
+                                                        <asp:Button runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
                                         </div>
-                                        <hr />
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <asp:SqlDataSource ID="postdata"
-                        ConnectionString="<%$ connectionStrings: ConnStr%>"
-                        SelectCommand="SELECT * FROM POST ORDER BY Id DESC"
-                        runat="server"></asp:SqlDataSource>
-                </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <asp:SqlDataSource ID="postdata"
+                    ConnectionString="<%$ connectionStrings: ConnStr%>"
+                    SelectCommand="SELECT * FROM POST ORDER BY Id DESC"
+                    runat="server"></asp:SqlDataSource>
             </div>
             <%} %><% else
                       { %>
