@@ -120,5 +120,10 @@ namespace WISLEY
                 }
             }
         }
+
+        protected void btnback_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("collab.aspx");
+        }
     }
 }

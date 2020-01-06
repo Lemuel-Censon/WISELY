@@ -5,7 +5,8 @@
         <div class="container">
             <div class="card mt-3">
                 <div class="card-body">
-                    <h4 class="card-title"><% =post().title %></h4>
+                    <asp:Button runat="server" ID="btnback" CssClass="btn btn-sm btn-danger" Text="<< Back" OnClick="btnback_Click" />
+                    <h4 class="card-title d-inline"><% =post().title %></h4>
                     <asp:Label runat="server" ID="LbPostID" Text="" Visible="false"></asp:Label>
                     <div class="media mt-4 px-1">
                         <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
