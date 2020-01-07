@@ -50,7 +50,7 @@
             </div>
         </div>
         <br />
-        <div class="col-4 p-2">
+        <div class="auto-style1">
             <div class="card-body">
                 <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
                 <ul class="fa-ul" style="line-height: 2;">
@@ -85,10 +85,14 @@
                 <div id="about" class="container tab-pane active">
                     <br>
                     <asp:Label ID="LbAbout" runat="server" Text="Tell us more about yourself!"></asp:Label>
+                    <br />
+                    <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
                 </div>
                 <div id="msgwall" class="container tab-pane fade">
                     <br>
-                    <asp:Label ID="Label4" runat="server" Text="My Message Wall"></asp:Label>
+                    <asp:Label ID="LbMsgWall" runat="server" Text="Welcome to my message wall!"></asp:Label>
+                    <br />
+                    <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click"/>
                 </div>
                 <div id="friends" class="container tab-pane fade">
                     <br>
@@ -106,3 +110,12 @@
         </div>
     </form>
 </asp:Content>
+<asp:Content ID="Content3" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style1 {
+            left: 0px;
+            top: -778px;
+        }
+    </style>
+</asp:Content>
+

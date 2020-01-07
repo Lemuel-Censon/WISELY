@@ -11,16 +11,27 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btneditProfile_Click(object sender, EventArgs e)
         {
+            Session["email"] = LbEmail.Text;
             Response.Redirect("editprofile.aspx");
         }
 
 
         protected void btnchangeAvatar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEditBio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEditCaption_Click(object sender, EventArgs e)
         {
 
         }

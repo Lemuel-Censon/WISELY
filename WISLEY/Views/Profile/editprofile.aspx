@@ -9,37 +9,46 @@
             <div class="col-lg-12">
                 <div class="card z-depth-2 pt-2 mb-5">
                     <div class="card-body">
-                        <h4 class="card-title">Personal Information</h4>
-                        <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="tbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
-                            <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <h4 class="card-title">Personal Information</h4>
                                 <div class="md-form md-outline">
-                                    <asp:Label AssociatedControlID="tbFname" ID="Lbfname" runat="server" Text="First Name"></asp:Label>
-                                    <asp:TextBox ID="tbFname" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LbEmail" runat="server" Text="Email"></asp:Label>
+                                    <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="md-form md-outline">
+                                            <asp:Label ID="Lbfname" runat="server" Text="First Name"></asp:Label>
+                                            <asp:TextBox ID="tbFname" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="md-form md-outline">
+                                            <asp:Label ID="Lblname" runat="server" Text="Last Name"></asp:Label>
+                                            <asp:TextBox ID="tbLname" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="md-form md-outline">
-                                    <asp:Label AssociatedControlID="tbLname" ID="Lblname" runat="server" Text="Last Name"></asp:Label>
-                                    <asp:TextBox ID="tbLname" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="LbDOB" runat="server" Text="Date of Birth"></asp:Label>
+                                    <asp:TextBox ID="tbDOB" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="tbDOB" ID="LbDOB" runat="server" Text="Date of Birth"></asp:Label>
-                            <asp:TextBox ID="tbDOB" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="tbLocation" ID="Lblocation" runat="server" Text="Location"></asp:Label>
-                            <asp:TextBox ID="tbLocation" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="tbContact" ID="Lbcontact" runat="server" Text="Contact"></asp:Label>
-                            <asp:TextBox ID="tbContact" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
-                        </div>
+                                <div class="md-form md-outline">
+                                    <asp:Label ID="Lblocation" runat="server" Text="Location"></asp:Label>
+                                    <asp:TextBox ID="tbLocation" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="md-form md-outline">
+                                    <asp:Label ID="Lbcontact" runat="server" Text="Contact"></asp:Label>
+                                    <asp:TextBox ID="tbContact" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
+                                </div>
+                                <div class="text-right">
+                                    <a href="<%= Page.ResolveUrl("~/Views/Profile/profile.aspx") %>" class="btn btn-danger">Cancel</a>
+                                    <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save Changes" OnClick="btnSave_Click" />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
             </div>
