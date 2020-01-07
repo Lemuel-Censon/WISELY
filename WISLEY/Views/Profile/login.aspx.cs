@@ -35,9 +35,14 @@ namespace WISLEY
                 toast(this, "Please enter your password!", "Error", "error");
             }
 
+            else if (user == null)
+            {
+                toast(this, "Account does not exist!", "Error", "error");
+            }
+
             else if (user.password != TbPassword.Text)
             {
-                toast(this, "Incorect password", "Error", "error");
+                toast(this, "Password is incorrect!", "Error", "error");
             }
 
             else
