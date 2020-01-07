@@ -16,23 +16,21 @@ namespace WISLEY.DAL.Profile
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO User (userId, groupId, email, name, password, gender, dob, department, experience, wisPoints, accType)" +
-                             "VALUES (@paraUserID, @paraGroupID, @paraEmail, @paraName, @paraPassword, @paraGender, @paraDob, @paraDepartment, @paraExperience, @paraWisPoints, @paraAccType)";
+            string sqlStmt = "INSERT INTO User (email, name, password, contactNo, dob, gender, experience, wisPoints, accType)" +
+                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paraDob, @paragender, @paraexp, @parapoints, @paraUserType)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@paraUserID", user.userId);
-            sqlCmd.Parameters.AddWithValue("@paraGroupID", user.groupId);
             sqlCmd.Parameters.AddWithValue("@paraEmail", user.email);
-            sqlCmd.Parameters.AddWithValue("@paraName", user.name);
             sqlCmd.Parameters.AddWithValue("@paraPassword", user.password);
-            sqlCmd.Parameters.AddWithValue("@paraGender", user.gender);
+            sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
+            sqlCmd.Parameters.AddWithValue("@paraName", user.name);
             sqlCmd.Parameters.AddWithValue("@paraDob", user.dob);
-            sqlCmd.Parameters.AddWithValue("@paraDepartment", user.department);
-            sqlCmd.Parameters.AddWithValue("@paraExperience", user.experience);
-            sqlCmd.Parameters.AddWithValue("@paraWisPoints", user.wisPoints);
-            sqlCmd.Parameters.AddWithValue("@paraAccType", user.accType);
+            sqlCmd.Parameters.AddWithValue("@paragender", user.gender);
+            sqlCmd.Parameters.AddWithValue("@paraexp", user.experience);
+            sqlCmd.Parameters.AddWithValue("@parapoints", user.points);
+            sqlCmd.Parameters.AddWithValue("@paraContactNo", user.contactNo);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -42,14 +40,14 @@ namespace WISLEY.DAL.Profile
             return result;
         }
 
-        public User SelectByID(string userID)
+        public User SelectByEmail(string email)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from User where Id = @parauserId";
+            string sqlstmt = "Select * from User where email = @paraEmail";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
-            da.SelectCommand.Parameters.AddWithValue("@parauserId", userID);
+            da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
 
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -59,22 +57,18 @@ namespace WISLEY.DAL.Profile
             if (rec_cnt > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
-                string userId = row["userId"].ToString();
-                string groupId = row["groupId"].ToString();
-                string email = row["email"].ToString();
-                string name = row["name"].ToString();
                 string password = row["password"].ToString();
-                string gender = row["gender"].ToString();
+                string type = row["accType"].ToString();
+                string name = row["name"].ToString();
                 string dob = row["dob"].ToString();
-                string department = row["department"].ToString();
-                string experience = row["experience"].ToString();
-                string wisPoints = row["wisPoints"].ToString();
-                string accType = row["accType"].ToString();
-                obj = new User(userId, groupId, email, name, password, gender, dob, department, experience, wisPoints, accType);
+                string contactNo = row["contactNo"].ToString();
+                string gender = row["gender"].ToString();
+                int exp = int.Parse(row["experience"].ToString());
+                int points = int.Parse(row["wisPoints"].ToString());
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points);
             }
 
             return obj;
         }
-
     }
 }

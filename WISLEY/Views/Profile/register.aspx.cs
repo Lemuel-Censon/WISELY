@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -14,9 +15,64 @@ namespace WISLEY
 
         }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        public bool ValidateInput()
+        {
+            bool valid = false;
+
+            if (String.IsNullOrEmpty(TbEmail.Text))
+            {
+                toast(this, "Please enter a valid email!", "Error", "error");
+            }
+
+            if (String.IsNullOrEmpty(TbPassword.Text))
+            {
+                toast(this, "Please enter a password!", "Error", "error");
+            }
+
+            if (TbPassword.Text != TbConfirmPassword.Text)
+            {
+                toast(this, "Both passwords must match!", "Error", "error");
+            }
+
+            if (typelist.SelectedIndex == -1)
+            {
+                toast(this, "Please indicate whether you are a student or teacher!", "Error", "error");
+            }
+
+            else {
+                valid = true;
+            }
+
+            return valid;
+        }
+
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Response.Redirect("index.aspx");
+            if (ValidateInput())
+            {
+                string type = typelist.SelectedItem.Text;
+                string email = TbEmail.Text;
+                string password = TbPassword.Text;
+
+                User user = new User(email, password, type, null, null, null, null, 0, 0);
+                int result = user.AddUser();
+                if (result == 1)
+                {
+                    toast(this, "You have been registered successfully! Please log in.", "Success", "success");
+                    Response.Redirect("login.aspx");
+                }
+
+                else
+                {
+                    toast(this, "There was a error while registering, please contact system administrator!", "Error", "error");
+                }
+                
+            }
         }
     }
 }
