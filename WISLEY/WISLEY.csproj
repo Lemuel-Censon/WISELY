@@ -103,6 +103,7 @@
     <Content Include="bin\WISLEY.dll.config" />
     <Content Include="bin\WISLEY.pdb" />
     <Content Include="Views\Group\createGroup.aspx" />
+    <Content Include="Views\Group\createGroup.html" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
     <Content Include="Public\css\toast\toastr.css" />

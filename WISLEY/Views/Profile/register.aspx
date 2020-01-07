@@ -20,14 +20,19 @@
                         <asp:TextBox ID="TbConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                     </div>
                     <p>Get started as a...</p>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" runat="server" class="custom-control-input" id="rbtnStud" />
+                    <asp:RadioButtonList CssClass="custom-control custom-radio" ID="RadioButtonList1" runat="server">
+                        <asp:ListItem>Student</asp:ListItem>
+                        <asp:ListItem>Teacher</asp:ListItem>
+                    </asp:RadioButtonList>
+
+<%--                    <div class="custom-control custom-radio">
+                        <input type="radio" runat="server" class="custom-control-input" id="rbtnStud" name="accountType"/>
                         <label class="custom-control-label" for="rbtnStud">Student</label>
                     </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" runat="server" class="custom-control-input" id="rbtnTeach" />
+                    <div class="custom-control custom-radio">
+                        <input type="radio" runat="server" class="custom-control-input" id="rbtnTeach" name="accountType"/>
                         <label class="custom-control-label" for="rbtnTeach">Teacher</label>
-                    </div>
+                    </div>--%>
                     <div class="mt-3">
                         <button class="btn btn-md btn-block btn-primary" id="btnRegister" runat="server" onserverclick="btnRegister_Click">Join</button>
                     </div>
