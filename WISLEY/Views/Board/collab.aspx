@@ -30,9 +30,6 @@
                     </div>
                 </div>
             </div>
-            <% if (postcount() > 0)
-                {
-            %>
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="row">
@@ -54,6 +51,9 @@
                     </div>
                     <hr />
                 </div>
+                <% if (postcount() > 0)
+                    {
+                %>
                 <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div id="postcon">
@@ -115,13 +115,13 @@
                     ConnectionString="<%$ connectionStrings: ConnStr%>"
                     SelectCommand="SELECT * FROM POST ORDER BY Id DESC"
                     runat="server"></asp:SqlDataSource>
+                <%} %><% else
+                          { %>
+                <div class="text-center mb-4">
+                    <h4 class="font-weight-bold">No Posts</h4>
+                </div>
+                <% } %>
             </div>
-            <%} %><% else
-                      { %>
-            <div class="text-center mt-3">
-                <h4 class="font-weight-bold">No Posts</h4>
-            </div>
-            <% } %>
         </div>
     </form>
     <script src="<%= Page.ResolveUrl("~/Public/js/collabscript.js") %>" type="text/javascript"></script>
