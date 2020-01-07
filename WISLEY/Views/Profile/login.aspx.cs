@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -14,9 +15,46 @@ namespace WISLEY
 
         }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        public bool ValidateInput()
+        {
+            bool valid = false;
+            User user = new User().SelectByEmail(TbEmail.Text);
+
+            if (String.IsNullOrEmpty(TbEmail.Text))
+            {
+                toast(this, "Please enter your email!", "Error", "error");
+            }
+
+            else if (String.IsNullOrEmpty(TbPassword.Text))
+            {
+                toast(this, "Please enter your password!", "Error", "error");
+            }
+
+            else if (user.password != TbPassword.Text)
+            {
+                toast(this, "Incorect password", "Error", "error");
+            }
+
+            else
+            {
+                valid = true;
+            }
+
+            return valid;
+        }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("index.aspx");
+            if (ValidateInput())
+            {
+                Session["email"] = TbEmail.Text;
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
         }
     }
 }
