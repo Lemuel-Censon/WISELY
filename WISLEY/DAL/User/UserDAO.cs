@@ -16,21 +16,22 @@ namespace WISLEY.DAL.Profile
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO User (email, name, password, contactNo, dob, gender, experience, wisPoints, accType)" +
-                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paraDob, @paragender, @paraexp, @parapoints, @paraUserType)";
+            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, experience, wisPoints, accType)" +
+                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @paraexp, @parapoints, @paraUserType)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
             sqlCmd.Parameters.AddWithValue("@paraEmail", user.email);
-            sqlCmd.Parameters.AddWithValue("@paraPassword", user.password);
-            sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
             sqlCmd.Parameters.AddWithValue("@paraName", user.name);
-            sqlCmd.Parameters.AddWithValue("@paraDob", user.dob);
+            sqlCmd.Parameters.AddWithValue("@paraPassword", user.password);
+            sqlCmd.Parameters.AddWithValue("@paraContactNo", user.contactNo);
             sqlCmd.Parameters.AddWithValue("@paragender", user.gender);
+            sqlCmd.Parameters.AddWithValue("@paraDob", user.dob);
             sqlCmd.Parameters.AddWithValue("@paraexp", user.experience);
             sqlCmd.Parameters.AddWithValue("@parapoints", user.points);
-            sqlCmd.Parameters.AddWithValue("@paraContactNo", user.contactNo);
+            sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
+
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -45,7 +46,7 @@ namespace WISLEY.DAL.Profile
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from User where email = @paraEmail";
+            string sqlstmt = "Select * from [User] where email = @paraEmail";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
 

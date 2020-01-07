@@ -23,25 +23,31 @@ namespace WISLEY
         public bool ValidateInput()
         {
             bool valid = false;
+            User compare = new User().SelectByEmail(TbEmail.Text);
 
             if (String.IsNullOrEmpty(TbEmail.Text))
             {
                 toast(this, "Please enter a valid email!", "Error", "error");
             }
 
-            if (String.IsNullOrEmpty(TbPassword.Text))
+            else if (String.IsNullOrEmpty(TbPassword.Text))
             {
                 toast(this, "Please enter a password!", "Error", "error");
             }
 
-            if (TbPassword.Text != TbConfirmPassword.Text)
+            else if (TbPassword.Text != TbConfirmPassword.Text)
             {
                 toast(this, "Both passwords must match!", "Error", "error");
             }
 
-            if (typelist.SelectedIndex == -1)
+            else if (typelist.SelectedIndex == -1)
             {
                 toast(this, "Please indicate whether you are a student or teacher!", "Error", "error");
+            }
+
+            else if (compare != null)
+            {
+                toast(this, "Account already exists!", "Error", "error");
             }
 
             else {
@@ -59,12 +65,11 @@ namespace WISLEY
                 string email = TbEmail.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, type, null, null, null, null, 0, 0);
+                User user = new User(email, password, type, "", "", "", "", 0, 0);
                 int result = user.AddUser();
                 if (result == 1)
                 {
                     toast(this, "You have been registered successfully! Please log in.", "Success", "success");
-                    Response.Redirect("login.aspx");
                 }
 
                 else
