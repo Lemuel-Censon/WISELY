@@ -40,7 +40,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment ORDER BY datecreated DESC";
+            string sqlstmt = "Select * from Comment ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
 
             DataSet ds = new DataSet();
@@ -70,7 +70,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment where postId = @paraPostId ORDER BY datecreated DESC";
+            string sqlstmt = "Select * from Comment where postId = @paraPostId ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraPostId", postId);
 

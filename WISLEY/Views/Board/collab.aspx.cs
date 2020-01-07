@@ -20,7 +20,14 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            postcount();
+            if (Session["email"] != null)
+            {
+                postcount();
+            }
+            else
+            {
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
         }
 
         public void toast(Page page, string message, string title, string type)
