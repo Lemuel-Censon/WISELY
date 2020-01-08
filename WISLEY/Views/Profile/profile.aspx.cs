@@ -25,6 +25,7 @@ namespace WISLEY
                 if (Session["otheremail"] != null)
                 {
                     LbEmail.Text = Session["otheremail"].ToString();
+                    Session["otheremail"] = null;
                 }
                 postcount();
                 userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + LbEmail.Text + "' ORDER BY Id DESC";
