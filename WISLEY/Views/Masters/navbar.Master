@@ -119,7 +119,7 @@
     <footer class="page-footer font-small mt-4 blue">
         <div class="footer-copyright p-3">
             <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">
-                <img src="https://picsum.photos/100" height="30" alt="WISELY">
+                <img src="<%= Page.ResolveUrl("~/Public/img/Logo/WISELY30.jpg") %>" height="30" alt="WISELY">
             </a>
             <span class="m-0">&copy; <%=DateTime.Now.Year.ToString() %> <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a> All Rights Reserved
             </span>

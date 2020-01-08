@@ -14,9 +14,9 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
+                hidotheremail.Value = Session["email"].ToString();
                 if (Session["otheremail"] != null)
                 {
-                    hidotheremail.Value = Session["email"].ToString();
                     LbEmail.Text = Session["otheremail"].ToString();
                 }
             }
