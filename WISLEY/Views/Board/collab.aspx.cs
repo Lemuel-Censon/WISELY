@@ -48,7 +48,7 @@ namespace WISLEY
             {
                 toast(this, "Please enter a title!", "Error", "error");
             }
-            if (String.IsNullOrEmpty(content))
+            else if (String.IsNullOrEmpty(content))
             {
                 toast(this, "Please enter some content!", "Error", "error");
             }
