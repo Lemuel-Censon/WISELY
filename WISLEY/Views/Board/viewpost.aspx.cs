@@ -80,9 +80,7 @@ namespace WISLEY
         {
             if (e.CommandName == "viewprofile")
             {
-                string otheremail = e.CommandArgument.ToString();
-                Session["otheremail"] = otheremail;
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
             }
 
             if (e.CommandName == "editcomm")
@@ -136,9 +134,7 @@ namespace WISLEY
         {
             if (e.CommandName == "viewpost")
             {
-                string otheremail = e.CommandArgument.ToString();
-                Session["otheremail"] = otheremail;
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
             }
         }
 

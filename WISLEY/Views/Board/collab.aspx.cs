@@ -126,8 +126,7 @@ namespace WISLEY
 
             if (e.CommandName == "viewprofile")
             {
-                Session["otheremail"] = e.CommandArgument.ToString();
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
             }
 
             if (e.CommandName == "editpost")
