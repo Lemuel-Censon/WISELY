@@ -23,6 +23,7 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 postcount();
+                LbEmail.Text = Session["email"].ToString();
             }
             else
             {
@@ -93,7 +94,7 @@ namespace WISLEY
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
-                string userId = Session["email"].ToString();
+                string userId = LbEmail.Text;
 
                 Post post = new Post(title, content, userId, "100", date);
                 int result = post.AddPost();

@@ -4,7 +4,8 @@
     <form runat="server">
         <div class="container">
             <div class="card mt-3">
-                <asp:Label runat="server" ID="LbPostID" Text="" Visible="false"></asp:Label>
+                <asp:Label runat="server" ID="LbEmail" Visible="false"></asp:Label>
+                <asp:Label runat="server" ID="LbPostID" Visible="false"></asp:Label>
                 <asp:Repeater runat="server" ID="post" DataSourceID="postdata" OnItemCommand="post_ItemCommand">
                     <ItemTemplate>
                         <div class="card-body">
@@ -28,6 +29,7 @@
                                     <%#Eval("content")%>
                                 </div>
                             </div>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
                 <asp:SqlDataSource runat="server" ID="postdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
@@ -66,7 +68,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <h5 class="font-weight-bold mt-0">
-                                                                    <a href="#">Howard</a>
+                                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>'><%#Eval("userId") %></asp:LinkButton>
                                                                 </h5>
                                                             </div>
                                                             <div class="col-lg-6">
@@ -104,7 +106,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </form>
 </asp:Content>

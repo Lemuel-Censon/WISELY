@@ -6,6 +6,7 @@
         <div class="container">
             <asp:ScriptManager runat="server" ID="postscript">
             </asp:ScriptManager>
+            <asp:Label runat="server" ID="LbEmail" Visible="false"></asp:Label>
             <div class="card">
                 <div class="card-body">
                     <div class="md-form md-outline">

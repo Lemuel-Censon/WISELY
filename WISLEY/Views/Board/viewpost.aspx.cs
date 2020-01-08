@@ -18,8 +18,9 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["postId"] != null)
+            if (Session["postId"] != null && Session["email"] != null)
             {
+                LbEmail.Text = Session["email"].ToString();
                 LbPostID.Text = Session["postId"].ToString();
                 commcount();
                 postdata.SelectCommand = "SELECT * FROM POST WHERE Id = " + LbPostID.Text;
@@ -55,7 +56,7 @@ namespace WISLEY
                 string content = tbcomment.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
 
-                Comment comment = new Comment(postId, "100", content, date);
+                Comment comment = new Comment(postId, LbEmail.Text, content, date);
                 int result = comment.AddComment();
 
                 if (result == 1)
@@ -73,6 +74,13 @@ namespace WISLEY
 
         protected void commentinfo_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            if (e.CommandName == "viewprofile")
+            {
+                string otheremail = e.CommandArgument.ToString();
+                Session["otheremail"] = otheremail;
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+            }
+
             if (e.CommandName == "editcomm")
             {
                 e.Item.FindControl("commcontent").Visible = false;
