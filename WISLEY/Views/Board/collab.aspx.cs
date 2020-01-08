@@ -93,8 +93,9 @@ namespace WISLEY
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
+                string userId = Session["email"].ToString();
 
-                Post post = new Post(title, content, "100", "100", date);
+                Post post = new Post(title, content, userId, "100", date);
                 int result = post.AddPost();
 
                 if (result == 1)
@@ -119,6 +120,12 @@ namespace WISLEY
             {
                 Session["postId"] = e.CommandArgument.ToString();
                 Response.Redirect("viewpost.aspx");
+            }
+
+            if (e.CommandName == "viewprofile")
+            {
+                Session["otheremail"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
             }
 
             if (e.CommandName == "editpost")

@@ -2,7 +2,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <form id="form1" class="col-12 row justify-content-around" runat="server">
-        <h3 class="font-weight-bold text-center col-12">Your Dashboard</h3>
+        <asp:HiddenField runat="server" ID="hidotheremail" />
+        <%if (LbEmail.Text == hidotheremail.Value)
+            { %>
+            <h3 class="font-weight-bold text-center col-12">Your Dashboard</h3>
+        <%} %>
         <div class="card col-12 p-1">
             <div class="card-body">
                 <div class="row">
@@ -14,7 +18,7 @@
                     <div class="col-lg-4">
                         <h3 class="font-weight-bold">Bryan</h3>
                         <h5>Email: 
-                        <asp:Label ID="LbEmail" runat="server" Text="abc@mail.com"></asp:Label>
+                        <asp:Label ID="LbEmail" runat="server"></asp:Label>
                         </h5>
                         <p style="width: 300px;">
                             <asp:Label ID="LbNoOfBlogs" runat="server" Text="1"></asp:Label>
@@ -42,10 +46,13 @@
                             </div>
                         </div>
                     </div>
+                    <%if (LbEmail.Text == hidotheremail.Value)
+                        { %>
                     <div class="col-lg-6 text-right">
                         <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btnchangeAvatar" runat="server" Text="Change Avatar" OnClick="btnchangeAvatar_Click" />
                         <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btneditProfile" runat="server" Text="Edit Profile" OnClick="btneditProfile_Click" />
                     </div>
+                    <%} %>
                 </div>
             </div>
         </div>

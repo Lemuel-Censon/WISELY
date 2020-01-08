@@ -11,7 +11,19 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["email"] != null)
+            {
+                LbEmail.Text = Session["email"].ToString();
+                if (Session["otheremail"] != null)
+                {
+                    hidotheremail.Value = Session["email"].ToString();
+                    LbEmail.Text = Session["otheremail"].ToString();
+                }
+            }
+            else
+            {
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
         }
 
         protected void btneditProfile_Click(object sender, EventArgs e)

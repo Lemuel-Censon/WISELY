@@ -10,12 +10,6 @@ namespace WISLEY
 {
     public partial class viewpost : System.Web.UI.Page
     {
-        public Post post()
-        {
-            Post post = new Post().SelectByID(LbPostID.Text);
-            return post;
-        }
-
         public int commcount()
         {
             List<Comment> allComments = new Comment().SelectByPost(LbPostID.Text);
@@ -27,8 +21,8 @@ namespace WISLEY
             if (Session["postId"] != null)
             {
                 LbPostID.Text = Session["postId"].ToString();
-                post();
                 commcount();
+                postdata.SelectCommand = "SELECT * FROM POST WHERE Id = " + LbPostID.Text;
                 commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
             }
             else
@@ -124,6 +118,16 @@ namespace WISLEY
         protected void btnback_Click(object sender, EventArgs e)
         {
             Response.Redirect("collab.aspx");
+        }
+
+        protected void post_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewpost")
+            {
+                string otheremail = e.CommandArgument.ToString();
+                Session["otheremail"] = otheremail;
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+            }
         }
     }
 }
