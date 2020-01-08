@@ -4,7 +4,7 @@
     <form id="form1" runat="server">
         <asp:HiddenField runat="server" ID="hidotheremail" />
         <h3 class="font-weight-bold text-center"><%if (LbEmail.Text == hidotheremail.Value)
-                                                     { %>Your Profile<%} %>></h3>
+                                                     { %>Your Profile<%} %></h3>
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -92,21 +92,27 @@
                 </ul>
                 <div class="tab-content">
                     <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
-                        Tell us more about yourself!
+                        Currently Empty
+                        <%if (LbEmail.Text == hidotheremail.Value)
+                            { %>
                         <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
+                        <%} %>
                     </div>
                     <div id="msgwall" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                        Welcome to my message wall!
+                        Currently Empty
+                        <%if (LbEmail.Text == hidotheremail.Value)
+                            { %>
                         <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click" />
+                        <%} %>
                     </div>
                     <div id="friends" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                        My Friends
+                        Currently Empty
                     </div>
                     <div id="posts" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                        My Posts
+                        Currently Empty
                     </div>
                     <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                        My Badges
+                        Currently Empty
                     </div>
                 </div>
             </div>
