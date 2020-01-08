@@ -69,7 +69,8 @@ namespace WISLEY
                 int result = user.AddUser();
                 if (result == 1)
                 {
-                    toast(this, "You have been registered successfully! Please log in.", "Success", "success");
+                    Session["registered"] = "register";
+                    Response.Redirect("login.aspx");
                 }
 
                 else

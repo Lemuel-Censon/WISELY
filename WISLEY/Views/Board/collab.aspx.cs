@@ -24,6 +24,11 @@ namespace WISLEY
             {
                 postcount();
                 LbEmail.Text = Session["email"].ToString();
+                if (Session["success"] != null)
+                {
+                    toast(this, "Post Added!", "Success", "success");
+                    Session["success"] = null;
+                }
             }
             else
             {
@@ -101,16 +106,12 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    toast(this, "Post Added!", "Success", "success");
-                    tbtitle.Text = "";
-                    tbcontent.Text = "";
-                    postinfo.DataSourceID = "postdata";
+                    Session["success"] = "toast";
+                    Response.Redirect("collab.aspx");
                 }
                 else
                 {
                     toast(this, "Unable to add post, please inform system administrator!", "Error", "error");
-                    tbtitle.Text = "";
-                    tbcontent.Text = "";
                 }
             }
         }

@@ -12,7 +12,11 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["registered"] != null)
+            {
+                toast(this, "You have been registered successfully! Please log in.", "Success", "success");
+                Session["registered"] = null;
+            }
         }
 
         public void toast(Page page, string message, string title, string type)

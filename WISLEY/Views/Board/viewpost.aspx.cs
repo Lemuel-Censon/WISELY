@@ -25,6 +25,11 @@ namespace WISLEY
                 commcount();
                 postdata.SelectCommand = "SELECT * FROM POST WHERE Id = " + LbPostID.Text;
                 commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
+                if (Session["success"] != null)
+                {
+                    toast(this, "Comment posted!", "Success", "success");
+                    Session["success"] = null;
+                }
             }
             else
             {
@@ -61,9 +66,8 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    toast(this, "Comment posted!", "Success", "success");
-                    tbcomment.Text = "";
-                    commentinfo.DataSourceID = "commentdata";
+                    Session["success"] = "toast";
+                    Response.Redirect("viewpost.aspx");
                 }
                 else
                 {
