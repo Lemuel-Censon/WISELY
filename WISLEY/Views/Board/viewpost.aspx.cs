@@ -141,5 +141,14 @@ namespace WISLEY
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
             }
         }
+
+        protected void commentinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            LinkButton userId = (LinkButton)e.Item.FindControl("viewprofile");
+            if (userId.Text != LbEmail.Text)
+            {
+                e.Item.FindControl("btnEdit").Visible = false;
+            }
+        }
     }
 }

@@ -59,7 +59,7 @@
                                     { %>
                                 <asp:UpdatePanel runat="server" ID="commpanel" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand">
+                                        <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand" OnItemDataBound="commentinfo_ItemDataBound">
                                             <ItemTemplate>
                                                 <div class="media d-block d-md-flex mt-4">
                                                     <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
@@ -68,7 +68,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <h5 class="font-weight-bold mt-0">
-                                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>'><%#Eval("userId") %></asp:LinkButton>
+                                                                    <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("userId") %>'></asp:LinkButton>
                                                                 </h5>
                                                             </div>
                                                             <div class="col-lg-6">

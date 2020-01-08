@@ -188,5 +188,13 @@ namespace WISLEY
             }
         }
 
+        protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            LinkButton userId = (LinkButton)e.Item.FindControl("viewprofile");
+            if (userId.Text != LbEmail.Text)
+            {
+                e.Item.FindControl("btnEdit").Visible = false;
+            }
+        }
     }
 }

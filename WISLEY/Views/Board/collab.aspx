@@ -58,7 +58,7 @@
                 <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div id="postcon">
-                            <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand">
+                            <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand" OnItemDataBound="postinfo_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="postcards" data-id='<%#Eval("Id") %>'>
                                         <div class="card-body" id="post<%#Eval("Id") %>">
@@ -78,7 +78,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <h5 class="font-weight-bold mt-0">
-                                                                <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>'><%#Eval("userId") %></asp:LinkButton>
+                                                                <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("userId") %>'></asp:LinkButton>
                                                             </h5>
                                                         </div>
                                                         <div class="col-lg-6">
