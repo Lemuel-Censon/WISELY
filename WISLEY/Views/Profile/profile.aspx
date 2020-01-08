@@ -109,7 +109,39 @@
                         Currently Empty
                     </div>
                     <div id="posts" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                        Currently Empty
+                        <%if (postcount() > 0)
+                            { %>
+                        <asp:Repeater runat="server" ID="userpost" DataSourceID="userpostdata">
+                            <ItemTemplate>
+                                <div class="card-body">
+                                    <h4 class="card-title d-inline"><%#Eval("title") %></h4>
+                                    <div class="media mt-4 px-1">
+                                        <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h5 class="font-weight-bold mt-0">
+                                                        <asp:LinkButton runat="server" ID="postlink"><%#Eval("userId") %></asp:LinkButton>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <%#Eval("content")%>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <asp:SqlDataSource runat="server" ID="userpostdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
+                        <%} %>
+                        <%else
+                            { %>Currently Empty
+                        <%} %>
                     </div>
                     <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
                         Currently Empty

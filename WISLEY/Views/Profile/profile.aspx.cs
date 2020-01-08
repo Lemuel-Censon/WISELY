@@ -4,11 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Collab;
 
 namespace WISLEY
 {
     public partial class profile : System.Web.UI.Page
     {
+        public int postcount()
+        {
+            Post post = new Post();
+            return post.SelectByUser(LbEmail.Text).Count;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["email"] != null)
@@ -19,6 +26,8 @@ namespace WISLEY
                 {
                     LbEmail.Text = Session["otheremail"].ToString();
                 }
+                postcount();
+                userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + LbEmail.Text + "' ORDER BY Id DESC";
             }
             else
             {
