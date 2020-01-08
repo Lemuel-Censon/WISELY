@@ -3,10 +3,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <form id="form1" runat="server">
         <asp:HiddenField runat="server" ID="hidotheremail" />
-        <%if (LbEmail.Text == hidotheremail.Value)
-            { %>
-        <h3 class="font-weight-bold text-center">Your Dashboard</h3>
-        <%} %>
+        <h3 class="font-weight-bold text-center"><%if (LbEmail.Text == hidotheremail.Value)
+                                                     { %>Your Profile<%} %>></h3>
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -17,8 +15,8 @@
                     </div>
                     <div class="col-lg-4">
                         <h3 class="font-weight-bold">Bryan</h3>
-                        <h5>Email: 
-                        <asp:Label ID="LbEmail" runat="server"></asp:Label>
+                        <h5>
+                            <asp:Label ID="LbEmail" runat="server"></asp:Label>
                         </h5>
                         <div class="row">
                             <div class="col-lg-4">
@@ -37,7 +35,7 @@
                     </div>
                     <div class="col-lg-4 text-right">
                         <h5>420 WIS Points<img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
-                        <h5>Student</h5>
+                        <h5 class="font-weight-bold">Student</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -75,47 +73,40 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <ul class="nav nav-pills" role="tablist">
+                <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#about">About</a>
+                        <a class="nav-link active" role="tab" data-toggle="tab" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#msgwall">Message Wall</a>
+                        <a class="nav-link" role="tab" data-toggle="tab" href="#msgwall">Message Wall</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#friends">Friends List</a>
+                        <a class="nav-link" role="tab" data-toggle="tab" href="#friends">Friends List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#posts">Posts</a>
+                        <a class="nav-link" role="tab" data-toggle="tab" href="#posts">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#badges">Badges</a>
+                        <a class="nav-link" role="tab" data-toggle="tab" href="#badges">Badges</a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="about" class="container tab-pane active">
-                        <br>
-                        <asp:Label ID="LbAbout" runat="server" Text="Tell us more about yourself!"></asp:Label>
-                        <br />
-                        <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
+                    <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
+                        Tell us more about yourself!
+                        <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
                     </div>
-                    <div id="msgwall" class="container tab-pane fade">
-                        <br>
-                        <asp:Label ID="LbMsgWall" runat="server" Text="Welcome to my message wall!"></asp:Label>
-                        <br />
-                        <asp:Button CssClass="btn btn-primary p-2 ml-auto" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click" />
+                    <div id="msgwall" class="tab-pane fade m-2 ml-2" role="tabpanel">
+                        Welcome to my message wall!
+                        <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click" />
                     </div>
-                    <div id="friends" class="container tab-pane fade">
-                        <br>
-                        <asp:Label ID="Label5" runat="server" Text="My Friends"></asp:Label>
+                    <div id="friends" class="tab-pane fade m-2 ml-2" role="tabpanel">
+                        My Friends
                     </div>
-                    <div id="posts" class="container tab-pane fade">
-                        <br>
-                        <asp:Label ID="Label6" runat="server" Text="My Posts"></asp:Label>
+                    <div id="posts" class="tab-pane fade m-2 ml-2" role="tabpanel">
+                        My Posts
                     </div>
-                    <div id="badges" class="container tab-pane fade">
-                        <br>
-                        <asp:Label ID="Label7" runat="server" Text="My Badges"></asp:Label>
+                    <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
+                        My Badges
                     </div>
                 </div>
             </div>

@@ -112,15 +112,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Button btneditProfile;
         
         /// <summary>
-        /// LbAbout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbAbout;
-        
-        /// <summary>
         /// btnEditBio control.
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Button btnEditBio;
         
         /// <summary>
-        /// LbMsgWall control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbMsgWall;
-        
-        /// <summary>
         /// btnEditCaption control.
         /// </summary>
         /// <remarks>
@@ -146,32 +128,5 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditCaption;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
     }
 }
