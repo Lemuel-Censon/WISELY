@@ -33,7 +33,7 @@ namespace WISLEY
             }
             else
             {
-                Session["error"] = "You you must be logged in to view posts!";
+                Session["error"] = "You must be logged in to view posts!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
         }

@@ -112,24 +112,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox tbDOB;
         
         /// <summary>
-        /// Lblocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lblocation;
-        
-        /// <summary>
-        /// tbLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLocation;
-        
-        /// <summary>
         /// Lbcontact control.
         /// </summary>
         /// <remarks>

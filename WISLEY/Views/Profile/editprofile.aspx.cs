@@ -14,8 +14,10 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 tbEmail.Text = Session["email"].ToString();
-            } else
+            }
+            else
             {
+                Session["error"] = "You must be logged in to edit your profile!";
                 Response.Redirect("profile.aspx");
             }
         }
