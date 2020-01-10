@@ -102,6 +102,10 @@
     <Content Include="bin\WISLEY.dll" />
     <Content Include="bin\WISLEY.dll.config" />
     <Content Include="bin\WISLEY.pdb" />
+    <Content Include="Views\Gacha\Avatar.aspx" />
+    <Content Include="Views\Gacha\Gacha.aspx" />
+    <Content Include="Views\Gacha\GachaDetails.aspx" />
+    <Content Include="Views\Gacha\GachaSummon.aspx" />
     <Content Include="Views\Group\createGroup.aspx" />
     <Content Include="Views\Group\createGroup.html" />
     <Content Include="Views\Profile\changepassword.aspx" />
@@ -189,6 +193,34 @@
     <Compile Include="BLL\Collab\Post.cs" />
     <Compile Include="BLL\User\User.cs" />
     <Compile Include="DAL\User\UserDAO.cs" />
+    <Compile Include="Views\Gacha\Avatar.aspx.cs">
+      <DependentUpon>Avatar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Gacha\Avatar.aspx.designer.cs">
+      <DependentUpon>Avatar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gacha\Gacha.aspx.cs">
+      <DependentUpon>Gacha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Gacha\Gacha.aspx.designer.cs">
+      <DependentUpon>Gacha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gacha\GachaDetails.aspx.cs">
+      <DependentUpon>GachaDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Gacha\GachaDetails.aspx.designer.cs">
+      <DependentUpon>GachaDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gacha\GachaSummon.aspx.cs">
+      <DependentUpon>GachaSummon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Gacha\GachaSummon.aspx.designer.cs">
+      <DependentUpon>GachaSummon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Group\createGroup.aspx.cs">
       <DependentUpon>createGroup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -431,7 +463,6 @@
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Public\uploads\" />
-    <Folder Include="Views\Gacha\" />
     <Folder Include="Views\Resources\" />
   </ItemGroup>
   <PropertyGroup>
