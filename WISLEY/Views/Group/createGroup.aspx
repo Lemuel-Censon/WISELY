@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="row justify-content-end">
-                        <asp:Button ID="createGroupBtn" runat="server" Text="Create" class="btn btn-primary"/>
+                        <asp:Button ID="createGroupBtn" runat="server" Text="Create" class="btn btn-primary" OnClick="CreateGroup"/>
                
                         <asp:Button ID="cancelBtn" runat="server" Text="Cancel"  class="btn btn-danger"/>
                  

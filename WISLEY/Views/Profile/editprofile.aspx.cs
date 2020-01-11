@@ -64,13 +64,16 @@ namespace WISLEY
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+
             if (ValidateInput(tbName.Text, tbDOB.Text, tbContact.Text))
             {
+                string email = LbEmail.Text.ToString();
+                string name = tbName.Text.ToString();
+                string dob = tbDOB.Text.ToString();
+                string contactNo = tbContact.Text.ToString();
+
+        
                 User user = new User();
-                string email = LbEmail.Text;
-                string name = tbName.Text;
-                string dob = tbDOB.Text;
-                string contactNo = tbContact.Text;
                 int result = user.UpdateUser(email, name, dob, contactNo);
                 if (result == 1)
                 {

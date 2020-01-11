@@ -14,11 +14,14 @@ namespace WISLEY.Views.Group
 
         }
 
-        public void CreateGroup()
+        public void CreateGroup(object sender, EventArgs e)
         {
             bool noError = true;
             string grpName = groupNameTB.Text.ToString().Trim();
             string grpDescription = groupNameTB.Text.ToString().Trim();
+
+            System.Diagnostics.Debug.WriteLine(grpName);
+            System.Diagnostics.Debug.WriteLine(grpDescription);
 
             if (string.IsNullOrEmpty(grpName))
             {
@@ -28,8 +31,6 @@ namespace WISLEY.Views.Group
             {
                 noError = false;
             }
-
-
         }
     }
 }
