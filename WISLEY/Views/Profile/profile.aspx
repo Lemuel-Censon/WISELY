@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-lg-4 text-right">
                         <h5>420 WIS Points<img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
-                        <h5 class="font-weight-bold">Student</h5>
+                        <h5 class="font-weight-bold"><asp:Label runat="server" ID="LbType"></asp:Label></h5>
                     </div>
                 </div>
                 <div class="row">

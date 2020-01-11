@@ -24,7 +24,13 @@ namespace WISLEY
                 LbEmail.Text = Session["email"].ToString();
                 User user = new User().SelectByEmail(LbEmail.Text);
                 LbName.Text = user.name;
+                LbType.Text = user.userType;
                 hidotheremail.Value = Session["email"].ToString();
+                if (Session["success"] != null)
+                {
+                    toast(this, Session["success"].ToString(), "Success", "success");
+                    Session["success"] = null;
+                }
                 if (Request.QueryString["email"] != null)
                 {
                     LbEmail.Text = Request.QueryString["email"];
@@ -37,6 +43,11 @@ namespace WISLEY
                 Session["error"] = "You must be logged in to view profile!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+        }
+
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         protected void btneditProfile_Click(object sender, EventArgs e)

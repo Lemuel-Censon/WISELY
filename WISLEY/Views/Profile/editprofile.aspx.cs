@@ -14,8 +14,11 @@ namespace WISLEY
         {
             if (Session["email"] != null)
             {
-                tbEmail.Text = Session["email"].ToString();
-                User user = new User().SelectByEmail(tbEmail.Text);
+                LbEmail.Text = Session["email"].ToString();
+                User user = new User().SelectByEmail(LbEmail.Text);
+                tbName.Text = user.name;
+                tbDOB.Text = user.dob;
+                tbContact.Text = user.contactNo;
             }
             else
             {
@@ -26,7 +29,7 @@ namespace WISLEY
 
         public void toast(Page page, string message, string title, string type)
         {
-            ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -34,16 +37,17 @@ namespace WISLEY
             Response.Redirect("profile.aspx");
         }
 
-        public bool ValidateInput(string email, string name)
+        public bool ValidateInput(string name)
         {
             bool valid = false;
-            if (String.IsNullOrEmpty(email))
-            {
-                toast(this, "Please enter your email!", "Error", "error");
-            }
+            DateTime dob;
             if (String.IsNullOrEmpty(name))
             {
                 toast(this, "Please enter your full name!", "Error", "error");
+            }
+            else if (DateTime.TryParse(tbDOB.Text, out dob))
+            {
+                toast(this, "Please enter a valid date!", "Error", "error");
             }
             else
             {
@@ -54,17 +58,18 @@ namespace WISLEY
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (ValidateInput(tbEmail.Text, tbName.Text))
+            if (ValidateInput(tbName.Text))
             {
                 User user = new User();
-                string email = tbEmail.Text;
+                string email = LbEmail.Text;
                 string name = tbName.Text;
                 string dob = tbDOB.Text;
                 string contactNo = tbContact.Text;
                 int result = user.UpdateUser(email, name, dob, contactNo);
                 if (result == 1)
                 {
-                    toast(this, "Your profile has been saved!", "Success", "success");
+                    Session["success"] = "Your profile has been saved!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
                 }
                 else
                 {
