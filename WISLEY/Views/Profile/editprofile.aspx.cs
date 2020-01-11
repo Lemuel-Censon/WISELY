@@ -37,17 +37,20 @@ namespace WISLEY
             Response.Redirect("profile.aspx");
         }
 
-        public bool ValidateInput(string name)
+        public bool ValidateInput(string name, string dob, string contact)
         {
             bool valid = false;
-            DateTime dob;
+            DateTime date;
             if (String.IsNullOrEmpty(name))
             {
                 toast(this, "Please enter your full name!", "Error", "error");
             }
-            else if (DateTime.TryParse(tbDOB.Text, out dob))
-            {
+            else if (!String.IsNullOrEmpty(dob) && !DateTime.TryParse(dob, out date)){
                 toast(this, "Please enter a valid date!", "Error", "error");
+            }
+            else if (!String.IsNullOrEmpty(contact) && contact.Length < 8)
+            {
+                toast(this, "Please enter a valid contact number!", "Error", "error");
             }
             else
             {
@@ -58,7 +61,7 @@ namespace WISLEY
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (ValidateInput(tbName.Text))
+            if (ValidateInput(tbName.Text, tbDOB.Text, tbContact.Text))
             {
                 User user = new User();
                 string email = LbEmail.Text;
