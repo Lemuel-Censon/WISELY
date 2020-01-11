@@ -21,7 +21,6 @@
                                     <asp:Label AssociatedControlID="tbName" ID="LbName" runat="server" Text="Full Name"></asp:Label>
                                     <asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                                </div>
                                 <div class="md-form md-outline">
                                     <asp:Label AssociatedControlID="tbDOB" ID="LbDOB" runat="server" Text="Date of Birth"></asp:Label>
                                     <asp:TextBox ID="tbDOB" runat="server" CssClass="form-control"></asp:TextBox>

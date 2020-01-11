@@ -16,7 +16,6 @@ namespace WISLEY
             {
                 tbEmail.Text = Session["email"].ToString();
                 User user = new User().SelectByEmail(tbEmail.Text);
-                tbName.Text = user.name;
             }
             else
             {
@@ -35,19 +34,42 @@ namespace WISLEY
             Response.Redirect("profile.aspx");
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        public bool ValidateInput(string email, string name)
         {
-            if (tbEmail.Text == string.Empty)
+            bool valid = false;
+            if (String.IsNullOrEmpty(email))
             {
                 toast(this, "Please enter your email!", "Error", "error");
             }
-            if (tbName.Text == string.Empty)
+            if (String.IsNullOrEmpty(name))
             {
                 toast(this, "Please enter your full name!", "Error", "error");
             }
             else
             {
-                toast(this, "Your profile has been saved!", "Success", "success");
+                valid = true;
+            }
+            return valid;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            if (ValidateInput(tbEmail.Text, tbName.Text))
+            {
+                User user = new User();
+                string email = tbEmail.Text;
+                string name = tbName.Text;
+                string dob = tbDOB.Text;
+                string contactNo = tbContact.Text;
+                int result = user.UpdateUser(email, name, dob, contactNo);
+                if (result == 1)
+                {
+                    toast(this, "Your profile has been saved!", "Success", "success");
+                }
+                else
+                {
+                    toast(this, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
+                }
             }
         }
     }

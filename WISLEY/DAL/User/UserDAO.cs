@@ -15,7 +15,6 @@ namespace WISLEY.DAL.Profile
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-
             string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, experience, wisPoints, accType)" +
                              "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @paraexp, @parapoints, @paraUserType)";
 
@@ -31,7 +30,6 @@ namespace WISLEY.DAL.Profile
             sqlCmd.Parameters.AddWithValue("@paraexp", user.experience);
             sqlCmd.Parameters.AddWithValue("@parapoints", user.points);
             sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
-
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -70,6 +68,31 @@ namespace WISLEY.DAL.Profile
             }
 
             return obj;
+        }
+
+        public int UpdateUser(string email, string name, string dob, string contactNo)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [User] " +
+                "SET name = @paraName, dob = @paraDob, contactNo = @paraContactNo " +
+                "WHERE email = @paraEmail";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+            sqlCmd.Parameters.AddWithValue("@paraName", name);
+            sqlCmd.Parameters.AddWithValue("@paraDob", dob);
+            sqlCmd.Parameters.AddWithValue("@paraContactNo", contactNo);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }
