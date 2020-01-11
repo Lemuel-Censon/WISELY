@@ -17,19 +17,10 @@
                                     <asp:Label AssociatedControlID="tbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
                                     <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="md-form md-outline">
-                                            <asp:Label AssociatedControlID="tbFname" ID="Lbfname" runat="server" Text="First Name"></asp:Label>
-                                            <asp:TextBox ID="tbFname" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="md-form md-outline">
-                                            <asp:Label AssociatedControlID="tbLname" ID="Lblname" runat="server" Text="Last Name"></asp:Label>
-                                            <asp:TextBox ID="tbLname" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
+                                <div class="md-form md-outline">
+                                    <asp:Label AssociatedControlID="tbName" ID="LbName" runat="server" Text="Full Name"></asp:Label>
+                                    <asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
                                 </div>
                                 <div class="md-form md-outline">
                                     <asp:Label AssociatedControlID="tbDOB" ID="LbDOB" runat="server" Text="Date of Birth"></asp:Label>

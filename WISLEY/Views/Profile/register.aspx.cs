@@ -30,6 +30,11 @@ namespace WISLEY
                 toast(this, "Please enter a valid email!", "Error", "error");
             }
 
+            else if (String.IsNullOrEmpty(TbName.Text))
+            {
+                toast(this, "Please enter your full name!", "Error", "error");
+            }
+
             else if (String.IsNullOrEmpty(TbPassword.Text))
             {
                 toast(this, "Please enter a password!", "Error", "error");
@@ -63,9 +68,10 @@ namespace WISLEY
             {
                 string type = typelist.SelectedItem.Text;
                 string email = TbEmail.Text;
+                string name = TbName.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, type, "", "", "", "", 0, 0);
+                User user = new User(email, password, type, name, "", "", "", 0, 0);
                 int result = user.AddUser();
                 if (result == 1)
                 {

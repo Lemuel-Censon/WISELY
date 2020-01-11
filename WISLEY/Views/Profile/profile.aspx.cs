@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -21,6 +22,8 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
+                User user = new User().SelectByEmail(LbEmail.Text);
+                LbName.Text = user.name;
                 hidotheremail.Value = Session["email"].ToString();
                 if (Request.QueryString["email"] != null)
                 {

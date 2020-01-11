@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -14,6 +15,8 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 tbEmail.Text = Session["email"].ToString();
+                User user = new User().SelectByEmail(tbEmail.Text);
+                tbName.Text = user.name;
             }
             else
             {
@@ -38,13 +41,9 @@ namespace WISLEY
             {
                 toast(this, "Please enter your email!", "Error", "error");
             }
-            if (tbFname.Text == string.Empty)
+            if (tbName.Text == string.Empty)
             {
-                toast(this, "Please enter your first name!", "Error", "error");
-            }
-            if (tbLname.Text == string.Empty)
-            {
-                toast(this, "Please enter your last name!", "Error", "error");
+                toast(this, "Please enter your full name!", "Error", "error");
             }
             else
             {

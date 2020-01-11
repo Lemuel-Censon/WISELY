@@ -40,6 +40,24 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox TbEmail;
         
         /// <summary>
+        /// LbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbName;
+        
+        /// <summary>
+        /// TbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TbName;
+        
+        /// <summary>
         /// LbPassword control.
         /// </summary>
         /// <remarks>

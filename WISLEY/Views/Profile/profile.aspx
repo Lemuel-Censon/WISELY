@@ -14,7 +14,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <h3 class="font-weight-bold">Bryan</h3>
+                        <h3 class="font-weight-bold">
+                            <asp:Label ID="LbName" runat="server"></asp:Label>
+                        </h3>
                         <h5>
                             <asp:Label ID="LbEmail" runat="server"></asp:Label>
                         </h5>

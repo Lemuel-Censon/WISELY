@@ -12,6 +12,10 @@
                         <asp:TextBox ID="TbEmail" runat="server" TextMode="Email" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="md-form md-outline">
+                        <asp:Label AssociatedControlID="TbName" ID="LbName" runat="server" Text="Full Name"></asp:Label>
+                        <asp:TextBox ID="TbName" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="md-form md-outline">
                         <asp:Label AssociatedControlID="TbPassword" ID="LbPassword" runat="server" Text="Password"></asp:Label>
                         <asp:TextBox ID="TbPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                     </div>
