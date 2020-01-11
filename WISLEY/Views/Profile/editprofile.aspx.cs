@@ -15,10 +15,13 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
-                User user = new User().SelectByEmail(LbEmail.Text);
-                tbName.Text = user.name;
-                tbDOB.Text = user.dob;
-                tbContact.Text = user.contactNo;
+                if (!Page.IsPostBack)
+                {
+                    User user = new User().SelectByEmail(LbEmail.Text);
+                    tbName.Text = user.name;
+                    tbDOB.Text = user.dob;
+                    tbContact.Text = user.contactNo;
+                }
             }
             else
             {
