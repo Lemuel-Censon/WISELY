@@ -9,22 +9,24 @@ namespace WISLEY.BLL.Profile
     public class User
     {
         public string email { get; set; }
-        public string password { get; set; }
-        public string userType { get; set; }
         public string name { get; set; }
-        public string dob { get; set; }
+        public string password { get; set; }
         public string contactNo { get; set; }
+        public string userType { get; set; }
+        public string dob { get; set; }
         public string gender { get; set; }
         public int experience { get; set; }
         public int points { get; set; }
+        public string inGroupsId { get; set; }
 
         public User()
         {
 
         }
 
-        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points)
+        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string inGroupsId = "")
         {
+            this.inGroupsId = inGroupsId;
             this.email = email;
             this.password = password;
             this.userType = userType;

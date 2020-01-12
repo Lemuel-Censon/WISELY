@@ -64,7 +64,10 @@ namespace WISLEY.DAL.Profile
                 string gender = row["gender"].ToString();
                 int exp = int.Parse(row["experience"].ToString());
                 int points = int.Parse(row["wisPoints"].ToString());
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points);
+                string inGroupsID = row["inGroupsId"].ToString();
+
+
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, inGroupsID);
             }
 
             return obj;

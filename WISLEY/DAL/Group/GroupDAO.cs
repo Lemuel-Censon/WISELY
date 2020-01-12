@@ -5,7 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+using WISLEY.BLL.Profile;
+using WISLEY.DAL.Profile;
 
 namespace WISLEY.DAL.Group
 {
@@ -30,7 +31,6 @@ namespace WISLEY.DAL.Group
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
-
             myConn.Close();
 
 
@@ -52,49 +52,35 @@ namespace WISLEY.DAL.Group
                 groupIdString = row["Id"].ToString();
             }
 
+            System.Diagnostics.Debug.WriteLine("Group ID:" + groupIdString);
+
+
             //Getting Group List from current user
-            string getGroupList = "Select inGroupsId from [User] where email = @paraEmail";
-            SqlDataAdapter da = new SqlDataAdapter(getGroupList, myConn);
-            da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
+            UserDAO currentUserDAO = new UserDAO();
+            User currentUser = currentUserDAO.SelectByEmail(email);
+            System.Diagnostics.Debug.WriteLine("Group List Before:" + currentUser.inGroupsId);
+            List<string> groupListStrings = currentUser.inGroupsId.Split(',').ToList();
+            //groupListStrings.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
+            groupListStrings.RemoveAll(s => string.IsNullOrEmpty(s));
+            groupListStrings.Add(groupIdString);
+            System.Diagnostics.Debug.WriteLine("Group List Strings:" + groupListStrings);
+            string groupList = string.Join(",", groupListStrings);
+            System.Diagnostics.Debug.WriteLine("Group List:" + groupList);
+            System.Diagnostics.Debug.WriteLine("Email:" + email);
 
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            string groupList = "";
-            int rec_cnt = ds.Tables[0].Rows.Count;
-            if (rec_cnt > 0)
-            {
-                DataRow row = ds.Tables[0].Rows[0];
-                string groupsString = row["inGroupsId"].ToString();
-
-                if (!String.IsNullOrEmpty(groupsString))
-                {
-                    List<string> groupListStrings = groupsString.Split(',').ToList();
-                    groupListStrings.Add(groupIdString);
-                    groupList = string.Join(",", groupListStrings);
-                }
-                else
-                {
-                    groupList = groupIdString;
-                }
-            }
-
-            System.Diagnostics.Debug.WriteLine(groupList);
 
             //Update User
             string updateUser = "UPDATE [User] " +
-                "SET inGroupsId = @paraGroupId" +
+                "SET inGroupsId = @paraGroupId " +
                 "WHERE email = @paraEmail";
 
       
             SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
-        
-            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
-            sqlCmd.Parameters.AddWithValue("@paraGroupId", groupList);
+            executeUpdate.Parameters.AddWithValue("@paraEmail", email);
+            executeUpdate.Parameters.AddWithValue("@paraGroupId", groupList);
 
             myConn.Open();
-            int Updateresult = sqlCmd.ExecuteNonQuery();
-            System.Diagnostics.Debug.WriteLine(Updateresult);
+            int Updateresult = executeUpdate.ExecuteNonQuery();
 
             myConn.Close();
 
@@ -130,3 +116,31 @@ namespace WISLEY.DAL.Group
 
     }
 }
+
+//string getGroupList = "Select inGroupsId from [User] where email = @paraEmail";
+//SqlDataAdapter da = new SqlDataAdapter(getGroupList, myConn);
+//da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
+
+//DataSet ds = new DataSet();
+//da.Fill(ds);
+
+//string groupList = "";
+//int rec_cnt = ds.Tables[0].Rows.Count;
+//if (rec_cnt > 0)
+//{
+//    DataRow row = ds.Tables[0].Rows[0];
+//    string groupsString = row["inGroupsId"].ToString();
+
+//    if (!String.IsNullOrEmpty(groupsString))
+//    {
+//        List<string> groupListStrings = groupsString.Split(',').ToList();
+//        groupListStrings.Add(groupIdString);
+//        groupList = string.Join(",", groupListStrings);
+//    }
+//    else
+//    {
+//        groupList = groupIdString;
+//    }
+//}
+
+//System.Diagnostics.Debug.WriteLine(groupList);

@@ -33,7 +33,7 @@ namespace WISLEY.Views.Group
             else
             {
                 Session["error"] = "You must be logged in to create a group!";
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/login.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
             }
 
         }
