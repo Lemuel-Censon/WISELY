@@ -103,6 +103,7 @@
     <Content Include="bin\WISLEY.dll.config" />
     <Content Include="bin\WISLEY.pdb" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
+    <Content Include="Views\Auth\logout.aspx" />
     <Content Include="Views\Gacha\Avatar.aspx" />
     <Content Include="Views\Gacha\Gacha.aspx" />
     <Content Include="Views\Gacha\GachaDetails.aspx" />
@@ -117,7 +118,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\index.aspx" />
     <Content Include="Views\Profile\leaderboard.aspx" />
-    <Content Include="Views\Profile\login.aspx" />
+    <Content Include="Views\Auth\login.aspx" />
     <Content Include="obj\addons\datatables-select.min.css" />
     <Content Include="obj\addons\datatables.min.css" />
     <Content Include="obj\addons\directives.min.css" />
@@ -176,7 +177,7 @@
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
     <Content Include="Views\Profile\recoveraccount.aspx" />
-    <Content Include="Views\Profile\register.aspx" />
+    <Content Include="Views\Auth\register.aspx" />
     <Content Include="Views\Testing Folder\fileUploadTest.aspx" />
     <Content Include="Views\Profile\settings.aspx" />
     <Content Include="Views\Schedule\schedule.aspx" />
@@ -196,6 +197,13 @@
     <Compile Include="BLL\User\User.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />
     <Compile Include="DAL\User\UserDAO.cs" />
+    <Compile Include="Views\Auth\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Auth\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Gacha\Avatar.aspx.cs">
       <DependentUpon>Avatar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -278,11 +286,11 @@
     <Compile Include="Views\Profile\leaderboard.aspx.designer.cs">
       <DependentUpon>leaderboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile\login.aspx.cs">
+    <Compile Include="Views\Auth\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Profile\login.aspx.designer.cs">
+    <Compile Include="Views\Auth\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Masters\navbar.Master.cs">
@@ -299,11 +307,11 @@
     <Compile Include="Views\Profile\recoveraccount.aspx.designer.cs">
       <DependentUpon>recoveraccount.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile\register.aspx.cs">
+    <Compile Include="Views\Auth\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Profile\register.aspx.designer.cs">
+    <Compile Include="Views\Auth\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Masters\sidebar.master.cs">
