@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -32,6 +33,33 @@ namespace WISLEY.DAL.Group
             myConn.Close();
 
             return result;
+        }
+
+        public BLL.Group.Group SelectByID(string id)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from [Group] where Id = @paraId";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraId", id);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            BLL.Group.Group obj = null;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                string name = row["name"].ToString();
+                string description = row["description"].ToString();
+                int weightage = int.Parse(row["weightage"].ToString());
+
+                obj = new BLL.Group.Group(name, description, weightage);
+            }
+
+            return obj;
         }
 
     }

@@ -28,9 +28,7 @@
                     <h4 class="text-center mx-auto">Modules</h4>
                     <hr class="hr-primary">
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+                    <a id="createGroupBtn" class="btn btn-block btn-success text-left border-left border-danger rounded-0 mb-1" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>Create Group </a>
 
                 </div>
             </div>
@@ -42,6 +40,14 @@
             </asp:ContentPlaceHolder>
         </div>
     </div>
+
+    <% if (!TeacherCheck())
+        {
+         %>
+    <script>
+        $("#createGroupBtn").hide();
+    </script>
+    <% } %>
 </asp:Content>
 
 

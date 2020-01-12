@@ -10,7 +10,7 @@
 
                     <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
-                            <label for="groupName">Group Name</label>
+                            <label for="groupNameTB">Group Name</label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="groupNameTB" class="form-control" runat="server"></asp:TextBox>
@@ -18,10 +18,9 @@
                         </div>
                     </div>
 
-
                     <div class="form-row justify-content-start">
                         <div class="col-2">
-                            <label for="groupDescription">Group Description</label>
+                            <label for="groupDescriptionTB">Group Description</label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" class="form-control" runat="server"></asp:TextBox>
@@ -31,11 +30,21 @@
                         </div>
                     </div>
 
+                    <div class="form-row justify-content-start mb-4">
+                        <div class="col-2">
+                            <label for="groupWeightageTB">Group Weightage</label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="groupWeightageTB" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+
+
                     <div class="row justify-content-end">
-                        <asp:Button ID="createGroupBtn" runat="server" Text="Create" class="btn btn-primary" OnClick="CreateGroup"/>
-               
-                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel"  class="btn btn-danger"/>
-                 
+                        <asp:Button ID="createGroupBtn" runat="server" Text="Create" class="btn btn-primary" OnClick="CreateGroup" />
+
+                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" class="btn btn-danger" />
+
 
                     </div>
 

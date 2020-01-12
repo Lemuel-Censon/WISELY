@@ -102,6 +102,7 @@
     <Content Include="bin\WISLEY.dll" />
     <Content Include="bin\WISLEY.dll.config" />
     <Content Include="bin\WISLEY.pdb" />
+    <Content Include="Public\img\Logo\WISELY30.jpg" />
     <Content Include="Views\Gacha\Avatar.aspx" />
     <Content Include="Views\Gacha\Gacha.aspx" />
     <Content Include="Views\Gacha\GachaDetails.aspx" />
@@ -464,7 +465,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Public\uploads\" />
+    <Folder Include="Public\uploads\groupImg\" />
     <Folder Include="Views\Resources\" />
   </ItemGroup>
   <PropertyGroup>

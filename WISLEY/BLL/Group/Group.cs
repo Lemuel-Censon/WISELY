@@ -27,7 +27,14 @@ namespace WISLEY.BLL.Group
         public int addGroup()
         {
             GroupDAO groupDAO = new GroupDAO();
+
             return groupDAO.Insert(this);
+        }
+
+        public Group getGroupByID(string GroupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.SelectByID(GroupId);
         }
     }
 }
