@@ -163,6 +163,7 @@
     <Content Include="Public\js\addons\jquery.zmd.hierarchical-display.min.js" />
     <Content Include="Public\js\addons\masonry.pkgd.min.js" />
     <Content Include="Public\js\addons\rating.min.js" />
+    <Content Include="Public\js\collabscript.js" />
     <Content Include="Public\js\bootstrap.js" />
     <Content Include="Public\js\bootstrap.min.js" />
     <Content Include="Public\js\jquery.js" />
