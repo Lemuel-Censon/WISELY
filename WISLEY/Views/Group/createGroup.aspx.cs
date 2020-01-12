@@ -77,7 +77,7 @@ namespace WISLEY.Views.Group
             {
                 int intGrpWeightage = int.Parse(grpWeightage);
                 BLL.Group.Group newGoup = new BLL.Group.Group(grpName, grpDescription, intGrpWeightage);
-                int result = newGoup.addGroup();
+                int result = newGoup.addGroup(Session["email"].ToString());
                 if (result == 1)
                 {
                     Session["success"] = "toast";

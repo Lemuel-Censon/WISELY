@@ -24,11 +24,11 @@ namespace WISLEY.BLL.Group
             weightage = Weightage;
         }
 
-        public int addGroup()
+        public int addGroup(string email)
         {
             GroupDAO groupDAO = new GroupDAO();
 
-            return groupDAO.Insert(this);
+            return groupDAO.Insert(this, email);
         }
 
         public Group getGroupByID(string GroupId)

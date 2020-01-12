@@ -11,12 +11,13 @@ namespace WISLEY.DAL.Group
 {
     public class GroupDAO
     {
-        public int Insert(BLL.Group.Group group)
+        public int Insert(BLL.Group.Group group, string email)
         {
            
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
+            //Creating Group
             string sqlStmt = "INSERT INTO [Group] (name, description, weightage)" +
                  "VALUES (@paraName, @paraDescription, @paraWeightage)";
 
@@ -29,6 +30,71 @@ namespace WISLEY.DAL.Group
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+
+            //Getting Created Group ID
+            string getGroupId = "Select Id from [Group] where name = @paraName and description = @paraDescription and weightage = @paraWeightage";
+            SqlDataAdapter groupId = new SqlDataAdapter(getGroupId, myConn);
+            groupId.SelectCommand.Parameters.AddWithValue("@paraName", group.name);
+            groupId.SelectCommand.Parameters.AddWithValue("@paraDescription", group.description);
+            groupId.SelectCommand.Parameters.AddWithValue("@paraWeightage", group.weightage);
+
+            DataSet grpID_ds = new DataSet();
+            groupId.Fill(grpID_ds);
+            string groupIdString = "";
+            int group_count = grpID_ds.Tables[0].Rows.Count;
+
+            if (group_count > 0)
+            {
+                DataRow row = grpID_ds.Tables[0].Rows[0];
+                groupIdString = row["Id"].ToString();
+            }
+
+            //Getting Group List from current user
+            string getGroupList = "Select inGroupsId from [User] where email = @paraEmail";
+            SqlDataAdapter da = new SqlDataAdapter(getGroupList, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            string groupList = "";
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                string groupsString = row["inGroupsId"].ToString();
+
+                if (!String.IsNullOrEmpty(groupsString))
+                {
+                    List<string> groupListStrings = groupsString.Split(',').ToList();
+                    groupListStrings.Add(groupIdString);
+                    groupList = string.Join(",", groupListStrings);
+                }
+                else
+                {
+                    groupList = groupIdString;
+                }
+            }
+
+            System.Diagnostics.Debug.WriteLine(groupList);
+
+            //Update User
+            string updateUser = "UPDATE [User] " +
+                "SET inGroupsId = @paraGroupId" +
+                "WHERE email = @paraEmail";
+
+      
+            SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
+        
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+            sqlCmd.Parameters.AddWithValue("@paraGroupId", groupList);
+
+            myConn.Open();
+            int Updateresult = sqlCmd.ExecuteNonQuery();
+            System.Diagnostics.Debug.WriteLine(Updateresult);
 
             myConn.Close();
 
