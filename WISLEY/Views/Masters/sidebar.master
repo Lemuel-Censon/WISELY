@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contentHolder1" runat="server">
 
-        <div class="row justify-content-around" runat="server">
+    <div class="row justify-content-around" runat="server">
         <div class="col-3">
 
             <div class="card card-body mb-4">
@@ -30,11 +30,17 @@
                 <div class="col-12 justify-content-center min-vh-50">
                     <h4 class="text-center mx-auto">Modules</h4>
                     <hr class="hr-primary">
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
+                     <%if (getGroups()[0] != null)
+                         {%>
+                    <% foreach (WISLEY.BLL.Group.Group groups in getGroups()){ %>
+                       
+                            <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx"><%= groups.name %> </a>
+                         <%} %>
+                    <%} %>
                 </div>
 
                 <div class="col-12 justify-content-center">
-                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 invisible" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>  Create Group </a>
+                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 invisible" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>Create Group </a>
                 </div>
             </div>
 
@@ -48,19 +54,19 @@
 
     <% if (TeacherCheck())
         {
-         %>
+    %>
     <script>
         console.log("Teacher acc")
         $("#createGroupBtn").removeClass("invisible")
     </script>
     <% } %>
-   
+
     <script type="text/javascript">
         <% string username = user().name; %>
         username = '<%= username %>'
         $('#LbUsername').text(username);
     </script>
-   
+
 </asp:Content>
 
 

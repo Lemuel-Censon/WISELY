@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Group;
 using WISLEY.BLL.Profile;
 
 namespace WISLEY
@@ -17,20 +18,32 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
-                //LbUsername.Text = current_user.name;
-               
-                string pageName = Path.GetFileNameWithoutExtension(Page.AppRelativeVirtualPath);
-                //System.Diagnostics.Debug.WriteLine(Page.Master.FindControl("LbUsername"));
-                //System.Diagnostics.Debug.WriteLine(this.Page.Master.Master.Controls);
-                //System.Diagnostics.Debug.WriteLine(Page.Master.Master.Controls[0].ID);
 
-                //Content ct = this.Master.Master.FindControl("contentHolder1") as Content;
-                //foreach (Control ctrl in ct.Controls)
-                //{
-                //    System.Diagnostics.Debug.WriteLine(ctrl.ID);
 
-                //}
             }
+
+        }
+
+        public List<Group> getGroups()
+        {
+            List<Group> groupList = new List<Group>();
+            List<string> groupListStrings = user().inGroupsId.Split(',').ToList();
+
+            for (int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    Group grp = new Group().getGroupByID(groupListStrings[i]);
+                    groupList.Add(grp);
+                }
+                catch
+                {
+                    break;
+                }
+
+            }
+
+            return groupList;
 
         }
 
@@ -57,9 +70,6 @@ namespace WISLEY
             return user;
         }
 
-        public string getUsername()
-        {
-            return user().name;
-        }
+
     }
 }
