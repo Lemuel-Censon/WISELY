@@ -61,9 +61,17 @@ namespace WISLEY
         {
             if (ValidateInput())
             {
-                Session["email"] = TbEmail.Text;
-                Session["success"] = "Logged in successfully!";
-                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+                if (Session["email"] == null)
+                {
+                    Session["email"] = TbEmail.Text;
+                    Session["success"] = "Logged in successfully!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+                }
+                else
+                {
+                    Session["error"] = "You are already logged in!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+                }
             }
         }
     }
