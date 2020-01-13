@@ -17,7 +17,7 @@
                         <button class="btn btn-md btn-block btn-primary" id="btnLogin" runat="server" onserverclick="btnLogin_Click">Login</button>
                     </div>
                     <div class="card-footer">
-                        <p class="small m-0">
+                        <p class="small m-0 text-center">
                             <a href="<%= Page.ResolveUrl("~/Views/Profile/recoveraccount.aspx") %>">Forgot your password?</a>
                         </p>
                         <p class="text-center small m-0">
