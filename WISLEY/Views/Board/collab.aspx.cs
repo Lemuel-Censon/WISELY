@@ -26,8 +26,18 @@ namespace WISLEY
                 LbEmail.Text = Session["email"].ToString();
                 if (Session["success"] != null)
                 {
-                    toast(this, "Post Added!", "Success", "success");
+                    toast(this, Session["success"].ToString(), "Success", "success");
                     Session["success"] = null;
+                }
+                if (Session["error"] != null)
+                {
+                    toast(this, Session["error"].ToString(), "Error", "error");
+                    Session["error"] = null;
+                }
+                if (Session["postadd"] != null)
+                {
+                    toast(this, Session["postadd"].ToString(), "Success", "success");
+                    Session["postadd"] = null;
                 }
             }
             else
@@ -107,7 +117,7 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    Session["success"] = "toast";
+                    Session["postadd"] = "Post Added!";
                     Response.Redirect("collab.aspx");
                 }
                 else
