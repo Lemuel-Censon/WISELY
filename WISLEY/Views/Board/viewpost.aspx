@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="viewpost.aspx.cs" Inherits="WISLEY.viewpost" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="groupPosts" runat="server">
-    <form runat="server">
         <div class="container">
             <div class="card mt-3">
                 <asp:Label runat="server" ID="LbEmail" Visible="false"></asp:Label>
@@ -107,6 +106,5 @@
                 </div>
             </div>
         </div>
-    </form>
 </asp:Content>
 

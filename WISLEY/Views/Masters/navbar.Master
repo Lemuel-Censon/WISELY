@@ -120,7 +120,7 @@
     <footer class="page-footer font-small mt-4 blue">
         <div class="footer-copyright p-3">
             <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">
-                <img src="<%= Page.ResolveUrl("~/Public/img/Logo/WISELY30.jpg") %>" height="30" alt="WISELY">
+<%--                <img src="<%= Page.ResolveUrl("~/Public/img/Logo/WISELY30.jpg") %>" height="30" alt="WISELY">--%>
             </a>
             <span class="m-0">&copy; <%=DateTime.Now.Year.ToString() %> <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a> All Rights Reserved
             </span>
@@ -128,9 +128,6 @@
     </footer>
             </form>
 
-<%--    <script src="../../Public/js/popper.js"></script>
-    <script src="../../Public/js/bootstrap.min.js"></script>
-    <script src="../../Public/js/mdb.js"></script>--%>
     <script src="<%= ResolveUrl("~/Public/js/popper.min.js") %>"></script>
     <script src="<%= ResolveUrl("~/Public/js/bootstrap.min.js") %>"></script>
     <script src="<%= ResolveUrl("~/Public/js/mdb.min.js") %>"></script>

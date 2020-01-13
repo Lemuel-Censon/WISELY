@@ -4,17 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WISLEY.BLL.Group;
 
-namespace WISLEY
+namespace WISLEY.Views.Resources
 {
-    public partial class group1 : System.Web.UI.MasterPage
+    public partial class Test : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-       
+
         }
-
-
     }
 }

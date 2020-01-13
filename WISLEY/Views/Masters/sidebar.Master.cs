@@ -18,10 +18,25 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
+           
+                ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
+                SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
+                das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
 
-
+                //if(Session["group"] != null)
+                //{
+                    
+                //}
+ 
             }
 
+        }
+
+        public List<string> getGroupIds()
+        {
+            List<Group> groupList = new List<Group>();
+            List<string> groupListStrings = user().inGroupsId.Split(',').ToList();
+            return groupListStrings;
         }
 
         public List<Group> getGroups()
@@ -47,7 +62,7 @@ namespace WISLEY
 
         }
 
-        public void redirectToGroup()
+        public void redirectToGroup(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Group List Strings:");
         }
@@ -75,6 +90,19 @@ namespace WISLEY
             return user;
         }
 
+        protected void groupItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "redirectToGroup")
+            {
+                Session["group"] = e.CommandArgument.ToString();
+                Response.Redirect("collab.aspx");
+            }
+        }
 
+        public Group getGroupDetails()
+        {
+            Group grp = new Group().getGroupByID(Session["group"].ToString());
+            return grp;
+        }
     }
 }

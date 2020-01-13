@@ -3,7 +3,22 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="sidebarContent" runat="server">
     <div class="card card-body rounded-top mb-3">
         <div class="row justify-content-center">
-            <h1 class="text-center">Test </h1>
+            <% if (Session["group"] != null)
+                {
+                    string grpName = getGroupDetails().name;
+                    string grpDesc = getGroupDetails().description;
+            %>
+            <h1 class="text-center col-12">
+
+                <%= grpName %>
+             
+            </h1>
+
+            <p class"text-center col-12">
+                <%= grpDesc %>
+            </p>
+
+            <% } %>
         </div>
 
     </div>
@@ -68,4 +83,6 @@
             </div>
         </div>
     </div>
+
+
 </asp:Content>

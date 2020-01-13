@@ -17,6 +17,8 @@ namespace WISLEY
                 Lbemail.Text = Session["email"].ToString();
                 user();
             }
+            //System.Diagnostics.Debug.WriteLine("Nav Loaded");
+
         }
 
         public User user()

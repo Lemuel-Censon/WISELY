@@ -70,12 +70,12 @@ namespace WISLEY
                 {
                     Session["email"] = TbEmail.Text;
                     Session["success"] = "Logged in successfully!";
-                    Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+                    Response.Redirect("~/Views/Board/collab.aspx");
                 }
                 else
                 {
                     Session["error"] = "You are already logged in!";
-                    Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+                    Response.Redirect("~/Views/Board/collab.aspx");
                 }
             }
         }
