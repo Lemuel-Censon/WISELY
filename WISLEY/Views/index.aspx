@@ -4,6 +4,7 @@
 </asp:Content>--%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
+
         <div class="row min-vh-80">
             <div class="col-lg-6">
                 <img src="https://picsum.photos/800/400" class="img-fluid min-vh-80" alt="WISELY" />
