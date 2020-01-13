@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -16,7 +17,14 @@ namespace WISLEY
                 toast(this, Session["success"].ToString(), "Success", "success");
                 Session["success"] = null;
             }
-            if (Session["email"] == null)
+            if (Session["email"] != null)
+            {
+                if (!Page.IsPostBack)
+                {
+                    User user = new User().SelectByEmail(Session["email"].ToString());
+                }
+            }
+            else
             {
                 Session["error"] = "You must verify your email address before further recovering your account!";
                 Response.Redirect("recoveraccount.aspx");
@@ -52,8 +60,19 @@ namespace WISLEY
             }
             else
             {
-                Session["password"] = "Your password has been changed successfully!";
-                Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
+                string email = Session["email"].ToString();
+                string password = TbConfirmPassword.Text;
+                User user = new User();
+                int result = user.UpdatePassword(email, password);
+                if (result == 1)
+                {
+                    Session["password"] = "Your password has been changed successfully!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
+                }
+                else
+                {
+                    toast(this, "Password was unable to be changed, please inform system administrator!", "Error", "error");
+                }
             }
         }
 

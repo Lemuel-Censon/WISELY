@@ -5,7 +5,7 @@
         <form id="form1" class="text-center" runat="server">
             <div class="card z-depth-3 pb-0 px-0">
                 <div class="card-body px-5">
-                    <h3 class="font-weight-bold text-center col-12">Change Password</h3>
+                    <h5 class="card-title mb-4">Change Password</h5>
                     <div class="md-form md-outline">
                         <asp:Label AssociatedControlID="TbCurrentPassword" ID="LbCurrentPassword" runat="server" Text="Current password"></asp:Label>
                         <asp:TextBox ID="TbCurrentPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
