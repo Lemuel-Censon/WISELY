@@ -76,7 +76,7 @@ namespace WISLEY
                 if (result == 1)
                 {
                     Session["registered"] = "register";
-                    Response.Redirect("login.aspx");
+                    Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
                 }
 
                 else
