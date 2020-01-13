@@ -12,6 +12,11 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["password"] != null)
+            {
+                toast(this, Session["password"].ToString(), "Success", "success");
+                Session["password"] = null;
+            }
             if (Session["registered"] != null)
             {
                 toast(this, "You have been registered successfully! Please log in.", "Success", "success");

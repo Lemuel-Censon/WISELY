@@ -11,7 +11,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TbCurrentPassword" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbCurrentPassword" runat="server" Width="720px" TextMode="Password"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TbNewPassword" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbNewPassword" runat="server" Width="720px" TextMode="Password"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -31,13 +31,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TbConfirmPassword" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbConfirmPassword" runat="server" Width="720px" TextMode="Password"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button CssClass="btn btn-success p-2" ID="btnChangePassword" runat="server" Text="Change Password" Font-Size="Large" OnClick="btnChangePassword_Click"/>
-                        <asp:Button CssClass="btn btn-danger p-2" ID="btnBack" runat="server" Text="Back" Font-Size="Large" OnClick="btnBack_Click"/>
+                        <asp:Button CssClass="btn btn-success" ID="btnChangePassword" runat="server" Text="Change Password" OnClick="btnChangePassword_Click"/>
+                        <asp:Button CssClass="btn btn-danger" ID="btnBack" runat="server" Text="Back" OnClick="btnBack_Click"/>
                     </td>
                 </tr>
             </table>

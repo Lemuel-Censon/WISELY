@@ -13,31 +13,31 @@
                 </tr>
                 <tr>
                     <td style="background-color: gold;">1</td>
-                    <td>Bill Cipher</td>
+                    <td>Waddles</td>
                     <td>100</td>
                     <td>1000000</td>
                 </tr>
                 <tr>
                     <td style="background-color: silver;">2</td>
-                    <td>Dipper</td>
+                    <td>Bill Cipher</td>
                     <td>99</td>
                     <td>900000</td>
                 </tr>
                 <tr>
                     <td style="background-color: brown;">3</td>
-                    <td>Mabel</td>
+                    <td>Dipper</td>
                     <td>99</td>
                     <td>890000</td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>Stan</td>
+                    <td>Grunkle Stan</td>
                     <td>98</td>
                     <td>850000</td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>Soos</td>
+                    <td>Mabel</td>
                     <td>98</td>
                     <td>840000</td>
                 </tr>

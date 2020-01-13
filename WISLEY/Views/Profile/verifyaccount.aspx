@@ -7,7 +7,7 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <p>An email has been sent to abc@gmail.com.</p>
+                        <p>An email has been sent to <asp:Label ID="LbEmail" runat="server" Text="Label"></asp:Label></p>
                         <p>Please enter the validation code that has been sent to your email.</p>
                         <p>Validation code will expire in <span class="timer">5:00</span></p>
                     </td>
@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox ID="TextBox1" runat="server" Width="720px"></asp:TextBox>
+                        <asp:TextBox ID="TbCode" runat="server" Width="720px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
