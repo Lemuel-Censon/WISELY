@@ -82,10 +82,10 @@ namespace WISLEY.DAL.Profile
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
             sqlCmd.Parameters.AddWithValue("@paraName", name);
             sqlCmd.Parameters.AddWithValue("@paraDob", dob);
             sqlCmd.Parameters.AddWithValue("@paraContactNo", contactNo);
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
