@@ -14,8 +14,8 @@ namespace WISLEY
         {
             if (Session["password"] != null)
             {
-                toast(this, "Your password has been changed successfully! Please log in.", "Success", "success");
-                Session["success"] = null;
+                toast(this, Session["password"].ToString(), "Success", "success");
+                Session["password"] = null;
             }
             if (Session["registered"] != null)
             {
