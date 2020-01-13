@@ -17,6 +17,11 @@ namespace WISLEY.Views.Auth
                 Session["success"] = "Logged out successfully!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+            else
+            {
+                Session["error"] = "You are not logged in!";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
         }
     }
 }
