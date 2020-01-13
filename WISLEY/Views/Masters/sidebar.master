@@ -5,7 +5,8 @@
 </asp:content>--%>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contentHolder1" runat="server">
-    <div class="row justify-content-around">
+
+        <div class="row justify-content-around" runat="server">
         <div class="col-3">
 
             <div class="card card-body mb-4">
@@ -16,9 +17,11 @@
                     </div>
 
                     <div class="col-8">
-                        <h5 class="text-center">Name: John Smith</h5>
-                        <p class="text-center">Level: 1</p>
-                        <p class="text-center">Badges: Weee</p>
+                        <h5 class="text-center">Name: 
+                            <span id="LbUsername"></span>
+                        </h5>
+                        <p class="text-center" id="level">Level: 1</p>
+                        <p class="text-center" id="badges">Badges: Weee</p>
                     </div>
                 </div>
             </div>
@@ -51,6 +54,13 @@
         $("#createGroupBtn").removeClass("invisible")
     </script>
     <% } %>
+   
+    <script type="text/javascript">
+        <% string username = user().name; %>
+        username = '<%= username %>'
+        $('#LbUsername').text(username);
+    </script>
+   
 </asp:Content>
 
 
