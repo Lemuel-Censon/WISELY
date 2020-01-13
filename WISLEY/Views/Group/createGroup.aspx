@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <h1 class="col-12 text-center">Create Group</h1>
             <div class="col-6 card-body border border-primary">
-                <form runat="server">
+
 
                     <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
@@ -52,7 +52,7 @@
 
                     </div>
 
-                </form>
+ 
             </div>
         </div>
     </div>

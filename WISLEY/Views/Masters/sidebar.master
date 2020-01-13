@@ -33,8 +33,7 @@
                      <%if (getGroups()[0] != null)
                          {%>
                     <% foreach (WISLEY.BLL.Group.Group groups in getGroups()){ %>
-                       
-                            <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx"><%= groups.name %> </a>
+                            <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="#"><%= groups.id %> <%= groups.name %> </a>
                          <%} %>
                     <%} %>
                 </div>

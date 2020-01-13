@@ -11,17 +11,19 @@ namespace WISLEY.BLL.Group
         public string name { get; set; }
         public string description { get; set; }
         public int weightage { get; set; }
+        public int id { get; set; }
 
         public Group()
         {
 
         }
 
-        public Group(string Name, string Description, int Weightage)
+        public Group(string Name, string Description, int Weightage, int id = -1)
         {
             name = Name;
             description = Description;
             weightage = Weightage;
+            this.id = id;
         }
 
         public int addGroup(string email)

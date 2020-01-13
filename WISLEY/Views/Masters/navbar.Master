@@ -40,6 +40,7 @@
 </head>
 
 <body>
+     <form runat="server">
     <asp:Label runat="server" ID="Lbemail" Visible="false"></asp:Label>
 
     <!--Navbar-->
@@ -110,7 +111,7 @@
         </div>
     </nav>
     <!--/.Navbar-->
-
+       
     <main class="container-fluid mx-auto mt-3 min-vh-85">
         <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
         </asp:ContentPlaceHolder>
@@ -125,6 +126,7 @@
             </span>
         </div>
     </footer>
+            </form>
 
 <%--    <script src="../../Public/js/popper.js"></script>
     <script src="../../Public/js/bootstrap.min.js"></script>

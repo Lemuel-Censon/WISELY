@@ -107,8 +107,9 @@ namespace WISLEY.DAL.Group
                 string name = row["name"].ToString();
                 string description = row["description"].ToString();
                 int weightage = int.Parse(row["weightage"].ToString());
+                int grpId = int.Parse(row["Id"].ToString());
 
-                obj = new BLL.Group.Group(name, description, weightage);
+                obj = new BLL.Group.Group(name, description, weightage, grpId);
             }
 
             return obj;

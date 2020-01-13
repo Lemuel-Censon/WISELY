@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <div class="container">
-        <form id="form1" class="text-center" runat="server">
             <div class="card z-depth-3 pb-0 px-0">
                 <div class="card-body px-5">
                     <h5 class="card-title text-center mb-4">Login</h5>
@@ -27,6 +26,6 @@
                     </div>
                 </div>
             </div>
-        </form>
+     
     </div>
 </asp:Content>

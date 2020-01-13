@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <h3 class="font-weight-bold text-center mt-2">Collaboration Board</h3>
-    <form runat="server">
         <div class="container">
             <asp:ScriptManager runat="server" ID="postscript">
             </asp:ScriptManager>
@@ -124,6 +123,6 @@
                 <% } %>
             </div>
         </div>
-    </form>
+
     <script src="<%= Page.ResolveUrl("~/Public/js/collabscript.js") %>" type="text/javascript"></script>
 </asp:Content>

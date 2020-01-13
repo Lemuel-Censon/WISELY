@@ -47,6 +47,11 @@ namespace WISLEY
 
         }
 
+        public void redirectToGroup()
+        {
+            System.Diagnostics.Debug.WriteLine("Group List Strings:");
+        }
+
         public bool TeacherCheck()
         {
             bool isTeacher = false;
