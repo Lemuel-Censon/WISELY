@@ -20,6 +20,7 @@ namespace WISLEY
             Response.Redirect("todoplan.aspx");
         }
 
+<<<<<<< Updated upstream:WISLEY/Views/Schedule/schedule.aspx.cs
         protected void calendarPlan_DayRender(object sender, DayRenderEventArgs e)
         {
             //CalendarDay day = (CalendarDay)e.Day;
@@ -36,5 +37,7 @@ namespace WISLEY
             //    }
             //}
         }
+=======
+>>>>>>> Stashed changes:WISLEY/schedule.aspx.cs
     }
 }
