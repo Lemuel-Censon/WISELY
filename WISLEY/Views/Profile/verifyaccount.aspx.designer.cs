@@ -49,15 +49,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox TbCode;
         
         /// <summary>
-        /// btnVerifyAccount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerifyAccount;
-        
-        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>
@@ -65,5 +56,14 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// btnVerifyAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerifyAccount;
     }
 }

@@ -10,13 +10,9 @@
                         <asp:Label AssociatedControlID="TbEmail" ID="LbEmail" runat="server" Text="Email"></asp:Label>
                         <asp:TextBox ID="TbEmail" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <asp:Button CssClass="btn btn-md btn-danger" ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click"/>
-                        </div>
-                        <div class="col-lg-6">
-                            <asp:Button CssClass="btn btn-md btn-success" ID="btnRecoverAccount" runat="server" Text="Next" OnClick="btnRecoverAccount_Click" />
-                        </div>
+                    <div class="text-right">
+                        <asp:Button CssClass="btn btn-md btn-danger" ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                        <asp:Button CssClass="btn btn-md btn-success" ID="btnRecoverAccount" runat="server" Text="Next" OnClick="btnRecoverAccount_Click" />
                     </div>
                 </div>
             </div>
