@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="settings.aspx.cs" Inherits="WISLEY.Views.Profile.settings" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-<div class="container">
-    <div class="col-12 card p-2 rounded-bottom mb-4">
-        <h1 class="col-12 text-center">Settings</h1>
-    </div>
-    <form id="form1" class="justify-content-around" runat="server">
+    <div class="container">
+        <div class="col-12 card p-2 rounded-bottom mb-4">
+            <h1 class="col-12 text-center">Settings</h1>
+        </div>
         <div class="card z-depth-3 pb-0 px-0">
             <div class="card-body px-5">
                 <div class="md-form md-outline">
@@ -34,6 +34,5 @@
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </div>
 </asp:Content>

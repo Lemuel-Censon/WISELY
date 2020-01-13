@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="leaderboard.aspx.cs" Inherits="WISLEY.leaderboard" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-    <form id="form1" class="col-12 row justify-content-around" runat="server">
         <h3 class="font-weight-bold text-center col-12">Leaderboard</h3>
         <div>
             <table border="1" style="width: 500px; text-align: center; height: 300px; font-family: Verdana;">
@@ -57,5 +56,4 @@
                 </tr>
             </table>
         </div>
-    </form>
 </asp:Content>
