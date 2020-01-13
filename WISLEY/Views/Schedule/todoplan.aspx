@@ -23,7 +23,7 @@
                         <tr>
                             <td class="auto-style1 font-weight-bold">Date selected:</td>
                             <td>
-                                <asp:TextBox ID="tbDateSelected" runat="server" Width="202px" CssClass="offset-sm-0"></asp:TextBox>
+                                <asp:TextBox ID="tbDateSelected" runat="server" Width="202px" CssClass="offset-sm-0" ReadOnly="True"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                         <tr>
                             <td class="auto-style1">&nbsp;</td>
                             <td>
-                                <asp:Button ID="btnCreate" runat="server" CssClass="btn btn-success" Text="Create" />
+                                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add" />
                                 <asp:Button ID="btnBack" runat="server" CssClass="btn btn-danger" OnClick="btnBack_Click" Text="Back" />
                             </td>
                         </tr>

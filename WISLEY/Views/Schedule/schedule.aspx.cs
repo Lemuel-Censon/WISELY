@@ -19,22 +19,5 @@ namespace WISLEY
             Session["selectDate"] = calendarPlan.SelectedDate.ToShortDateString();
             Response.Redirect("todoplan.aspx");
         }
-
-        protected void calendarPlan_DayRender(object sender, DayRenderEventArgs e)
-        {
-            //CalendarDay day = (CalendarDay)e.Day;
-            //TableCell cell = (TableCell)e.Cell;
-
-            //if (!day.IsOtherMonth)
-            //{
-            //    String holidayStr = pulHolDay[day.Date.Month, day.Date.Day];
-
-            //    if (holidayStr != null)
-            //    {
-            //        cell.BackColor = System.Drawing.Color.HotPink;
-            //        cell.Controls.Add(new LiteralControl(holidayStr));
-            //    }
-            //}
-        }
     }
 }

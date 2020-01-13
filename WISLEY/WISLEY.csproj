@@ -251,6 +251,10 @@
       <DependentUpon>collab.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BLL\Schedule\Planner.cs" />
+    <Compile Include="collab.aspx.cs">
+      <DependentUpon>collab.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Board\collab.aspx.designer.cs">
       <DependentUpon>collab.aspx</DependentUpon>
     </Compile>
@@ -259,6 +263,10 @@
     <Compile Include="Views\Profile\editprofile.aspx.cs">
       <DependentUpon>editprofile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DAL\Schedule\PlannerDAO.cs" />
+    <Compile Include="editprofile.aspx.cs">
+      <DependentUpon>editprofile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\editprofile.aspx.designer.cs">
       <DependentUpon>editprofile.aspx</DependentUpon>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Schedule;
 
 namespace WISLEY
 {
@@ -15,6 +16,11 @@ namespace WISLEY
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("schedule.aspx");
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
             Response.Redirect("schedule.aspx");
         }
