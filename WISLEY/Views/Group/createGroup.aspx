@@ -5,25 +5,27 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <h1 class="col-12 text-center">Create Group</h1>
-            <div class="col-8 card-body border border-primary">
+            <div class="col-6 card-body border border-primary">
                 <form runat="server">
 
                     <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
                             <label for="groupNameTB">Group Name</label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-10">
                             <asp:TextBox ID="groupNameTB" class="form-control" runat="server"></asp:TextBox>
                             <%--<input type="text" id="groupName" class="form-control">--%>
+                            <p class="small">This will be the name of your group </p>
                         </div>
                     </div>
 
-                    <div class="form-row justify-content-start">
+                    <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
                             <label for="groupDescriptionTB">Group Description</label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-10">
                             <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" class="form-control" runat="server"></asp:TextBox>
+                            <p class="small">Please tell us more about the group. </p>
 
                             <%--<textarea class="form-control rounded-0" id="groupDescription" rows="3" placeholder="">
                         </textarea>--%>
@@ -34,8 +36,10 @@
                         <div class="col-2">
                             <label for="groupWeightageTB">Group Weightage</label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-10">
                             <asp:TextBox ID="groupWeightageTB" class="form-control" runat="server"></asp:TextBox>
+                            <p class="small">This is the point weightage of this module group</p>
+
                         </div>
                     </div>
 

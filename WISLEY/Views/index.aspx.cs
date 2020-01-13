@@ -21,6 +21,10 @@ namespace WISLEY
                 toast(this, Session["error"].ToString(), "Error", "error");
                 Session["error"] = null;
             }
+            if (Session["email"] != null)
+            {
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+            }
         }
 
         public void toast(Page page, string message, string title, string type)

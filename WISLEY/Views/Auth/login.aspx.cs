@@ -63,7 +63,7 @@ namespace WISLEY
             {
                 Session["email"] = TbEmail.Text;
                 Session["success"] = "Logged in successfully!";
-                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
             }
         }
     }

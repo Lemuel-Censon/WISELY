@@ -24,12 +24,14 @@
             </div>
 
             <div class="card card-body">
-                <div class="col-12 justify-content-center">
+                <div class="col-12 justify-content-center min-vh-50">
                     <h4 class="text-center mx-auto">Modules</h4>
                     <hr class="hr-primary">
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" href="collab.aspx">Test </a>
-                    <a id="createGroupBtn" class="btn btn-block btn-success text-left border-left border-danger rounded-0 mb-1" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>Create Group </a>
+                </div>
 
+                <div class="col-12 justify-content-center">
+                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 invisible" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>  Create Group </a>
                 </div>
             </div>
 
@@ -41,11 +43,12 @@
         </div>
     </div>
 
-    <% if (!TeacherCheck())
+    <% if (TeacherCheck())
         {
          %>
     <script>
-        $("#createGroupBtn").hide();
+        console.log("Teacher acc")
+        $("#createGroupBtn").removeClass("invisible")
     </script>
     <% } %>
 </asp:Content>
