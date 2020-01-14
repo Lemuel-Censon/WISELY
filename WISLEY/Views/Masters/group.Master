@@ -1,18 +1,22 @@
 ﻿<%@ Master Language="C#" MasterPageFile="sidebar.Master" AutoEventWireup="true" CodeBehind="sidebar.master.cs" Inherits="WISLEY.NestedMasterPage1" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="sidebarContent" runat="server">
+     <% string pageName = getPageName(); %>
+
      <% if (Request.QueryString["groupId"] != null)
      {
         string grpName = getGroupDetails().name;
         string grpDesc = getGroupDetails().description;
         string grpCode = getGroupDetails().joinCode;
+        string grpId = getGroupDetails().id.ToString();
      %>
 
     <div class="card card-body rounded-top mb-3">
+        <% if(user().userType == "Teacher") { %>
         <div class="row justify-content-end">
-            
             <a href="<%=Page.ResolveUrl("~/Views/Group/editGroup.aspx?groupId=" + Request.QueryString["groupId"]) %>"><i class="fas fa-edit fa-lg text-primary mr-2"></i></a>
         </div>
+        <% } %>
         <div class="row justify-content-center">
 
             <h1 class="text-left col-12">
@@ -22,11 +26,12 @@
             <p class="text-left col-12">
                 <%= grpDesc %>
             </p>
-
+            <% if(user().userType == "Teacher") { %>
             <p class="text-left col-12">
                 Invite code: <span class="group-code black-text black"><%= grpCode %></span>
                 <small> </small>
             </p>
+            <% } %>
 
      
         </div>
@@ -38,8 +43,8 @@
 
     <ul class="nav nav-tabs border-bottom-0 white" id="myClassicTabShadow" role="tablist">
 
-        <li class="nav-item">
-            <a class="nav-link waves-light active show" id="posts-tab-classic-shadow" data-toggle="tab"
+        <li class="nav-item <% if(pageName == "collab") {%>  waves-light active show <% } %>" id="postTab">
+            <a class="nav-link <% if(pageName == "collab") {%>  waves-light active show <% } %>" id="posts-tab-classic-shadow" data-toggle="tab"
                 href="#posts-classic-shadow" role="tab" aria-controls="posts-classic-shadow"
                 aria-selected="true">Posts</a>
         </li>
@@ -55,17 +60,20 @@
                 href="#assignments-classic-shadow" role="tab" aria-controls="assignments-classic-shadow"
                 aria-selected="true">Assignments</a>
 
-        <li class="nav-item">
+        <li class="nav-item <% if(pageName == "members") {%>  waves-light active show <% } %>" id="memberTab">
             <a class="nav-link" id="members-tab-classic-shadow" data-toggle="tab"
-                href="#members-classic-shadow" role="tab" aria-controls="members-classic-shadow"
+          
+                href="<%= Page.ResolveUrl("~/Views/Group/members.aspx?groupId="+ grpId) %>" 
+                
+                role="tab" aria-controls="members-classic-shadow"
                 aria-selected="true">Members</a>
         </li>
     </ul>
 
-
+     
 
     <div class="tab-content min-vh-80" id="myClassicTabContentShadow">
-        <div class="tab-pane fade active show" id="posts-classic-shadow" role="tabpanel"
+        <div class="tab-pane fade <% if(pageName == "collab") {%> active show <% } %>" id="posts-classic-shadow" role="tabpanel"
             aria-labelledby="posts-tab-classic-shadow">
             <div>
     <% } %>
@@ -81,30 +89,43 @@
 
         <div class="tab-pane fade" id="resources-classic-shadow" role="tabpanel"
             aria-labelledby="resources-tab-classic-shadow">
-            <div>
+
                 <asp:ContentPlaceHolder ID="groupResources" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
+
         </div>
 
         <div class="tab-pane fade" id="assignments-classic-shadow" role="tabpanel"
             aria-labelledby="assignments-tab-classic-shadow">
-            <div>
+
                 <asp:ContentPlaceHolder ID="groupAssignments" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
+
         </div>
 
-        <div class="tab-pane fade" id="members-classic-shadow" role="tabpanel"
+        <div class="tab-pane fade <% if(pageName == "members") {%> active show <% } %>" id="members-classic-shadow" role="tabpanel"
             aria-labelledby="members-tab-classic-shadow">
-            <div>
+
                 <asp:ContentPlaceHolder ID="groupMembers" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
+
         </div>
     </div>
         </div>
 
     <% } %>
+         <% if (Request.QueryString["groupId"] != null)
+     { %>
+    <script>
+        $("#memberTab").click(function () {
+            console.log("clicked")
+            window.location.replace("<%= Page.ResolveUrl("~/Views/Group/members.aspx?groupId="+getGroupDetails().id.ToString()) %>" )
+        })
 
+        $("#postTab").click(function () {
+            console.log("clicked")
+            window.location.replace("<%= Page.ResolveUrl("~/Views/Board/collab.aspx?groupId="+getGroupDetails().id.ToString()) %>" )
+        })
+    </script>
+      <% } %>
 </asp:Content>

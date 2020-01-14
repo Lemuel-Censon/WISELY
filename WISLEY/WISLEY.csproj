@@ -109,9 +109,9 @@
     <Content Include="Views\Gacha\GachaDetails.aspx" />
     <Content Include="Views\Gacha\GachaSummon.aspx" />
     <Content Include="Views\Group\createGroup.aspx" />
-    <Content Include="Views\Group\createGroup.html" />
     <Content Include="Views\Group\editGroup.aspx" />
     <Content Include="Views\Group\joinGroup.aspx" />
+    <Content Include="Views\Group\members.aspx" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
     <Content Include="Public\css\toast\toastr.css" />
@@ -260,6 +260,13 @@
     </Compile>
     <Compile Include="Views\Group\joinGroup.aspx.designer.cs">
       <DependentUpon>joinGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Group\members.aspx.cs">
+      <DependentUpon>members.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Group\members.aspx.designer.cs">
+      <DependentUpon>members.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>

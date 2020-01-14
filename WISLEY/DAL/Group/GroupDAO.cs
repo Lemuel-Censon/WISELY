@@ -176,6 +176,8 @@ namespace WISLEY.DAL.Group
             return groupIDList;
         }
 
+        
+
         public int joinGroup(string email, string code)
         {
             int result = 0;

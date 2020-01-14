@@ -15,6 +15,8 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string pageName = Path.GetFileNameWithoutExtension(Page.AppRelativeVirtualPath);
+            System.Diagnostics.Debug.WriteLine(pageName);
             if (Session["email"] != null)
             {
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
@@ -26,7 +28,7 @@ namespace WISLEY
                 "ORDER BY Id ASC";
 
 
-
+                
 
             }
 
@@ -55,6 +57,13 @@ namespace WISLEY
             return groupList;
 
         }
+
+        public void toMembers()
+        {
+            string grpId = Request.QueryString["groupId"];
+            Response.Redirect("~/Views/Group/members.aspx?groupId=" + grpId);
+        }
+
 
         public void redirectToGroup(object sender, EventArgs e)
         {
@@ -88,15 +97,23 @@ namespace WISLEY
         {
             if (e.CommandName == "redirectToGroup")
             {
-                Response.Redirect("collab.aspx?groupId=" + e.CommandArgument.ToString());
+                Response.Redirect("~/Views/Board/collab.aspx?groupId=" + e.CommandArgument.ToString());
             }
         }
 
         public Group getGroupDetails()
         {
             string grpId = Request.QueryString["groupId"];
+
             Group grp = new Group().getGroupByID(grpId);
             return grp;
+        }
+
+        public string getPageName()
+        {
+            string pageName = Path.GetFileNameWithoutExtension(Page.AppRelativeVirtualPath);
+            System.Diagnostics.Debug.WriteLine(pageName);
+            return pageName;
         }
     }
 }
