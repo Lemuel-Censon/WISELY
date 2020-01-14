@@ -334,6 +334,13 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+	    <Compile Include="Views\Resources\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Resources\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Testing Folder\fileUploadTest.aspx.cs">
       <DependentUpon>fileUploadTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
