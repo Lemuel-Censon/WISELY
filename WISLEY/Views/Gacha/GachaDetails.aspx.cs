@@ -12,11 +12,12 @@ namespace WISLEY.Views.Gacha
         protected void Page_Load(object sender, EventArgs e)
         {
             GvSummon.Visible = true;
+            LabelSummon.Text = Session["SSSummon"].ToString();
         }
 
         protected void ButtonBack_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Gacha.aspx");
         }
 
         protected void GridViewSummon_SelectedIndexChanged(object sender, EventArgs e)

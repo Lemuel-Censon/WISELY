@@ -197,8 +197,11 @@
   <ItemGroup>
     <Compile Include="BLL\Collab\Comment.cs" />
     <Compile Include="BLL\Collab\Post.cs" />
+    <Compile Include="BLL\Gacha\Avatar.cs" />
+    <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
     <Compile Include="BLL\User\User.cs" />
+    <Compile Include="DAL\Gacha\GachaDAO.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />
     <Compile Include="DAL\User\UserDAO.cs" />
     <Compile Include="Views\Auth\logout.aspx.cs">

@@ -16,7 +16,7 @@ namespace WISLEY.Views.Gacha
 
         protected void ButtonBack_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Gacha.aspx");
         }
     }
 }
