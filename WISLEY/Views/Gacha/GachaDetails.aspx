@@ -14,12 +14,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-    <form id="form1" runat="server">
+
     <div id="headGaDetails">
 
         <br />
         <p class="auto-style1">
-            <asp:Button ID="ButtonBack" CssClass="btn btn-blue-grey" runat="server" Text="Back" OnClick="ButtonBack_Click" />
+            <asp:Button ID="ButtonBack" CssClass="btn btn-danger" runat="server" Text="Back" OnClick="ButtonBack_Click" />
         </p>
 
 
@@ -52,5 +52,5 @@
 
     </div>
 
-    </form>
+
 </asp:Content>

@@ -3,12 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     
-    <form id="form1" runat="server">
+
 
 <div id="headGa">
 
     <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="ButtonBack" CssClass="btn btn-blue-grey" runat="server" Text="Back" OnClick="ButtonBack_Click" />
+    <p class="auto-style1">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <asp:Button ID="ButtonBack" CssClass="btn btn-danger" runat="server" Text="Back" OnClick="ButtonBack_Click" />
+        </p>
         <br />
 
     <br />
@@ -24,6 +26,8 @@
             <asp:Button ID="Button1x_F" runat="server" Text="1x ( 1000 WIS )" CssClass="btn btn-blue rounded" OnClick="Button1x_F_Click" />
 &nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button11x_F" runat="server" Text="11x ( 10000 WIS )" CssClass="btn btn-purple rounded" OnClick="Button11x_F_Click" />
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="ButtonI_F0" runat="server" Text="ⓘ" CssClass="btn btn-blue-grey rounded btn-sm" OnClick="ButtonI_F" />
             <br />
             <br />
         <iframe src="//cdn.bannersnack.com/banners/bxh82nnjd/embed/index.html?userId=40214613&t=1575958709" width="820" height="244" scrolling="no" frameborder="0" allowtransparency="true" allow="autoplay" allowfullscreen="true"></iframe>
@@ -31,9 +35,11 @@
             <asp:Button ID="Button1x_R" runat="server" Text="1x ( 1000 WIS )" CssClass="btn btn-blue rounded" OnClick="Button1x_R_Click" />
 &nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button11x_R" runat="server" Text="11x ( 10000 WIS )" CssClass="btn btn-purple rounded" OnClick="Button11x_R_Click" />
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="ButtonI_R0" runat="server" Text="ⓘ" CssClass="btn btn-blue-grey rounded btn-sm" OnClick="ButtonI_R" />
             <br />
             <br />
         </div>
-    </form>
+
 
 </asp:Content>

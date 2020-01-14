@@ -16,7 +16,7 @@ namespace WISLEY.Views.Gacha
 
         protected void ButtonBack_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("profile.aspx");
         }
 
         protected void Button1x_F_Click(object sender, EventArgs e)
@@ -41,6 +41,18 @@ namespace WISLEY.Views.Gacha
         {
             Session["SSTitle"] = "Beginner special 11x Summon";
             Response.Redirect("GachaSummon.aspx");
+        }
+
+        protected void ButtonI_F(object sender, EventArgs e)
+        {
+            Session["SSSummon"] = "Featured Summon";
+            Response.Redirect("GachaDetails.aspx");
+        }
+
+        protected void ButtonI_R(object sender, EventArgs e)
+        {
+            Session["SSSummon"] = "Regular Summon";
+            Response.Redirect("GachaDetails.aspx");
         }
     }
 }

@@ -8,13 +8,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-    <form id="form1" runat="server">
 
 
     <div id="headAv">
 
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="ButtonBack" CssClass="btn btn-blue-grey" runat="server" Text="Back" OnClick="ButtonBack_Click" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="ButtonBack" CssClass="btn btn-danger" runat="server" Text="Back" OnClick="ButtonBack_Click" />
         <br />
 
         <h4 class="text-center mx-auto font-weight-bold" style="font-size: 40px; font-family:Arial;">YOUR AVATAR LIST</h4>
@@ -59,6 +58,5 @@
     <br />
 
     <br />
-</form>
 </asp:Content>
 
