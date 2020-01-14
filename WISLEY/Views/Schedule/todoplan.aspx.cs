@@ -32,6 +32,19 @@ namespace WISLEY
                 DateTime selectedToDoDate = Convert.ToDateTime(tbDateSelected.Text);
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
+
+                Planner todoPlan = new Planner(selectedToDoDate, todoTitle, todoDesc);
+                int count = todoPlan.AddToDoList();
+
+                if (count == 1)
+                {
+                    toast(this, "Your To-Do-List has been added sucessfully!", "Success", "success");
+                }
+
+                else
+                {
+                    toast(this, "Your To-Do-List was not added successfully!", "Danger", "danger");
+                }
             }
         }
 
@@ -41,12 +54,12 @@ namespace WISLEY
 
             if (String.IsNullOrEmpty(tbTitle.Text))
             {
-                toast(this, "Please enter your title", "Error", "error");
+                toast(this, "Please enter your title!", "Error", "error");
             }
 
             else if (String.IsNullOrEmpty(tbDesc.Text))
             {
-                toast(this, "Please enter your description", "Error", "error");
+                toast(this, "Please enter your description!", "Error", "error");
             }
 
             else
