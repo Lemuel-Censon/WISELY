@@ -27,6 +27,13 @@ namespace WISLEY
             return user;
         }
 
+        public void showAllSession()
+        {
+            foreach (var crntSession in Session.Contents)
+            {
+                System.Diagnostics.Debug.WriteLine(string.Concat(crntSession, "=", Session[crntSession.ToString()]) + "<br />");
+            }
+        }
 
 
 

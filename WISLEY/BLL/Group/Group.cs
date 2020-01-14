@@ -38,5 +38,10 @@ namespace WISLEY.BLL.Group
             GroupDAO groupDAO = new GroupDAO();
             return groupDAO.SelectByID(GroupId);
         }
+
+        public void joinGroup()
+        {
+
+        }
     }
 }

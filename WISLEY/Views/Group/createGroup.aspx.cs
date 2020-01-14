@@ -12,10 +12,7 @@ namespace WISLEY.Views.Group
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            foreach(var crntSession in Session.Contents)
-            {
-              System.Diagnostics.Debug.WriteLine(string.Concat(crntSession, "=", Session[crntSession.ToString()]) + "<br />");
-            }
+
 
             if (Session["email"] != null)
             {

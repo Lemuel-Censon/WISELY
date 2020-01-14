@@ -14,77 +14,121 @@ namespace WISLEY.DAL.Group
     {
         public int Insert(BLL.Group.Group group, string email)
         {
-           
+            int result = 0;
+            if (SelectGroupByName(group.name) == null)
+            {
+                string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+                SqlConnection myConn = new SqlConnection(DBConnect);
+
+                //Creating Group
+                string sqlStmt = "INSERT INTO [Group] (name, description, weightage)" +
+                     "VALUES (@paraName, @paraDescription, @paraWeightage)";
+
+                // Execute NonQuery return an integer value
+                SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+                sqlCmd.Parameters.AddWithValue("@paraName", group.name);
+                sqlCmd.Parameters.AddWithValue("@paraDescription", group.description);
+                sqlCmd.Parameters.AddWithValue("@paraWeightage", group.weightage);
+
+                myConn.Open();
+                result = sqlCmd.ExecuteNonQuery(); //Result 
+                myConn.Close();
+
+
+                //Getting Created Group ID
+                string groupIdString = getGroupID(group.name, group.description, group.weightage).ToString();
+                System.Diagnostics.Debug.WriteLine("Group ID:" + groupIdString);
+
+
+                //Getting Group List from current user
+                UserDAO currentUserDAO = new UserDAO();
+                User currentUser = currentUserDAO.SelectByEmail(email);
+                System.Diagnostics.Debug.WriteLine("Group List Before:" + currentUser.inGroupsId);
+                List<string> groupListStrings = currentUser.inGroupsId.Split(',').ToList();
+                //groupListStrings.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
+                groupListStrings.RemoveAll(s => string.IsNullOrEmpty(s));
+                groupListStrings.Add(groupIdString);
+                System.Diagnostics.Debug.WriteLine("Group List Strings:" + groupListStrings);
+                string groupList = string.Join(",", groupListStrings);
+                System.Diagnostics.Debug.WriteLine("Group List:" + groupList);
+                System.Diagnostics.Debug.WriteLine("Email:" + email);
+
+
+                //Update User
+                string updateUser = "UPDATE [User] " +
+                    "SET inGroupsId = @paraGroupId " +
+                    "WHERE email = @paraEmail";
+
+                //string updateUser2 = "INSERT INTO [GroupUserRelations] (userID, groupID) " +
+                //    "VALUES (@paraUserId, @paraGroupId)";
+
+
+                SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
+                executeUpdate.Parameters.AddWithValue("@paraEmail", email);
+                executeUpdate.Parameters.AddWithValue("@paraGroupId", groupList);
+
+                myConn.Open();
+                int Updateresult = executeUpdate.ExecuteNonQuery();
+
+                myConn.Close();
+            }
+            
+
+            return result;
+        }
+
+        public int getGroupID(string name, string description, int weightage)
+        {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            //Creating Group
-            string sqlStmt = "INSERT INTO [Group] (name, description, weightage)" +
-                 "VALUES (@paraName, @paraDescription, @paraWeightage)";
-
-            int result = 0;    // Execute NonQuery return an integer value
-            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
-
-            sqlCmd.Parameters.AddWithValue("@paraName", group.name);
-            sqlCmd.Parameters.AddWithValue("@paraDescription", group.description);
-            sqlCmd.Parameters.AddWithValue("@paraWeightage", group.weightage);
-
-            myConn.Open();
-            result = sqlCmd.ExecuteNonQuery();
-            myConn.Close();
-
-
-            //Getting Created Group ID
             string getGroupId = "Select Id from [Group] where name = @paraName and description = @paraDescription and weightage = @paraWeightage";
-            SqlDataAdapter groupId = new SqlDataAdapter(getGroupId, myConn);
-            groupId.SelectCommand.Parameters.AddWithValue("@paraName", group.name);
-            groupId.SelectCommand.Parameters.AddWithValue("@paraDescription", group.description);
-            groupId.SelectCommand.Parameters.AddWithValue("@paraWeightage", group.weightage);
+            SqlDataAdapter groupIdAdapter = new SqlDataAdapter(getGroupId, myConn);
+            groupIdAdapter.SelectCommand.Parameters.AddWithValue("@paraName", name);
+            groupIdAdapter.SelectCommand.Parameters.AddWithValue("@paraDescription", description);
+            groupIdAdapter.SelectCommand.Parameters.AddWithValue("@paraWeightage", weightage);
 
             DataSet grpID_ds = new DataSet();
-            groupId.Fill(grpID_ds);
-            string groupIdString = "";
+            groupIdAdapter.Fill(grpID_ds);
             int group_count = grpID_ds.Tables[0].Rows.Count;
 
             if (group_count > 0)
             {
                 DataRow row = grpID_ds.Tables[0].Rows[0];
-                groupIdString = row["Id"].ToString();
+                int groupId = int.Parse(row["Id"].ToString());
+                return groupId;
             }
+            else
+            {
+                return -1;
+            }
+        }
 
-            System.Diagnostics.Debug.WriteLine("Group ID:" + groupIdString);
+        public BLL.Group.Group SelectGroupByName(string name)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
 
+            string sqlstmt = "Select * from [Group] where name = @paraName";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraName", name);
 
-            //Getting Group List from current user
-            UserDAO currentUserDAO = new UserDAO();
-            User currentUser = currentUserDAO.SelectByEmail(email);
-            System.Diagnostics.Debug.WriteLine("Group List Before:" + currentUser.inGroupsId);
-            List<string> groupListStrings = currentUser.inGroupsId.Split(',').ToList();
-            //groupListStrings.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
-            groupListStrings.RemoveAll(s => string.IsNullOrEmpty(s));
-            groupListStrings.Add(groupIdString);
-            System.Diagnostics.Debug.WriteLine("Group List Strings:" + groupListStrings);
-            string groupList = string.Join(",", groupListStrings);
-            System.Diagnostics.Debug.WriteLine("Group List:" + groupList);
-            System.Diagnostics.Debug.WriteLine("Email:" + email);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
 
+            BLL.Group.Group obj = null;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                string description = row["description"].ToString();
+                int weightage = int.Parse(row["weightage"].ToString());
+                int grpId = int.Parse(row["Id"].ToString());
 
-            //Update User
-            string updateUser = "UPDATE [User] " +
-                "SET inGroupsId = @paraGroupId " +
-                "WHERE email = @paraEmail";
-
-      
-            SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
-            executeUpdate.Parameters.AddWithValue("@paraEmail", email);
-            executeUpdate.Parameters.AddWithValue("@paraGroupId", groupList);
-
-            myConn.Open();
-            int Updateresult = executeUpdate.ExecuteNonQuery();
-
-            myConn.Close();
-
-            return result;
+                obj = new BLL.Group.Group(name, description, weightage, grpId);
+            }
+            return obj;
         }
 
         public BLL.Group.Group SelectByID(string id)
@@ -111,8 +155,42 @@ namespace WISLEY.DAL.Group
 
                 obj = new BLL.Group.Group(name, description, weightage, grpId);
             }
-
             return obj;
+        }
+
+        public List<int> SelectUserGroups(string email)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select groupID from [GroupUserRelations] where userID = @paraUserID";
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlstmt, myConn);
+            sqlCmd.SelectCommand.Parameters.AddWithValue("@paraUserID", email);
+
+            DataSet ds = new DataSet();
+            sqlCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            List<int> groupIDList = new List<int>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    int grpId = int.Parse(row["groupID"].ToString());
+                    groupIDList.Add(grpId);
+
+                }
+            }
+
+            return groupIDList;
+
+
+        }
+
+        public bool joinGroup()
+        {
+            return false;
         }
 
     }
@@ -145,3 +223,21 @@ namespace WISLEY.DAL.Group
 //}
 
 //System.Diagnostics.Debug.WriteLine(groupList);
+
+//Getting group ID old
+//string getGroupId = "Select Id from [Group] where name = @paraName and description = @paraDescription and weightage = @paraWeightage";
+//SqlDataAdapter groupId = new SqlDataAdapter(getGroupId, myConn);
+//groupId.SelectCommand.Parameters.AddWithValue("@paraName", group.name);
+//groupId.SelectCommand.Parameters.AddWithValue("@paraDescription", group.description);
+//groupId.SelectCommand.Parameters.AddWithValue("@paraWeightage", group.weightage);
+
+//DataSet grpID_ds = new DataSet();
+//groupId.Fill(grpID_ds);
+//string groupIdString = "";
+//int group_count = grpID_ds.Tables[0].Rows.Count;
+
+//if (group_count > 0)
+//{
+//    DataRow row = grpID_ds.Tables[0].Rows[0];
+//    groupIdString = row["Id"].ToString();
+//}

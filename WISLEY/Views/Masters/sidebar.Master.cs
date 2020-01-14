@@ -22,16 +22,12 @@ namespace WISLEY
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
 
-                if (getGroupIds().Count > 0)
+                if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
                 {
-                    das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
+                        das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
 
                 }
 
-                //if(Session["group"] != null)
-                //{
-
-                //}
 
             }
 
