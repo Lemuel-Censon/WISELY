@@ -7,45 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY {
+namespace WISLEY.Views.Group {
     
     
-    public partial class NestedMasterPage1 {
+    public partial class editGroup {
         
         /// <summary>
-        /// groupPosts control.
+        /// groupDescriptionTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupPosts;
+        protected global::System.Web.UI.WebControls.TextBox groupDescriptionTB;
         
         /// <summary>
-        /// groupResources control.
+        /// groupWeightageTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupResources;
+        protected global::System.Web.UI.WebControls.TextBox groupWeightageTB;
         
         /// <summary>
-        /// groupAssignments control.
+        /// createGroupBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupAssignments;
+        protected global::System.Web.UI.WebControls.Button createGroupBtn;
         
         /// <summary>
-        /// groupMembers control.
+        /// cancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupMembers;
+        protected global::System.Web.UI.WebControls.Button cancelBtn;
     }
 }

@@ -34,10 +34,10 @@
                 <div class="col-12">
                     <h4 class="text-center mx-auto">Modules</h4>
                     <hr class="hr-primary">
-                    <%if (getGroups()[0] != null)
+                    <%if (true)
                         {%>
 
-                    <div class="max-vh-30 overflow-auto">
+                    <div class="min-vh-30 max-vh-30 overflow-auto">
                     <asp:Repeater
                         runat="server" ID="groupBtns" DataSourceID="groupData"
                         OnItemCommand="groupItemCommand">
@@ -69,13 +69,13 @@
 
 
                 <div class="col-12 justify-content-center">
-                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 invisible" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>Create Group </a>
+                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 invisible text-center" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create Group </a>
                 </div>
             </div>
 
         </div>
 
-        <div class="col-6 border">
+        <div class="col-6 p-0">
             <asp:ContentPlaceHolder ID="sidebarContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>

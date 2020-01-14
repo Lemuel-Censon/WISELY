@@ -24,7 +24,7 @@
                             <label for="groupDescriptionTB">Group Description</label>
                         </div>
                         <div class="col-10">
-                            <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" MaxLength="300" class="form-control" runat="server"></asp:TextBox>
                             <p class="small">Please tell us more about the group. </p>
 
                             <%--<textarea class="form-control rounded-0" id="groupDescription" rows="3" placeholder="">

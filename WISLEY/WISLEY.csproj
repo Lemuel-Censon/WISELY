@@ -110,6 +110,7 @@
     <Content Include="Views\Gacha\GachaSummon.aspx" />
     <Content Include="Views\Group\createGroup.aspx" />
     <Content Include="Views\Group\createGroup.html" />
+    <Content Include="Views\Group\editGroup.aspx" />
     <Content Include="Views\Group\joinGroup.aspx" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="Views\Group\createGroup.aspx.designer.cs">
       <DependentUpon>createGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Group\editGroup.aspx.cs">
+      <DependentUpon>editGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Group\editGroup.aspx.designer.cs">
+      <DependentUpon>editGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Group\joinGroup.aspx.cs">
       <DependentUpon>joinGroup.aspx</DependentUpon>

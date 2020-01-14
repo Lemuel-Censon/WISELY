@@ -18,7 +18,7 @@ namespace WISLEY
                 user();
             }
             //System.Diagnostics.Debug.WriteLine("Nav Loaded");
-
+            showAllSession();
         }
 
         public User user()
@@ -31,7 +31,7 @@ namespace WISLEY
         {
             foreach (var crntSession in Session.Contents)
             {
-                System.Diagnostics.Debug.WriteLine(string.Concat(crntSession, "=", Session[crntSession.ToString()]) + "<br />");
+                System.Diagnostics.Debug.WriteLine(string.Concat(crntSession, "=", Session[crntSession.ToString()]));
             }
         }
 

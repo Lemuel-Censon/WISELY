@@ -21,8 +21,8 @@ namespace WISLEY.DAL.Group
                 SqlConnection myConn = new SqlConnection(DBConnect);
 
                 //Creating Group
-                string sqlStmt = "INSERT INTO [Group] (name, description, weightage)" +
-                     "VALUES (@paraName, @paraDescription, @paraWeightage)";
+                string sqlStmt = "INSERT INTO [Group] (name, description, weightage, joinCode)" +
+                     "VALUES (@paraName, @paraDescription, @paraWeightage, @paraJoinCode)";
 
                 // Execute NonQuery return an integer value
                 SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -30,6 +30,8 @@ namespace WISLEY.DAL.Group
                 sqlCmd.Parameters.AddWithValue("@paraName", group.name);
                 sqlCmd.Parameters.AddWithValue("@paraDescription", group.description);
                 sqlCmd.Parameters.AddWithValue("@paraWeightage", group.weightage);
+                sqlCmd.Parameters.AddWithValue("@paraJoinCode", generateInviteCode());
+
 
                 myConn.Open();
                 result = sqlCmd.ExecuteNonQuery(); //Result 
@@ -59,8 +61,63 @@ namespace WISLEY.DAL.Group
             return result;
         }
 
+        public string generateInviteCode()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
 
-        //Update User
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var inviteCode = new String(stringChars);
+
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string getCode = "Select joinCode from [Group] where joinCode = @paraCode";
+            SqlDataAdapter groupIdAdapter = new SqlDataAdapter(getCode, myConn);
+            groupIdAdapter.SelectCommand.Parameters.AddWithValue("@paraCode", inviteCode);
+
+            DataSet codeDS = new DataSet();
+            groupIdAdapter.Fill(codeDS);
+            int group_count = codeDS.Tables[0].Rows.Count;
+
+            if (group_count > 0)
+            {
+               inviteCode = generateInviteCode();
+            }
+
+            return inviteCode;
+
+
+        }
+
+        public int Update(int id, string desc, int weightage)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [Group] " +
+                "SET description = @paraDesc, weightage = @paraWeight " +
+                "WHERE Id = @paraId";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraDesc", desc);
+            sqlCmd.Parameters.AddWithValue("@paraWeight", weightage);
+            sqlCmd.Parameters.AddWithValue("@paraId", id);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
 
         public int getGroupID(string name, string description, int weightage)
         {
@@ -136,8 +193,9 @@ namespace WISLEY.DAL.Group
                 string description = row["description"].ToString();
                 int weightage = int.Parse(row["weightage"].ToString());
                 int grpId = int.Parse(row["Id"].ToString());
+                string joinCode = row["joinCode"].ToString();
 
-                obj = new BLL.Group.Group(name, description, weightage, grpId);
+                obj = new BLL.Group.Group(name, description, weightage, grpId, joinCode);
             }
             return obj;
         }
@@ -168,7 +226,6 @@ namespace WISLEY.DAL.Group
 
             return groupIDList;
         }
-
 
         public bool joinGroup()
         {

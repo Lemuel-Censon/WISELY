@@ -21,27 +21,17 @@ namespace WISLEY
            
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
+                das.SelectCommand = "SELECT * FROM [Group] " +
+                "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') " +
+                "ORDER BY Id ASC";
 
-                if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
-                {
-                        //das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
-                        das.SelectCommand = "SELECT * FROM [Group] " +
-                        "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email +  "') " +
-                        "ORDER BY Id ASC";
 
-                }
 
 
             }
 
         }
 
-        public List<string> getGroupIds()
-        {
-            List<Group> groupList = new List<Group>();
-            List<string> groupListStrings = user().inGroupsId.Split(',').ToList();
-            return groupListStrings;
-        }
 
         public List<Group> getGroups()
         {
@@ -98,14 +88,14 @@ namespace WISLEY
         {
             if (e.CommandName == "redirectToGroup")
             {
-                Session["group"] = e.CommandArgument.ToString();
-                Response.Redirect("collab.aspx");
+                Response.Redirect("collab.aspx?groupId=" + e.CommandArgument.ToString());
             }
         }
 
         public Group getGroupDetails()
         {
-            Group grp = new Group().getGroupByID(Session["group"].ToString());
+            string grpId = Request.QueryString["groupId"];
+            Group grp = new Group().getGroupByID(grpId);
             return grp;
         }
     }
