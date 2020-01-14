@@ -31,13 +31,13 @@
 
 
 
-                <div class="col-12 max-vh-10 overflow-auto">
+                <div class="col-12">
                     <h4 class="text-center mx-auto">Modules</h4>
                     <hr class="hr-primary">
                     <%if (getGroups()[0] != null)
                         {%>
 
-
+                    <div class="max-vh-30 overflow-auto">
                     <asp:Repeater
                         runat="server" ID="groupBtns" DataSourceID="groupData"
                         OnItemCommand="groupItemCommand">
@@ -46,7 +46,7 @@
                                 class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" Style="text-transform: unset;" />
                         </ItemTemplate>
                     </asp:Repeater>
-
+                    </div>
 
                     <asp:SqlDataSource ID="groupData"
                         ConnectionString="<%$ connectionStrings: ConnStr%>"
@@ -85,7 +85,6 @@
                 <div class="row justify-content-center">
                     <h1 class="col-12 text-center"> Schedule </h1>
                     <div class="col-4">
-                        <img src="https://picsum.photos/100" class="mx-auto md-block">
                         <!-- Social shares button -->
                     </div>
 

@@ -70,7 +70,7 @@ namespace WISLEY.Views.Group
         {
     
             string grpName = groupNameTB.Text.Trim();
-            string grpDescription = groupNameTB.Text.Trim();
+            string grpDescription = groupDescriptionTB.Text.Trim();
             string grpWeightage = groupWeightageTB.Text.Trim();
 
             if (ValidateInput(grpName, grpDescription, grpWeightage))
