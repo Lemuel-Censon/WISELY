@@ -40,6 +40,24 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbEmail;
         
         /// <summary>
+        /// LbDob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbDob;
+        
+        /// <summary>
+        /// LbContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbContact;
+        
+        /// <summary>
         /// LbNoOfBlogs control.
         /// </summary>
         /// <remarks>
@@ -92,6 +110,15 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// LbWISPoints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbWISPoints;
         
         /// <summary>
         /// LbType control.

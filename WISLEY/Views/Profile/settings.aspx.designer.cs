@@ -13,6 +13,24 @@ namespace WISLEY.Views.Profile {
     public partial class settings {
         
         /// <summary>
+        /// chkBoxNotification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkBoxNotification;
+        
+        /// <summary>
+        /// chkBoxPrivacy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkBoxPrivacy;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

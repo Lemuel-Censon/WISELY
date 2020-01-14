@@ -7,17 +7,11 @@
         </div>
         <div class="card z-depth-3 pb-0 px-0">
             <div class="card-body px-5">
-                <div class="md-form md-outline">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="chkboxNotification">
-                        <label class="custom-control-label" for="chkboxNotification">Send notifications to my mail</label>
-                    </div>
+                <div>
+                    <asp:CheckBox ID="chkBoxNotification" runat="server" Text="Send notifications to my mail"/>
                 </div>
-                <div class="md-form md-outline">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="chkboxPrivacy">
-                        <label class="custom-control-label" for="chkboxPrivacy">Keep my account private</label>
-                    </div>
+                <div>
+                    <asp:CheckBox ID="chkBoxPrivacy" runat="server" Text="Keep my account private" />
                 </div>
                 <div class="md-form md-outline">
                     <p>Choose your language:</p>
@@ -30,7 +24,7 @@
                 </div>
                 <div class="text-right">
                     <a href="<%= Page.ResolveUrl("~/Views/Profile/profile.aspx") %>" class="btn btn-danger">Cancel</a>
-                    <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save Changes" />
+                    <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save Changes" OnClick="btnSave_Click" />
                 </div>
             </div>
         </div>

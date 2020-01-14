@@ -25,6 +25,23 @@ namespace WISLEY
                 User user = new User().SelectByEmail(LbEmail.Text);
                 LbName.Text = user.name;
                 LbType.Text = user.userType;
+                LbWISPoints.Text = user.points.ToString();
+                if (user.dob != string.Empty)
+                {
+                    LbDob.Visible = true;
+                    LbDob.Text = "Born in " + user.dob;
+                } else
+                {
+                    LbDob.Visible = false;
+                }
+                if (user.contactNo != string.Empty)
+                {
+                    LbContact.Visible = true;
+                    LbContact.Text = "Contact No: " + user.contactNo;
+                } else
+                {
+                    LbContact.Visible = false;
+                }
                 hidotheremail.Value = Session["email"].ToString();
                 if (Session["success"] != null)
                 {
@@ -59,7 +76,7 @@ namespace WISLEY
 
         protected void btnchangeAvatar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect(Page.ResolveUrl("~/Views/Gacha/gacha.aspx"));
         }
 
         protected void btnEditBio_Click(object sender, EventArgs e)

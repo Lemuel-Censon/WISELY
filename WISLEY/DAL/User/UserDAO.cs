@@ -15,8 +15,8 @@ namespace WISLEY.DAL.Profile
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, experience, wisPoints, accType)" +
-                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @paraexp, @parapoints, @paraUserType)";
+            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, experience, wisPoints, accType, privacy)" +
+                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @paraexp, @parapoints, @paraUserType, @paraPrivacy)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -30,6 +30,7 @@ namespace WISLEY.DAL.Profile
             sqlCmd.Parameters.AddWithValue("@paraexp", user.experience);
             sqlCmd.Parameters.AddWithValue("@parapoints", user.points);
             sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
+            sqlCmd.Parameters.AddWithValue("@paraPrivacy", user.privacy);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -65,9 +66,10 @@ namespace WISLEY.DAL.Profile
                 int exp = int.Parse(row["experience"].ToString());
                 int points = int.Parse(row["wisPoints"].ToString());
                 string inGroupsID = row["inGroupsId"].ToString();
+                string privacy = row["privacy"].ToString();
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, inGroupsID);
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, inGroupsID);
             }
 
             return obj;
@@ -112,6 +114,29 @@ namespace WISLEY.DAL.Profile
 
             sqlCmd.Parameters.AddWithValue("@paraEmail", email);
             sqlCmd.Parameters.AddWithValue("@paraPassword", password);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdatePrivacy(string email, string privacy)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [User] " +
+                "SET privacy = @paraPrivacy " +
+                "WHERE email = @paraEmail";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+            sqlCmd.Parameters.AddWithValue("@paraPrivacy", privacy);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();

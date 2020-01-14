@@ -18,13 +18,14 @@ namespace WISLEY.BLL.Profile
         public int experience { get; set; }
         public int points { get; set; }
         public string inGroupsId { get; set; }
+        public string privacy { get; set; }
 
         public User()
         {
 
         }
 
-        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string inGroupsId = "")
+        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string privacy, string inGroupsId = "")
         {
             this.inGroupsId = inGroupsId;
             this.email = email;
@@ -36,6 +37,7 @@ namespace WISLEY.BLL.Profile
             this.gender = gender;
             this.experience = experience;
             this.points = points;
+            this.privacy = privacy;
         }
 
         public int AddUser()
@@ -60,6 +62,12 @@ namespace WISLEY.BLL.Profile
         {
             UserDAO userdao = new UserDAO();
             return userdao.UpdatePassword(email, password);
+        }
+
+        public int UpdatePrivacy(string email, string privacy)
+        {
+            UserDAO userdao = new UserDAO();
+            return userdao.UpdatePrivacy(email, privacy);
         }
     }
 }

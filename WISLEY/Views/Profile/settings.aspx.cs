@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY.Views.Profile
 {
@@ -11,7 +12,61 @@ namespace WISLEY.Views.Profile
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["email"] != null)
+            {
+                if (!Page.IsPostBack)
+                {
+                    User user = new User().SelectByEmail(Session["email"].ToString());
+                    if (user.privacy == "T")
+                    {
+                        chkBoxPrivacy.Checked = true;
+                    }
+                    else
+                    {
+                        chkBoxPrivacy.Checked = false;
+                    }
+                }
+            }
+            else
+            {
+                Session["error"] = "You must be logged in to view settings!";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
+        }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            string email;
+            string privacy;
+            if (chkBoxPrivacy.Checked == true)
+            {
+                email = Session["email"].ToString();
+                privacy = "T";
+                User user = new User();
+                int result = user.UpdatePrivacy(email, privacy);
+                if (result == 1)
+                {
+                    Session["success"] = "Your changes have been saved!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                }
+            }
+            else if (chkBoxPrivacy.Checked == false)
+            {
+                email = Session["email"].ToString();
+                privacy = "F";
+                User user = new User();
+                int result = user.UpdatePrivacy(email, privacy);
+                if (result == 1)
+                {
+                    Session["success"] = "Your changes have been saved!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                }
+            }
         }
     }
 }

@@ -16,26 +16,43 @@
                     <h3 class="font-weight-bold">
                         <asp:Label ID="LbName" runat="server"></asp:Label>
                     </h3>
+                    <%
+                        if (LbEmail.Text == hidotheremail.Value)
+                        { %>
                     <h5>
                         <asp:Label ID="LbEmail" runat="server"></asp:Label>
                     </h5>
+                    <div>
+                        <asp:Label ID="LbDob" runat="server" Visible="False"></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="LbContact" runat="server" Visible="False"></asp:Label>
+                    </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <asp:Label ID="LbNoOfBlogs" runat="server" Text="1"></asp:Label>
-                            <asp:Label ID="Label1" runat="server" Text="Blog(s)"></asp:Label>
+                            <asp:Label ID="LbNoOfBlogs" runat="server" Text="0"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="Blogs"></asp:Label>
                         </div>
                         <div class="col-lg-4">
-                            <asp:Label ID="LbFollowers" runat="server" Text="51"></asp:Label>
-                            <asp:Label ID="Label2" runat="server" Text="Follower(s)"></asp:Label>
+                            <asp:Label ID="LbFollowers" runat="server" Text="0"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text="Followers"></asp:Label>
                         </div>
                         <div class="col-lg-4">
-                            <asp:Label ID="LbFollowing" runat="server" Text="51"></asp:Label>
+                            <asp:Label ID="LbFollowing" runat="server" Text="0"></asp:Label>
                             <asp:Label ID="Label3" runat="server" Text="Following"></asp:Label>
                         </div>
                     </div>
+                    <%}
+                        else
+                        { %>
+                    <div>
+                        <h3><i class="fas fa-lock mr-1"></i>Account is private!</h3>
+                    </div>
+                    <% } %>
                 </div>
                 <div class="col-lg-4 text-right">
-                    <h5>420 WIS Points<img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
+                    <h5>
+                        <asp:Label ID="LbWISPoints" runat="server"></asp:Label><img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
                     <h5 class="font-weight-bold">
                         <asp:Label runat="server" ID="LbType"></asp:Label></h5>
                 </div>
