@@ -38,7 +38,14 @@ namespace WISLEY.BLL.Group
         public Group getGroupByID(string GroupId)
         {
             GroupDAO groupDAO = new GroupDAO();
-            return groupDAO.SelectByID(GroupId);
+            return groupDAO.SelectGroupByAttribute("Id", GroupId);
+        }
+
+        public Group getGroupByAttribute(string attribute, string data)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.SelectGroupByAttribute(attribute, data);
+
         }
 
         public int updateGroup(int id, string desc, int weightage)
@@ -46,6 +53,12 @@ namespace WISLEY.BLL.Group
             GroupDAO groupDAO = new GroupDAO();
             return groupDAO.Update(id, desc, weightage);
 
+        }
+
+        public int joinGroup(string email, string code)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.joinGroup(email, code);
         }
     }
 }

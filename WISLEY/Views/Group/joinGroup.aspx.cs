@@ -20,16 +20,47 @@ namespace WISLEY.Views.Group
 
         }
 
-        //public void joinGroup()
-        //{
-        //    return;
-        //}
+        public void toast(Page page, string message, string title, string type)
+        {
+            ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        public void join(object sender, EventArgs e)
+        {
+            string grpCode = groupCodeTB.Text.ToString();
+
+
+            if (!string.IsNullOrEmpty(grpCode))
+            {
+                BLL.Group.Group grp = new BLL.Group.Group().getGroupByAttribute("joinCode", grpCode);
+                int result = grp.joinGroup(user().email, grpCode);
+                if (result == 1)
+                {
+                    Session["success"] = "Group joined successfully!";
+                    Response.Redirect("~/Views/Board/collab.aspx?groupId="+grp.id);
+                }
+                else if (result == -1)
+                {
+                    toast(this, "Group already joined.", "Error", "error");
+
+                }
+                else
+                {
+                    toast(this, "Unable to join group, please inform system administrator!", "Error", "error");
+                }
+            }
+            else
+            {
+                toast(this, "Please enter the the group code!", "Error", "error");
+            }
+        }
 
         public User user()
         {
             User user = new User().SelectByEmail(Session["email"].ToString());
             return user;
         }
+
 
 
     }

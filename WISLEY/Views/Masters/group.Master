@@ -24,7 +24,8 @@
             </p>
 
             <p class="text-left col-12">
-                Invite code: <span><%= grpCode %></span>
+                Invite code: <span class="group-code black-text black"><%= grpCode %></span>
+                <small> </small>
             </p>
 
      

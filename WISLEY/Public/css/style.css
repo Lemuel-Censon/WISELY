@@ -204,3 +204,20 @@
 .min-vw-50 {
     min-height: 50vw !important;
 }
+
+
+/*========================*/ /*========================*/
+
+.group-code {
+    background-color: black !important;
+    transition: background 1s; /* For modern browsers */
+    -webkit-transition: background 1s;
+}
+
+.group-code:hover{
+    background-color: white !important;
+}
+
+.text-black {
+    color: black;
+}
