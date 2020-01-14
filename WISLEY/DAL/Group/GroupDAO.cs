@@ -37,46 +37,30 @@ namespace WISLEY.DAL.Group
 
 
                 //Getting Created Group ID
-                string groupIdString = getGroupID(group.name, group.description, group.weightage).ToString();
-                System.Diagnostics.Debug.WriteLine("Group ID:" + groupIdString);
+                int groupId = int.Parse(getGroupID(group.name, group.description, group.weightage).ToString());
+                System.Diagnostics.Debug.WriteLine("Group ID:" + groupId);
 
+                string insertGroupUserRelations = "INSERT INTO [GroupUserRelations] (userEmail, groupID) " +
+                    "VALUES (@paraUserEmail, @paraGroupId)";
 
-                //Getting Group List from current user
-                UserDAO currentUserDAO = new UserDAO();
-                User currentUser = currentUserDAO.SelectByEmail(email);
-                System.Diagnostics.Debug.WriteLine("Group List Before:" + currentUser.inGroupsId);
-                List<string> groupListStrings = currentUser.inGroupsId.Split(',').ToList();
-                //groupListStrings.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
-                groupListStrings.RemoveAll(s => string.IsNullOrEmpty(s));
-                groupListStrings.Add(groupIdString);
-                System.Diagnostics.Debug.WriteLine("Group List Strings:" + groupListStrings);
-                string groupList = string.Join(",", groupListStrings);
-                System.Diagnostics.Debug.WriteLine("Group List:" + groupList);
-                System.Diagnostics.Debug.WriteLine("Email:" + email);
-
-
-                //Update User
-                string updateUser = "UPDATE [User] " +
-                    "SET inGroupsId = @paraGroupId " +
-                    "WHERE email = @paraEmail";
-
-                //string updateUser2 = "INSERT INTO [GroupUserRelations] (userID, groupID) " +
-                //    "VALUES (@paraUserId, @paraGroupId)";
-
-
-                SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
-                executeUpdate.Parameters.AddWithValue("@paraEmail", email);
-                executeUpdate.Parameters.AddWithValue("@paraGroupId", groupList);
+                SqlCommand executeInsert = new SqlCommand(insertGroupUserRelations, myConn);
+                executeInsert.Parameters.AddWithValue("@paraUserEmail", email);
+                executeInsert.Parameters.AddWithValue("@paraGroupId", groupId);
 
                 myConn.Open();
-                int Updateresult = executeUpdate.ExecuteNonQuery();
-
+                int insertResult = executeInsert.ExecuteNonQuery();
                 myConn.Close();
             }
-            
+            else
+            {
+                return -1; // Returns -1 when group already exists
+            }
 
             return result;
         }
+
+
+        //Update User
 
         public int getGroupID(string name, string description, int weightage)
         {
@@ -158,7 +142,7 @@ namespace WISLEY.DAL.Group
             return obj;
         }
 
-        public List<int> SelectUserGroups(string email)
+        public List<int> SelectUserGroupsJoined(string email)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
@@ -179,14 +163,12 @@ namespace WISLEY.DAL.Group
                     DataRow row = ds.Tables[0].Rows[i];
                     int grpId = int.Parse(row["groupID"].ToString());
                     groupIDList.Add(grpId);
-
                 }
             }
 
             return groupIDList;
-
-
         }
+
 
         public bool joinGroup()
         {
@@ -224,7 +206,7 @@ namespace WISLEY.DAL.Group
 
 //System.Diagnostics.Debug.WriteLine(groupList);
 
-//Getting group ID old
+// =====================================   Getting group ID old   ===================================
 //string getGroupId = "Select Id from [Group] where name = @paraName and description = @paraDescription and weightage = @paraWeightage";
 //SqlDataAdapter groupId = new SqlDataAdapter(getGroupId, myConn);
 //groupId.SelectCommand.Parameters.AddWithValue("@paraName", group.name);
@@ -241,3 +223,30 @@ namespace WISLEY.DAL.Group
 //    DataRow row = grpID_ds.Tables[0].Rows[0];
 //    groupIdString = row["Id"].ToString();
 //}
+
+/// ======================================== Old Insert User relation ==========================================
+
+////Getting user from Email
+//UserDAO currentUserDAO = new UserDAO();
+//User currentUser = currentUserDAO.SelectByEmail(email);
+
+
+////Getting Group List from current user through attribute
+//List<string> groupListStrings = currentUser.inGroupsId.Split(',').ToList();
+//groupListStrings.RemoveAll(s => string.IsNullOrEmpty(s));
+//groupListStrings.Add(groupId.ToString());
+//string groupList = string.Join(",", groupListStrings);
+
+
+////Update user inGroupsId
+//string updateUser = "UPDATE [User] " +
+//    "SET inGroupsId = @paraGroupId " +
+//    "WHERE email = @paraEmail";
+
+//SqlCommand executeUpdate = new SqlCommand(updateUser, myConn);
+//executeUpdate.Parameters.AddWithValue("@paraEmail", email);
+//executeUpdate.Parameters.AddWithValue("@paraGroupId", groupList);
+
+//myConn.Open();
+//int Updateresult = executeUpdate.ExecuteNonQuery();
+//myConn.Close();

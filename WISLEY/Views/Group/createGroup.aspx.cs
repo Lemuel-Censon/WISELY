@@ -72,18 +72,34 @@ namespace WISLEY.Views.Group
 
             if (ValidateInput(grpName, grpDescription, grpWeightage))
             {
-                int intGrpWeightage = int.Parse(grpWeightage);
-                BLL.Group.Group newGoup = new BLL.Group.Group(grpName, grpDescription, intGrpWeightage);
-                int result = newGoup.addGroup(Session["email"].ToString());
-                if (result == 1)
+                int intGrpWeightage = 0;
+
+                if (int.TryParse(grpWeightage, out intGrpWeightage))
                 {
-                    Session["success"] = "toast";
-                    Response.Redirect("~/Views/Board/collab.aspx");
+                    BLL.Group.Group newGoup = new BLL.Group.Group(grpName, grpDescription, intGrpWeightage);
+                    int result = newGoup.addGroup(Session["email"].ToString());
+                    if (result == 1)
+                    {
+                        Session["success"] = "Group created successfully!";
+                        Response.Redirect("~/Views/Board/collab.aspx");
+                    }
+                    else if(result == -1)
+                    {
+                        toast(this, "Group name already taken.", "Error", "error");
+
+                    }
+                    else
+                    {
+                        toast(this, "Unable to add post, please inform system administrator!", "Error", "error");
+                    }
                 }
                 else
                 {
-                    toast(this, "Unable to add post, please inform system administrator!", "Error", "error");
+                    toast(this, "Please enter a numerical weightage.", "Error", "error");
+
                 }
+
+
             }
         }
     }

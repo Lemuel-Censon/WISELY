@@ -24,7 +24,10 @@ namespace WISLEY
 
                 if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
                 {
-                        das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
+                        //das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
+                        das.SelectCommand = "SELECT * FROM [Group] " +
+                        "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email +  "') " +
+                        "ORDER BY Id ASC";
 
                 }
 
