@@ -8,6 +8,7 @@ namespace WISLEY.BLL.Profile
 {
     public class User
     {
+        public int id { get; set; }
         public string email { get; set; }
         public string name { get; set; }
         public string password { get; set; }
@@ -17,7 +18,6 @@ namespace WISLEY.BLL.Profile
         public string gender { get; set; }
         public int experience { get; set; }
         public int points { get; set; }
-        public string inGroupsId { get; set; }
         public string privacy { get; set; }
 
         public User()
@@ -25,9 +25,9 @@ namespace WISLEY.BLL.Profile
 
         }
 
-        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string privacy, string inGroupsId = "")
+        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string privacy, int id = -1)
         {
-            this.inGroupsId = inGroupsId;
+            this.id = id;
             this.email = email;
             this.password = password;
             this.userType = userType;

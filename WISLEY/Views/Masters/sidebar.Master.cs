@@ -34,30 +34,6 @@ namespace WISLEY
 
         }
 
-
-        public List<Group> getGroups()
-        {
-            List<Group> groupList = new List<Group>();
-            List<string> groupListStrings = user().inGroupsId.Split(',').ToList();
-
-            for (int i = 0; i < 5; i++)
-            {
-                try
-                {
-                    Group grp = new Group().getGroupByID(groupListStrings[i]);
-                    groupList.Add(grp);
-                }
-                catch
-                {
-                    break;
-                }
-
-            }
-
-            return groupList;
-
-        }
-
         public void toMembers()
         {
             string grpId = Request.QueryString["groupId"];

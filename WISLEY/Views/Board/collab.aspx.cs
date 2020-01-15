@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
 using WISLEY.BLL.Group;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -72,6 +73,12 @@ namespace WISLEY
             ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
+        }
+
         public bool ValidateInput(string title, string content)
         {
             bool valid = false;
@@ -82,6 +89,10 @@ namespace WISLEY
             else if (String.IsNullOrEmpty(content))
             {
                 toast(this, "Please enter some content!", "Error", "error");
+            }
+            else if (ddlgrp.SelectedValue == "-1" && Request.QueryString["groupId"] != null)
+            {
+                toast(this, "Please select a group to post in!", "Error", "error");
             }
             else
             {
@@ -130,9 +141,18 @@ namespace WISLEY
                 string title = tbtitle.Text;
                 string content = tbcontent.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
-                string userId = LbEmail.Text;
+                string userId = user().id.ToString();
+                string grpId;
+                if (Request.QueryString["groupId"] != null)
+                {
+                    grpId = Request.QueryString["groupId"];
+                }
+                else
+                {
+                    grpId = ddlgrp.SelectedValue;
+                }
 
-                Post post = new Post(title, content, userId, "100", date);
+                Post post = new Post(title, content, userId, grpId, date);
                 int result = post.AddPost();
 
                 if (result == 1)
