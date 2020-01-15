@@ -181,8 +181,8 @@
     <Content Include="Public\js\popper.min.js" />
     <Content Include="Views\Profile\forgotpassword.aspx" />
     <Content Include="Views\Auth\register.aspx" />
+    <Content Include="Views\Resources\resourceUpload.aspx" />
     <Content Include="Views\Schedule\editToDoPlan.aspx" />
-    <Content Include="Views\Resources\Test.aspx" />
     <Content Include="Views\Testing Folder\fileUploadTest.aspx" />
     <Content Include="Views\Profile\settings.aspx" />
     <Content Include="Views\Schedule\schedule.aspx" />
@@ -360,12 +360,12 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Resources\Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Views\Resources\resourceUpload.aspx.cs">
+      <DependentUpon>resourceUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Resources\Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Views\Resources\resourceUpload.aspx.designer.cs">
+      <DependentUpon>resourceUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Testing Folder\fileUploadTest.aspx.cs">
       <DependentUpon>fileUploadTest.aspx</DependentUpon>

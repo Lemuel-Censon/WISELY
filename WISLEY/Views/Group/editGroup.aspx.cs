@@ -66,7 +66,8 @@ namespace WISLEY.Views.Group
         public void updateGroup(object sender, EventArgs e)
         {
             string grpDescription = groupDescriptionTB.Text.Trim();
-            string grpWeightage = groupWeightageTB.Text.Trim();
+            //string grpWeightage = groupWeightageTB.Text.Trim();
+            string grpWeightage = "0";
 
             if (ValidateInput(grpDescription, grpWeightage))
             {

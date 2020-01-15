@@ -15,6 +15,7 @@
 
                 <div class="col-10">
                     <h3 class=""> <%#Eval("name")%> </h3>
+                    <h5> <%# Eval("accType") %> </h5>
                 </div>
 
             </div>

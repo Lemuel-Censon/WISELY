@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row justify-content-start mb-4">
+<%--                    <div class="form-row justify-content-start mb-4">
                         <div class="col-2">
                             <label for="groupWeightageTB">Group Weightage</label>
                         </div>
@@ -41,7 +41,7 @@
                             <p class="small">This is the point weightage of this module group</p>
 
                         </div>
-                    </div>
+                    </div>--%>
 
 
                     <div class="row justify-content-end">

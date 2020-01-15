@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY {
+namespace WISLEY.Views.Resources {
     
     
-    public partial class NestedMasterPage1 {
+    public partial class resourceUpload {
         
         /// <summary>
-        /// groupBtns control.
+        /// resourceUploadControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater groupBtns;
+        protected global::System.Web.UI.WebControls.FileUpload resourceUploadControl;
         
         /// <summary>
-        /// groupData control.
+        /// UploadButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource groupData;
-        
-        /// <summary>
-        /// sidebarContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder sidebarContent;
+        protected global::System.Web.UI.WebControls.Button UploadButton;
     }
 }
