@@ -6,10 +6,6 @@
             <div class="card-body px-5">
                 <h5 class="card-title mb-4">Change Password</h5>
                 <div class="md-form md-outline">
-                    <asp:Label AssociatedControlID="TbCurrentPassword" ID="LbCurrentPassword" runat="server" Text="Current password"></asp:Label>
-                    <asp:TextBox ID="TbCurrentPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                </div>
-                <div class="md-form md-outline">
                     <asp:Label AssociatedControlID="TbNewPassword" ID="LbNewPassword" runat="server" Text="New password"></asp:Label>
                     <asp:TextBox ID="TbNewPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                 </div>

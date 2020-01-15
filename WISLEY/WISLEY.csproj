@@ -179,7 +179,7 @@
     <Content Include="Public\js\modules\wow.min.js" />
     <Content Include="Public\js\popper.js" />
     <Content Include="Public\js\popper.min.js" />
-    <Content Include="Views\Profile\recoveraccount.aspx" />
+    <Content Include="Views\Profile\forgotpassword.aspx" />
     <Content Include="Views\Auth\register.aspx" />
     <Content Include="Views\Schedule\editToDoPlan.aspx" />
     <Content Include="Views\Resources\Test.aspx" />
@@ -331,12 +331,12 @@
     <Compile Include="Views\Masters\navbar.Master.designer.cs">
       <DependentUpon>navbar.Master</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile\recoveraccount.aspx.cs">
-      <DependentUpon>recoveraccount.aspx</DependentUpon>
+    <Compile Include="Views\Profile\forgotpassword.aspx.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Profile\recoveraccount.aspx.designer.cs">
-      <DependentUpon>recoveraccount.aspx</DependentUpon>
+    <Compile Include="Views\Profile\forgotpassword.aspx.designer.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Auth\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>

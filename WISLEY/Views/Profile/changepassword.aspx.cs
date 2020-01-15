@@ -38,11 +38,8 @@ namespace WISLEY
 
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(TbCurrentPassword.Text))
-            {
-                toast(this, "Please enter your current password!", "Error", "error");
-            }
-            else if (String.IsNullOrEmpty(TbNewPassword.Text))
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            if (String.IsNullOrEmpty(TbNewPassword.Text))
             {
                 toast(this, "Please enter a new password!", "Error", "error");
             }
@@ -50,7 +47,7 @@ namespace WISLEY
             {
                 toast(this, "Please confirm your new password!", "Error", "error");
             }
-            else if (TbCurrentPassword.Text == TbNewPassword.Text)
+            else if (TbNewPassword.Text == user.password)
             {
                 toast(this, "You cannot use the same password!", "Error", "error");
             }
@@ -62,7 +59,7 @@ namespace WISLEY
             {
                 string email = Session["email"].ToString();
                 string password = TbConfirmPassword.Text;
-                User user = new User();
+                user = new User();
                 int result = user.UpdatePassword(email, password);
                 if (result == 1)
                 {

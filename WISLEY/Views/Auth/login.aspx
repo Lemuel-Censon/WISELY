@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-footer">
                         <p class="small m-0 text-center">
-                            <a href="<%= Page.ResolveUrl("~/Views/Profile/recoveraccount.aspx") %>">Forgot your password?</a>
+                            <a href="<%= Page.ResolveUrl("~/Views/Profile/forgotpassword.aspx") %>">Forgot your password?</a>
                         </p>
                         <p class="text-center small m-0">
                             Don't have an account yet? <a href="<%= Page.ResolveUrl("~/Views/Auth/register.aspx") %>">Click here to register.</a>

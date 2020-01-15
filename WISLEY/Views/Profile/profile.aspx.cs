@@ -42,6 +42,14 @@ namespace WISLEY
                 {
                     LbContact.Visible = false;
                 }
+                if (user.privacy == "T")
+                {
+                    LbPrivacy.Text = "Privacy is On";
+                }
+                else
+                {
+                    LbPrivacy.Text = "Privacy is Off";
+                }
                 hidotheremail.Value = Session["email"].ToString();
                 if (Session["success"] != null)
                 {
