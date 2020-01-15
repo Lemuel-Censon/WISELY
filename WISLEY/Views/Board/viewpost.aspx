@@ -17,7 +17,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <h5 class="font-weight-bold mt-0">
-                                                <asp:LinkButton runat="server" ID="postlink" CommandName="viewpost" CommandArgument='<%#Eval("userId") %>'><%#Eval("userId") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="postlink" CommandName="viewpost" CommandArgument='<%#Eval("userId") %>'><%#Eval("name") %></asp:LinkButton>
                                             </h5>
                                         </div>
                                         <div class="col-lg-6">
@@ -67,7 +67,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <h5 class="font-weight-bold mt-0">
-                                                                    <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("userId") %>'></asp:LinkButton>
+                                                                    <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("name") %>'></asp:LinkButton>
                                                                 </h5>
                                                             </div>
                                                             <div class="col-lg-6">

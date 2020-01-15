@@ -23,8 +23,12 @@ namespace WISLEY
                 LbEmail.Text = Session["email"].ToString();
                 LbPostID.Text = Session["postId"].ToString();
                 commcount();
-                postdata.SelectCommand = "SELECT * FROM POST WHERE Id = " + LbPostID.Text;
-                commentdata.SelectCommand = "SELECT * FROM COMMENT WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
+                postdata.SelectCommand = "SELECT post.*, [User].name FROM POST " +
+                    "INNER JOIN [User] ON post.userId = [User].Id " +
+                    "WHERE Id = " + LbPostID.Text;
+                commentdata.SelectCommand = "SELECT comment.*, [User].name FROM COMMENT " +
+                    "INNER JOIN [User] ON comment.userId = [User].Id " +
+                    "WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
                 if (Session["success"] != null)
                 {
                     toast(this, "Comment posted!", "Success", "success");

@@ -43,7 +43,10 @@ namespace WISLEY
                 }
                 if (Request.QueryString["groupId"] != null)
                 {
-                    postdata.SelectCommand = "SELECT * FROM POST WHERE groupId = " + Request.QueryString["groupId"] + " ORDER BY Id DESC";
+                    postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((post " +
+                        "INNER JOIN [User] ON post.userId = [User].Id) " +
+                        "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
+                        "WHERE post.groupId = " + Request.QueryString["groupId"] + " ORDER BY Id DESC";
                 }
                 else
                 {
@@ -58,7 +61,11 @@ namespace WISLEY
                         }
                     }
                     ddlgrp.Visible = true;
-                    postdata.SelectCommand = "SELECT * FROM POST WHERE userId in (Select Id from [User] where email = '" + LbEmail.Text + "') ORDER BY Id DESC";
+                    postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((POST " +
+                        "INNER JOIN [User] ON post.userId = [User].Id) " +
+                        "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
+                        "WHERE userId in " +
+                        "(Select Id from [User] where email = '" + LbEmail.Text + "') ORDER BY Id DESC";
                 }
             }
             else
