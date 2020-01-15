@@ -52,6 +52,12 @@ namespace WISLEY.BLL.Profile
             return userdao.SelectByEmail(email);
         }
 
+        public User SelectById(string uid)
+        {
+            UserDAO userdao = new UserDAO();
+            return userdao.SelectById(uid);
+        }
+
         public int UpdateUser(string email, string name, string dob, string contactNo)
         {
             UserDAO userdao = new UserDAO();

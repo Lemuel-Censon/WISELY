@@ -75,6 +75,42 @@ namespace WISLEY.DAL.Profile
             return obj;
         }
 
+        public User SelectById(string uid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from [User] where Id = @paraUid";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraUid", uid);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            User obj = null;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                string email = row["email"].ToString();
+                string password = row["password"].ToString();
+                string type = row["accType"].ToString();
+                string name = row["name"].ToString();
+                string dob = row["dob"].ToString();
+                string contactNo = row["contactNo"].ToString();
+                string gender = row["gender"].ToString();
+                int exp = int.Parse(row["experience"].ToString());
+                int points = int.Parse(row["wisPoints"].ToString());
+                string privacy = row["privacy"].ToString();
+                int id = int.Parse(row["Id"].ToString());
+
+
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, id);
+            }
+
+            return obj;
+        }
+
         public int UpdateUser(string email, string name, string dob, string contactNo)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;

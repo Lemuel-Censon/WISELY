@@ -23,7 +23,18 @@ namespace WISLEY
             {
                 LbEmail.Text = Session["email"].ToString();
                 hidotheremail.Value = Session["uid"].ToString();
-                User user = new User().SelectByEmail(LbEmail.Text);
+                
+                if (Session["success"] != null)
+                {
+                    toast(this, Session["success"].ToString(), "Success", "success");
+                    Session["success"] = null;
+                }
+                if (Request.QueryString["id"] != null)
+                {
+                    userid.Value = Request.QueryString["id"];
+                }
+
+                User user = new User().SelectById(userid.Value);
                 LbName.Text = user.name;
                 LbType.Text = user.userType;
                 LbWISPoints.Text = user.points.ToString();
@@ -31,7 +42,8 @@ namespace WISLEY
                 {
                     LbDob.Visible = true;
                     LbDob.Text = "Born in " + user.dob;
-                } else
+                }
+                else
                 {
                     LbDob.Visible = false;
                 }
@@ -39,7 +51,8 @@ namespace WISLEY
                 {
                     LbContact.Visible = true;
                     LbContact.Text = "Contact No: " + user.contactNo;
-                } else
+                }
+                else
                 {
                     LbContact.Visible = false;
                 }
@@ -50,16 +63,6 @@ namespace WISLEY
                 else
                 {
                     LbPrivacy.Text = "Privacy is Off";
-                }
-                
-                if (Session["success"] != null)
-                {
-                    toast(this, Session["success"].ToString(), "Success", "success");
-                    Session["success"] = null;
-                }
-                if (Request.QueryString["id"] != null)
-                {
-                    userid.Value = Request.QueryString["id"];
                 }
                 postcount();
                 userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
