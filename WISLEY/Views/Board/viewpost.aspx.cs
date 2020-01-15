@@ -85,7 +85,7 @@ namespace WISLEY
         {
             if (e.CommandName == "viewprofile")
             {
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
             }
 
             if (e.CommandName == "editcomm")
@@ -139,7 +139,7 @@ namespace WISLEY
         {
             if (e.CommandName == "viewpost")
             {
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
             }
         }
 

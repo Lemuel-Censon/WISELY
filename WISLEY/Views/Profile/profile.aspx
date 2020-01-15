@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <asp:HiddenField runat="server" ID="hidotheremail" />
-    <h3 class="font-weight-bold text-center"><%if (LbEmail.Text == hidotheremail.Value)
+    <asp:HiddenField runat="server" ID="userid" />
+    <h3 class="font-weight-bold text-center"><%if (userid.Value == hidotheremail.Value)
                                                  { %>Your Profile<%} %></h3>
     <div class="card">
         <div class="card-body">
@@ -17,7 +18,7 @@
                         <asp:Label ID="LbName" runat="server"></asp:Label>
                     </h3>
                     <%
-                        if (LbEmail.Text == hidotheremail.Value || LbPrivacy.Text == "Privacy is Off")
+                        if (userid.Value == hidotheremail.Value || LbPrivacy.Text == "Privacy is Off")
                         { %>
                     <h5>
                         <asp:Label ID="LbEmail" runat="server"></asp:Label>
@@ -69,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <%if (LbEmail.Text == hidotheremail.Value)
+                <%if (userid.Value == hidotheremail.Value)
                     { %>
                 <div class="col-lg-6 text-right">
                     <asp:Button CssClass="btn btn-sm btn-info" ID="btnchangeAvatar" runat="server" Text="Change Avatar" OnClick="btnchangeAvatar_Click" />
@@ -115,14 +116,14 @@
             <div class="tab-content">
                 <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
                     Currently Empty
-                        <%if (LbEmail.Text == hidotheremail.Value)
+                        <%if (userid.Value == hidotheremail.Value)
                             { %>
                     <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
                     <%} %>
                 </div>
                 <div id="msgwall" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     Currently Empty
-                        <%if (LbEmail.Text == hidotheremail.Value)
+                        <%if (userid.Value == hidotheremail.Value)
                             { %>
                     <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click" />
                     <%} %>

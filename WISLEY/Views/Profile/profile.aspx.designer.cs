@@ -22,6 +22,15 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.HiddenField hidotheremail;
         
         /// <summary>
+        /// userid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField userid;
+        
+        /// <summary>
         /// LbName control.
         /// </summary>
         /// <remarks>

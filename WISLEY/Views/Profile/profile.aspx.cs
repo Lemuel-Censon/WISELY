@@ -19,9 +19,10 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["email"] != null)
+            if (Session["email"] != null && Session["uid"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
+                hidotheremail.Value = Session["uid"].ToString();
                 User user = new User().SelectByEmail(LbEmail.Text);
                 LbName.Text = user.name;
                 LbType.Text = user.userType;
@@ -50,18 +51,18 @@ namespace WISLEY
                 {
                     LbPrivacy.Text = "Privacy is Off";
                 }
-                hidotheremail.Value = Session["email"].ToString();
+                
                 if (Session["success"] != null)
                 {
                     toast(this, Session["success"].ToString(), "Success", "success");
                     Session["success"] = null;
                 }
-                if (Request.QueryString["email"] != null)
+                if (Request.QueryString["id"] != null)
                 {
-                    LbEmail.Text = Request.QueryString["email"];
+                    userid.Value = Request.QueryString["id"];
                 }
                 postcount();
-                userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + LbEmail.Text + "' ORDER BY Id DESC";
+                userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
             }
             else
             {

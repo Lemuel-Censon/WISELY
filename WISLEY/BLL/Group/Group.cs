@@ -66,13 +66,11 @@ namespace WISLEY.BLL.Group
             List<Group> grpList = new List<Group>(); 
             GroupDAO groupDAO = new GroupDAO();
             List<int> grpIdList = groupDAO.SelectUserGroupsJoined(email);
-
-            if (grpIdList[0] != null){
-                for (int j = 0; j < grpIdList.Count; j++)
-                {
-                    Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
-                    grpList.Add(grp);
-                }
+      
+            for (int j = 0; j < grpIdList.Count; j++)
+            {
+                Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
+                grpList.Add(grp);
             }
 
             return grpList;

@@ -24,7 +24,6 @@ namespace WISLEY
         {
             if (Session["email"] != null)
             {
-                postcount();
                 LbEmail.Text = Session["email"].ToString();
                 if (Session["success"] != null)
                 {
@@ -184,7 +183,7 @@ namespace WISLEY
 
             if (e.CommandName == "viewprofile")
             {
-                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?email="+ e.CommandArgument.ToString()));
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
             }
 
             if (e.CommandName == "editpost")

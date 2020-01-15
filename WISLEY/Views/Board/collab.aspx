@@ -80,7 +80,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <h5 class="font-weight-bold mt-0">
-                                                            <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("username") %>' Text='<%#Eval("username") %>'></asp:LinkButton>
+                                                            <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("username") %>'></asp:LinkButton>
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6">

@@ -29,6 +29,12 @@ namespace WISLEY
             page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
+        }
+
         public bool ValidateInput()
         {
             bool valid = false;
@@ -69,6 +75,8 @@ namespace WISLEY
                 if (Session["email"] == null)
                 {
                     Session["email"] = TbEmail.Text;
+                    int uid = user().id;
+                    Session["uid"] = uid;
                     Session["success"] = "Logged in successfully!";
                     Response.Redirect("~/Views/Board/collab.aspx");
                 }
