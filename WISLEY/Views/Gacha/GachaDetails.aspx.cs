@@ -13,6 +13,14 @@ namespace WISLEY.Views.Gacha
         {
             GvSummon.Visible = true;
             LabelSummon.Text = Session["SSSummon"].ToString();
+            if (LabelSummon.Text == "Regular Summon")
+            {
+                gachadetailsbanner.Attributes.Add("src", "//cdn.bannersnack.com/banners/bxh82nnjd/embed/index.html?userId=40214613&t=1575958709");
+            }
+            else
+            {
+                gachadetailsbanner.Attributes.Add("src", "//cdn.bannersnack.com/banners/bdpl499mz/embed/index.html?userId=40214613&t=1575957949");
+            }
         }
 
         protected void ButtonBack_Click(object sender, EventArgs e)

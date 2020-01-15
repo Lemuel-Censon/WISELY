@@ -7,5 +7,7 @@ namespace WISLEY.BLL.Gacha
 {
     public class Avatar
     {
+        public int avatarID { get; set; }
+        public int acquiredCharacters { get; set; }
     }
 }

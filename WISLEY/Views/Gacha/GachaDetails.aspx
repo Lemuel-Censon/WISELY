@@ -27,6 +27,9 @@
             <br />
             <asp:Label ID="LabelSummon" runat="server"></asp:Label>
             </p>
+        <p class="text-center" style="font-family:Cambria">
+                    <iframe id="gachadetailsbanner" width="820" height="244" scrolling="no" frameborder="0" allowtransparency="true" allow="autoplay" allowfullscreen="true" runat="server"></iframe>
+            &nbsp;</p>
 
         <div class="auto-style2">
         <asp:GridView ID="GvSummon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" CssClass="auto-style3" GridLines="None" OnSelectedIndexChanged="GridViewSummon_SelectedIndexChanged">

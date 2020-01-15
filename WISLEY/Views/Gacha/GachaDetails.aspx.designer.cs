@@ -31,6 +31,15 @@ namespace WISLEY.Views.Gacha {
         protected global::System.Web.UI.WebControls.Label LabelSummon;
         
         /// <summary>
+        /// gachadetailsbanner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe gachadetailsbanner;
+        
+        /// <summary>
         /// GvSummon control.
         /// </summary>
         /// <remarks>
