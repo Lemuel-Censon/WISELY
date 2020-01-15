@@ -60,5 +60,22 @@ namespace WISLEY.BLL.Group
             GroupDAO groupDAO = new GroupDAO();
             return groupDAO.joinGroup(email, code);
         }
+
+        public List<Group> getGroupsJoined(string email)
+        {
+            List<Group> grpList = new List<Group>(); 
+            GroupDAO groupDAO = new GroupDAO();
+            List<int> grpIdList = groupDAO.SelectUserGroupsJoined(email);
+
+            if (grpIdList[0] != null){
+                for (int j = 0; j < grpIdList.Count; j++)
+                {
+                    Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
+                    grpList.Add(grp);
+                }
+            }
+
+            return grpList;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
+using WISLEY.BLL.Group;
 
 namespace WISLEY
 {
@@ -38,6 +39,25 @@ namespace WISLEY
                 {
                     toast(this, Session["postadd"].ToString(), "Success", "success");
                     Session["postadd"] = null;
+                }
+                if (Request.QueryString["groupId"] != null)
+                {
+                    postdata.SelectCommand = "SELECT * FROM POST WHERE groupId = " + Request.QueryString["groupId"] + " ORDER BY Id DESC";
+                }
+                else
+                {
+                    List<Group> groups = new Group().getGroupsJoined(LbEmail.Text);
+                    if (!Page.IsPostBack)
+                    {
+                        ddlgrp.Items.Insert(0, "Select Group");
+                        for (int i = 0; i < groups.Count; i++)
+                        {
+                            ListItem item = new ListItem(groups[i].name, groups[i].id.ToString());
+                            ddlgrp.Items.Insert(i + 1, item);
+                        }
+                    }
+                    ddlgrp.Visible = true;
+                    postdata.SelectCommand = "SELECT * FROM POST WHERE userId in (Select Id from [User] where email = '" + LbEmail.Text + "') ORDER BY Id DESC";
                 }
             }
             else

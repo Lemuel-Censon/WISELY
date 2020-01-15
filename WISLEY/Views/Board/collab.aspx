@@ -24,9 +24,12 @@
                             <asp:Label ID="LbFile" AssociatedControlID="fileUpload" runat="server" Text="Upload a file" CssClass="custom-file-label"></asp:Label>
                         </div>
                     </div>
-                    <div class="col-lg-6 text-right">
-                        <asp:Button CssClass="btn btn-success ml-auto" ID="btnpost" runat="server" Text="Post" OnClick="btnpost_Click" />
+                    <div class="col-lg-6">
+                        <asp:DropDownList runat="server" ID="ddlgrp" Visible="false" CssClass="custom-select"></asp:DropDownList>
                     </div>
+                </div>
+                <div class="text-right">
+                    <asp:Button CssClass="btn btn-success ml-auto" ID="btnpost" runat="server" Text="Post" OnClick="btnpost_Click" />
                 </div>
             </div>
         </div>
@@ -114,7 +117,6 @@
 
             <asp:SqlDataSource ID="postdata"
                 ConnectionString="<%$ connectionStrings: ConnStr%>"
-                SelectCommand="SELECT * FROM POST ORDER BY Id DESC"
                 runat="server"></asp:SqlDataSource>
             <%} %><% else
                       { %>
