@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WISLEY.Views.Schedule
 {
-    public partial class editToDoPlan : System.Web.UI.Page
+    public partial class editToDo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

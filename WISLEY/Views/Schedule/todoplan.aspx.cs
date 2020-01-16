@@ -12,7 +12,7 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            tbDateSelected.Text = Session["selectDate"].ToString();
+            LblSelectedDate.Text = Session["selectDate"].ToString();
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -29,7 +29,7 @@ namespace WISLEY
         {
             if (validateInput())
             {
-                DateTime selectedToDoDate = Convert.ToDateTime(tbDateSelected.Text);
+                DateTime selectedToDoDate = Convert.ToDateTime(LblSelectedDate.Text);
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
 
@@ -39,11 +39,12 @@ namespace WISLEY
                 if (count == 1)
                 {
                     toast(this, "Your To-Do-List has been added sucessfully!", "Success", "success");
+                    Response.Redirect("schedules.aspx");
                 }
 
                 else
                 {
-                    toast(this, "Your To-Do-List was not added successfully!", "Danger", "danger");
+                    toast(this, "Your To-Do-List is not added successfully!", "Danger", "danger");
                 }
             }
         }

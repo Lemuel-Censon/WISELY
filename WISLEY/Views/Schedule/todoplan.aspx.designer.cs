@@ -13,13 +13,31 @@ namespace WISLEY {
     public partial class todoplan {
         
         /// <summary>
-        /// tbDateSelected control.
+        /// LblToDoDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDateSelected;
+        protected global::System.Web.UI.WebControls.Label LblToDoDate;
+        
+        /// <summary>
+        /// LblSelectedDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblSelectedDate;
+        
+        /// <summary>
+        /// LblToDoTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblToDoTitle;
         
         /// <summary>
         /// tbTitle control.
@@ -31,6 +49,15 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox tbTitle;
         
         /// <summary>
+        /// LblToDoDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblToDoDesc;
+        
+        /// <summary>
         /// tbDesc control.
         /// </summary>
         /// <remarks>
@@ -40,15 +67,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.TextBox tbDesc;
         
         /// <summary>
-        /// btnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>
@@ -56,5 +74,14 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
     }
 }

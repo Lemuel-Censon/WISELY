@@ -16,40 +16,23 @@
         <div class="card-body">
             <h3 class="text-center font-weight-bold">Your to-do-list</h3>
 
-            <div class="border border-primary">
-                    
-                <table class="w-100">
-                    <tr>
-                        <td class="auto-style1 font-weight-bold">Date selected:</td>
-                        <td>
-                            <asp:TextBox ID="tbDateSelected" runat="server" Width="202px" CssClass="offset-sm-0" ReadOnly="True"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1 font-weight-bold">Title of your to-do-list:</td>
-                        <td class="auto-style3">
-                            <asp:TextBox ID="tbTitle" runat="server" Width="412px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1 font-weight-bold">Description of your to-do-list:</td>
-                        <td>
-                            <asp:TextBox ID="tbDesc" runat="server" Height="133px" TextMode="MultiLine" Width="412px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1">&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1">&nbsp;</td>
-                        <td>
-                            <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add" />
-                            <asp:Button ID="btnBack" runat="server" CssClass="btn btn-danger" OnClick="btnBack_Click" Text="Back" />
-                        </td>
-                    </tr>
-                </table>
-                    
+            <asp:Label ID="LblToDoDate" runat="server" CssClass="font-weight-bold" Text="Date selected for your to-do-list: "></asp:Label>
+            <asp:Label ID="LblSelectedDate" runat="server" CssClass="font-weight-bold"></asp:Label>
+            <%--<asp:TextBox ID="tbSelectedDate" runat="server" CssClass="form-control"></asp:TextBox>--%>
+            
+            <div class="md-form md-outline">
+                <asp:Label ID="LblToDoTitle" runat="server" AssociatedControlID="tbTitle" CssClass="font-weight-bold" Text="Title of your to-do-list"></asp:Label>
+                <asp:TextBox ID="tbTitle" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="md-form md-outline">
+                <asp:Label ID="LblToDoDesc" runat="server" AssociatedControlID="tbDesc" CssClass="font-weight-bold" Text="Description of your to-do-list"></asp:Label>
+                <asp:TextBox ID="tbDesc" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="7"></asp:TextBox>
+            </div>
+
+            <div class="row">
+                <asp:Button ID="btnBack" runat="server" CssClass="btn btn-danger" OnClick="btnBack_Click" Text="Back" />
+                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add" />
             </div>
         </div>
     </div>

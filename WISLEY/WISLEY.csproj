@@ -183,9 +183,12 @@
     <Content Include="Views\Auth\register.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
     <Content Include="Views\Schedule\editToDoPlan.aspx" />
+    <Content Include="Views\Resources\Test.aspx" />
+    <Content Include="Views\Schedule\editToDo.aspx" />
+    <Content Include="Views\Schedule\schedule.aspx" />
     <Content Include="Views\Testing Folder\fileUploadTest.aspx" />
     <Content Include="Views\Profile\settings.aspx" />
-    <Content Include="Views\Schedule\schedule.aspx" />
+    <Content Include="Views\Schedule\scheduleEg.aspx" />
     <Content Include="Public\js\toast\toastr.js" />
     <Content Include="Public\js\toast\toastr.min.js" />
     <Content Include="Views\Schedule\todoplan.aspx" />
@@ -367,6 +370,20 @@
     <Compile Include="Views\Resources\resourceUpload.aspx.designer.cs">
       <DependentUpon>resourceUpload.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Schedule\editToDo.aspx.cs">
+      <DependentUpon>editToDo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Schedule\editToDo.aspx.designer.cs">
+      <DependentUpon>editToDo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\schedule.aspx.cs">
+      <DependentUpon>schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Schedule\schedule.aspx.designer.cs">
+      <DependentUpon>schedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Testing Folder\fileUploadTest.aspx.cs">
       <DependentUpon>fileUploadTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -381,12 +398,12 @@
     <Compile Include="Views\Profile\settings.aspx.designer.cs">
       <DependentUpon>settings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Schedule\schedule.aspx.cs">
-      <DependentUpon>schedule.aspx</DependentUpon>
+    <Compile Include="Views\Schedule\scheduleEg.aspx.cs">
+      <DependentUpon>scheduleEg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Schedule\schedule.aspx.designer.cs">
-      <DependentUpon>schedule.aspx</DependentUpon>
+    <Compile Include="Views\Schedule\scheduleEg.aspx.designer.cs">
+      <DependentUpon>scheduleEg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Schedule\todoplan.aspx.cs">
       <DependentUpon>todoplan.aspx</DependentUpon>

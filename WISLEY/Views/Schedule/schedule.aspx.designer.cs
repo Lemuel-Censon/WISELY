@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY {
+namespace WISLEY.Views.Schedule {
     
     
-    public partial class schedule {
+    public partial class schedules {
         
         /// <summary>
         /// calendarPlan control.
@@ -20,5 +20,14 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar calendarPlan;
+        
+        /// <summary>
+        /// btnEditToDo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditToDo;
     }
 }

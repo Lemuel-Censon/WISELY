@@ -20,7 +20,6 @@ namespace WISLEY.BLL.Schedule
 
         public Planner(DateTime tododate, string todotitle, string tododescription)
         {
-            //this.userId = userID;
             this.todoDate = tododate;
             this.todoTitle = todotitle;
             this.todoDescription = tododescription;
@@ -30,6 +29,12 @@ namespace WISLEY.BLL.Schedule
         {
             PlannerDAO plannerdao = new PlannerDAO();
             return plannerdao.Insert(this);
+        }
+
+        public List<Planner> SelectAll()
+        {
+            PlannerDAO dao = new PlannerDAO();
+            return dao.SelectAllToDo();
         }
     }
 }
