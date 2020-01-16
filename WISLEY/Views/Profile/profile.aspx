@@ -23,11 +23,13 @@
                     <h5>
                         <asp:Label ID="LbEmail" runat="server"></asp:Label>
                     </h5>
-                    <div>
-                        <asp:Label ID="LbDob" runat="server" Visible="False"></asp:Label>
-                    </div>
-                    <div>
-                        <asp:Label ID="LbContact" runat="server" Visible="False"></asp:Label>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <asp:Label ID="LbDob" runat="server"></asp:Label>
+                        </div>
+                        <div class="col-lg-6">
+                            <asp:Label ID="LbContact" runat="server"></asp:Label>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">

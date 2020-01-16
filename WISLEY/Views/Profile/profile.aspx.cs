@@ -39,23 +39,23 @@ namespace WISLEY
                 LbName.Text = user.name;
                 LbType.Text = user.userType;
                 LbWISPoints.Text = user.points.ToString();
-                if (user.dob != string.Empty)
+                LbDob.Text = "Date of Birth: ";
+                LbContact.Text = "Contact Number: ";
+                if (!String.IsNullOrEmpty(user.dob))
                 {
-                    LbDob.Visible = true;
-                    LbDob.Text = "Born in " + user.dob;
+                    LbDob.Text += user.dob;
                 }
                 else
                 {
-                    LbDob.Visible = false;
+                    LbDob.Text += "Not set";
                 }
-                if (user.contactNo != string.Empty)
+                if (!String.IsNullOrEmpty(user.contactNo))
                 {
-                    LbContact.Visible = true;
-                    LbContact.Text = "Contact No: " + user.contactNo;
+                    LbContact.Text += user.contactNo;
                 }
                 else
                 {
-                    LbContact.Visible = false;
+                    LbContact.Text += "Not set";
                 }
                 if (user.privacy == "T")
                 {
