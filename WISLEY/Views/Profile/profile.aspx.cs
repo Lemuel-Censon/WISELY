@@ -23,6 +23,7 @@ namespace WISLEY
             {
                 LbEmail.Text = Session["email"].ToString();
                 hidotheremail.Value = Session["uid"].ToString();
+                userid.Value = Session["uid"].ToString();
                 
                 if (Session["success"] != null)
                 {
