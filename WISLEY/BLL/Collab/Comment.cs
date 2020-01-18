@@ -12,18 +12,20 @@ namespace WISLEY.BLL.Collab
         public string userid { get; set; }
         public string content { get; set; }
         public string datecreated { get; set; }
+        public string status { get; set; }
 
         public Comment()
         {
 
         }
 
-        public Comment(string postid, string userid, string content, string datecreated)
+        public Comment(string postid, string userid, string content, string datecreated, string status = "")
         {
             this.postid = postid;
             this.userid = userid;
             this.content = content;
             this.datecreated = datecreated;
+            this.status = status;
         }
 
         public int AddComment()
@@ -48,6 +50,12 @@ namespace WISLEY.BLL.Collab
         {
             CommentDAO commdao = new CommentDAO();
             return commdao.UpdateComment(commId, content, datecreate);
+        }
+
+        public int DelCommUpdate(string commId, string status)
+        {
+            CommentDAO commdao = new CommentDAO();
+            return commdao.DelCommUpdate(commId, status);
         }
     }
 }

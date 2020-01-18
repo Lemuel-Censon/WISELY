@@ -45,11 +45,6 @@ namespace WISLEY
                 toast(this, "Both passwords must match!", "Error", "error");
             }
 
-            else if (typelist.SelectedIndex == -1)
-            {
-                toast(this, "Please indicate whether you are a student or teacher!", "Error", "error");
-            }
-
             else if (compare != null)
             {
                 toast(this, "Account already exists!", "Error", "error");
@@ -66,12 +61,11 @@ namespace WISLEY
         {
             if (ValidateInput())
             {
-                string type = typelist.SelectedItem.Text;
                 string email = TbEmail.Text;
                 string name = TbName.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, type, name, "", "", "", 0, 0, "F");
+                User user = new User(email, password, "Student", name, "", "", "", 0, 0, "F");
                 int result = user.AddUser();
                 if (result == 1)
                 {

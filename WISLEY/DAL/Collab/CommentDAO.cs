@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Comment (postId, userId, content, datecreated)" +
-                             "VALUES (@paraPostID, @paraUserID, @paraContent, @paraDatecreate)";
+            string sqlStmt = "INSERT INTO Comment (postId, userId, content, datecreated, status)" +
+                             "VALUES (@paraPostID, @paraUserID, @paraContent, @paraDatecreate, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -26,6 +26,7 @@ namespace WISLEY.DAL.Collab
             sqlCmd.Parameters.AddWithValue("@paraUserID", comment.userid);
             sqlCmd.Parameters.AddWithValue("@paraContent", comment.content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", comment.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraStatus", comment.status);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -70,7 +71,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment where postId = @paraPostId ORDER BY Id DESC";
+            string sqlstmt = "Select * from Comment where postId = @paraPostId AND status = '' ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraPostId", postId);
 
@@ -119,6 +120,29 @@ namespace WISLEY.DAL.Collab
 
             return result;
 
+        }
+
+        public int DelCommUpdate(string commId, string status)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Comment " +
+                "SET status = @paraStatus " +
+                "WHERE Id = @paracommID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paracommID", commId);
+            sqlCmd.Parameters.AddWithValue("@paraStatus", status);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }

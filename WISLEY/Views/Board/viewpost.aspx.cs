@@ -18,21 +18,25 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["postId"] != null && Session["email"] != null)
+            if (Session["postId"] != null && Session["uid"] != null)
             {
-                LbEmail.Text = Session["email"].ToString();
+                LbUserID.Value = Session["uid"].ToString();
                 LbPostID.Text = Session["postId"].ToString();
-                commcount();
                 postdata.SelectCommand = "SELECT post.*, [User].name FROM POST " +
                     "INNER JOIN [User] ON post.userId = [User].Id " +
-                    "WHERE Id = " + LbPostID.Text;
+                    "WHERE post.Id = " + LbPostID.Text;
                 commentdata.SelectCommand = "SELECT comment.*, [User].name FROM COMMENT " +
                     "INNER JOIN [User] ON comment.userId = [User].Id " +
-                    "WHERE postId = " + LbPostID.Text + "ORDER BY Id DESC";
+                    "WHERE comment.postId = " + LbPostID.Text + " AND status = '' ORDER BY Id DESC";
                 if (Session["success"] != null)
                 {
-                    toast(this, "Comment posted!", "Success", "success");
+                    toast(this, Session["success"].ToString(), "Success", "success");
                     Session["success"] = null;
+                }
+                if (Session["error"] != null)
+                {
+                    toast(this, Session["error"].ToString(), "Error", "error");
+                    Session["error"] = null;
                 }
             }
             else
@@ -66,12 +70,12 @@ namespace WISLEY
                 string content = tbcomment.Text;
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
 
-                Comment comment = new Comment(postId, LbEmail.Text, content, date);
+                Comment comment = new Comment(postId, LbUserID.Value, content, date);
                 int result = comment.AddComment();
 
                 if (result == 1)
                 {
-                    Session["success"] = "toast";
+                    Session["success"] = "Comment posted!";
                     Response.Redirect("viewpost.aspx");
                 }
                 else
@@ -128,6 +132,23 @@ namespace WISLEY
                     }
                 }
             }
+
+            if (e.CommandName == "delcomm")
+            {
+                string commId = e.CommandArgument.ToString();
+                Comment comment = new Comment();
+                int result = comment.DelCommUpdate(commId, "deleted");
+                if (result == 1)
+                {
+                    Session["success"] = "Post deleted successfully!";
+                    Response.Redirect("viewpost.aspx");
+                }
+                else
+                {
+                    Session["error"] = "Post was unable to be deleted, please inform system administrator!";
+                    Response.Redirect("viewpost.aspx");
+                }
+            }
         }
 
         protected void btnback_Click(object sender, EventArgs e)
@@ -145,8 +166,8 @@ namespace WISLEY
 
         protected void commentinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            LinkButton userId = (LinkButton)e.Item.FindControl("viewprofile");
-            if (userId.Text != LbEmail.Text)
+            HiddenField userId = (HiddenField)e.Item.FindControl("commuserID");
+            if (userId.Value != LbUserID.Value)
             {
                 e.Item.FindControl("btnEdit").Visible = false;
             }

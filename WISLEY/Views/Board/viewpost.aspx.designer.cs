@@ -31,6 +31,15 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Label LbPostID;
         
         /// <summary>
+        /// LbUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField LbUserID;
+        
+        /// <summary>
         /// post control.
         /// </summary>
         /// <remarks>

@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated)" +
-                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate)";
+            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, status)" +
+                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -27,6 +27,7 @@ namespace WISLEY.DAL.Collab
             sqlCmd.Parameters.AddWithValue("@paraTitle", post.title);
             sqlCmd.Parameters.AddWithValue("@paraContent", post.content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", post.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraStatus", post.status);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -185,6 +186,29 @@ namespace WISLEY.DAL.Collab
 
             return result;
 
+        }
+
+        public int DelPostUpdate(string postId, string status)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Post " +
+                "SET status = @paraStats " +
+                "WHERE Id = @paraPostID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraStats", status);
+            sqlCmd.Parameters.AddWithValue("@paraPostID", postId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }

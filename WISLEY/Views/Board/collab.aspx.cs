@@ -45,7 +45,8 @@ namespace WISLEY
                     postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((post " +
                         "INNER JOIN [User] ON post.userId = [User].Id) " +
                         "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
-                        "WHERE post.groupId = " + Request.QueryString["groupId"] + " ORDER BY Id DESC";
+                        "WHERE post.groupId = " + Request.QueryString["groupId"] + " " +
+                        "AND post.status = '' ORDER BY Id DESC";
                 }
                 else
                 {
@@ -64,7 +65,8 @@ namespace WISLEY
                         "INNER JOIN [User] ON post.userId = [User].Id) " +
                         "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
                         "WHERE userId in " +
-                        "(Select Id from [User] where email = '" + LbEmail.Text + "') ORDER BY Id DESC";
+                        "(Select Id from [User] where email = '" + LbEmail.Text + "') " +
+                        "AND post.status = '' ORDER BY Id DESC";
                 }
             }
             else
@@ -96,7 +98,7 @@ namespace WISLEY
             {
                 toast(this, "Please enter some content!", "Error", "error");
             }
-            else if (ddlgrp.SelectedValue == "-1" && Request.QueryString["groupId"] != null)
+            else if (ddlgrp.SelectedIndex == 0 && Request.QueryString["groupId"] == null)
             {
                 toast(this, "Please select a group to post in!", "Error", "error");
             }
@@ -242,14 +244,32 @@ namespace WISLEY
                     }
                 }
             }
+
+            if (e.CommandName == "delpost")
+            {
+                string postId = e.CommandArgument.ToString();
+                Post post = new Post();
+                int result = post.DelPostUpdate(postId, "deleted");
+                if (result == 1)
+                {
+                    Session["success"] = "Post deleted successfully!";
+                    Response.Redirect("collab.aspx");
+                }
+                else
+                {
+                    Session["error"] = "Post was unable to be deleted, please inform system administrator!";
+                    Response.Redirect("collab.aspx");
+                }
+            }
         }
 
         protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            LinkButton userId = (LinkButton)e.Item.FindControl("viewprofile");
-            if (userId.Text != LbEmail.Text)
+            HiddenField userId = (HiddenField)e.Item.FindControl("userID");
+            if (int.Parse(userId.Value) != user().id)
             {
                 e.Item.FindControl("btnEdit").Visible = false;
+                e.Item.FindControl("delconfirm").Visible = false;
             }
         }
     }

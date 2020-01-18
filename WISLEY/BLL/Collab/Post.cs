@@ -13,19 +13,21 @@ namespace WISLEY.BLL.Collab
         public string datecreated { get; set; }
         public string userId { get; set; }
         public string groupId { get; set; }
+        public string status { get; set; }
 
         public Post()
         {
 
         }
 
-        public Post(string title, string content, string userId, string groupId, string datecreated)
+        public Post(string title, string content, string userId, string groupId, string datecreated, string status = "")
         {
             this.title = title;
             this.content = content;
             this.datecreated = datecreated;
             this.userId = userId;
             this.groupId = groupId;
+            this.status = status;
         }
 
         public int AddPost()
@@ -63,6 +65,12 @@ namespace WISLEY.BLL.Collab
         {
             PostDAO postdao = new PostDAO();
             return postdao.UpdatePost(postId, title, content, datecreate);
+        }
+
+        public int DelPostUpdate(string postId, string status)
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.DelPostUpdate(postId, status);
         }
     }
 }

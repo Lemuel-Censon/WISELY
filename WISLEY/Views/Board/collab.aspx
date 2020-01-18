@@ -64,6 +64,7 @@
                             <ItemTemplate>
                                 <div class="postcards" data-id='<%#Eval("Id") %>'>
                                     <div class="card-body" id="post<%#Eval("Id") %>">
+                                        <asp:HiddenField runat="server" ID="userID" Value='<%#Eval("userId") %>' />
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h4 class="card-title posttitle" runat="server" id="posttitle" data-title='<%#Eval("title") %>'><%#Eval("title") %></h4>
@@ -71,6 +72,29 @@
                                             </div>
                                             <div class="col-lg-6 text-right">
                                                 <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
+                                                    <button type="button" id="delconfirm" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
+                                                    Delete
+                                                    </button>
+                                                <div class="modal fade" id="delmodal<%#Eval("Id") %>" tabindex="-1" role="dialog"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Are you sure you want to delete this post?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                Deletion of this post cannot be reverted once confirmed!
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
+                                                                <asp:Button runat="server" CommandName="delpost" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="media mt-4 px-1">

@@ -22,13 +22,6 @@
                     <asp:Label AssociatedControlID="TbConfirmPassword" ID="LbConfirmPassword" runat="server" Text="Confirm Password"></asp:Label>
                     <asp:TextBox ID="TbConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                 </div>
-                <p>Get started as a...</p>
-                <asp:Panel runat="server" ID="typepanel" HorizontalAlign="Center">
-                    <asp:RadioButtonList runat="server" ID="typelist" RepeatDirection="Horizontal" align="center">
-                        <asp:ListItem>Student</asp:ListItem>
-                        <asp:ListItem>Teacher</asp:ListItem>
-                    </asp:RadioButtonList>
-                </asp:Panel>
                 <div class="mt-3">
                     <button class="btn btn-md btn-block btn-primary" id="btnRegister" runat="server" onserverclick="btnRegister_Click">Join</button>
                 </div>
