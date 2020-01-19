@@ -170,6 +170,7 @@ namespace WISLEY
             if (userId.Value != LbUserID.Value)
             {
                 e.Item.FindControl("btnEdit").Visible = false;
+                e.Item.FindControl("delconfirm").Visible = false;
             }
         }
     }
