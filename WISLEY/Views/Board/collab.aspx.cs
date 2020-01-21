@@ -109,6 +109,24 @@ namespace WISLEY
             return valid;
         }
 
+        public bool EditValidateInput(string title, string content)
+        {
+            bool valid = false;
+            if (String.IsNullOrEmpty(title))
+            {
+                toast(this, "Please enter a title!", "Error", "error");
+            }
+            else if (String.IsNullOrEmpty(content))
+            {
+                toast(this, "Please enter some content!", "Error", "error");
+            }
+            else
+            {
+                valid = true;
+            }
+            return valid;
+        }
+
         public bool storeFile()
         {
             bool save = false;
@@ -216,7 +234,7 @@ namespace WISLEY
                 TextBox title = e.Item.FindControl("tbUptitle") as TextBox;
                 TextBox content = e.Item.FindControl("tbUpcontent") as TextBox;
                 string dateedit = DateTime.Now.ToString("dd/MM/yyyy");
-                if (ValidateInput(title.Text, content.Text)){
+                if (EditValidateInput(title.Text, content.Text)){
                     Post post = new Post();
                     int result = post.UpdatePost(postId, title.Text, content.Text, dateedit);
                     if (result == 1)
