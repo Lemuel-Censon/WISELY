@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -102,6 +102,9 @@
     <Content Include="bin\WISLEY.dll" />
     <Content Include="bin\WISLEY.dll.config" />
     <Content Include="bin\WISLEY.pdb" />
+    <Content Include="Public\img\Badges\Badge_Beginner.png" />
+    <Content Include="Public\img\Badges\Badge_Group.png" />
+    <Content Include="Public\img\Badges\Badge_Post.png" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
     <Content Include="Views\Auth\logout.aspx" />
     <Content Include="Views\Gacha\Avatar.aspx" />

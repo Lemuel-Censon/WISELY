@@ -169,7 +169,11 @@
                         <%} %>
                 </div>
                 <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    Currently Empty
+                    <h3>Unlocked Badges</h3>
+                        <p><img src="../../Public/img/Badges/Badge_Beginner.png" alt="Badge_Beginner.png" width="55" height="55"/>Become a WISELY member.</p>
+                    <h3>Locked Badges</h3>
+                        <p><img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55"/>Join a group.</p>
+                        <p><img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55"/>Create a post.</p>
                 </div>
             </div>
         </div>
