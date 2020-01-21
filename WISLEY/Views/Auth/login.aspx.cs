@@ -45,6 +45,11 @@ namespace WISLEY
                 toast(this, "Please enter your email!", "Error", "error");
             }
 
+            else if (!TbEmail.Text.Contains("@"))
+            {
+                toast(this, "Please enter a valid email!", "Error", "error");
+            }
+
             else if (String.IsNullOrEmpty(TbPassword.Text))
             {
                 toast(this, "Please enter your password!", "Error", "error");

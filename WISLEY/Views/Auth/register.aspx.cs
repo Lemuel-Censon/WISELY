@@ -27,6 +27,11 @@ namespace WISLEY
 
             if (String.IsNullOrEmpty(TbEmail.Text))
             {
+                toast(this, "Please enter your email!", "Error", "error");
+            }
+
+            else if (!TbEmail.Text.Contains("@"))
+            {
                 toast(this, "Please enter a valid email!", "Error", "error");
             }
 
@@ -38,6 +43,11 @@ namespace WISLEY
             else if (String.IsNullOrEmpty(TbPassword.Text))
             {
                 toast(this, "Please enter a password!", "Error", "error");
+            }
+
+            else if (TbPassword.Text.Length < 8)
+            {
+                toast(this, "Your password must be at least 8 characters long!", "Error", "error");
             }
 
             else if (TbPassword.Text != TbConfirmPassword.Text)
