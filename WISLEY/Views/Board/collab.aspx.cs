@@ -35,11 +35,6 @@ namespace WISLEY
                     toast(this, Session["error"].ToString(), "Error", "error");
                     Session["error"] = null;
                 }
-                if (Session["postadd"] != null)
-                {
-                    toast(this, Session["postadd"].ToString(), "Success", "success");
-                    Session["postadd"] = null;
-                }
                 if (Request.QueryString["groupId"] != null)
                 {
                     postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((post " +
@@ -183,7 +178,7 @@ namespace WISLEY
 
                 if (result == 1)
                 {
-                    Session["postadd"] = "Post Added!";
+                    Session["success"] = "Post Added!";
                     Response.Redirect("collab.aspx");
                 }
                 else
@@ -283,12 +278,23 @@ namespace WISLEY
 
         protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            HiddenField userId = (HiddenField)e.Item.FindControl("userID");
-            if (int.Parse(userId.Value) != user().id)
+            if (postinfo.Items.Count < 1)
             {
-                e.Item.FindControl("btnEdit").Visible = false;
-                e.Item.FindControl("delconfirm").Visible = false;
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
             }
+            else
+            {
+                HiddenField userId = (HiddenField)e.Item.FindControl("userID");
+                if (int.Parse(userId.Value) != user().id)
+                {
+                    e.Item.FindControl("btnEdit").Visible = false;
+                    e.Item.FindControl("delconfirm").Visible = false;
+                }
+            }
+
         }
     }
 }

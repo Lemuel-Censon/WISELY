@@ -54,9 +54,6 @@
                 </div>
                 <hr />
             </div>
-            <% if (postcount() > 0)
-                {
-            %>
             <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div id="postcon">
@@ -134,6 +131,13 @@
                                     </div>
                                 </div>
                             </ItemTemplate>
+                            <FooterTemplate>
+                                <div class="text-center mt-3">
+                                    <h4>
+                                        <asp:Label runat="server" ID="LbErr" Text="No Posts" CssClass="font-weight-bold text-center" Visible="false"></asp:Label>
+                                    </h4>
+                                </div>
+                            </FooterTemplate>
                         </asp:Repeater>
                     </div>
                 </ContentTemplate>
@@ -142,12 +146,6 @@
             <asp:SqlDataSource ID="postdata"
                 ConnectionString="<%$ connectionStrings: ConnStr%>"
                 runat="server"></asp:SqlDataSource>
-            <%} %><% else
-                      { %>
-            <div class="text-center mb-4">
-                <h4 class="font-weight-bold">No Posts</h4>
-            </div>
-            <% } %>
         </div>
     </div>
 
