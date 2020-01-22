@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="collab.aspx.cs" Inherits="WISLEY.collab" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
+    <% string inGroup = Request.QueryString["groupId"];  %>
+     <% if ( String.IsNullOrEmpty(inGroup))
+         {%>
     <h3 class="font-weight-bold text-center mt-2">Collaboration Board</h3>
+    <%} %>
     <div class="container">
         <asp:ScriptManager runat="server" ID="postscript">
         </asp:ScriptManager>
