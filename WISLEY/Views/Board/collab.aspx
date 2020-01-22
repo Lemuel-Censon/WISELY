@@ -61,7 +61,7 @@
                             <ItemTemplate>
                                 <div class="postcards" data-id='<%#Eval("Id") %>'>
                                     <div class="card-body" id="post<%#Eval("Id") %>">
-                                        <asp:HiddenField runat="server" ID="userID" Value='<%#Eval("userId") %>' />
+                                        <asp:HiddenField runat="server" ID="postuserID" Value='<%#Eval("userId") %>' />
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h4 class="card-title posttitle" runat="server" id="posttitle" data-title='<%#Eval("title") %>'><%#Eval("title") %></h4>

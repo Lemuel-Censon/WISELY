@@ -175,12 +175,16 @@ namespace WISLEY
             }
             else
             {
-                HiddenField userId = (HiddenField)e.Item.FindControl("commuserID");
-                if (userId.Value != LbUserID.Value)
+                if (e.Item.ItemType == ListItemType.Item)
                 {
-                    e.Item.FindControl("btnEdit").Visible = false;
-                    e.Item.FindControl("delconfirm").Visible = false;
+                    HiddenField userId = (HiddenField)e.Item.FindControl("commuserID");
+                    if (userId.Value != LbUserID.Value)
+                    {
+                        e.Item.FindControl("btnEdit").Visible = false;
+                        e.Item.FindControl("delconfirm").Visible = false;
+                    }
                 }
+
             }
 
         }

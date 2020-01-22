@@ -285,16 +285,19 @@ namespace WISLEY
                     e.Item.FindControl("LbErr").Visible = true;
                 }
             }
+
             else
             {
-                HiddenField userId = (HiddenField)e.Item.FindControl("userID");
-                if (int.Parse(userId.Value) != user().id)
+                if (e.Item.ItemType == ListItemType.Item)
                 {
-                    e.Item.FindControl("btnEdit").Visible = false;
-                    e.Item.FindControl("delconfirm").Visible = false;
+                    HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
+                    if (int.Parse(postuser.Value) != user().id)
+                    {
+                        e.Item.FindControl("btnEdit").Visible = false;
+                        e.Item.FindControl("delconfirm").Visible = false;
+                    }
                 }
             }
-
         }
     }
 }

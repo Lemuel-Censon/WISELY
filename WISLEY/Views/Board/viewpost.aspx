@@ -117,7 +117,7 @@
                                             <hr />
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <div class="text-center mb-4">
+                                            <div class="text-center mt-4">
                                                 <h4>
                                                     <asp:Label runat="server" ID="LbErr" Text="No Comments" CssClass="font-weight-bold" Visible="false"></asp:Label>
                                                 </h4>
