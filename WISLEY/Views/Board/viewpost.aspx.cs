@@ -166,12 +166,23 @@ namespace WISLEY
 
         protected void commentinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            HiddenField userId = (HiddenField)e.Item.FindControl("commuserID");
-            if (userId.Value != LbUserID.Value)
+            if (commentinfo.Items.Count < 1)
             {
-                e.Item.FindControl("btnEdit").Visible = false;
-                e.Item.FindControl("delconfirm").Visible = false;
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
             }
+            else
+            {
+                HiddenField userId = (HiddenField)e.Item.FindControl("commuserID");
+                if (userId.Value != LbUserID.Value)
+                {
+                    e.Item.FindControl("btnEdit").Visible = false;
+                    e.Item.FindControl("delconfirm").Visible = false;
+                }
+            }
+
         }
     }
 }

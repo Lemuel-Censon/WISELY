@@ -55,8 +55,6 @@
                                 <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btncomment" runat="server" Text="Post" OnClick="btncomment_Click" />
                             </div>
                             <hr />
-                            <% if (commcount() > 0)
-                                { %>
                             <asp:UpdatePanel runat="server" ID="commpanel" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand" OnItemDataBound="commentinfo_ItemDataBound">
@@ -118,19 +116,19 @@
                                             </div>
                                             <hr />
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <div class="text-center mb-4">
+                                                <h4>
+                                                    <asp:Label runat="server" ID="LbErr" Text="No Comments" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                                                </h4>
+                                            </div>
+                                        </FooterTemplate>
                                     </asp:Repeater>
                                     <asp:SqlDataSource ID="commentdata"
                                         ConnectionString="<%$ connectionStrings: ConnStr%>"
                                         runat="server"></asp:SqlDataSource>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                            <%} %>
-                            <% else
-                                { %>
-                            <div class="mt-3 text-center">
-                                <h4 class="font-weight-bold">No Comments</h4>
-                            </div>
-                            <%} %>
                         </div>
                     </div>
                 </div>

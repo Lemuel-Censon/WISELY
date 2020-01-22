@@ -132,9 +132,9 @@
                                 </div>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <div class="text-center mt-3">
+                                <div class="text-center mb-4">
                                     <h4>
-                                        <asp:Label runat="server" ID="LbErr" Text="No Posts" CssClass="font-weight-bold text-center" Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="LbErr" Text="No Posts" CssClass="font-weight-bold" Visible="false"></asp:Label>
                                     </h4>
                                 </div>
                             </FooterTemplate>
