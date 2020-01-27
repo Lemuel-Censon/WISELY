@@ -13,30 +13,39 @@ namespace WISLEY {
     public partial class NestedMasterPage1 {
         
         /// <summary>
-        /// groupBtns control.
+        /// groupPosts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater groupBtns;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupPosts;
         
         /// <summary>
-        /// groupData control.
+        /// groupResources control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource groupData;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupResources;
         
         /// <summary>
-        /// sidebarContent control.
+        /// groupAssignments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder sidebarContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupAssignments;
+        
+        /// <summary>
+        /// groupMembers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder groupMembers;
     }
 }

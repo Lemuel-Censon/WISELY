@@ -13,5 +13,15 @@ namespace WISLEY.Views.Resources
         {
 
         }
+
+        public BLL.Group.Group getGroupDetails()
+        {
+            string grpId = Request.QueryString["groupId"];
+
+            BLL.Group.Group grp = new BLL.Group.Group().getGroupByID(grpId);
+            return grp;
+        }
     }
+
+
 }
