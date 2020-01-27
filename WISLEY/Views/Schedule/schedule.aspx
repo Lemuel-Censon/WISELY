@@ -27,10 +27,10 @@
 
         <div class="card">
             <div class="card-body">
-                <h3 class="text-center font-weight-bold">Your To-Do-List</h3>
+                <h3 class="text-center font-weight-bold">Your To-Do-Lists</h3>
                 <div class="card-body">
                     <div class="card-body text-center">Currently empty</div>
-                    <asp:Button ID="btnEditToDo" runat="server" CssClass="btn btn-info" Text="Edit To-Do-List" OnClick="btnEditToDo_Click" />
+                    <%--<asp:Button ID="btnEditToDo" runat="server" CssClass="btn btn-info" Text="Edit To-Do-List" OnClick="btnEditToDo_Click" />--%>
                 </div>
             </div>
         </div>
