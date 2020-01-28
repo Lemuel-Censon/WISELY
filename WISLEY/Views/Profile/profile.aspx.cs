@@ -35,38 +35,51 @@ namespace WISLEY
                     userid.Value = Request.QueryString["id"];
                 }
 
-                User user = new User().SelectById(userid.Value);
-                LbName.Text = user.name;
-                LbType.Text = user.userType;
-                LbWISPoints.Text = user.points.ToString();
-                LbDob.Text = "Date of Birth: ";
-                LbContact.Text = "Contact Number: ";
-                if (!String.IsNullOrEmpty(user.dob))
+                if (!Page.IsPostBack)
                 {
-                    LbDob.Text += user.dob;
+                    User user = new User().SelectById(userid.Value);
+                    LbName.Text = user.name;
+                    LbType.Text = user.userType;
+                    LbWISPoints.Text = user.points.ToString();
+                    LbBio.Text = user.bio;
+                    TbBio.Text = user.bio;
+                    LbDob.Text = "Date of Birth: ";
+                    LbContact.Text = "Contact Number: ";
+                    if (!String.IsNullOrEmpty(user.dob))
+                    {
+                        LbDob.Text += user.dob;
+                    }
+                    else
+                    {
+                        LbDob.Text += "Not set";
+                    }
+                    if (!String.IsNullOrEmpty(user.contactNo))
+                    {
+                        LbContact.Text += user.contactNo;
+                    }
+                    else
+                    {
+                        LbContact.Text += "Not set";
+                    }
+                    if (user.privacy == "T")
+                    {
+                        LbPrivacy.Text = "Privacy is On";
+                    }
+                    else
+                    {
+                        LbPrivacy.Text = "Privacy is Off";
+                    }
+                    if (String.IsNullOrEmpty(user.bio))
+                    {
+                        LbBio.Text = "Currently Empty";
+                    }
+                    else
+                    {
+                        LbBio.Text = user.bio;
+                    }
+                    postcount();
+                    userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
                 }
-                else
-                {
-                    LbDob.Text += "Not set";
-                }
-                if (!String.IsNullOrEmpty(user.contactNo))
-                {
-                    LbContact.Text += user.contactNo;
-                }
-                else
-                {
-                    LbContact.Text += "Not set";
-                }
-                if (user.privacy == "T")
-                {
-                    LbPrivacy.Text = "Privacy is On";
-                }
-                else
-                {
-                    LbPrivacy.Text = "Privacy is Off";
-                }
-                postcount();
-                userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
             }
             else
             {
@@ -94,12 +107,48 @@ namespace WISLEY
 
         protected void btnEditBio_Click(object sender, EventArgs e)
         {
-
+            TbBio.Visible = true;
+            btnCancelChanges.Visible = true;
+            btnSaveChanges.Visible = true;
+            btnEditBio.Visible = false;
+            LbBioDesc.Visible = true;
         }
 
         protected void btnEditCaption_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnCancelChanges_Click(object sender, EventArgs e)
+        {
+            TbBio.Visible = false;
+            btnCancelChanges.Visible = false;
+            btnSaveChanges.Visible = false;
+            btnEditBio.Visible = true;
+            LbBioDesc.Visible = false;
+        }
+
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            string email = LbEmail.Text.ToString();
+            string bio = TbBio.Text;
+
+            User user = new User();
+            int result = user.UpdateBio(email, bio);
+            if (result == 1)
+            {
+                TbBio.Visible = false;
+                btnCancelChanges.Visible = false;
+                btnSaveChanges.Visible = false;
+                btnEditBio.Visible = true;
+                LbBioDesc.Visible = false;
+                Session["success"] = "Your changes have been saved!";
+                Response.Redirect("profile.aspx");
+            }
+            else
+            {
+                toast(this, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
+            }
         }
     }
 }

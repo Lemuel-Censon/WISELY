@@ -13,7 +13,7 @@
                 <div>
                     <asp:CheckBox ID="chkBoxPrivacy" runat="server" Text="Keep my account private" />
                 </div>
-                <div class="md-form md-outline">
+<%--                <div class="md-form md-outline">
                     <p>Choose your language:</p>
                     <select class="mdb-select colorful-select dropdown-primary md-form">
                         <option value="English" selected>English</option>
@@ -21,7 +21,7 @@
                         <option value="Malay">Malay</option>
                         <option value="Tamil">Tamil</option>
                     </select>
-                </div>
+                </div>--%>
                 <div class="text-right">
                     <a href="<%= Page.ResolveUrl("~/Views/Profile/profile.aspx") %>" class="btn btn-danger">Cancel</a>
                     <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save Changes" OnClick="btnSave_Click" />

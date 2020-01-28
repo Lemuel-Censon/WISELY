@@ -25,6 +25,14 @@ namespace WISLEY.Views.Profile
                     {
                         chkBoxPrivacy.Checked = false;
                     }
+                    if (user.notification == "T")
+                    {
+                        chkBoxNotification.Checked = true;
+                    }
+                    else
+                    {
+                        chkBoxNotification.Checked = false;
+                    }
                 }
             }
             else
@@ -43,6 +51,7 @@ namespace WISLEY.Views.Profile
         {
             string email;
             string privacy;
+            string notification;
             if (chkBoxPrivacy.Checked == true)
             {
                 email = Session["email"].ToString();
@@ -55,12 +64,36 @@ namespace WISLEY.Views.Profile
                     Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
                 }
             }
-            else if (chkBoxPrivacy.Checked == false)
+            if (chkBoxPrivacy.Checked == false)
             {
                 email = Session["email"].ToString();
                 privacy = "F";
                 User user = new User();
                 int result = user.UpdatePrivacy(email, privacy);
+                if (result == 1)
+                {
+                    Session["success"] = "Your changes have been saved!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                }
+            }
+            if (chkBoxNotification.Checked == true)
+            {
+                email = Session["email"].ToString();
+                notification = "T";
+                User user = new User();
+                int result = user.UpdateNotification(email, notification);
+                if (result == 1)
+                {
+                    Session["success"] = "Your changes have been saved!";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                }
+            }
+            if (chkBoxNotification.Checked == false)
+            {
+                email = Session["email"].ToString();
+                notification = "F";
+                User user = new User();
+                int result = user.UpdateNotification(email, notification);
                 if (result == 1)
                 {
                     Session["success"] = "Your changes have been saved!";

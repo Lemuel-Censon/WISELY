@@ -75,7 +75,7 @@ namespace WISLEY
                 string name = TbName.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, "Student", name, "", "", "", 0, 0, "F");
+                User user = new User(email, password, "Student", name, "", "", "", 0, 0, "F", "F", "");
                 int result = user.AddUser();
                 if (result == 1)
                 {

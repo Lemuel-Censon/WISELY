@@ -184,6 +184,9 @@
     <Content Include="Public\js\popper.min.js" />
     <Content Include="Views\Profile\forgotpassword.aspx" />
     <Content Include="Views\Auth\register.aspx" />
+    <Content Include="Views\Quiz\question.aspx" />
+    <Content Include="Views\Quiz\quizcreator.aspx" />
+    <Content Include="Views\Quiz\quizstart.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
     <Content Include="Views\Resources\Test.aspx" />
     <Content Include="Views\Resources\viewResources.aspx" />
@@ -365,6 +368,27 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Quiz\question.aspx.cs">
+      <DependentUpon>question.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quiz\question.aspx.designer.cs">
+      <DependentUpon>question.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quiz\quizcreator.aspx.cs">
+      <DependentUpon>quizcreator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quiz\quizcreator.aspx.designer.cs">
+      <DependentUpon>quizcreator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quiz\quizstart.aspx.cs">
+      <DependentUpon>quizstart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quiz\quizstart.aspx.designer.cs">
+      <DependentUpon>quizstart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Resources\resourceUpload.aspx.cs">
       <DependentUpon>resourceUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

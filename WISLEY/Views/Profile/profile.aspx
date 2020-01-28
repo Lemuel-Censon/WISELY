@@ -23,13 +23,11 @@
                     <h5>
                         <asp:Label ID="LbEmail" runat="server"></asp:Label>
                     </h5>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <asp:Label ID="LbDob" runat="server"></asp:Label>
-                        </div>
-                        <div class="col-lg-6">
-                            <asp:Label ID="LbContact" runat="server"></asp:Label>
-                        </div>
+                    <div>
+                        <asp:Label ID="LbDob" runat="server"></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="LbContact" runat="server"></asp:Label>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
@@ -117,11 +115,22 @@
             </ul>
             <div class="tab-content">
                 <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
-                    Currently Empty
+                   <asp:Label ID="LbBio" runat="server"></asp:Label>
                         <%if (userid.Value == hidotheremail.Value)
                             { %>
+                    <br />
                     <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
                     <%} %>
+                    <div>
+                        <div class="md-form md-outline">
+                            <asp:Label AssociatedControlID="TbBio" ID="LbBioDesc" runat="server" Text="Bio Description" Visible="False"></asp:Label>
+                            <asp:TextBox ID="TbBio" runat="server" CssClass="form-control" TextMode="MultiLine" Visible="False" Width="700px" Height="300px"></asp:TextBox>
+                        </div>
+                        <div class="text-right">
+                            <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
+                            <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click"/>
+                        </div>
+                    </div>
                 </div>
                 <div id="msgwall" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     Currently Empty
@@ -172,8 +181,8 @@
                     <h3>Unlocked Badges</h3>
                         <p><img src="../../Public/img/Badges/Badge_Beginner.png" alt="Badge_Beginner.png" width="55" height="55"/>Become a WISELY member.</p>
                     <h3>Locked Badges</h3>
-                        <p><img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55"/>Join a group.</p>
-                        <p><img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55"/>Create a post.</p>
+                        <p><img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55" style="filter: grayscale(100%)"/>Join a group.</p>
+                        <p><img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55" style="filter: grayscale(100%)"/>Create a post.</p>
                 </div>
             </div>
         </div>
