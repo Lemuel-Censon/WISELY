@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Resources;
 
 namespace WISLEY.Views.Resources
 {
@@ -12,7 +13,13 @@ namespace WISLEY.Views.Resources
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            getDirectories();
+            resTypeData.SelectCommand = $"SELECT * FROM [grpResourceType] " +
+                $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
+                $"ORDER BY [grpResourceType].customOrder ASC";
+            //resTypeData.SelectCommand = $"SELECT [grpResourceType].*, [grpResource].fileName as files FROM [grpResourceType] " +
+            //    $"INNER JOIN [grpResource] ON [grpResourceType].resourceType = [grpResource].resourceType " +
+            //    $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
+            //    $"ORDER BY [grpResourceType].customOrder ASC";
         }
 
         public BLL.Group.Group getGroupDetails()
@@ -23,22 +30,74 @@ namespace WISLEY.Views.Resources
             return grp;
         }
 
-        public void getDirectories()
+        //public List<grpResourceType> getDirectories()
+        //{
+
+        //    //Get all directories
+        //    string folderPath = Server.MapPath("~/Public/uploads/groupResources/") + Request.QueryString["groupId"];
+        //    Directory.CreateDirectory(folderPath + "/");
+
+
+        //    int grpId = int.Parse(Request.QueryString["groupId"]);
+        //    List<grpResourceType> grpRsTypes = new BLL.Group.Group().getGroupResourceTypes(grpId);
+
+        //    return grpRsTypes;
+
+        //    //for (int i = 0; i < grpRsTypes.Count; i++)
+        //    //{
+
+        //    //}
+
+
+        //    //    foreach (var d in Directory.GetDirectories(folderPath))
+        //    //{
+        //    //    //var dir = new DirectoryInfo(d); // Gets directory object 
+        //    //    //var dirName = dir.Name; // Gets directory name
+
+        //    //    //List<string> fileNames = new List<string>();
+
+
+
+        //    //    //grpResourceType Resource = new grpResourceType(dirName, fileNames);
+        //    //    //folderList.Add(Resource);
+        //    //}
+
+        //    //return folderList;
+
+        //}
+
+        protected void downloadCommand(object source, RepeaterCommandEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("in GetDirectories");
-
-            string folderPath = Server.MapPath("~/Public/uploads/groupResources/") + Request.QueryString["groupId"];
-            Directory.CreateDirectory(folderPath + "/");
-
-            foreach (var d in Directory.GetDirectories(folderPath))
+            if (e.CommandName == "Download")
             {
-                var dir = new DirectoryInfo(d);
-                var dirName = dir.Name;
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string folderPath = Server.MapPath("~/Public/uploads/groupResources/") + Request.QueryString["groupId"];
 
-                System.Diagnostics.Debug.WriteLine("dir: " + dirName);
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("content-disposition", $"filename={commandArgs[1]}");
+                Response.TransmitFile(folderPath + "/" + commandArgs[0] + "/" + commandArgs[1]);
+            }
+        }
+
+        public List<string> getFileNames(string resType)
+        {
+            List<string> fileNames = new List<string>();
+            string folderPath = Server.MapPath("~/Public/uploads/groupResources/") + Request.QueryString["groupId"];
+
+            foreach (string strFile in Directory.GetFiles($"{folderPath}/{resType}"))
+            {
+                FileInfo fi = new FileInfo(strFile);
+                fileNames.Add(fi.Name);
+
             }
 
+            return fileNames;
+        }
 
+        public string getQuery(object cat)
+        {
+            return "SELECT * FROM [grpResource] WHERE resourceType ='" + cat.ToString() + "'";
         }
     }
 

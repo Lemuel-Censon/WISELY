@@ -214,6 +214,8 @@
     <Compile Include="BLL\Gacha\Avatar.cs" />
     <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
+    <Compile Include="BLL\Resources\grpResource.cs" />
+    <Compile Include="BLL\Resources\grpResourceType.cs" />
     <Compile Include="BLL\Quiz\Question.cs" />
     <Compile Include="BLL\Quiz\Quiz.cs" />
     <Compile Include="BLL\User\User.cs" />
@@ -222,6 +224,8 @@
     <Compile Include="DAL\Group\GroupDAO.cs" />
     <Compile Include="DAL\Quiztool\QuestionDAO.cs" />
     <Compile Include="DAL\Quiztool\QuizDAO.cs" />
+    <Compile Include="DAL\Resources\grpResourceDAO.cs" />
+    <Compile Include="DAL\Resources\grpResourceTypeDAO.cs" />
     <Compile Include="DAL\User\UserDAO.cs" />
     <Compile Include="Views\Auth\logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
@@ -556,7 +560,6 @@
     <Content Include="Public\font\fontawesome\fa-solid-900.ttf" />
     <Content Include="Public\font\fontawesome\fa-solid-900.woff" />
     <Content Include="Public\font\fontawesome\fa-solid-900.woff2" />
-    <Content Include="Public\uploads\groupResources\8\movie.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -568,7 +571,7 @@
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Public\uploads\groupImg\" />
-    <Folder Include="Public\uploads\groupResources\8\Test Folder\" />
+    <Folder Include="Public\uploads\groupResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,6 +2,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             <h1 class="col-12 text-center">Join Group</h1>

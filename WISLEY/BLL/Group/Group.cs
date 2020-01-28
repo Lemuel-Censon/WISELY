@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WISLEY.BLL.Resources;
 using WISLEY.DAL.Group;
+using WISLEY.DAL.Resources;
 
 namespace WISLEY.BLL.Group
 {
@@ -76,6 +78,13 @@ namespace WISLEY.BLL.Group
             }
 
             return grpList;
+        }
+
+        public List<grpResourceType> getGroupResourceTypes(int grpId)
+        {
+            //List<grpResourceType> typeList = new List<grpResourceType>();
+            grpResourceTypeDAO RsTypeDAO = new grpResourceTypeDAO();
+            return RsTypeDAO.GetGrpResourceTypes(grpId);
         }
     }
 }
