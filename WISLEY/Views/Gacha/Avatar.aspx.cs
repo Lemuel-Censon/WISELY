@@ -16,7 +16,7 @@ namespace WISLEY.Views.Gacha
 
         protected void ButtonBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("profile.aspx");
+            Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
         }
 
         protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)

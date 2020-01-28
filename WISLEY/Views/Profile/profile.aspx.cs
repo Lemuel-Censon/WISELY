@@ -102,7 +102,7 @@ namespace WISLEY
 
         protected void btnchangeAvatar_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Page.ResolveUrl("~/Views/Gacha/gacha.aspx"));
+            Response.Redirect(Page.ResolveUrl("~/Views/Gacha/Avatar.aspx"));
         }
 
         protected void btnEditBio_Click(object sender, EventArgs e)
