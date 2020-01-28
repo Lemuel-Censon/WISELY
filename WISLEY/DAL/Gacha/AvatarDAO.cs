@@ -37,7 +37,7 @@ namespace WISLEY.DAL.Gacha
             return result;
         }
 
-        public Avatar SelectAvatarByID(string id)
+        public Avatar SelectAvatarByID(int id)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);

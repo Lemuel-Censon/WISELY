@@ -32,9 +32,12 @@
                 </video>
                 <br />
                 <br />
+            <asp:Button ID="ButtonResults" CssClass="btn btn-light-green" runat="server" Text="RESULTS!" OnClick="ButtonResults_Click" autopostback="false"  />
+                <br />
+                <br />
             </div>
 
-            <div class="text-center">
+            <div id="hider" class="text-center" style="visibility:hidden" runat="server">
                 <asp:Panel ID="PanelSum" runat="server" CssClass="auto-style1 text-center" Height="351px" Width="1127px" style="margin-left: 336px">
                     &nbsp;
                     <asp:ImageButton ID="ImageButton1" runat="server" Height="144px" Width="166px" BorderColor="#9900CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://www.clipartwiki.com/clipimg/detail/315-3158759_clipart-dressed.png"/>

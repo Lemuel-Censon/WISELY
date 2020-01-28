@@ -88,15 +88,20 @@ namespace WISLEY
             }
 
             //Profile picture
-
-            if (Session["SSImage"] != null)
+        
+            string profileImage = Session["SSImage"] as string;
+            if (String.IsNullOrEmpty(profileImage))
             {
-                string profileImage = Session["SSImage"].ToString();
-                if (profileImage != null)
-                {
-                    imageProfile.Attributes.Add("src", profileImage);
-                }
+                imageProfile.Attributes.Add("src", "");
+                    // null or empty
             }
+            else
+            {
+                imageProfile.Attributes.Add("src", Session["SSImage"].ToString());
+            }
+            
+            
+
         }
 
         public void toast(Page page, string message, string title, string type)

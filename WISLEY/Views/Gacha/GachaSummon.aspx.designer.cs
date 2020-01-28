@@ -31,6 +31,24 @@ namespace WISLEY.Views.Gacha {
         protected global::System.Web.UI.WebControls.Label LabelTitle;
         
         /// <summary>
+        /// ButtonResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonResults;
+        
+        /// <summary>
+        /// hider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hider;
+        
+        /// <summary>
         /// PanelSum control.
         /// </summary>
         /// <remarks>

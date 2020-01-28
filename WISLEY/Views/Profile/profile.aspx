@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="col-lg-4">
 
-                    <div>
-                        <iframe id="imageProfile" class="mx-auto md-block" runat="server"></iframe>
+                    <div class="wrap">
+                        <iframe width="400px" height="400px" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
                     </div>
 
                 </div>
