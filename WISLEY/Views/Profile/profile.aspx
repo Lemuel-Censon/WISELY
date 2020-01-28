@@ -9,9 +9,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
+
                     <div>
-                        <img id="imgProfile" src="https://picsum.photos/120" class="mx-auto md-block">
+                        <iframe id="imageProfile" class="mx-auto md-block" runat="server"></iframe>
                     </div>
+
                 </div>
                 <div class="col-lg-4">
                     <h3 class="font-weight-bold">

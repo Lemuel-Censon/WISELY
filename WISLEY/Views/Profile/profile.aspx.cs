@@ -19,6 +19,9 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+
             if (Session["email"] != null && Session["uid"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
@@ -86,6 +89,17 @@ namespace WISLEY
                 Session["error"] = "You must be logged in to view profile!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+
+            //Profile picture
+
+            string profileImage = Session["SSImage"].ToString();
+
+            if (profileImage != null)
+            {
+                imageProfile.Attributes.Add("src", profileImage);
+            }
+            
+
         }
 
         public void toast(Page page, string message, string title, string type)
