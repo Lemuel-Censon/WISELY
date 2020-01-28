@@ -16,7 +16,7 @@ namespace WISLEY.Views.Gacha
 
         protected void ButtonBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("profile.aspx");
+            Response.Redirect("~/Views/Profile/profile.aspx");
         }
 
         protected void Button1x_F_Click(object sender, EventArgs e)

@@ -35,7 +35,7 @@
             </div>
 
             <div class="text-center">
-                <asp:Panel ID="PanelSum" runat="server" CssClass="auto-style1 text-center" Height="351px" Width="1127px" style="margin-left: 393px">
+                <asp:Panel ID="PanelSum" runat="server" CssClass="auto-style1 text-center" Height="351px" Width="1127px" style="margin-left: 336px">
                     &nbsp;
                     <asp:ImageButton ID="ImageButton1" runat="server" Height="144px" Width="166px" BorderColor="#9900CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://www.clipartwiki.com/clipimg/detail/315-3158759_clipart-dressed.png"/>
                     <asp:ImageButton ID="ImageButton6" runat="server" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" Height="144px" ImageUrl="https://storage.opensea.io/0x71c118b00759b0851785642541ceb0f4ceea0bd5-preview/2354-1553846801.png" Width="166px" />
