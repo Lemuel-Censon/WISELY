@@ -29,25 +29,26 @@
         <asp:Repeater
             runat="server" ID="resHeaders" DataSourceID="resTypeData">
             <ItemTemplate>
-                <h1><%#Eval("resourceType")%></h1>
+                <div class="row justify-content-start mt-4">
+
+
+                    <h1 class="col-12"><%#Eval("resourceType")%></h1>
+                    <asp:Repeater
+                        runat="server" ID="resFileHeaders" DataSourceID="resTypeFilesData" OnItemCommand="downloadCommand">
+                        <ItemTemplate>
+
+                            <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("fileName")%>' CommandName="Download" CommandArgument='<%#Eval("resourceType")+","+Eval("fileName") %>'
+                                class="col-12" Style="text-transform: unset;" />
+
+                        </ItemTemplate>
+                    </asp:Repeater>
 
 
 
-                <asp:Repeater
-                    runat="server" ID="resFileHeaders" DataSourceID="resTypeFilesData" OnItemCommand="downloadCommand">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("fileName")%>' CommandName="Download" CommandArgument='<%#Eval("resourceType")+","+Eval("fileName") %>'
-                            class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" Style="text-transform: unset;" />
-                      
-                    </ItemTemplate>
-                </asp:Repeater>
+                    <asp:SqlDataSource ID='resTypeFilesData' runat='server' ConnectionString="<%$ connectionStrings: ConnStr%>"
+                        SelectCommand='<%# getQuery(Eval("resourceType")) %>' />
 
-
-
-                <asp:SqlDataSource ID='resTypeFilesData' runat='server' ConnectionString="<%$ connectionStrings: ConnStr%>"
-                    SelectCommand='<%# getQuery(Eval("resourceType")) %>' />
-
-
+                </div>
             </ItemTemplate>
         </asp:Repeater>
 

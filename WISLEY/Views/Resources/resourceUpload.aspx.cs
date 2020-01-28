@@ -76,10 +76,15 @@ namespace WISLEY.Views.Resources
                     grpResourceType resourceTypeObj = new grpResourceType(resourceType, int.Parse(Request.QueryString["groupId"]));
                     int newResourceResult = resourceTypeObj.insertResourceType();
 
-                    if (newResourceResult != 1)
+                    if (newResourceResult == 0)
                     {
                         resourceType = null;
                         toast(this, ("Creating new resource type failed. Please contact system administrator."), "Error", "error");
+
+                    }
+                    else if(newResourceResult == -1)
+                    {
+                        toast(this, ("Resource type already exist. Please create another type."), "Error", "error");
 
                     }
                     else
