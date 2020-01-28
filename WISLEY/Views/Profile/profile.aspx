@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div>
-                        <img src="https://picsum.photos/120" class="mx-auto md-block">
+                        <img id="imgProfile" src="https://picsum.photos/120" class="mx-auto md-block">
                     </div>
                 </div>
                 <div class="col-lg-4">
