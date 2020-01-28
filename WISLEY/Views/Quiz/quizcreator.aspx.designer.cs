@@ -7,54 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY.Views.Schedule {
+namespace WISLEY.Views.Quiz {
     
     
-    public partial class editToDoPlan {
+    public partial class quizcreator1 {
         
         /// <summary>
-        /// tbDateSelected control.
+        /// LbTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDateSelected;
+        protected global::System.Web.UI.WebControls.Label LbTitle;
         
         /// <summary>
-        /// tbEditTitle control.
+        /// TbTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEditTitle;
+        protected global::System.Web.UI.WebControls.TextBox TbTitle;
         
         /// <summary>
-        /// tbEditDesc control.
+        /// LbDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEditDesc;
+        protected global::System.Web.UI.WebControls.Label LbDesc;
         
         /// <summary>
-        /// btnUpdate control.
+        /// TbDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
-        /// btnBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.TextBox TbDesc;
     }
 }
