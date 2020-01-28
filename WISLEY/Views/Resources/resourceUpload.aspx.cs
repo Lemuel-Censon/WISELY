@@ -37,12 +37,14 @@ namespace WISLEY.Views.Resources
 
         protected void uploadResource(object sender, EventArgs e)
         {
-            if (resourceUploadControl.HasFile)
+            if (resourceUploadController.HasFile)
             {
                 try
                 {
-                    string filename = Path.GetFileName(resourceUploadControl.FileName);
-                    resourceUploadControl.SaveAs(Server.MapPath("~/") + filename);
+                    string filename = Path.GetFileName(resourceUploadController.FileName);
+                    string folderPath = Server.MapPath("~/Public/uploads/groupResources/") + Request.QueryString["groupId"] + "/";
+                    System.IO.Directory.CreateDirectory(folderPath);
+                    resourceUploadController.SaveAs(folderPath + filename);
                     Session["success"] = "Resources uploaded successfully!";
 
                 }

@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <div class="col-10 border border-danger">
-        <asp:FileUpload ID="FileUploadControl" runat="server" />
-        <asp:Button runat="server" ID="UploadButton" Text="Upload" />
+        <asp:FileUpload ID="resourceUploadController" runat="server"/>
+        <asp:Button runat="server" ID="UploadButton" Text="Upload" OnClick="uploadResource" />
     </div>
 </asp:Content>

@@ -13,13 +13,13 @@ namespace WISLEY.Views.Resources {
     public partial class resourceUpload {
         
         /// <summary>
-        /// resourceUploadControl control.
+        /// resourceUploadController control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload resourceUploadControl;
+        protected global::System.Web.UI.WebControls.FileUpload resourceUploadController;
         
         /// <summary>
         /// UploadButton control.
