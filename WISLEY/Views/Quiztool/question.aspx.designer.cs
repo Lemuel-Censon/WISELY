@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY.Views.Quiz {
+namespace WISLEY.Views.Quiztool {
     
     
     public partial class question {
+        
+        /// <summary>
+        /// LbQuizId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbQuizId;
         
         /// <summary>
         /// LbQuestionNo control.
