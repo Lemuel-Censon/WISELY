@@ -106,6 +106,10 @@
     <Content Include="Public\img\Badges\Badge_Group.png" />
     <Content Include="Public\img\Badges\Badge_Post.png" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
+    <Content Include="Public\uploads\groupResources\8\jojo.gif" />
+    <Content Include="Public\videos\gacha_common %282%29.mp4" />
+    <Content Include="Public\videos\gacha_rare %282%29.mp4" />
+    <Content Include="Public\videos\gacha_super.mp4" />
     <Content Include="Views\Auth\logout.aspx" />
     <Content Include="Views\Gacha\Avatar.aspx" />
     <Content Include="Views\Gacha\Gacha.aspx" />
@@ -544,6 +548,7 @@
     <Content Include="Public\font\fontawesome\fa-solid-900.ttf" />
     <Content Include="Public\font\fontawesome\fa-solid-900.woff" />
     <Content Include="Public\font\fontawesome\fa-solid-900.woff2" />
+    <Content Include="Public\uploads\groupResources\8\movie.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -555,7 +560,7 @@
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Public\uploads\groupImg\" />
-    <Folder Include="Public\uploads\groupResources\" />
+    <Folder Include="Public\uploads\groupResources\8\Test Folder\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
