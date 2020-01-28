@@ -31,6 +31,15 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.HiddenField userid;
         
         /// <summary>
+        /// imageProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe imageProfile;
+        
+        /// <summary>
         /// LbName control.
         /// </summary>
         /// <remarks>

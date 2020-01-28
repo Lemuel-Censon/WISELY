@@ -214,6 +214,7 @@
     <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
     <Compile Include="BLL\User\User.cs" />
+    <Compile Include="DAL\Gacha\AvatarDAO.cs" />
     <Compile Include="DAL\Gacha\GachaDAO.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />
     <Compile Include="DAL\User\UserDAO.cs" />
