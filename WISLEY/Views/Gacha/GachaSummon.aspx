@@ -35,6 +35,9 @@
             <asp:Button ID="ButtonResults" CssClass="btn btn-light-green" runat="server" Text="RESULTS!" OnClick="ButtonResults_Click" autopostback="false"  />
                 <br />
                 <br />
+                <asp:Label ID="LabelRNG" runat="server" Text="RESULTS"></asp:Label>
+                <br />
+                <br />
             </div>
 
             <div id="hider" class="text-center" style="visibility:hidden" runat="server">
