@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Gacha\featuredgachadetails.sql" />
+    <Content Include="App_Data\Gacha\regulargachadetails.sql" />
     <Content Include="App_Data\WISELY.mdf" />
     <Content Include="App_Data\WISELY_log.ldf">
       <DependentUpon>WISELY.mdf</DependentUpon>
@@ -466,6 +468,8 @@
     <Content Include="Public\css\toast\toastr.less" />
     <Content Include="Public\css\toast\toastr.scss" />
     <Content Include="obj\Debug\WISLEY.csproj.CopyComplete" />
+    <Content Include="App_Data\Gacha\FeaturedGachadetails.csv" />
+    <Content Include="App_Data\Gacha\regulargachadetails.csv" />
     <None Include="packages.config" />
     <Content Include="Public\font\roboto\Roboto-Bold.eot" />
     <Content Include="Public\font\roboto\Roboto-Bold.ttf" />

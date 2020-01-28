@@ -42,7 +42,7 @@ namespace WISLEY.DAL.Gacha
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from [Avatar] where Id = @paraAvatarID";
+            string sqlstmt = "Select * from [Avatar] where avatarID = @paraAvatarID";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraAvatarID", id);
 
@@ -54,7 +54,7 @@ namespace WISLEY.DAL.Gacha
             if (rec_cnt > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
-                int avatarId = int.Parse(row["avatarId"].ToString());
+                int avatarId = int.Parse(row["avatarID"].ToString());
                 string acquired = row["acquired"].ToString();
                 string src = row["src"].ToString();
 
