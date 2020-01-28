@@ -19,9 +19,6 @@ namespace WISLEY
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-
             if (Session["email"] != null && Session["uid"] != null)
             {
                 LbEmail.Text = Session["email"].ToString();
@@ -91,13 +88,18 @@ namespace WISLEY
             }
 
             //Profile picture
-
-            string profileImage = Session["SSImage"].ToString();
-
-            if (profileImage != null)
+        
+            string profileImage = Session["SSImage"] as string;
+            if (String.IsNullOrEmpty(profileImage))
             {
-                imageProfile.Attributes.Add("src", profileImage);
+                imageProfile.Attributes.Add("src", "");
+                    // null or empty
             }
+            else
+            {
+                imageProfile.Attributes.Add("src", Session["SSImage"].ToString());
+            }
+            
             
 
         }

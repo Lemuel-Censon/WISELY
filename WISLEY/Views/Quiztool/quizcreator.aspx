@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="quizcreator.aspx.cs" Inherits="WISLEY.Views.Quiz.quizcreator1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="quizcreator.aspx.cs" Inherits="WISLEY.Views.Quiztool.quizcreator1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <div class="container">
         <div class="card z-depth-3 pb-0 px-0">
@@ -13,7 +13,7 @@
                     <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="300px"></asp:TextBox>
                 </div>
                 <div class="text-right">
-                    <a class="btn btn-block btn-info text-left rounded-0 mb-1 text-center" href="quizcreator.aspx"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create Questions </a>
+                    <asp:Button ID="btnCreateQuestions" CssClass="btn btn-block btn-info text-left rounded-0 mb-1 text-center" runat="server" Text="+ Create Questions" OnClick="btnCreateQuestions_Click" />
                 </div>
             </div>
         </div>

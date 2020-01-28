@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="col-lg-4">
 
-                    <div>
-                        <iframe id="imageProfile" class="mx-auto md-block" runat="server"></iframe>
+                    <div class="wrap">
+                        <iframe width="400px" height="400px" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
                     </div>
 
                 </div>
@@ -94,6 +94,7 @@
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Resources/resource.aspx") %>"><i class="fas fa-code mr-1"></i>My Resources</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Board/collab.aspx") %>"><i class="fas fa-users mr-1"></i>My Groups</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Gacha/gacha.aspx") %>"><i class="fas fa-portrait mr-1"></i>Gacha</a>
+                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Quiztool/quizstart.aspx") %>"><i class="fas fa-question-circle mr-1"></i>Quiz Creator</a>
                 </div>
             </div>
         </div>

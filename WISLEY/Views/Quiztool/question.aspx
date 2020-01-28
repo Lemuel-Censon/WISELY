@@ -1,13 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="question.aspx.cs" Inherits="WISLEY.Views.Quiz.question" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="question.aspx.cs" Inherits="WISLEY.Views.Quiztool.question" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
     <div class="container">
         <div class="card z-depth-3 pb-0 px-0">
             <div class="card-body px-5">
+                <h5 class="card-title mb-4">Quiz Id: #<asp:Label ID="LbQuizId" runat="server"></asp:Label></h5>
                 <h5 class="card-title mb-4">Question <asp:Label ID="LbQuestionNo" runat="server" Text="1"></asp:Label></h5>
                 <div class="md-form md-outline">
                     <asp:Label ID="LbOptions" runat="server" Text="Number of options: "></asp:Label>
-                    <asp:DropDownList ID="DdlOptions" runat="server">
+                    <asp:DropDownList ID="DdlOptions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlOptions_SelectedIndexChanged">
                         <asp:ListItem>2</asp:ListItem>
                         <asp:ListItem>3</asp:ListItem>
                         <asp:ListItem>4</asp:ListItem>
@@ -39,6 +40,7 @@
                 <div class="md-form md-outline">
                     <asp:Label ID="LbCorrect" runat="server" Text="Select correct answer: "></asp:Label>
                     <asp:DropDownList ID="DdlCorrect" runat="server">
+                        <asp:ListItem Value="N/A">-- Select --</asp:ListItem>
                         <asp:ListItem>1</asp:ListItem>
                         <asp:ListItem>2</asp:ListItem>
                         <asp:ListItem>3</asp:ListItem>
@@ -47,9 +49,9 @@
                     </asp:DropDownList>
                 </div>
                 <div class="text-right">
-                    <asp:Button CssClass="btn btn-info" ID="btnNext" runat="server" Text="Next Question >"/>
-                    <asp:Button CssClass="btn btn-info" ID="btnSave" runat="server" Text="< Previous Question"/>
-                    <asp:Button CssClass="btn btn-danger" ID="btnExit" runat="server" Text="Exit"/>
+                    <asp:Button CssClass="btn btn-info" ID="btnPrevious" runat="server" Text="< Previous Question" OnClick="btnPrevious_Click"/>
+                    <asp:Button CssClass="btn btn-info" ID="btnNext" runat="server" Text="Next Question >" OnClick="btnNext_Click"/>
+                    <asp:Button CssClass="btn btn-danger" ID="btnExit" runat="server" Text="Exit" OnClick="btnExit_Click"/>
                 </div>
             </div>
         </div>
