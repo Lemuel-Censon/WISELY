@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 using WISLEY.BLL.Schedule;
 
 namespace WISLEY
@@ -13,6 +14,12 @@ namespace WISLEY
         protected void Page_Load(object sender, EventArgs e)
         {
             LblSelectedDate.Text = Session["selectDate"].ToString();
+        }
+
+        public User currUser()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -29,22 +36,23 @@ namespace WISLEY
         {
             if (validateInput())
             {
+                string userEmail = currUser().email.ToString();
                 DateTime selectedToDoDate = Convert.ToDateTime(LblSelectedDate.Text);
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
 
-                Planner todoPlan = new Planner(selectedToDoDate, todoTitle, todoDesc);
+                Planner todoPlan = new Planner(userEmail, selectedToDoDate, todoTitle, todoDesc);
                 int count = todoPlan.AddToDoList();
 
                 if (count == 1)
                 {
                     toast(this, "Your To-Do-List has been added sucessfully!", "Success", "success");
-                    Response.Redirect("schedules.aspx");
+                    Response.Redirect("schedule.aspx");
                 }
 
                 else
                 {
-                    toast(this, "Your To-Do-List is not added successfully!", "Danger", "danger");
+                    toast(this, "Something went wrong when adding your To-Do-List!", "Danger", "danger");
                 }
             }
         }
