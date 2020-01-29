@@ -14,11 +14,6 @@ namespace WISLEY
 {
     public partial class collab : System.Web.UI.Page
     {
-        public int postcount()
-        {
-            List<Post> allPosts = new Post().SelectAll();
-            return allPosts.Count;
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,11 +32,12 @@ namespace WISLEY
                 }
                 if (Request.QueryString["groupId"] != null)
                 {
-                    postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((post " +
-                        "INNER JOIN [User] ON post.userId = [User].Id) " +
-                        "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
-                        "WHERE post.groupId = " + Request.QueryString["groupId"] + " " +
-                        "AND post.status = '' ORDER BY Id DESC";
+                    if (!Page.IsPostBack)
+                    {
+                        List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
+                        postinfo.DataSource = posts;
+                        postinfo.DataBind();
+                    }
                 }
                 else
                 {
@@ -54,14 +50,11 @@ namespace WISLEY
                             ListItem item = new ListItem(groups[i].name, groups[i].id.ToString());
                             ddlgrp.Items.Insert(i + 1, item);
                         }
+                        List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
+                        postinfo.DataSource = posts;
+                        postinfo.DataBind();
                     }
-                    ddlgrp.Visible = true;
-                    postdata.SelectCommand = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((POST " +
-                        "INNER JOIN [User] ON post.userId = [User].Id) " +
-                        "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
-                        "WHERE userId in " +
-                        "(Select Id from [User] where email = '" + LbEmail.Text + "') " +
-                        "AND post.status = '' ORDER BY Id DESC";
+                    ddlgrp.Visible = true; 
                 }
             }
             else
@@ -242,7 +235,18 @@ namespace WISLEY
                         e.Item.FindControl("tbUpcontent").Visible = false;
                         e.Item.FindControl("btncancel").Visible = false;
                         e.Item.FindControl("btnsave").Visible = false;
-                        postinfo.DataSourceID = "postdata";
+                        if (Request.QueryString["groupId"] != null)
+                        {
+                            List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
+                            postinfo.DataSource = posts;
+                            postinfo.DataBind();
+                        }
+                        else
+                        {
+                            List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
+                            postinfo.DataSource = posts;
+                            postinfo.DataBind();
+                        }
                     }
                     else
                     {

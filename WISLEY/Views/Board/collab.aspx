@@ -61,7 +61,7 @@
             <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div id="postcon">
-                        <asp:Repeater runat="server" ID="postinfo" DataSourceID="postdata" OnItemCommand="postinfo_ItemCommand" OnItemDataBound="postinfo_ItemDataBound">
+                        <asp:Repeater runat="server" ID="postinfo" OnItemCommand="postinfo_ItemCommand" OnItemDataBound="postinfo_ItemDataBound">
                             <ItemTemplate>
                                 <div class="postcards" data-id='<%#Eval("Id") %>'>
                                     <div class="card-body" id="post<%#Eval("Id") %>">
@@ -72,7 +72,7 @@
                                                 <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>' Visible="false"></asp:TextBox>
                                             </div>
                                             <div class="col-lg-6 text-right">
-                                                <asp:Button runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info" />
+                                                <asp:LinkButton runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info"></asp:LinkButton>
                                                     <button type="button" id="delconfirm" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
                                                     Delete
                                                     </button>
@@ -91,7 +91,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
-                                                                <asp:Button runat="server" CommandName="delpost" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success" />
+                                                                <asp:LinkButton runat="server" CommandName="delpost" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -123,11 +123,11 @@
                                         <div class="card-header border-0 font-weight-bold">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" Visible="false" />
+                                                    <asp:LinkButton runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" Visible="false"></asp:LinkButton>
                                                 </div>
                                                 <div class="text-right col-lg-6">
-                                                    <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnSave" Text="Save Changes" CssClass="btn btn-sm btn-success" Visible="false" />
-                                                    <asp:Button runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success" />
+                                                    <asp:LinkButton runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnSave" Text="Save Changes" CssClass="btn btn-sm btn-success" Visible="false"></asp:LinkButton>
+                                                    <asp:LinkButton runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,10 +146,6 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-
-            <asp:SqlDataSource ID="postdata"
-                ConnectionString="<%$ connectionStrings: ConnStr%>"
-                runat="server"></asp:SqlDataSource>
         </div>
     </div>
 
