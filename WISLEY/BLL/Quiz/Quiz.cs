@@ -38,5 +38,11 @@ namespace WISLEY.BLL.Quiz
             QuizDAO quizdao = new QuizDAO();
             return quizdao.SelectCountById(userId);
         }
+
+        public Quiz SelectById(string quizId)
+        {
+            QuizDAO quizdao = new QuizDAO();
+            return quizdao.SelectById(quizId);
+        }
     }
 }

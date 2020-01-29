@@ -14,13 +14,14 @@ namespace WISLEY.DAL.Quiztool
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO Question (question, option1, option2, option3, option4, option5, answer, quizId)" +
-                             "VALUES (@paraQuestion, @paraOption1, @paraOption2, @paraOption3, @paraOption4, @paraOption5, @paraAnswer, @paraQuizID)";
+            string sqlStmt = "INSERT INTO Question (question, number, option1, option2, option3, option4, option5, answer, quizId)" +
+                             "VALUES (@paraQuestion, @paraNumber, @paraOption1, @paraOption2, @paraOption3, @paraOption4, @paraOption5, @paraAnswer, @paraQuizID)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
             sqlCmd.Parameters.AddWithValue("@paraQuestion", question.question);
+            sqlCmd.Parameters.AddWithValue("@paraNumber", question.number);
             sqlCmd.Parameters.AddWithValue("@paraOption1", question.option1);
             sqlCmd.Parameters.AddWithValue("@paraOption2", question.option2);
             sqlCmd.Parameters.AddWithValue("@paraOption3", question.option3);

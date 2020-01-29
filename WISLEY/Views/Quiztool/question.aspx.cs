@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
+using WISLEY.BLL.Quiz;
 
 namespace WISLEY.Views.Quiztool
 {
@@ -26,6 +28,10 @@ namespace WISLEY.Views.Quiztool
                 }
                 if (Session["quizId"] != null)
                 {
+                    if (!Page.IsPostBack)
+                    {
+                        Quiz quiz = new Quiz().SelectById(Session["quizId"].ToString());
+                    }
                     LbQuizId.Text = Session["quizId"].ToString();
                 }
                 if (Session["next"] != null)
@@ -132,6 +138,7 @@ namespace WISLEY.Views.Quiztool
             }
         }
         int questionNo = 0;
+        string correct = "";
 
         public bool ValidateInput(string option1, string option2, string option3, string option4, string option5)
         {
@@ -173,12 +180,28 @@ namespace WISLEY.Views.Quiztool
         {
             if (ValidateInput(TbOption1.Text, TbOption2.Text, TbOption3.Text, TbOption4.Text, TbOption5.Text))
             {
-                questionNo = int.Parse(LbQuestionNo.Text);
-                questionNo += 1;
-                Session["next"] = questionNo.ToString();
-                Session["previous"] = null;
-                Session["success"] = "Question " + LbQuestionNo.Text + " saved!";
-                Response.Redirect("question.aspx");
+                string questionTitle = TbQuestion.Text;
+                string option1 = TbOption1.Text;
+                string option2 = TbOption2.Text;
+                string option3 = TbOption3.Text;
+                string option4 = TbOption4.Text;
+                string option5 = TbOption5.Text;
+                string quizId = Session["quizId"].ToString();
+                Question question = new Question(questionTitle, LbQuestionNo.Text, option1, option2, option3, option4, option5, correct, quizId);
+                int result = question.AddQuestion();
+                if (result == 1)
+                {
+                    questionNo = int.Parse(LbQuestionNo.Text);
+                    questionNo += 1;
+                    Session["next"] = questionNo.ToString();
+                    Session["previous"] = null;
+                    Session["success"] = "Question " + LbQuestionNo.Text + " saved!";
+                    Response.Redirect("question.aspx");
+                }
+                else
+                {
+                    toast(this, "Unable to save question, please contact system administrator!", "Error", "error");
+                }
             }
         }
 
@@ -197,8 +220,34 @@ namespace WISLEY.Views.Quiztool
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
+            User user = new User();
             Session["success"] = "Your quiz has been saved! You may view it in your profile.";
+            Session["email"] = user.email;
             Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+        }
+
+        protected void DdlCorrect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DdlCorrect.SelectedItem.Value == "1")
+            {
+                correct = TbOption1.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Value == "2")
+            {
+                correct = TbOption2.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Value == "3")
+            {
+                correct = TbOption3.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Value == "4")
+            {
+                correct = TbOption4.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Value == "5")
+            {
+                correct = TbOption5.Text;
+            }
         }
     }
 }

@@ -7,6 +7,10 @@
                 <h5 class="card-title mb-4">Quiz Id: #<asp:Label ID="LbQuizId" runat="server"></asp:Label></h5>
                 <h5 class="card-title mb-4">Question <asp:Label ID="LbQuestionNo" runat="server" Text="1"></asp:Label></h5>
                 <div class="md-form md-outline">
+                    <asp:Label AssociatedControlID="TbQuestion" ID="LbQuestion" runat="server" Text="Enter question"></asp:Label>
+                    <asp:TextBox ID="TbQuestion" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="md-form md-outline">
                     <asp:Label ID="LbOptions" runat="server" Text="Number of options: "></asp:Label>
                     <asp:DropDownList ID="DdlOptions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlOptions_SelectedIndexChanged">
                         <asp:ListItem>2</asp:ListItem>
@@ -39,7 +43,7 @@
                 </div>
                 <div class="md-form md-outline">
                     <asp:Label ID="LbCorrect" runat="server" Text="Select correct answer: "></asp:Label>
-                    <asp:DropDownList ID="DdlCorrect" runat="server">
+                    <asp:DropDownList ID="DdlCorrect" runat="server" OnSelectedIndexChanged="DdlCorrect_SelectedIndexChanged">
                         <asp:ListItem Value="N/A">-- Select --</asp:ListItem>
                         <asp:ListItem>1</asp:ListItem>
                         <asp:ListItem>2</asp:ListItem>
@@ -47,6 +51,7 @@
                         <asp:ListItem>4</asp:ListItem>
                         <asp:ListItem>5</asp:ListItem>
                     </asp:DropDownList>
+                    <p style="color: red;">Note: Changes will be auto-saved.</p>
                 </div>
                 <div class="text-right">
                     <asp:Button CssClass="btn btn-info" ID="btnPrevious" runat="server" Text="< Previous Question" OnClick="btnPrevious_Click"/>
