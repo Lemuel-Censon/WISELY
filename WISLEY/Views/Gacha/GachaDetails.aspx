@@ -37,12 +37,24 @@
                     &nbsp;</p>
 
         <div class="auto-style2">
-        <asp:GridView ID="GvSummon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" CssClass="auto-style3" GridLines="None" OnSelectedIndexChanged="Page_Load" DataSourceID="Featured" Height="416px" Width="1191px"  >
+        <asp:GridView ID="GvSummon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" CssClass="auto-style3" GridLines="None" OnSelectedIndexChanged="Page_Load" DataSourceID="Featured" Height="416px" Width="1191px" Font-Size="Larger"  >
             <Columns>
-                <asp:BoundField HeaderText="AvatarID" DataField="AvatarID" />
-                <asp:BoundField HeaderText="Avatar Name" DataField="Avatar_Name" />
-                <asp:BoundField HeaderText="1x Summon rate" DataField="x_Summon_rate" />
-                <asp:BoundField HeaderText="11 x Summon rate" DataField="xx_Summon_rate" />
+                <asp:BoundField HeaderText="AvatarID" DataField="AvatarID" >
+                <HeaderStyle Font-Size="Larger" Wrap="True" />
+                <ItemStyle Font-Size="Larger" />
+                </asp:BoundField>
+                <asp:BoundField HeaderText="Avatar Name" DataField="Avatar_Name" >
+                <HeaderStyle Font-Size="Larger" />
+                <ItemStyle Font-Size="Larger" />
+                </asp:BoundField>
+                <asp:BoundField HeaderText="1x Summon rate" DataField="x_Summon_rate" >
+                <HeaderStyle Font-Size="Larger" />
+                <ItemStyle Font-Overline="False" Font-Size="Larger" />
+                </asp:BoundField>
+                <asp:BoundField HeaderText="11 x Summon rate" DataField="xx_Summon_rate" >
+                <HeaderStyle Font-Size="Larger" />
+                <ItemStyle Font-Size="Larger" />
+                </asp:BoundField>
             </Columns>
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
@@ -54,12 +66,24 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#33276A" />
         </asp:GridView>
-            <asp:GridView ID="GvSummon2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style4" DataSourceID="Regular" Height="320px" Width="1184px">
+            <asp:GridView ID="GvSummon2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style4" DataSourceID="Regular" Height="320px" Width="1184px" Font-Size="Larger">
                 <Columns>
-                    <asp:BoundField AccessibleHeaderText="AvatarID" DataField="AvatarID" HeaderText="AvatarID" />
-                    <asp:BoundField DataField="Avatar_Name" HeaderText="Avatar Name" />
-                    <asp:BoundField DataField="x_Summon_rate" HeaderText="1x Summon rate" />
-                    <asp:BoundField DataField="xx_Summon_rate" HeaderText="11x Summon rate" />
+                    <asp:BoundField AccessibleHeaderText="AvatarID" DataField="AvatarID" HeaderText="AvatarID" >
+                    <HeaderStyle Font-Size="Larger" />
+                    <ItemStyle Font-Size="Larger" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Avatar_Name" HeaderText="Avatar Name" >
+                    <HeaderStyle Font-Size="Larger" />
+                    <ItemStyle Font-Size="Larger" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="x_Summon_rate" HeaderText="1x Summon rate" >
+                    <HeaderStyle Font-Size="Larger" />
+                    <ItemStyle Font-Size="Larger" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="xx_Summon_rate" HeaderText="11x Summon rate" >
+                    <HeaderStyle Font-Size="Larger" />
+                    <ItemStyle Font-Size="Larger" />
+                    </asp:BoundField>
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
