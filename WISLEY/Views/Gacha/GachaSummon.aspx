@@ -28,7 +28,7 @@
 
             <div class="text-center">
                 <video width="830" height="530" controls autoplay>
-                  <source id="gachavideo" src="/Public/videos/gacha_super.mp4" type="video/mp4">
+                  <source id="gachavideo" src="/Public/videos/gacha_common.mp4" type="video/mp4" runat="server">
                 </video>
                 <br />
                 <br />

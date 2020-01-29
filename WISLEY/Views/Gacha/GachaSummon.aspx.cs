@@ -103,6 +103,15 @@ namespace WISLEY.Views.Gacha
                 }
             }
 
+            if (LabelRNG.Text.Contains("1"))
+            {
+                gachavideo.Attributes["src"] = "/Public/videos/gacha_super.mp4";
+            }
+            else if (LabelRNG.Text.Contains("2"))
+            {
+                gachavideo.Attributes["src"] = "/Public/videos/gacha_rare.mp4";
+            }
+
         }
 
         

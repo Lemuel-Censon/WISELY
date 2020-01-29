@@ -31,6 +31,15 @@ namespace WISLEY.Views.Gacha {
         protected global::System.Web.UI.WebControls.Label LabelTitle;
         
         /// <summary>
+        /// gachavideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSource gachavideo;
+        
+        /// <summary>
         /// ButtonResults control.
         /// </summary>
         /// <remarks>

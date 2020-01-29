@@ -10,8 +10,12 @@
             <div class="row">
                 <div class="col-lg-4">
 
-                    <div class="wrap">
+                    <div>
+<<<<<<< Updated upstream
                         <iframe width="400" height="400" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
+=======
+                        <iframe width="200px" height="200px" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
+>>>>>>> Stashed changes
                     </div>
 
                 </div>

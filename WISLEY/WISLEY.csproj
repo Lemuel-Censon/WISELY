@@ -108,8 +108,8 @@
     <Content Include="Public\img\Badges\Badge_Group.png" />
     <Content Include="Public\img\Badges\Badge_Post.png" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
-    <Content Include="Public\videos\gacha_common %282%29.mp4" />
-    <Content Include="Public\videos\gacha_rare %282%29.mp4" />
+    <Content Include="Public\videos\gacha_common.mp4" />
+    <Content Include="Public\videos\gacha_rare.mp4" />
     <Content Include="Public\videos\gacha_super.mp4" />
     <Content Include="Views\Auth\logout.aspx" />
     <Content Include="Views\Gacha\Avatar.aspx" />
