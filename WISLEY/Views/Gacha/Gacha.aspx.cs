@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY.Views.Gacha
 {
@@ -11,7 +12,11 @@ namespace WISLEY.Views.Gacha
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["email"] == null)
+            {
+                Session["error"] = "You must be logged in to create a group!";
+                Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
+            }
         }
 
         protected void ButtonBack_Click(object sender, EventArgs e)
