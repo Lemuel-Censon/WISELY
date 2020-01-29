@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
+using WISLEY.BLL.Schedule;
 
 namespace WISLEY.Views.Schedule
 {
@@ -24,6 +26,13 @@ namespace WISLEY.Views.Schedule
             publicHol["1/1/" + DateTime.Today.Year] = "New Year Day";
             publicHol["25/1/" + DateTime.Today.Year] = "Chinese New Year";
             publicHol["26/1/" + DateTime.Today.Year] = "Chinese New Year";
+            publicHol["10/4/" + DateTime.Today.Year] = "Good Friday";
+            publicHol["1/5/" + DateTime.Today.Year] = "Labour Day";
+            publicHol["7/5/" + DateTime.Today.Year] = "Vesak Day";
+            publicHol["24/5/" + DateTime.Today.Year] = "Hari Raya Puasa";
+            publicHol["31/7/" + DateTime.Today.Year] = "Hari Raya Haji";
+            publicHol["9/8/" + DateTime.Today.Year] = "National Day";
+            publicHol["14/11/" + DateTime.Today.Year] = "Deepavali";
             publicHol["25/12/" + DateTime.Today.Year] = "Christmas Day";
             return publicHol;
         }
@@ -49,6 +58,23 @@ namespace WISLEY.Views.Schedule
                 pulHoliday.Text = HolidayList[e.Day.Date.ToShortDateString()].ToString();
                 e.Cell.ToolTip = pulHoliday.Text;
             }
+        }
+
+        public User currUser()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
+        }
+
+        protected int ToDoListcount()
+        {
+            List<Planner> allToDoList = new Planner().getToDoByUserEmail(currUser().email.ToString());
+            return allToDoList.Count();
+        }
+
+        protected void todolist_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
         }
     }
 }

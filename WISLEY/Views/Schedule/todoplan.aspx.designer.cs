@@ -13,6 +13,15 @@ namespace WISLEY {
     public partial class todoplan {
         
         /// <summary>
+        /// LblToDoDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblToDoDate;
+        
+        /// <summary>
         /// LblSelectedDate control.
         /// </summary>
         /// <remarks>

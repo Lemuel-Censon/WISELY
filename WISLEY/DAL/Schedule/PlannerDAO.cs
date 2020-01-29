@@ -16,12 +16,13 @@ namespace WISLEY.DAL.Schedule
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStatement = "INSERT INTO Planner (dateSelected, title, description) " +
-                                  "VALUES (@paraDateSelected, @paraTitle, @paraDescription)";
+            string sqlStatement = "INSERT INTO Planner (userId, dateSelected, ToDotitle, description) " +
+                                  "VALUES (@paraUserId, @paraDateSelected, @paraTitle, @paraDescription)";
 
             int result = 0;
             SqlCommand sqlcmd = new SqlCommand(sqlStatement, myConn);
 
+            sqlcmd.Parameters.AddWithValue("@paraUserId", todolist.userId);
             sqlcmd.Parameters.AddWithValue("@paraDateSelected", todolist.todoDate);
             sqlcmd.Parameters.AddWithValue("@paraTitle", todolist.todoTitle);
             sqlcmd.Parameters.AddWithValue("@paraDescription", todolist.todoDescription);
@@ -34,37 +35,35 @@ namespace WISLEY.DAL.Schedule
             return result;
         }
 
-        public List<Planner> SelectAllToDo()
+        public List<Planner> SelectByUserEmail(string userId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(DBConnect);
 
-            string sqlStmt = "SELECT * FROM Planner ORDER BY dateSelected ASC";
+            string sqlStmt = "SELECT * FROM Planner WHERE userId = @paraUserId ORDER BY dateSelected ASC";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConnection);
 
+            da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
+
             DataSet ds = new DataSet();
+
             da.Fill(ds);
 
+            Planner plannerObj = null;
+            List<Planner> userToDo = new List<Planner>();
+
             int count = ds.Tables[0].Rows.Count;
-
-            Planner obj = null;
-            List<Planner> plannerList = new List<Planner>();
-
-            if (count > 0)
+            if (count == 1)
             {
-                for (int i=0; i<count; i++)
-                {
-                    DataRow row = ds.Tables[0].Rows[i];
-                    DateTime todoDate = Convert.ToDateTime(row["dateSelected"].ToString());
-                    string todoTitle = row["title"].ToString();
-                    string todoDesc = row["description"].ToString();
-                    obj = new Planner(todoDate, todoTitle, todoDesc);
-
-                    plannerList.Add(obj);
-                }
+                DataRow row = ds.Tables[0].Rows[0];
+                DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
+                string title = row["ToDotitle"].ToString();
+                string description = row["description"].ToString();
+                plannerObj = new Planner(userId, dateSelected, title, description);
+                userToDo.Add(plannerObj);
             }
 
-            return plannerList;
+            return userToDo;
         }
     }
 }
