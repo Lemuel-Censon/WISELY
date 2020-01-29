@@ -51,7 +51,9 @@
                         <asp:ListItem>4</asp:ListItem>
                         <asp:ListItem>5</asp:ListItem>
                     </asp:DropDownList>
-                    <p style="color: red;">Note: Changes will be auto-saved.</p>
+                    <br />
+                    <br />
+                    <p style="color: red;">Note: Changes will be auto-saved when you move on to the next question.</p>
                 </div>
                 <div class="text-right">
                     <asp:Button CssClass="btn btn-info" ID="btnPrevious" runat="server" Text="< Previous Question" OnClick="btnPrevious_Click"/>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.Quiz;
 
 namespace WISLEY
 {
@@ -15,6 +16,12 @@ namespace WISLEY
         {
             Post post = new Post();
             return post.SelectByUser(LbEmail.Text).Count;
+        }
+
+        public int quizcount(string userId)
+        {
+            Quiz quiz = new Quiz();
+            return quiz.GetQuizCount(userId);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -78,7 +85,9 @@ namespace WISLEY
                         LbBio.Text = user.bio;
                     }
                     postcount();
+                    quizcount(user.id.ToString());
                     userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
+                    userquizdata.SelectCommand = "SELECT * FROM QUIZ WHERE userId = '" + userid.Value + "' ORDER BY datecreated DESC";
                 }
             }
             else

@@ -220,10 +220,8 @@ namespace WISLEY.Views.Quiztool
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
-            User user = new User();
             Session["success"] = "Your quiz has been saved! You may view it in your profile.";
-            Session["email"] = user.email;
-            Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+            Response.Redirect("quizstart.aspx");
         }
 
         protected void DdlCorrect_SelectedIndexChanged(object sender, EventArgs e)

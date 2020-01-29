@@ -23,12 +23,22 @@ namespace WISLEY.Views.Quiztool
                     LbName.Text = user.name;
                     LbNofQuiz.Text = result.ToString();
                 }
+                if (Session["success"] != null)
+                {
+                    toast(this, Session["success"].ToString(), "Success", "success");
+                    Session["success"] = null;
+                }
             }
             else
             {
                 Session["error"] = "You must be logged in to have access to the quiz creator!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+        }
+
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
     }
 }

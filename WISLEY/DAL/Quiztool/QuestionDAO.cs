@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -36,6 +37,40 @@ namespace WISLEY.DAL.Quiztool
             myConn.Close();
 
             return result;
+        }
+
+        public Question GetQuestion(string number, string quizId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * From Question Where number = @paraNumber And quizId = @paraQuizID";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraNumber", number);
+            da.SelectCommand.Parameters.AddWithValue("@paraQuizID", quizId);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Question obj = null;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                string question = row["question"].ToString();
+                string questionNo = row["number"].ToString();
+                string option1 = row["option1"].ToString();
+                string option2 = row["option2"].ToString();
+                string option3 = row["option3"].ToString();
+                string option4 = row["option4"].ToString();
+                string option5 = row["option5"].ToString();
+                string answer = row["answer"].ToString();
+                string quizID = row["quizId"].ToString();
+
+                obj = new Question(question, questionNo, option1, option2, option3, option4, option5, answer, quizID);
+            }
+
+            return obj;
         }
     }
 }

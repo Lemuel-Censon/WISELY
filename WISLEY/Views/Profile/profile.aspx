@@ -11,7 +11,7 @@
                 <div class="col-lg-4">
 
                     <div class="wrap">
-                        <iframe width="400px" height="400px" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
+                        <iframe width="400" height="400" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
                     </div>
 
                 </div>
@@ -115,6 +115,9 @@
                 <li class="nav-item">
                     <a class="nav-link" role="tab" data-toggle="tab" href="#badges">Badges</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" role="tab" data-toggle="tab" href="#quizzes">Quizzes</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
@@ -186,6 +189,40 @@
                     <h3>Locked Badges</h3>
                         <p><img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55" style="filter: grayscale(100%)"/>Join a group.</p>
                         <p><img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55" style="filter: grayscale(100%)"/>Create a post.</p>
+                </div>
+                <div id="quizzes" class="tab-pane fade m-2 ml-2" role="tabpanel">
+                    <%if (quizcount(userid.Value) > 0)
+                        { %>
+                    <asp:Repeater runat="server" ID="userquiz" DataSourceID="userquizdata">
+                        <ItemTemplate>
+                            <div class="card-body">
+                                <div class="media mt-4 px-1">
+                                    <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                                        alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h5 class="font-weight-bold mt-0">
+                                                    <asp:LinkButton runat="server" ID="quizlink"><%#Eval("title") %></asp:LinkButton>
+                                                </h5>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <%#Eval("description")%>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <asp:SqlDataSource runat="server" ID="userquizdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
+                    <%} %>
+                    <%else
+                        { %>Currently Empty
+                        <%} %>
                 </div>
             </div>
         </div>
