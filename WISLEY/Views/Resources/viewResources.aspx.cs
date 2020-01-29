@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Profile;
 using WISLEY.BLL.Resources;
 
 namespace WISLEY.Views.Resources
@@ -98,6 +99,12 @@ namespace WISLEY.Views.Resources
         public string getQuery(object cat)
         {
             return "SELECT * FROM [grpResource] WHERE resourceType ='" + cat.ToString() + "'";
+        }
+
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
         }
     }
 

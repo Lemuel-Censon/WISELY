@@ -58,9 +58,10 @@
             ConnectionString="<%$ connectionStrings: ConnStr%>"
             runat="server"></asp:SqlDataSource>
 
-
+                <% if (user().userType == "Teacher")
+            { %>
         <a class="btn btn-light" href="<%= Page.ResolveUrl("~/Views/Resources/resourceUpload.aspx?groupId=" + getGroupDetails().id.ToString())%>">Upload Resource </a>
-
+        <%} %>
     </div>
 
 
