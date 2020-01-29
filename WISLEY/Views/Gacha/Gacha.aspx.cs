@@ -21,26 +21,89 @@ namespace WISLEY.Views.Gacha
 
         protected void Button1x_F_Click(object sender, EventArgs e)
         {
+            
+
+            //RNG
+            int Min = 1;
+            int Max = 8;
+            int[] Summon = new int[1];
+
+            Random randNum = new Random();
+            for (int i = 0; i < Summon.Length; i++)
+            {
+                Summon[i] = randNum.Next(Min, Max);
+            }
+
+            Session["SSResults"] = string.Join(",", Summon.ToArray());
+
             Session["SSTitle"] = "Featured units 1x Summon";
             Response.Redirect("GachaSummon.aspx");
+
         }
 
         protected void Button11x_F_Click(object sender, EventArgs e)
         {
+            //RNG
+            int Min = 1;
+            int Max = 8;
+            int[] Summon = new int[11];
+
+            Random randNum = new Random();
+            for (int i = 0; i < Summon.Length; i++)
+            {
+                Summon[i] = randNum.Next(Min, Max);
+            }
+
+            Session["SSResults"] = string.Join(",", Summon.ToArray());
+
+
             Session["SSTitle"] = "Featured units 11x Summon";
             Response.Redirect("GachaSummon.aspx");
+
+            
         }
 
         protected void Button1x_R_Click(object sender, EventArgs e)
         {
+            
+
+            //RNG
+            int Min = 1;
+            int Max = 8;
+            int[] Summon = new int[1];
+
+            Random randNum = new Random();
+            for (int i = 0; i < Summon.Length; i++)
+            {
+                Summon[i] = randNum.Next(Min, Max);
+            }
+
+            Session["SSResults"] = string.Join(",", Summon.ToArray());
+
             Session["SSTitle"] = "Beginner special 1x Summon";
             Response.Redirect("GachaSummon.aspx");
         }
 
         protected void Button11x_R_Click(object sender, EventArgs e)
         {
+            
+
+            //RNG
+            int Min = 1;
+            int Max = 8;
+            int[] Summon = new int[11];
+
+            Random randNum = new Random();
+            for (int i = 0; i < Summon.Length; i++)
+            {
+                Summon[i] = randNum.Next(Min, Max);
+            }
+
+            Session["SSResults"] = string.Join(",",Summon.ToArray());
+
             Session["SSTitle"] = "Beginner special 11x Summon";
             Response.Redirect("GachaSummon.aspx");
+
         }
 
         protected void ButtonI_F(object sender, EventArgs e)
