@@ -36,42 +36,14 @@ namespace WISLEY.DAL.Collab
             return result;
         }
 
-        public List<Comment> SelectAll()
-        {
-            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-
-            string sqlstmt = "Select * from Comment ORDER BY Id DESC";
-            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
-
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            int rec_cnt = ds.Tables[0].Rows.Count;
-
-            Comment obj = null;
-            List<Comment> commlist = new List<Comment>();
-            if (rec_cnt > 0)
-            {
-                for (int i = 0; i < rec_cnt; i++)
-                {
-                    DataRow row = ds.Tables[0].Rows[i];
-                    string postId = row["postId"].ToString();
-                    string userId = row["userId"].ToString();
-                    string content = row["content"].ToString();
-                    string datecreated = row["datecreated"].ToString();
-                    obj = new Comment(postId, userId, content, datecreated);
-                    commlist.Add(obj);
-                }
-            }
-            return commlist;
-        }
-
         public List<Comment> SelectByPost(string postId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Comment where postId = @paraPostId AND status = '' ORDER BY Id DESC";
+            string sqlstmt = "SELECT comment.*, [User].name FROM COMMENT " +
+                    "INNER JOIN [User] ON comment.userId = [User].Id " +
+                    "WHERE comment.postId = @paraPostId AND status = '' ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraPostId", postId);
 
@@ -89,7 +61,9 @@ namespace WISLEY.DAL.Collab
                     string userId = row["userId"].ToString();
                     string content = row["content"].ToString();
                     string datecreated = row["datecreated"].ToString();
-                    obj = new Comment(postId, userId, content, datecreated);
+                    string username = row["name"].ToString();
+                    int Id = int.Parse(row["Id"].ToString());
+                    obj = new Comment(postId, userId, content, datecreated, Id, username);
                     commpostlist.Add(obj);
                 }
             }

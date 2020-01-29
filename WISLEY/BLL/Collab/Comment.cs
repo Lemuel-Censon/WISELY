@@ -8,10 +8,12 @@ namespace WISLEY.BLL.Collab
 {
     public class Comment
     {
+        public int Id { get; set; }
         public string postid { get; set; }
         public string userid { get; set; }
         public string content { get; set; }
         public string datecreated { get; set; }
+        public string username { get; set; }
         public string status { get; set; }
 
         public Comment()
@@ -19,25 +21,21 @@ namespace WISLEY.BLL.Collab
 
         }
 
-        public Comment(string postid, string userid, string content, string datecreated, string status = "")
+        public Comment(string postid, string userid, string content, string datecreated, int Id = -1, string username = "", string status = "")
         {
             this.postid = postid;
             this.userid = userid;
             this.content = content;
             this.datecreated = datecreated;
+            this.username = username;
             this.status = status;
+            this.Id = Id;
         }
 
         public int AddComment()
         {
             CommentDAO commdao = new CommentDAO();
             return commdao.Insert(this);
-        }
-
-        public List<Comment> SelectAll()
-        {
-            CommentDAO commdao = new CommentDAO();
-            return commdao.SelectAll();
         }
 
         public List<Comment> SelectByPost(string postId)

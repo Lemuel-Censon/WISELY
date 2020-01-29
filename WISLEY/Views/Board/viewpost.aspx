@@ -6,7 +6,7 @@
             <asp:Label runat="server" ID="LbEmail" Visible="false"></asp:Label>
             <asp:Label runat="server" ID="LbPostID" Visible="false"></asp:Label>
             <asp:HiddenField runat="server" ID="LbUserID" />
-            <asp:Repeater runat="server" ID="post" DataSourceID="postdata" OnItemCommand="post_ItemCommand">
+            <asp:Repeater runat="server" ID="post" OnItemCommand="post_ItemCommand">
                 <ItemTemplate>
                     <div class="card-body">
                         <asp:Button runat="server" ID="btnback" CssClass="btn btn-sm btn-danger" Text="<< Back" OnClick="btnback_Click" />
@@ -18,7 +18,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <h5 class="font-weight-bold mt-0">
-                                            <asp:LinkButton runat="server" ID="postlink" CommandName="viewpost" CommandArgument='<%#Eval("userId") %>'><%#Eval("name") %></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="postlink" CommandName="viewpost" CommandArgument='<%#Eval("userId") %>'><%#Eval("username") %></asp:LinkButton>
                                         </h5>
                                     </div>
                                     <div class="col-lg-6">
@@ -32,7 +32,6 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:SqlDataSource runat="server" ID="postdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
             <hr />
             <h5 class="text-center my-3">Comments</h5>
             <div class="accordion" role="tablist" id="commentacc" aria-multiselectable="true">
@@ -57,7 +56,7 @@
                             <hr />
                             <asp:UpdatePanel runat="server" ID="commpanel" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                    <asp:Repeater runat="server" DataSourceID="commentdata" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand" OnItemDataBound="commentinfo_ItemDataBound">
+                                    <asp:Repeater runat="server" ID="commentinfo" OnItemCommand="commentinfo_ItemCommand" OnItemDataBound="commentinfo_ItemDataBound">
                                         <ItemTemplate>
                                             <div class="media d-block d-md-flex mt-4">
                                                 <img class="card-img-64 d-flex mx-auto mb-3" src="https://picsum.photos/100"
@@ -66,7 +65,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <h5 class="font-weight-bold mt-0">
-                                                                <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("name") %>'></asp:LinkButton>
+                                                                <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("username") %>'></asp:LinkButton>
                                                                 <asp:HiddenField runat="server" ID="commuserID" Value='<%#Eval("userId") %>' />
                                                             </h5>
                                                         </div>
@@ -97,7 +96,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
-                                                                            <asp:Button runat="server" CommandName="delcomm" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success" />
+                                                                            <asp:LinkButton runat="server" CommandName="delcomm" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -109,8 +108,8 @@
                                                     </div>
                                                     <asp:TextBox runat="server" ID="tbUpcomm" CssClass="form-control" Text='<%#Eval("content") %>' TextMode="MultiLine" Rows="4" Visible="false"></asp:TextBox>
                                                     <div runat="server" id="editbtns" class="text-right" visible="false">
-                                                        <asp:Button runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger" />
-                                                        <asp:Button runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnsave" Text="Save Changes" CssClass="btn btn-sm btn-success" />
+                                                        <asp:LinkButton runat="server" CommandName="cancel" ID="btncancel" Text="Cancel" CssClass="btn btn-sm btn-danger"></asp:LinkButton>
+                                                        <asp:LinkButton runat="server" CommandName="save" CommandArgument='<%#Eval("Id") %>' ID="btnsave" Text="Save Changes" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,9 +123,6 @@
                                             </div>
                                         </FooterTemplate>
                                     </asp:Repeater>
-                                    <asp:SqlDataSource ID="commentdata"
-                                        ConnectionString="<%$ connectionStrings: ConnStr%>"
-                                        runat="server"></asp:SqlDataSource>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>

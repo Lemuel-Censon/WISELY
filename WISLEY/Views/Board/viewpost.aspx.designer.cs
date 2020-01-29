@@ -49,15 +49,6 @@ namespace WISLEY {
         protected global::System.Web.UI.WebControls.Repeater post;
         
         /// <summary>
-        /// postdata control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource postdata;
-        
-        /// <summary>
         /// commscript control.
         /// </summary>
         /// <remarks>
@@ -110,14 +101,5 @@ namespace WISLEY {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater commentinfo;
-        
-        /// <summary>
-        /// commentdata control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource commentdata;
     }
 }

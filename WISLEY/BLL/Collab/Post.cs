@@ -40,7 +40,7 @@ namespace WISLEY.BLL.Collab
             return postdao.Insert(this);
         }
 
-        public Post SelectByID(string postId)
+        public List<Post> SelectByID(string postId)
         {
             PostDAO postdao = new PostDAO();
             return postdao.SelectByID(postId);

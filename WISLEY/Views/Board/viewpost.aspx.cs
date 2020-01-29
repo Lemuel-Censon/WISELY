@@ -22,12 +22,6 @@ namespace WISLEY
             {
                 LbUserID.Value = Session["uid"].ToString();
                 LbPostID.Text = Session["postId"].ToString();
-                postdata.SelectCommand = "SELECT post.*, [User].name FROM POST " +
-                    "INNER JOIN [User] ON post.userId = [User].Id " +
-                    "WHERE post.Id = " + LbPostID.Text;
-                commentdata.SelectCommand = "SELECT comment.*, [User].name FROM COMMENT " +
-                    "INNER JOIN [User] ON comment.userId = [User].Id " +
-                    "WHERE comment.postId = " + LbPostID.Text + " AND status = '' ORDER BY Id DESC";
                 if (Session["success"] != null)
                 {
                     toast(this, Session["success"].ToString(), "Success", "success");
@@ -37,6 +31,15 @@ namespace WISLEY
                 {
                     toast(this, Session["error"].ToString(), "Error", "error");
                     Session["error"] = null;
+                }
+                if (!Page.IsPostBack)
+                {
+                    List<Post> postinfo = new Post().SelectByID(Session["postId"].ToString());
+                    post.DataSource = postinfo;
+                    post.DataBind();
+                    List<Comment> comments = new Comment().SelectByPost(Session["postId"].ToString());
+                    commentinfo.DataSource = comments;
+                    commentinfo.DataBind();
                 }
             }
             else
@@ -121,7 +124,9 @@ namespace WISLEY
                         e.Item.FindControl("commcontent").Visible = true;
                         e.Item.FindControl("tbUpcomm").Visible = false;
                         e.Item.FindControl("editbtns").Visible = false;
-                        commentinfo.DataSourceID = "commentdata";
+                        List<Comment> comments = new Comment().SelectByPost(LbPostID.Text);
+                        commentinfo.DataSource = comments;
+                        commentinfo.DataBind();
                     }
                     else
                     {

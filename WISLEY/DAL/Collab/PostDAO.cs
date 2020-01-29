@@ -37,12 +37,14 @@ namespace WISLEY.DAL.Collab
             return result;
         }
 
-        public Post SelectByID(string postId)
+        public List<Post> SelectByID(string postId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Post where Id = @parapostId";
+            string sqlstmt = "SELECT post.*, [User].name FROM POST " +
+                    "INNER JOIN [User] ON post.userId = [User].Id " +
+                    "WHERE post.Id = @parapostId";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@parapostId", postId);
 
@@ -51,6 +53,7 @@ namespace WISLEY.DAL.Collab
             int rec_cnt = ds.Tables[0].Rows.Count;
 
             Post obj = null;
+            List<Post> post = new List<Post>();
             if (rec_cnt > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
@@ -59,11 +62,13 @@ namespace WISLEY.DAL.Collab
                 string content = row["content"].ToString();
                 string group = row["groupId"].ToString();
                 string datecreated = row["datecreated"].ToString();
+                string username = row["name"].ToString();
                 int Id = int.Parse(row["Id"].ToString());
-                obj = new Post(title, content, userId, group, datecreated, Id);
+                obj = new Post(title, content, userId, group, datecreated, Id, username);
+                post.Add(obj);
             }
 
-            return obj;
+            return post;
         }
 
         public List<Post> SelectByGroup(string groupId)
