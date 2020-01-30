@@ -9,11 +9,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
-
-                    <div>
-                        <iframe width="200px" height="200px" id="imageProfile" class="mx-auto md-block frame" runat="server"></iframe>
-                    </div>
-
+                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" runat="server" />
                 </div>
                 <div class="col-lg-4">
                     <h3 class="font-weight-bold">

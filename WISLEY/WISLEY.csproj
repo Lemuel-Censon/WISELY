@@ -107,6 +107,7 @@
     <Content Include="Public\img\Badges\Badge_Beginner.png" />
     <Content Include="Public\img\Badges\Badge_Group.png" />
     <Content Include="Public\img\Badges\Badge_Post.png" />
+    <Content Include="Public\img\default.jpg" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
     <Content Include="Public\videos\gacha_common.mp4" />
     <Content Include="Public\videos\gacha_rare.mp4" />
@@ -570,8 +571,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Public\uploads\groupImg\" />
-    <Folder Include="Public\uploads\groupResources\" />
+    <Folder Include="Public\uploads\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

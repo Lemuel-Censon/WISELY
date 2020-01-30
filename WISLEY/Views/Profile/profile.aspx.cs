@@ -103,15 +103,13 @@ namespace WISLEY
             string profileImage = Session["SSImage"] as string;
             if (String.IsNullOrEmpty(profileImage))
             {
-                imageProfile.Attributes.Add("src", "");
+                imageProfile.Attributes.Add("src", "~/Public/img/default.jpg");
                     // null or empty
             }
             else
             {
-                imageProfile.Attributes.Add("src", Session["SSImage"].ToString());
+                imageProfile.Attributes.Add("src", profileImage);
             }
-            
-            
 
         }
 
