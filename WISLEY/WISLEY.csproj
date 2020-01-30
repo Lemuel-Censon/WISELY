@@ -108,6 +108,7 @@
     <Content Include="Public\img\Badges\Badge_Group.png" />
     <Content Include="Public\img\Badges\Badge_Post.png" />
     <Content Include="Public\img\default.jpg" />
+    <Content Include="Public\img\Gacha\banner.jpg" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
     <Content Include="Public\videos\gacha_common.mp4" />
     <Content Include="Public\videos\gacha_rare.mp4" />

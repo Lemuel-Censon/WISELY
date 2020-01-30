@@ -22,33 +22,6 @@ namespace WISLEY.Views.Gacha {
         protected global::System.Web.UI.WebControls.Button ButtonBack;
         
         /// <summary>
-        /// Button1x_F control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1x_F;
-        
-        /// <summary>
-        /// Button11x_F control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button11x_F;
-        
-        /// <summary>
-        /// ButtonI_F0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonI_F0;
-        
-        /// <summary>
         /// Button1x_R control.
         /// </summary>
         /// <remarks>

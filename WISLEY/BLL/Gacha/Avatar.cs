@@ -28,6 +28,12 @@ namespace WISLEY.BLL.Gacha
             this.avatarID = avatarID;
         }
 
+        public int AddAvatar()
+        {
+            AvatarDAO avatarDAO = new AvatarDAO();
+            return avatarDAO.Insert(this);
+        }
+
         public Avatar getAvatarByID(int avatarID)
         {
             AvatarDAO avatarDAO = new AvatarDAO();

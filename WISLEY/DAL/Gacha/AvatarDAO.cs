@@ -13,6 +13,30 @@ namespace WISLEY.DAL.Gacha
 {
     public class AvatarDAO
     {
+        public int Insert(Avatar avatar)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "INSERT INTO Avatar (acquired, userId, src, rarity)" +
+                             "VALUES (@paraAcquired, @paraUserID, @paraSrc, @paraRarity)";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraAcquired", avatar.acquired);
+            sqlCmd.Parameters.AddWithValue("@paraUserID", avatar.userId);
+            sqlCmd.Parameters.AddWithValue("@paraSrc", avatar.src);
+            sqlCmd.Parameters.AddWithValue("@paraRarity", avatar.rarity);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
         public int Update(string avatarID, string acquired, string src)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
