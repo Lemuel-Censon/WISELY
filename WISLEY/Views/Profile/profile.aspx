@@ -9,7 +9,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" runat="server" />
+                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" <%if (user().profilesrc != "")
+                        { %>
+                        src="<%=user().profilesrc %>"
+                        <%} %><%else { %>
+                        src="<%=Page.ResolveUrl("~/Public/img/default.jpg") %>"
+                        <%} %>/>
                 </div>
                 <div class="col-lg-4">
                     <h3 class="font-weight-bold">

@@ -21,13 +21,14 @@ namespace WISLEY.BLL.Profile
         public string privacy { get; set; }
         public string notification { get; set; }
         public string bio { get; set; }
+        public string profilesrc { get; set; }
 
         public User()
         {
 
         }
 
-        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string privacy, string notification, string bio, int id = -1)
+        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int experience, int points, string privacy, string notification, string bio, string profilesrc = "", int id = -1)
         {
             this.id = id;
             this.email = email;
@@ -42,6 +43,7 @@ namespace WISLEY.BLL.Profile
             this.privacy = privacy;
             this.notification = notification;
             this.bio = bio;
+            this.profilesrc = profilesrc;
         }
 
         public int AddUser()
@@ -90,6 +92,12 @@ namespace WISLEY.BLL.Profile
         {
             UserDAO userdao = new UserDAO();
             return userdao.UpdateBio(email, bio);
+        }
+
+        public int UpdateProfilePic(int id, string src)
+        {
+            UserDAO userdao = new UserDAO();
+            return userdao.UpdateProfilePic(id, src);
         }
     }
 }

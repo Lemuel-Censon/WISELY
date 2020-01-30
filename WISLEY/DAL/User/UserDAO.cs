@@ -70,10 +70,11 @@ namespace WISLEY.DAL.Profile
                 string privacy = row["privacy"].ToString();
                 string notification = row["notification"].ToString();
                 string bio = row["bio"].ToString();
+                string src = row["profilesrc"].ToString();
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, id);
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, src, id);
             }
 
             return obj;
@@ -108,10 +109,11 @@ namespace WISLEY.DAL.Profile
                 string privacy = row["privacy"].ToString();
                 string notification = row["notification"].ToString();
                 string bio = row["bio"].ToString();
+                string src = row["profilesrc"].ToString();
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, id);
+                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, src, id);
             }
 
             return obj;
@@ -225,6 +227,29 @@ namespace WISLEY.DAL.Profile
 
             sqlCmd.Parameters.AddWithValue("@paraEmail", email);
             sqlCmd.Parameters.AddWithValue("@paraBio", bio);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateProfilePic(int id, string src)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [User] " +
+                "SET profilsrc = @paraSrc " +
+                "WHERE Id = @paraId";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraSrc", src);
+            sqlCmd.Parameters.AddWithValue("@paraId", id);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();

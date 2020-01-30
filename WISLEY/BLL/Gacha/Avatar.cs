@@ -11,34 +11,39 @@ namespace WISLEY.BLL.Gacha
         public int avatarID { get; set; }
         public string acquired { get; set; }
         public string src { get; set; }
+        public string rarity { get; set; }
+        public string userId { get; set; }
 
         public Avatar()
         {
 
         }
 
-        public Avatar(int AvatarID, string Acquired, string Src)
+        public Avatar(string acquired, string src, string rarity, string userId, int avatarID = -1)
         {
-            avatarID = AvatarID;
-            acquired = Acquired;
-            src = Src;
-        }
-
-        public Avatar(int avatarId)
-        {
-            avatarID = avatarId;
+            this.acquired = acquired;
+            this.src = src;
+            this.rarity = rarity;
+            this.userId = userId;
+            this.avatarID = avatarID;
         }
 
         public Avatar getAvatarByID(int avatarID)
         {
-            AvatarDAO AvatarDAO = new AvatarDAO();
-            return AvatarDAO.SelectAvatarByID(avatarID);
+            AvatarDAO avatarDAO = new AvatarDAO();
+            return avatarDAO.SelectAvatarByID(avatarID);
         }
 
-        public int UpdateAcquired(string acquired, int id)
+        public List<Avatar> SelectByUser(int userId)
         {
-            AvatarDAO Avatardao = new AvatarDAO();
-            return Avatardao.UpdateAcquired(acquired, id);
+            AvatarDAO avatarDAO = new AvatarDAO();
+            return avatarDAO.SelectByUser(userId);
+        }
+
+        public int UpdateAcquired(string acquired, string id)
+        {
+            AvatarDAO avatardao = new AvatarDAO();
+            return avatardao.UpdateAcquired(acquired, id);
         }
 
     }

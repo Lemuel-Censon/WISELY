@@ -1,50 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="Avatar.aspx.cs" Inherits="WISLEY.Views.Gacha.Avatars" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
-
-
-    <div id="headAv">
-
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="ButtonBack" CssClass="btn btn-danger" runat="server" Text="Back" OnClick="ButtonBack_Click" />
-        <br />
-
-        <h4 class="text-center mx-auto font-weight-bold" style="font-size: 40px; font-family:Arial;">YOUR AVATAR LIST</h4>
-
-        </br>
-        </br>
-
+    <div class="card">
+        <div class="card-body">
+            <asp:Button runat="server" ID="btnBack" CssClass="btn btn-danger btn-sm" Text="Back to profile" OnClick="ButtonBack_Click" />
+            <div class="text-center">
+                <asp:Repeater runat="server" ID="avatars" OnItemCommand="avatars_ItemCommand" OnItemDataBound="avatars_ItemDataBound">
+                    <ItemTemplate>
+                        <asp:ImageButton runat="server" ID="avatarimg" CommandName="upAvatar" CommandArgument='<%#Eval("src") %>' CssClass="img-fluid rounded d-block mx-auto" ImageUrl='<%#Eval("src") %>' />
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <div class="text-center mt-4">
+                            <h4>
+                                <asp:Label runat="server" ID="LbErr" Text="No Avatars" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                            </h4>
+                        </div>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
     </div>
-
-    <div id="bodyAv" class="text-center">
-        
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="144px" Width="166px" BorderColor="#9900CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://www.clipartwiki.com/clipimg/detail/315-3158759_clipart-dressed.png" OnClick="ImageButton1_Click"/>
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton2" runat="server" Height="144px" Width="166px" BorderColor="#00CC66" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://i.ya-webdesign.com/images/baymax-transparent-head-2.png" OnClick="ImageButton2_Click" />
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton3" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://i.pinimg.com/736x/ec/67/45/ec6745ffe17cffb0e23b2f16c64100b1.jpg" OnClick="ImageButton3_Click" />
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton4" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://steemitimages.com/640x0/https://chibigame.io/chibis/generated/0/3/9170981d59d0f8d3f003ef0f289394ded6a00696.png" OnClick="ImageButton4_Click" />
-        <br />
-        <br />
-        <asp:ImageButton ID="ImageButton5" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://steemitimages.com/0x0/https://chibigame.io/chibis/generated/0/3/cea6475abf50000b50fe25c592e079363689f59e.png" OnClick="ImageButton5_Click" />
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton6" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://storage.opensea.io/0x71c118b00759b0851785642541ceb0f4ceea0bd5-preview/2354-1553846801.png" OnClick="ImageButton6_Click" />
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton7" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://storage.opensea.io/0x71c118b00759b0851785642541ceb0f4ceea0bd5/920-1550012771.png" OnClick="ImageButton7_Click" />
-&nbsp;&nbsp;&nbsp;
-        <asp:ImageButton ID="ImageButton8" runat="server" Height="144px" Width="166px" BorderColor="#0066CC" BorderStyle="Solid" BorderWidth="10px" ImageUrl="https://storage.opensea.io/0x71c118b00759b0851785642541ceb0f4ceea0bd5/3538-1556546438.png" OnClick="ImageButton8_Click" />
-        <br />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;
-        
-
-    </div>
-
-    <br />
-
-    <br />
 </asp:Content>
 

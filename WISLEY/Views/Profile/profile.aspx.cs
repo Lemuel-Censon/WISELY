@@ -12,12 +12,6 @@ namespace WISLEY
 {
     public partial class profile : System.Web.UI.Page
     {
-        public int postcount()
-        {
-            Post post = new Post();
-            return post.SelectByUser(LbEmail.Text).Count;
-        }
-
         public int quizcount(string userId)
         {
             Quiz quiz = new Quiz();
@@ -84,7 +78,6 @@ namespace WISLEY
                     {
                         LbBio.Text = user.bio;
                     }
-                    postcount();
                     quizcount(user.id.ToString());
                     List <Post> userposts = new Post().SelectByUser(userid.Value);
                     userpost.DataSource = userposts;
@@ -98,19 +91,12 @@ namespace WISLEY
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
 
-            //Profile picture
-        
-            string profileImage = Session["SSImage"] as string;
-            if (String.IsNullOrEmpty(profileImage))
-            {
-                imageProfile.Attributes.Add("src", "~/Public/img/default.jpg");
-                    // null or empty
-            }
-            else
-            {
-                imageProfile.Attributes.Add("src", profileImage);
-            }
+        }
 
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
         }
 
         public void toast(Page page, string message, string title, string type)
