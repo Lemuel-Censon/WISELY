@@ -121,9 +121,9 @@
             </ul>
             <div class="tab-content">
                 <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
-                   <asp:Label ID="LbBio" runat="server"></asp:Label>
-                        <%if (userid.Value == hidotheremail.Value)
-                            { %>
+                    <asp:Label ID="LbBio" runat="server"></asp:Label>
+                    <%if (userid.Value == hidotheremail.Value)
+                        { %>
                     <br />
                     <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
                     <%} %>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="text-right">
                             <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
-                            <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click"/>
+                            <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
                         </div>
                     </div>
                 </div>
@@ -149,9 +149,7 @@
                     Currently Empty
                 </div>
                 <div id="posts" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    <%if (postcount() > 0)
-                        { %>
-                    <asp:Repeater runat="server" ID="userpost" DataSourceID="userpostdata">
+                    <asp:Repeater runat="server" ID="userpost" OnItemCommand="userpost_ItemCommand" OnItemDataBound="userpost_ItemDataBound">
                         <ItemTemplate>
                             <div class="card-body">
                                 <h4 class="card-title d-inline"><%#Eval("title") %></h4>
@@ -162,7 +160,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h5 class="font-weight-bold mt-0">
-                                                    <asp:LinkButton runat="server" ID="postlink"><%#Eval("userId") %></asp:LinkButton>
+                                                    <asp:LinkButton runat="server" ID="postlink"><%#Eval("username") %></asp:LinkButton>
                                                 </h5>
                                             </div>
                                             <div class="col-lg-6">
@@ -173,22 +171,35 @@
                                         <%#Eval("content")%>
                                     </div>
                                 </div>
+                                <div class="card-header border-0 font-weight-bold">
+                                    <div class="text-right">
+                                        <asp:LinkButton runat="server" CommandName="viewpost" CommandArgument='<%#Eval("Id") %>' ID="btnView" Text="View >>" CssClass="btn btn-sm btn-success"></asp:LinkButton>
+                                    </div>
+                                </div>
                                 <hr />
                             </div>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <div class="text-center mb-4">
+                                <h4>
+                                    <asp:Label runat="server" ID="LbErr" Text="Currently Empty" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                                </h4>
+                            </div>
+                        </FooterTemplate>
                     </asp:Repeater>
-                    <asp:SqlDataSource runat="server" ID="userpostdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
-                    <%} %>
-                    <%else
-                        { %>Currently Empty
-                        <%} %>
                 </div>
                 <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     <h3>Unlocked Badges</h3>
-                        <p><img src="../../Public/img/Badges/Badge_Beginner.png" alt="Badge_Beginner.png" width="55" height="55"/>Become a WISELY member.</p>
+                    <p>
+                        <img src="../../Public/img/Badges/Badge_Beginner.png" alt="Badge_Beginner.png" width="55" height="55" />Become a WISELY member.
+                    </p>
                     <h3>Locked Badges</h3>
-                        <p><img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55" style="filter: grayscale(100%)"/>Join a group.</p>
-                        <p><img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55" style="filter: grayscale(100%)"/>Create a post.</p>
+                    <p>
+                        <img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55" style="filter: grayscale(100%)" />Join a group.
+                    </p>
+                    <p>
+                        <img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55" style="filter: grayscale(100%)" />Create a post.
+                    </p>
                 </div>
                 <div id="quizzes" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     <%if (quizcount(userid.Value) > 0)

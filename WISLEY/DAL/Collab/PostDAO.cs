@@ -114,7 +114,9 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Post where userId = @paraUserId ORDER BY Id DESC";
+            string sqlstmt = "Select post.*, [User].name as username from Post " +
+                "INNER JOIN [User] ON post.userId = [User].Id " +
+                "where userId = @paraUserId ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
 
@@ -133,7 +135,9 @@ namespace WISLEY.DAL.Collab
                     string content = row["content"].ToString();
                     string group = row["groupId"].ToString();
                     string datecreated = row["datecreated"].ToString();
-                    obj = new Post(title, content, userId, group, datecreated);
+                    string username = row["username"].ToString();
+                    int Id = int.Parse(row["Id"].ToString());
+                    obj = new Post(title, content, userId, group, datecreated, Id, username);
                     userpostlist.Add(obj);
                 }
             }

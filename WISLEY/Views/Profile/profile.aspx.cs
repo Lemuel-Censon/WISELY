@@ -86,7 +86,9 @@ namespace WISLEY
                     }
                     postcount();
                     quizcount(user.id.ToString());
-                    userpostdata.SelectCommand = "SELECT * FROM POST WHERE userId = '" + userid.Value + "' ORDER BY Id DESC";
+                    List <Post> userposts = new Post().SelectByUser(userid.Value);
+                    userpost.DataSource = userposts;
+                    userpost.DataBind();
                     userquizdata.SelectCommand = "SELECT * FROM QUIZ WHERE userId = '" + userid.Value + "' ORDER BY datecreated DESC";
                 }
             }
@@ -173,6 +175,26 @@ namespace WISLEY
             else
             {
                 toast(this, "Changes were unable to be saved, please inform system administrator!", "Error", "error");
+            }
+        }
+
+        protected void userpost_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (userpost.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
+            }
+        }
+
+        protected void userpost_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewpost")
+            {
+                Session["postId"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/viewpost.aspx"));
             }
         }
     }
