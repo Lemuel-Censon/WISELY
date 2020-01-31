@@ -44,7 +44,7 @@
     <asp:Label runat="server" ID="Lbemail" Visible="false"></asp:Label>
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color-dark sticky-top scrolling-navbar" style="padding-left: 12px 1rem !important;">
+    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color sticky-top scrolling-navbar" style="padding-left: 12px 1rem !important;">
 
         <!-- Navbar brand -->
         <a class="navbar-brand" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a>
@@ -59,9 +59,12 @@
                 <li class="nav-item">
                     <a class="nav-link rounded" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">Home</a>
                 </li>
+                <%if (user() != null)
+                    { %>
                 <li class="nav-item">
                     <a class="nav-link rounded" href="<%= Page.ResolveUrl("~/Views/Gacha/gacha.aspx") %>">Gachas</a>
                 </li>
+                <%} %>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <%if (user() != null)
