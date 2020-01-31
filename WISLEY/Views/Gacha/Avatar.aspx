@@ -9,6 +9,7 @@
             <div class="text-center">
                 <asp:Repeater runat="server" ID="avatars" OnItemCommand="avatars_ItemCommand" OnItemDataBound="avatars_ItemDataBound">
                     <ItemTemplate>
+                        <asp:HiddenField runat="server" ID="avatarrarity" Value='<%#Eval("rarity") %>' />
                         <asp:ImageButton runat="server" ID="avatarimg" CommandName="upAvatar" CommandArgument='<%#Eval("src") %>' CssClass="img-fluid rounded d-block mx-auto" ImageUrl='<%#Eval("src") %>' />
                     </ItemTemplate>
                     <FooterTemplate>

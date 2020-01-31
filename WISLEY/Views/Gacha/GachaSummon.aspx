@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="GachaSummon.aspx.cs" Inherits="WISLEY.Views.Gacha.GachaSummons" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            margin-left: 335px;
-            margin-right: 0px;
-        }
-
-        .auto-style2 {
-            margin-left: 40px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
 

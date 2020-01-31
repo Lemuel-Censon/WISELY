@@ -17,16 +17,31 @@ namespace WISLEY.Views.Gacha
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SSResults"] != null)
+            if (Session["SSResults"] != null && Session["SSRarity"] != null)
             {
                 BLL.Gacha.Gacha gacha = new BLL.Gacha.Gacha();
                 List<BLL.Gacha.Gacha> results = new List<BLL.Gacha.Gacha>();
+                List<string> resultrarity = (List<string>)Session["SSRarity"];
+
                 foreach (var result in (List<int>)Session["SSResults"])
                 {
                     results.Add(gacha.SelectByID(result));
                 }
                 gacharesults.DataSource = results;
                 gacharesults.DataBind();
+
+                if (resultrarity.Contains("Super_Rare"))
+                {
+                    gachavideo.Src = Page.ResolveUrl("~/Public/videos/gacha_super.mp4");
+                }
+                else if (resultrarity.Contains("Rare"))
+                {
+                    gachavideo.Src = Page.ResolveUrl("~/Public/videos/gacha_rare.mp4");
+                }
+                else
+                {
+                    gachavideo.Src = Page.ResolveUrl("~/Public/videos/gacha_common.mp4");
+                }
             }
             else
             {

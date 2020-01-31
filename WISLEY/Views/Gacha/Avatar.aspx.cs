@@ -68,6 +68,26 @@ namespace WISLEY.Views.Gacha
                     e.Item.FindControl("LbErr").Visible = true;
                 }
             }
+            else
+            {
+                if (e.Item.ItemType == ListItemType.Item)
+                {
+                    HiddenField rarity = (HiddenField)e.Item.FindControl("avatarrarity");
+                    ImageButton avatar = (ImageButton)e.Item.FindControl("avatarimg");
+                    if (rarity.Value == "Common")
+                    {
+                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-success";
+                    }
+                    else if (rarity.Value == "Rare")
+                    {
+                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-primary";
+                    }
+                    else if (rarity.Value == "Super_Rare")
+                    {
+                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-secondary";
+                    }
+                }
+            }
         }
 
         protected void avatars_ItemCommand(object source, RepeaterCommandEventArgs e)

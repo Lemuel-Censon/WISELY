@@ -55,10 +55,13 @@ namespace WISLEY.Views.Gacha
             BLL.Gacha.Gacha gacha = new BLL.Gacha.Gacha();
             BLL.Gacha.Gacha addedavatar = new BLL.Gacha.Gacha();
             List<int> results = new List<int>();
+            List<string> rarity = new List<string>();
 
             Random randNum = new Random();
             results.Add(randNum.Next(0, gacha.SelectAll().Count));
+
             addedavatar = gacha.SelectByID(results[0]);
+            rarity.Add(addedavatar.rarity);
 
             Avatar avatar = new Avatar("true", addedavatar.src, addedavatar.rarity, user().id.ToString());
             int addresult = avatar.AddAvatar();
@@ -66,6 +69,7 @@ namespace WISLEY.Views.Gacha
             if (addresult == 1)
             {
                 Session["SSResults"] = results;
+                Session["SSRarity"] = rarity;
 
                 Response.Redirect("GachaSummon.aspx");
             }
@@ -86,6 +90,7 @@ namespace WISLEY.Views.Gacha
             BLL.Gacha.Gacha addedavatar = new BLL.Gacha.Gacha();
             List<int> results = new List<int>();
             List<int> addresults = new List<int>();
+            List<string> rarity = new List<string>();
 
             Random randNum = new Random();
             for (int i = 0; i < 11; i++)
@@ -95,6 +100,8 @@ namespace WISLEY.Views.Gacha
             foreach(var result in results)
             {
                 addedavatar = gacha.SelectByID(result);
+                rarity.Add(addedavatar.rarity);
+
                 Avatar avatar = new Avatar("true", addedavatar.src, addedavatar.rarity, user().id.ToString());
                 addresults.Add(avatar.AddAvatar());
             }
@@ -102,6 +109,7 @@ namespace WISLEY.Views.Gacha
             if (addresults.Contains(1))
             {
                 Session["SSResults"] = results;
+                Session["SSRarity"] = rarity;
 
                 Response.Redirect("GachaSummon.aspx");
             }
