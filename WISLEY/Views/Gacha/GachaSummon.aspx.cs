@@ -60,6 +60,24 @@ namespace WISLEY.Views.Gacha
         {
             gacharesults.Visible = true;
         }
+
+        protected void gacharesults_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            HiddenField rarity = (HiddenField)e.Item.FindControl("rarity");
+            Image avatar = (Image)e.Item.FindControl("avatarimg");
+            if (rarity.Value == "Common")
+            {
+                avatar.CssClass = "card-img-top border border-success";
+            }
+            else if (rarity.Value == "Rare")
+            {
+                avatar.CssClass = "card-img-top border border-primary";
+            }
+            else if (rarity.Value == "Super_Rare")
+            {
+                avatar.CssClass = "card-img-top border border-secondary";
+            }
+        }
     }
 
 

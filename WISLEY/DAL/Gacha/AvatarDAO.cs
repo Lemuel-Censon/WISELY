@@ -107,14 +107,17 @@ namespace WISLEY.DAL.Gacha
             List<Avatar> useravatar = new List<Avatar>();
             if (rec_cnt > 0)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                int avatarId = int.Parse(row["avatarID"].ToString());
-                string acquired = row["acquired"].ToString();
-                string src = row["src"].ToString();
-                string rarity = row["rarity"].ToString();
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    int avatarId = int.Parse(row["avatarID"].ToString());
+                    string acquired = row["acquired"].ToString();
+                    string src = row["src"].ToString();
+                    string rarity = row["rarity"].ToString();
 
-                obj = new Avatar(acquired, src, rarity, userId.ToString(), avatarId);
-                useravatar.Add(obj);
+                    obj = new Avatar(acquired, src, rarity, userId.ToString(), avatarId);
+                    useravatar.Add(obj);
+                }
             }
 
             return useravatar;

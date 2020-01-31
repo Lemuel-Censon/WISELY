@@ -28,13 +28,16 @@ namespace WISLEY.DAL.Gacha
             List<BLL.Gacha.Gacha> allgachas = new List<BLL.Gacha.Gacha>();
             if (rec_cnt > 0)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                int id = int.Parse(row["Id"].ToString());
-                string src = row["src"].ToString();
-                string rarity = row["rarity"].ToString();
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    int id = int.Parse(row["Id"].ToString());
+                    string src = row["src"].ToString();
+                    string rarity = row["rarity"].ToString();
 
-                obj = new BLL.Gacha.Gacha(src, rarity, id);
-                allgachas.Add(obj);
+                    obj = new BLL.Gacha.Gacha(src, rarity, id);
+                    allgachas.Add(obj);
+                }
             }
 
             return allgachas;

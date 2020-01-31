@@ -6,18 +6,29 @@
 
     <div class="card">
         <div class="card-body">
-            <asp:Button ID="ButtonBack" CssClass="btn btn-danger" runat="server" Text="Back" OnClick="ButtonBack_Click" />
+            <asp:Button ID="ButtonBack" CssClass="btn btn-danger btn-sm" runat="server" Text="Back" OnClick="ButtonBack_Click" />
             <div class="text-center">
                 <video controls autoplay>
                     <source id="gachavideo" src="/Public/videos/gacha_common.mp4" type="video/mp4" runat="server">
                 </video>
-                <asp:Button ID="ButtonResults" CssClass="btn btn-light-green" runat="server" Text="RESULTS!" OnClick="ButtonResults_Click" autopostback="false" />
+                <div class="text-center">
+                    <asp:Button ID="ButtonResults" CssClass="btn btn-light-green" runat="server" Text="RESULTS!" OnClick="ButtonResults_Click" autopostback="false" />
+                </div>
             </div>
             <div class="row">
-                <asp:Repeater runat="server" ID="gacharesults" Visible="false">
+                <asp:Repeater runat="server" ID="gacharesults" OnItemDataBound="gacharesults_ItemDataBound" Visible="false">
                     <ItemTemplate>
-                        <div class="col-12 col-md-3 col-lg-4 d-flex align-items-stretch mt-4">
-                            <img src='<%#Eval("src") %>' class="img-fluid mx-auto rounded border" />
+                        <div class="col-12 col-md-3 col-lg-4 mt-4">
+                            <asp:HiddenField runat="server" ID="rarity" Value='<%#Eval("rarity") %>' />
+                            <div class="card w-100">
+                                <div class="view overlay border-bottom border-primary rounded-top">
+                                    <asp:Image runat="server" ImageUrl='<%#Eval("src") %>' ID="avatarimg" AlternateText="Image not Available" />
+                                    <a>
+                                        <div class="mask rgba-black-light"></div>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

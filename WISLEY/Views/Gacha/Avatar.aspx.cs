@@ -73,18 +73,18 @@ namespace WISLEY.Views.Gacha
                 if (e.Item.ItemType == ListItemType.Item)
                 {
                     HiddenField rarity = (HiddenField)e.Item.FindControl("avatarrarity");
-                    ImageButton avatar = (ImageButton)e.Item.FindControl("avatarimg");
+                    Image avatar = (Image)e.Item.FindControl("avatarimg");
                     if (rarity.Value == "Common")
                     {
-                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-success";
+                        avatar.CssClass = "card-img-top border border-success";
                     }
                     else if (rarity.Value == "Rare")
                     {
-                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-primary";
+                        avatar.CssClass = "card-img-top border border-primary";
                     }
                     else if (rarity.Value == "Super_Rare")
                     {
-                        avatar.CssClass = "img-fluid rounded d-block mx-auto border border-secondary";
+                        avatar.CssClass = "card-img-top border border-secondary";
                     }
                 }
             }

@@ -58,9 +58,10 @@ namespace WISLEY.Views.Gacha
             List<string> rarity = new List<string>();
 
             Random randNum = new Random();
-            results.Add(randNum.Next(0, gacha.SelectAll().Count));
+            int rn = randNum.Next(1, gacha.SelectAll().Count + 1);
+            results.Add(rn);
 
-            addedavatar = gacha.SelectByID(results[0]);
+            addedavatar = gacha.SelectByID(rn);
             rarity.Add(addedavatar.rarity);
 
             Avatar avatar = new Avatar("true", addedavatar.src, addedavatar.rarity, user().id.ToString());
@@ -95,7 +96,7 @@ namespace WISLEY.Views.Gacha
             Random randNum = new Random();
             for (int i = 0; i < 11; i++)
             {
-                results.Add(randNum.Next(0, gacha.SelectAll().Count));
+                results.Add(randNum.Next(1, gacha.SelectAll().Count + 1));
             }
             foreach(var result in results)
             {

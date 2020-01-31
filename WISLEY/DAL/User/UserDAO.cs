@@ -242,7 +242,7 @@ namespace WISLEY.DAL.Profile
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlStmt = "UPDATE [User] " +
-                "SET profilsrc = @paraSrc " +
+                "SET profilesrc = @paraSrc " +
                 "WHERE Id = @paraId";
 
             int result = 0;    // Execute NonQuery return an integer value
