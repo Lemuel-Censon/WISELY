@@ -18,6 +18,16 @@ namespace WISLEY.Views.Schedule
         protected void Page_Load(object sender, EventArgs e)
         {
             HolidayList = GetHoliday();
+
+            if (Request.QueryString["Id"] != null)
+            {
+                if (!Page.IsPostBack)
+                {
+                    List<Planner> todoList = new Planner().getToDoByUserEmail(Request.QueryString["userId"]);
+                    todolistRepeater.DataSource = todoList;
+                    todolistRepeater.DataBind();
+                }
+            }
         }
 
         private Hashtable GetHoliday()
@@ -41,11 +51,6 @@ namespace WISLEY.Views.Schedule
         {
             Session["selectDate"] = calendarPlan.SelectedDate.ToShortDateString();
             Response.Redirect("todoplan.aspx");
-        }
-
-        protected void btnEditToDo_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("editToDo.aspx");
         }
 
         protected void calendarPlan_DayRender(object sender, DayRenderEventArgs e)
