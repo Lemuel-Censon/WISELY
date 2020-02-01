@@ -24,7 +24,7 @@ namespace WISLEY
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
                 das.SelectCommand = "SELECT * FROM [Group] " +
-                "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') " +
+                "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
                 "ORDER BY Id ASC";
 
 
@@ -34,39 +34,30 @@ namespace WISLEY
 
         }
 
-        public void toMembers()
-        {
-            string grpId = Request.QueryString["groupId"];
-            Response.Redirect("~/Views/Group/members.aspx?groupId=" + grpId);
-        }
-
-
-        public void redirectToGroup(object sender, EventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Group List Strings:");
-        }
-
-        public bool TeacherCheck()
+        public bool TeacherCheck() //Checks whether user is a teacher and returns a bool
         {
             bool isTeacher = false;
             if (Session["email"] != null)
             {
-
                 User user = new User().SelectByEmail(Session["email"].ToString());
 
                 if (user.userType == "Teacher")
                 {
                     isTeacher = true;
                 }
-
             }
             return isTeacher;
         }
 
-        public User user()
+        public void toMembers()
         {
-            User user = new User().SelectByEmail(Session["email"].ToString());
-            return user;
+            string grpId = Request.QueryString["groupId"];
+            Response.Redirect("~/Views/Group/members.aspx?groupId=" + grpId);
+        }
+
+        public void redirectToGroup(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Group List Strings:");
         }
 
         protected void groupItemCommand(object source, RepeaterCommandEventArgs e)
@@ -76,6 +67,16 @@ namespace WISLEY
                 Response.Redirect("~/Views/Board/collab.aspx?groupId=" + e.CommandArgument.ToString());
             }
         }
+
+        public void resetGroupCode(object sender, EventArgs e)
+        {
+            var grp = getGroupDetails();
+            int result = grp.resetGroupJoinCode(grp.id);
+        }
+
+
+
+        //============================================// Getting Details from DB //============================================//
 
         public Group getGroupDetails()
         {
@@ -91,5 +92,13 @@ namespace WISLEY
             System.Diagnostics.Debug.WriteLine(pageName);
             return pageName;
         }
+
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
+        }
+
+
     }
 }

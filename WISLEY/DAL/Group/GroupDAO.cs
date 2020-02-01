@@ -97,6 +97,31 @@ namespace WISLEY.DAL.Group
 
         }
 
+        public int ResetGroupJoinCode(int id)
+        {
+            string generatedCode = generateInviteCode();
+            System.Diagnostics.Debug.WriteLine(generatedCode);
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [Group] " +
+                "SET joinCode = @paraCode " +
+                "WHERE Id = @paraId";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraCode", generatedCode);
+            sqlCmd.Parameters.AddWithValue("@paraId", id);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
         public int Update(int id, string desc, int weightage)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -143,8 +168,9 @@ namespace WISLEY.DAL.Group
                 int weightage = int.Parse(row["weightage"].ToString());
                 int grpId = int.Parse(row["Id"].ToString());
                 string joinCode = row["joinCode"].ToString();
+                int status = int.Parse(row["active"].ToString());
 
-                obj = new BLL.Group.Group(name, description, weightage, grpId, joinCode);
+                obj = new BLL.Group.Group(name, description, weightage, grpId, joinCode, status);
             }
             return obj;
         }
