@@ -18,40 +18,15 @@ namespace WISLEY.DAL.Gacha
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Avatar (acquired, userId, src, rarity)" +
-                             "VALUES (@paraAcquired, @paraUserID, @paraSrc, @paraRarity)";
+            string sqlStmt = "INSERT INTO Avatar (userId, src, rarity)" +
+                             "VALUES (@paraUserID, @paraSrc, @paraRarity)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@paraAcquired", avatar.acquired);
             sqlCmd.Parameters.AddWithValue("@paraUserID", avatar.userId);
             sqlCmd.Parameters.AddWithValue("@paraSrc", avatar.src);
             sqlCmd.Parameters.AddWithValue("@paraRarity", avatar.rarity);
-
-            myConn.Open();
-            result = sqlCmd.ExecuteNonQuery();
-
-            myConn.Close();
-
-            return result;
-        }
-
-        public int Update(string avatarID, string acquired, string src)
-        {
-            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-
-            string sqlStmt = "UPDATE [Avatar] " +
-                "SET acquired = @paraAcquired " +
-                "WHERE Id = @paraAvatarID";
-
-            int result = 0;    // Execute NonQuery return an integer value
-            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
-
-            sqlCmd.Parameters.AddWithValue("@paraAcquired", acquired);
-            sqlCmd.Parameters.AddWithValue("@paraAvatarID", avatarID);
-            sqlCmd.Parameters.AddWithValue("@paraSrc", src);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -79,12 +54,11 @@ namespace WISLEY.DAL.Gacha
             {
                 DataRow row = ds.Tables[0].Rows[0];
                 int avatarId = int.Parse(row["avatarID"].ToString());
-                string acquired = row["acquired"].ToString();
                 string src = row["src"].ToString();
                 string rarity = row["rarity"].ToString();
                 string userId = row["userId"].ToString();
 
-                obj = new Avatar(acquired, src, rarity, userId, avatarId);
+                obj = new Avatar(src, rarity, userId, avatarId);
             }
 
             return obj;
@@ -111,39 +85,15 @@ namespace WISLEY.DAL.Gacha
                 {
                     DataRow row = ds.Tables[0].Rows[i];
                     int avatarId = int.Parse(row["avatarID"].ToString());
-                    string acquired = row["acquired"].ToString();
                     string src = row["src"].ToString();
                     string rarity = row["rarity"].ToString();
 
-                    obj = new Avatar(acquired, src, rarity, userId.ToString(), avatarId);
+                    obj = new Avatar(src, rarity, userId.ToString(), avatarId);
                     useravatar.Add(obj);
                 }
             }
 
             return useravatar;
-        }
-
-        public int UpdateAcquired(string acquired, string id)
-        {
-            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-
-            string sqlStmt = "UPDATE [Avatar] " +
-                "SET acquired = @paraAcquired " +
-                "WHERE id = @paraAvatarId";
-
-            int result = 0;    // Execute NonQuery return an integer value
-            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
-
-            sqlCmd.Parameters.AddWithValue("@paraAcquired", acquired);
-            sqlCmd.Parameters.AddWithValue("@paraAvatarId", id);
-
-            myConn.Open();
-            result = sqlCmd.ExecuteNonQuery();
-
-            myConn.Close();
-
-            return result;
         }
 
     }
