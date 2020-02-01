@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, status)" +
-                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraStatus)";
+            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, views, likes status)" +
+                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraViews, @paraLikes, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -27,6 +27,8 @@ namespace WISLEY.DAL.Collab
             sqlCmd.Parameters.AddWithValue("@paraTitle", post.title);
             sqlCmd.Parameters.AddWithValue("@paraContent", post.content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", post.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraViews", post.views);
+            sqlCmd.Parameters.AddWithValue("@paraLikes", post.likes);
             sqlCmd.Parameters.AddWithValue("@paraStatus", post.status);
 
             myConn.Open();
@@ -63,8 +65,10 @@ namespace WISLEY.DAL.Collab
                 string group = row["groupId"].ToString();
                 string datecreated = row["datecreated"].ToString();
                 string username = row["name"].ToString();
+                int views = int.Parse(row["views"].ToString());
+                int likes = int.Parse(row["likes"].ToString());
                 int Id = int.Parse(row["Id"].ToString());
-                obj = new Post(title, content, userId, group, datecreated, Id, username);
+                obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
                 post.Add(obj);
             }
 
@@ -100,8 +104,10 @@ namespace WISLEY.DAL.Collab
                     string content = row["content"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string username = row["username"].ToString();
+                    int views = int.Parse(row["views"].ToString());
+                    int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, groupId, datecreated, Id, username);
+                    obj = new Post(title, content, userId, groupId, datecreated, Id, username, views, likes);
                     grppostlist.Add(obj);
                 }
             }
@@ -136,8 +142,10 @@ namespace WISLEY.DAL.Collab
                     string group = row["groupId"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string username = row["username"].ToString();
+                    int views = int.Parse(row["views"].ToString());
+                    int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, Id, username);
+                    obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
                     userpostlist.Add(obj);
                 }
             }
@@ -176,13 +184,61 @@ namespace WISLEY.DAL.Collab
                     string group = row["groupId"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string username = row["username"].ToString();
+                    int views = int.Parse(row["views"].ToString());
+                    int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, Id, username);
+                    obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
                     userpostlist.Add(obj);
                 }
             }
 
             return userpostlist;
+        }
+
+        public int UpdateView(string postId, int views)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Post " +
+                "SET views = @paraViews " +
+                "WHERE Id = @paraPostID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraViews", views);
+            sqlCmd.Parameters.AddWithValue("@paraPostID", postId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateLikes(string postId, int likes)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Post " +
+                "SET likes = @paraLikes " +
+                "WHERE Id = @paraPostID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraLikes", likes);
+            sqlCmd.Parameters.AddWithValue("@paraPostID", postId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
 
         public int UpdatePost(string postId, string title, string content, string datecreate)

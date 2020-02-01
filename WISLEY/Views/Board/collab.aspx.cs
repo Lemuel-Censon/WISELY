@@ -185,13 +185,46 @@ namespace WISLEY
         {
             if (e.CommandName == "viewpost")
             {
-                Session["postId"] = e.CommandArgument.ToString();
+                string postId = e.CommandArgument.ToString();
+                Session["postId"] = postId;
+                List<Post> currpost = new Post().SelectByID(postId);
+                Post post = new Post();
+                post.UpdateView(postId, currpost[0].views + 1);
                 Response.Redirect("viewpost.aspx");
             }
 
             if (e.CommandName == "viewprofile")
             {
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
+            }
+
+            if (e.CommandName == "like")
+            {
+                string postId = e.CommandArgument.ToString();
+                List<Post> currpost = new Post().SelectByID(postId);
+                Post post = new Post();
+                int result = post.UpdateLikes(postId, currpost[0].likes + 1);
+                if (result == 1)
+                {
+                    toast(this, "Post liked!", "Success", "success");
+                    if (Request.QueryString["groupId"] != null)
+                    {
+                        List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
+                        postinfo.DataSource = posts;
+                        postinfo.DataBind();
+                    }
+                    else
+                    {
+                        List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
+                        postinfo.DataSource = posts;
+                        postinfo.DataBind();
+                    }
+                }
+                else
+                {
+                    toast(this, "There was an error while liking post, please try again later!", "Error", "error");
+                }
+
             }
 
             if (e.CommandName == "editpost")
@@ -282,28 +315,23 @@ namespace WISLEY
 
         protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (postinfo.Items.Count < 1)
+            if (e.Item.ItemType == ListItemType.Item)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
+                HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
+                if (int.Parse(postuser.Value) != user().id)
                 {
-                    e.Item.FindControl("LbErr").Visible = true;
+                    e.Item.FindControl("btnEdit").Visible = false;
+                    e.Item.FindControl("delete").Visible = false;
+                    e.Item.FindControl("btnLike").Visible = true;
                 }
             }
 
-            else
+            if (e.Item.ItemType == ListItemType.Footer && postinfo.Items.Count < 1)
             {
-                if (e.Item.ItemType == ListItemType.Item)
-                {
-                    HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
-                    if (int.Parse(postuser.Value) != user().id)
-                    {
-                        e.Item.FindControl("btnEdit").Visible = false;
-                        e.Item.FindControl("delconfirm").Visible = false;
-                    }
-                }
+                e.Item.FindControl("LbErr").Visible = true;
             }
+
         }
-
 
     }
 }

@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <% string inGroup = Request.QueryString["groupId"];  %>
-     <% if ( String.IsNullOrEmpty(inGroup))
-         {%>
+    <% if (String.IsNullOrEmpty(inGroup))
+        {%>
     <h3 class="font-weight-bold text-center mt-2">Collaboration Board</h3>
     <%} %>
     <div class="container">
@@ -72,10 +72,13 @@
                                                 <asp:TextBox runat="server" ID="tbUptitle" CssClass="form-control" Text='<%#Eval("title") %>' Visible="false"></asp:TextBox>
                                             </div>
                                             <div class="col-lg-6 text-right">
+                                                <asp:LinkButton runat="server" CommandName="like" CommandArgument='<%#Eval("Id") %>' ID="btnLike" CssClass="btn btn-sm btn-danger" Visible="false"><i class="fas fa-heart"></i></asp:LinkButton>
                                                 <asp:LinkButton runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info"></asp:LinkButton>
+                                                <div runat="server" id="delete" class="d-inline">
                                                     <button type="button" id="delconfirm" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
-                                                    Delete
+                                                        Delete
                                                     </button>
+                                                </div>
                                                 <div class="modal fade" id="delmodal<%#Eval("Id") %>" tabindex="-1" role="dialog"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -108,9 +111,17 @@
                                                             <asp:LinkButton runat="server" ID="viewprofile" CommandName="viewprofile" CommandArgument='<%#Eval("userId") %>' Text='<%#Eval("username") %>'></asp:LinkButton>
                                                         </h5>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 text-right">
                                                         <i class="fas fa-clock mr-1"></i><span>Created on: <%#Eval("datecreated") %>
                                                         </span>
+                                                        <div class="mt-2">
+                                                            <i class="fas fa-eye mr-1"></i><span><%#Eval("views") %>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fas fa-heart mr-1"></i><span><%#Eval("likes") %>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div runat="server" id="postcontent">
