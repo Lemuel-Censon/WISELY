@@ -19,14 +19,27 @@ namespace WISLEY.Views.Schedule
         {
             HolidayList = GetHoliday();
 
-            if (Request.QueryString["Id"] != null)
+            if (Session["email"] != null)
             {
-                if (!Page.IsPostBack)
+                if (Session["success"] != null)
                 {
-                    List<Planner> todoList = new Planner().getToDoByUserEmail(Request.QueryString["userId"]);
-                    todolistRepeater.DataSource = todoList;
-                    todolistRepeater.DataBind();
+                    toast(this, Session["success"].ToString(), "Success", "success");
+                    Session["success"] = null;
                 }
+                if (Session["error"] != null)
+                {
+                    toast(this, Session["error"].ToString(), "Error", "error");
+                    Session["error"] = null;
+                }
+
+                List<Planner> todoList = new Planner().SelectByUser(currUser().id);
+                todolistRepeater.DataSource = todoList;
+                todolistRepeater.DataBind();
+            }
+            else
+            {
+                Session["error"] = "You must be logged in to see your schedule!";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
         }
 
@@ -71,15 +84,35 @@ namespace WISLEY.Views.Schedule
             return user;
         }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
         protected int ToDoListcount()
         {
-            List<Planner> allToDoList = new Planner().getToDoByUserEmail(currUser().email.ToString());
+            List<Planner> allToDoList = new Planner().SelectByUser(currUser().id);
             return allToDoList.Count();
         }
 
         protected void todolist_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            if (e.CommandName == "edit")
+            {
+                Session["todoID"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Schedule/editToDo.aspx"));
+            }
+        }
 
+        protected void todolistRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (todolistRepeater.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
+            }
         }
     }
 }

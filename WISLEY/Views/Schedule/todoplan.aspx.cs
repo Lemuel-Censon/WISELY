@@ -36,23 +36,24 @@ namespace WISLEY
         {
             if (validateInput())
             {
-                string userEmail = currUser().email.ToString();
+                int userId = currUser().id;
                 DateTime selectedToDoDate = Convert.ToDateTime(LblSelectedDate.Text);
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
 
-                Planner todoPlan = new Planner(userEmail, selectedToDoDate, todoTitle, todoDesc);
+                Planner todoPlan = new Planner(userId, selectedToDoDate, todoTitle, todoDesc);
                 int count = todoPlan.AddToDoList();
 
                 if (count == 1)
                 {
-                    toast(this, "Your To-Do-List has been added sucessfully!", "Success", "success");
+                    Session["success"] = "Your plan has been added sucessfully!";
                     Response.Redirect("schedule.aspx");
                 }
 
                 else
                 {
-                    toast(this, "Something went wrong when adding your To-Do-List!", "Danger", "danger");
+                    Session["error"] = "There was an error while adding your plan, please contact system administrator!";
+                    Response.Redirect("schedule.aspx");
                 }
             }
         }

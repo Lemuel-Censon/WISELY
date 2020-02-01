@@ -1,15 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.Master" AutoEventWireup="true" CodeBehind="todoplan.aspx.cs" Inherits="WISLEY.todoplan" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 204px;
-        }
-        .auto-style3 {
-            height: 32px;
-        }
-    </style>
-
     <div class="card">
         <div class="card-body">
             <h3 class="text-center font-weight-bold">Add To-do-list</h3>

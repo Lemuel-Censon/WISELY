@@ -23,29 +23,39 @@
             </div>
         </div>
 
-        <br/>
+        <br />
 
         <div class="card">
             <div class="card-body">
-                <h3 class="text-center font-weight-bold">Your To-Do-Lists</h3>
-
-                <%--<div class="card-body">
-                    <h2 class="font-weight-bold text-center">Currently Empty</h2>
-                </div>--%>
-
-                <asp:ScriptManager runat="server" ID="plannerScript"></asp:ScriptManager>
-
-                <asp:Repeater ID="todolistRepeater" runat="server" OnItemCommand="todolist_ItemCommand">
+                <h4 class="text-center font-weight-bold">Your To-Do-Lists</h4>
+                <p class="text-center font-weight-bold">Total To-do-lists: <%=ToDoListcount().ToString() %></p>
+                <asp:Repeater ID="todolistRepeater" runat="server" OnItemCommand="todolist_ItemCommand" OnItemDataBound="todolistRepeater_ItemDataBound">
                     <ItemTemplate>
-                        <div class="card-body">
-                            <h2 class="font-weight-bold"><%#Eval("ToDotitle") %></h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title font-weight-bold"><%#Eval("todoTitle") %></p>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <p class="card-text"><%#Eval("todoDescription") %></p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <i class="fas fa-clock mr-1"></i><span><%#Eval("todoDate") %></span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                </div>
+                            </div>
                         </div>
                     </ItemTemplate>
+                    <FooterTemplate>
+                        <div class="text-center mb-4">
+                            <h4>
+                                <asp:Label runat="server" ID="LbErr" Text="No Plans at the moment" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                            </h4>
+                        </div>
+                    </FooterTemplate>
                 </asp:Repeater>
-                
-                <div class="card-body">
-                    <p class="font-weight-bold">Total number of to-do-list: <%=ToDoListcount().ToString() %></p>
-                </div>
             </div>
         </div>
     </div>

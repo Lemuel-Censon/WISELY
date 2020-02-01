@@ -8,7 +8,8 @@ namespace WISLEY.BLL.Schedule
 {
     public class Planner
     {
-        public string userId { get; set; }
+        public int Id { get; set; }
+        public int userId { get; set; }
         public DateTime todoDate { get; set; }
         public string todoTitle { get; set; }
         public string todoDescription { get; set; }
@@ -18,12 +19,13 @@ namespace WISLEY.BLL.Schedule
 
         }
 
-        public Planner(string userID, DateTime tododate, string todotitle, string tododescription)
+        public Planner(int userID, DateTime tododate, string todotitle, string tododescription, int Id = -1)
         {
             this.userId = userID;
             this.todoDate = tododate;
             this.todoTitle = todotitle;
             this.todoDescription = tododescription;
+            this.Id = Id;
         }
 
 
@@ -33,10 +35,10 @@ namespace WISLEY.BLL.Schedule
             return plannerdao.Insert(this);
         }
 
-        public List<Planner> getToDoByUserEmail(string userId)
+        public List<Planner> SelectByUser(int userId)
         {
             PlannerDAO plannerdao = new PlannerDAO();
-            return plannerdao.SelectByUserEmail(userId);
+            return plannerdao.SelectbyUser(userId);
         }
     }
 }

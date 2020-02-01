@@ -35,7 +35,7 @@ namespace WISLEY.DAL.Schedule
             return result;
         }
 
-        public List<Planner> SelectByUserEmail(string userId)
+        public List<Planner> SelectbyUser(int userId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(DBConnect);
@@ -59,7 +59,9 @@ namespace WISLEY.DAL.Schedule
                 DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
                 string title = row["ToDotitle"].ToString();
                 string description = row["description"].ToString();
-                plannerObj = new Planner(userId, dateSelected, title, description);
+                int id = int.Parse(row["Id"].ToString());
+
+                plannerObj = new Planner(userId, dateSelected, title, description, id);
                 userToDo.Add(plannerObj);
             }
 
