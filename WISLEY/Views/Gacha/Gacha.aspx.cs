@@ -64,7 +64,7 @@ namespace WISLEY.Views.Gacha
             addedavatar = gacha.SelectByID(rn);
             rarity.Add(addedavatar.rarity);
 
-            Avatar avatar = new Avatar("true", addedavatar.src, addedavatar.rarity, user().id.ToString());
+            Avatar avatar = new Avatar(addedavatar.src, addedavatar.rarity, user().id.ToString());
             int addresult = avatar.AddAvatar();
 
             if (addresult == 1)
@@ -103,7 +103,7 @@ namespace WISLEY.Views.Gacha
                 addedavatar = gacha.SelectByID(result);
                 rarity.Add(addedavatar.rarity);
 
-                Avatar avatar = new Avatar("true", addedavatar.src, addedavatar.rarity, user().id.ToString());
+                Avatar avatar = new Avatar(addedavatar.src, addedavatar.rarity, user().id.ToString());
                 addresults.Add(avatar.AddAvatar());
             }
 
