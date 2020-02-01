@@ -47,8 +47,13 @@ namespace WISLEY
                         ddlgrp.Items.Insert(0, "Select Group");
                         for (int i = 0; i < groups.Count; i++)
                         {
-                            ListItem item = new ListItem(groups[i].name, groups[i].id.ToString());
-                            ddlgrp.Items.Insert(i + 1, item);
+                            try
+                            {
+                                ListItem item = new ListItem(groups[i].name, groups[i].id.ToString());
+                                ddlgrp.Items.Insert(i + 1, item);
+                            }
+                            catch { }
+                            
                         }
                         List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
                         postinfo.DataSource = posts;
