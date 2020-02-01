@@ -213,6 +213,7 @@
   <ItemGroup>
     <Compile Include="BLL\Collab\Comment.cs" />
     <Compile Include="BLL\Collab\Post.cs" />
+    <Compile Include="BLL\Collab\PostLikes.cs" />
     <Compile Include="BLL\Gacha\Avatar.cs" />
     <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="BLL\Quiz\Question.cs" />
     <Compile Include="BLL\Quiz\Quiz.cs" />
     <Compile Include="BLL\User\User.cs" />
+    <Compile Include="DAL\Collab\PostLikesDAO.cs" />
     <Compile Include="DAL\Gacha\AvatarDAO.cs" />
     <Compile Include="DAL\Gacha\GachaDAO.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />

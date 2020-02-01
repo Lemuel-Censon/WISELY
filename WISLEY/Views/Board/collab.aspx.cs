@@ -201,28 +201,56 @@ namespace WISLEY
             if (e.CommandName == "like")
             {
                 string postId = e.CommandArgument.ToString();
+                int userId = user().id;
+                int likeresult = 0;
+                int updateresult = 0;
                 List<Post> currpost = new Post().SelectByID(postId);
                 Post post = new Post();
-                int result = post.UpdateLikes(postId, currpost[0].likes + 1);
-                if (result == 1)
+
+                List<string> userfavs = new PostLikes().SelectLikesByUser(userId);
+                if (!userfavs.Contains(postId))
                 {
-                    toast(this, "Post liked!", "Success", "success");
-                    if (Request.QueryString["groupId"] != null)
+                    PostLikes like = new PostLikes(userId, postId);
+                    likeresult = like.AddLike();
+                    updateresult = post.UpdateLikes(postId, currpost[0].likes + 1);
+
+                    if (likeresult == 1 && updateresult == 1)
                     {
-                        List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
-                        postinfo.DataSource = posts;
-                        postinfo.DataBind();
+                        toast(this, "Post liked!", "Success", "success");
                     }
                     else
                     {
-                        List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
-                        postinfo.DataSource = posts;
-                        postinfo.DataBind();
+                        toast(this, "There was an error while liking post, please try again later!", "Error", "error");
                     }
+                }
+
+                else
+                {
+                    PostLikes like = new PostLikes();
+                    likeresult = like.Unlike(userId, postId);
+                    updateresult = post.UpdateLikes(postId, currpost[0].likes - 1);
+
+                    if (likeresult == 1 && updateresult == 1)
+                    {
+                        toast(this, "Post unliked!", "Success", "success");
+                    }
+                    else
+                    {
+                        toast(this, "There was an error while unliking post, please try again later!", "Error", "error");
+                    }
+                }
+
+                if (Request.QueryString["groupId"] != null)
+                {
+                    List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
+                    postinfo.DataSource = posts;
+                    postinfo.DataBind();
                 }
                 else
                 {
-                    toast(this, "There was an error while liking post, please try again later!", "Error", "error");
+                    List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
+                    postinfo.DataSource = posts;
+                    postinfo.DataBind();
                 }
 
             }
