@@ -40,5 +40,11 @@ namespace WISLEY.BLL.Schedule
             PlannerDAO plannerdao = new PlannerDAO();
             return plannerdao.SelectbyUser(userId);
         }
+
+        public Planner SelectByID(string id)
+        {
+            PlannerDAO plannerDAO = new PlannerDAO();
+            return plannerDAO.SelectByID(id);
+        }
     }
 }

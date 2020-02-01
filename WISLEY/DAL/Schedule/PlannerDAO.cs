@@ -53,19 +53,53 @@ namespace WISLEY.DAL.Schedule
             List<Planner> userToDo = new List<Planner>();
 
             int count = ds.Tables[0].Rows.Count;
-            if (count == 1)
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
+                    string title = row["ToDotitle"].ToString();
+                    string description = row["description"].ToString();
+                    int id = int.Parse(row["Id"].ToString());
+
+                    plannerObj = new Planner(userId, dateSelected, title, description, id);
+                    userToDo.Add(plannerObj);
+                }
+            }
+            return userToDo;
+        }
+
+        public Planner SelectByID(string id)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(DBConnect);
+
+            string sqlStmt = "SELECT * FROM Planner WHERE Id = @paraPlanId ORDER BY dateSelected ASC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConnection);
+
+            da.SelectCommand.Parameters.AddWithValue("@paraPlanId", id);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+
+            Planner plannerObj = null;
+
+            int count = ds.Tables[0].Rows.Count;
+            if (count > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
+
+                int userId = int.Parse(row["userId"].ToString());
                 DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
                 string title = row["ToDotitle"].ToString();
                 string description = row["description"].ToString();
-                int id = int.Parse(row["Id"].ToString());
 
-                plannerObj = new Planner(userId, dateSelected, title, description, id);
-                userToDo.Add(plannerObj);
+                plannerObj = new Planner(userId, dateSelected, title, description, int.Parse(id));
             }
 
-            return userToDo;
+            return plannerObj;
         }
     }
 }

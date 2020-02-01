@@ -17,6 +17,14 @@ namespace WISLEY.Views.Schedule
                 if (Session["todoID"] != null)
                 {
                     todoID.Value = Session["todoID"].ToString();
+                    Planner planner = new Planner().SelectByID(todoID.Value);
+
+                    LblSelectedDate.Text = planner.todoDate.ToShortDateString();
+                    if (!Page.IsPostBack)
+                    {
+                        tbEditTitle.Text = planner.todoTitle;
+                        tbEditDesc.Text = planner.todoDescription;
+                    }
                 }
                 else
                 {
