@@ -45,6 +45,8 @@
                             <option selected disabled>Sort By</option>
                             <option>Oldest first</option>
                             <option>Newest first</option>
+                            <option>Most Viewed</option>
+                            <option>Most Liked</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-6 order-1 order-md-3 mt-2 mt-md-0">
@@ -63,7 +65,7 @@
                     <div id="postcon">
                         <asp:Repeater runat="server" ID="postinfo" OnItemCommand="postinfo_ItemCommand" OnItemDataBound="postinfo_ItemDataBound">
                             <ItemTemplate>
-                                <div class="postcards" data-id='<%#Eval("Id") %>'>
+                                <div class="postcards" data-id='<%#Eval("Id") %>' data-views='<%#Eval("views") %>' data-likes='<%#Eval("likes") %>'>
                                     <div class="card-body" id="post<%#Eval("Id") %>">
                                         <asp:HiddenField runat="server" ID="postuserID" Value='<%#Eval("userId") %>' />
                                         <div class="row">
@@ -75,7 +77,7 @@
                                                 <asp:LinkButton runat="server" CommandName="like" CommandArgument='<%#Eval("Id") %>' ID="btnLike" CssClass="btn btn-sm btn-danger" Visible="false"><i class="fas fa-heart"></i></asp:LinkButton>
                                                 <asp:LinkButton runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info"></asp:LinkButton>
                                                 <div runat="server" id="delete" class="d-inline">
-                                                    <button type="button" id="delconfirm" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
                                                         Delete
                                                     </button>
                                                 </div>

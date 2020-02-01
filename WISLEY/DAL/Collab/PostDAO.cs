@@ -16,7 +16,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, views, likes status)" +
+            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, views, likes, status)" +
                              "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraViews, @paraLikes, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value

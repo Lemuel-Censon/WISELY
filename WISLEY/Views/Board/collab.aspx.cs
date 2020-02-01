@@ -343,7 +343,7 @@ namespace WISLEY
 
         protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
                 if (int.Parse(postuser.Value) != user().id)
