@@ -14,6 +14,8 @@ namespace WISLEY.BLL.Collab
         public string datecreated { get; set; }
         public string userId { get; set; }
         public string username { get; set; }
+        public int views { get; set; }
+        public int likes { get; set; }
         public string groupId { get; set; }
         public string status { get; set; }
 
@@ -22,7 +24,7 @@ namespace WISLEY.BLL.Collab
 
         }
 
-        public Post(string title, string content, string userId, string groupId, string datecreated, int Id = -1, string username = "", string status = "")
+        public Post(string title, string content, string userId, string groupId, string datecreated, int Id = -1, string username = "", int views = 0, int likes = 0, string status = "")
         {
             this.title = title;
             this.content = content;
@@ -30,6 +32,8 @@ namespace WISLEY.BLL.Collab
             this.userId = userId;
             this.groupId = groupId;
             this.username = username;
+            this.views = views;
+            this.likes = likes;
             this.status = status;
             this.Id = Id;
         }
@@ -69,6 +73,18 @@ namespace WISLEY.BLL.Collab
         {
             PostDAO postdao = new PostDAO();
             return postdao.UpdatePost(postId, title, content, datecreate);
+        }
+
+        public int UpdateView(string postId, int view)
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.UpdateView(postId, view);
+        }
+
+        public int UpdateLikes(string postId, int likes)
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.UpdateLikes(postId, likes);
         }
 
         public int DelPostUpdate(string postId, string status)

@@ -190,13 +190,74 @@ namespace WISLEY
         {
             if (e.CommandName == "viewpost")
             {
-                Session["postId"] = e.CommandArgument.ToString();
+                string postId = e.CommandArgument.ToString();
+                Session["postId"] = postId;
+                List<Post> currpost = new Post().SelectByID(postId);
+                Post post = new Post();
+                post.UpdateView(postId, currpost[0].views + 1);
                 Response.Redirect("viewpost.aspx");
             }
 
             if (e.CommandName == "viewprofile")
             {
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
+            }
+
+            if (e.CommandName == "like")
+            {
+                string postId = e.CommandArgument.ToString();
+                int userId = user().id;
+                int likeresult = 0;
+                int updateresult = 0;
+                List<Post> currpost = new Post().SelectByID(postId);
+                Post post = new Post();
+
+                List<string> userfavs = new PostLikes().SelectLikesByUser(userId);
+                if (!userfavs.Contains(postId))
+                {
+                    PostLikes like = new PostLikes(userId, postId);
+                    likeresult = like.AddLike();
+                    updateresult = post.UpdateLikes(postId, currpost[0].likes + 1);
+
+                    if (likeresult == 1 && updateresult == 1)
+                    {
+                        toast(this, "Post liked!", "Success", "success");
+                    }
+                    else
+                    {
+                        toast(this, "There was an error while liking post, please try again later!", "Error", "error");
+                    }
+                }
+
+                else
+                {
+                    PostLikes like = new PostLikes();
+                    likeresult = like.Unlike(userId, postId);
+                    updateresult = post.UpdateLikes(postId, currpost[0].likes - 1);
+
+                    if (likeresult == 1 && updateresult == 1)
+                    {
+                        toast(this, "Post unliked!", "Success", "success");
+                    }
+                    else
+                    {
+                        toast(this, "There was an error while unliking post, please try again later!", "Error", "error");
+                    }
+                }
+
+                if (Request.QueryString["groupId"] != null)
+                {
+                    List<Post> posts = new Post().SelectByGrp(Request.QueryString["groupId"]);
+                    postinfo.DataSource = posts;
+                    postinfo.DataBind();
+                }
+                else
+                {
+                    List<Post> posts = new Post().SelectByEmail(LbEmail.Text);
+                    postinfo.DataSource = posts;
+                    postinfo.DataBind();
+                }
+
             }
 
             if (e.CommandName == "editpost")
@@ -287,28 +348,23 @@ namespace WISLEY
 
         protected void postinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (postinfo.Items.Count < 1)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
+                HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
+                if (int.Parse(postuser.Value) != user().id)
                 {
-                    e.Item.FindControl("LbErr").Visible = true;
+                    e.Item.FindControl("btnEdit").Visible = false;
+                    e.Item.FindControl("delete").Visible = false;
+                    e.Item.FindControl("btnLike").Visible = true;
                 }
             }
 
-            else
+            if (e.Item.ItemType == ListItemType.Footer && postinfo.Items.Count < 1)
             {
-                if (e.Item.ItemType == ListItemType.Item)
-                {
-                    HiddenField postuser = (HiddenField)e.Item.FindControl("postuserID");
-                    if (int.Parse(postuser.Value) != user().id)
-                    {
-                        e.Item.FindControl("btnEdit").Visible = false;
-                        e.Item.FindControl("delconfirm").Visible = false;
-                    }
-                }
+                e.Item.FindControl("LbErr").Visible = true;
             }
+
         }
-
 
     }
 }
