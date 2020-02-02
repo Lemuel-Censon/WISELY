@@ -167,6 +167,19 @@ namespace WISLEY
             {
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id="+ e.CommandArgument.ToString()));
             }
+
+            if (e.CommandName == "download")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string grpId = commandArgs[0];
+                string fileName = commandArgs[1];
+                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId;
+
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("content-disposition", $"filename={fileName}");
+                Response.TransmitFile(folderPath + "/" + fileName);
+            }
         }
 
         protected void commentinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -34,15 +34,21 @@ namespace WISLEY.BLL.Quiz
             return quizdao.Insert(this);
         }
 
-        public int GetQuizCount(string userId) {
+        public List<Quiz> SelectByUserId(string userId) {
             QuizDAO quizdao = new QuizDAO();
-            return quizdao.SelectCountById(userId);
+            return quizdao.SelectByUserId(userId);
         }
 
         public Quiz SelectById(string quizId)
         {
             QuizDAO quizdao = new QuizDAO();
             return quizdao.SelectById(quizId);
+        }
+
+        public int DeleteById(string quizId)
+        {
+            QuizDAO quizdao = new QuizDAO();
+            return quizdao.DeleteById(quizId);
         }
     }
 }

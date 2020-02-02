@@ -12,10 +12,10 @@ namespace WISLEY
 {
     public partial class profile : System.Web.UI.Page
     {
-        public int quizcount(string userId)
+        public int postcount()
         {
-            Quiz quiz = new Quiz();
-            return quiz.GetQuizCount(userId);
+            Post post = new Post();
+            return post.SelectByUser(LbEmail.Text).Count;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -78,11 +78,13 @@ namespace WISLEY
                     {
                         LbBio.Text = user.bio;
                     }
-                    quizcount(user.id.ToString());
+                    postcount();
                     List <Post> userposts = new Post().SelectByUser(userid.Value);
+                    List <Quiz> quizposts = new Quiz().SelectByUserId(userid.Value);
                     userpost.DataSource = userposts;
                     userpost.DataBind();
-                    userquizdata.SelectCommand = "SELECT * FROM QUIZ WHERE userId = '" + userid.Value + "' ORDER BY datecreated DESC";
+                    userquiz.DataSource = quizposts;
+                    userquiz.DataBind();
                 }
             }
             else
@@ -179,6 +181,45 @@ namespace WISLEY
             {
                 Session["postId"] = e.CommandArgument.ToString();
                 Response.Redirect(Page.ResolveUrl("~/Views/Board/viewpost.aspx"));
+            }
+        }
+
+        protected void userquiz_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (userquiz.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
+            }
+        }
+
+        protected void userquiz_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewquiz")
+            {
+                Session["quizId"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/quizcreator.aspx"));
+            }
+
+            else if (e.CommandName == "deletequiz")
+            {
+                int result = new Quiz().DeleteById(e.CommandArgument.ToString());
+                if (result == 1)
+                {
+                    Session["success"] = "Quiz deleted!";
+                    Response.Redirect("profile.aspx");
+                } else
+                {
+                    toast(this, "Cannot delete quiz, please inform system administrator!", "Error", "error");
+                }
+            }
+
+            else if (e.CommandName == "editquiz")
+            {
+                Session["quizId"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/editquiz.aspx"));
             }
         }
     }

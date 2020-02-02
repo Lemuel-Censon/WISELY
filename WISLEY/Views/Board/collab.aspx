@@ -119,8 +119,6 @@
                                                         <div class="mt-2">
                                                             <i class="fas fa-eye mr-1"></i><span><%#Eval("views") %>
                                                             </span>
-                                                        </div>
-                                                        <div>
                                                             <i class="fas fa-heart mr-1"></i><span><%#Eval("likes") %>
                                                             </span>
                                                         </div>
@@ -130,6 +128,7 @@
                                                     <%#Eval("content") %>
                                                 </div>
                                                 <asp:TextBox runat="server" ID="tbUpcontent" TextMode="MultiLine" Rows="6" CssClass="form-control" Text='<%#Eval("content") %>' Visible="false"></asp:TextBox>
+                                                <asp:LinkButton runat="server" ID="btnDownload" CommandName="download" CommandArgument='<%#Eval("groupId")+","+Eval("fileName") %>'><%#Eval("fileName") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <hr />
