@@ -58,7 +58,15 @@ namespace WISLEY.Views.Quiztool
             {
                 User user = new User().SelectByEmail(Session["email"].ToString());
                 string title = TbTitle.Text;
-                string description = TbDesc.Text;
+                string description;
+                if (!String.IsNullOrEmpty(TbDesc.Text))
+                {
+                    description = TbDesc.Text;
+                }
+                else
+                {
+                    description = "Not set";
+                }
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
                 string userId = user.id.ToString();
                 string quizId = GenerateRandomNo().ToString();
@@ -68,7 +76,7 @@ namespace WISLEY.Views.Quiztool
                 {
                     Session["quizId"] = quizId;
                     Session["email"] = user.email;
-                    Response.Redirect("question.aspx");
+                    Response.Redirect("editquiz.aspx");
                 }
                 else
                 {

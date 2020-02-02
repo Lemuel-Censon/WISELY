@@ -9,9 +9,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" <%if (user().profilesrc != "")
+                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" src=<%if (user().profilesrc != "")
                         { %>
-                        src="<%=user().profilesrc %>"
+                        "<%=user().profilesrc %>"
                         <%} %><%else { %>
                         src="<%=Page.ResolveUrl("~/Public/img/default.jpg") %>"
                         <%} %>/>
@@ -203,9 +203,7 @@
                     </p>
                 </div>
                 <div id="quizzes" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    <%if (quizcount(userid.Value) > 0)
-                        { %>
-                    <asp:Repeater runat="server" ID="userquiz" DataSourceID="userquizdata">
+                    <asp:Repeater runat="server" ID="userquiz" OnItemCommand="userquiz_ItemCommand" OnItemDataBound="userquiz_ItemDataBound">
                         <ItemTemplate>
                             <div class="card-body">
                                 <div class="media mt-4 px-1">
@@ -215,26 +213,35 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h5 class="font-weight-bold mt-0">
-                                                    <asp:LinkButton runat="server" ID="quizlink"><%#Eval("title") %></asp:LinkButton>
+                                                    <asp:LinkButton runat="server" ID="viewquiz"><%#Eval("title") %></asp:LinkButton>
                                                 </h5>
                                             </div>
                                             <div class="col-lg-6">
                                                 <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
                                                 </span>
+                                                <br />
+                                                <i class="fas fa-question-circle mr-1"></i><span>No of. Questions: 1</span>
                                             </div>
                                         </div>
-                                        <%#Eval("description")%>
+                                        Description: <%#Eval("description")%>
+                                        <br />
+                                        <div class="text-right flex-fill">
+                                            <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("quizId") %>'></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="deletequiz" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="deletequiz" CommandArgument='<%#Eval("quizId") %>'></asp:LinkButton>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr />
                             </div>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <div class="text-center mb-4">
+                                <h4>
+                                    <asp:Label runat="server" ID="LbErr" Text="Currently Empty" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                                </h4>
+                            </div>
+                        </FooterTemplate>
                     </asp:Repeater>
-                    <asp:SqlDataSource runat="server" ID="userquizdata" ConnectionString="<%$ connectionStrings: ConnStr%>"></asp:SqlDataSource>
-                    <%} %>
-                    <%else
-                        { %>Currently Empty
-                        <%} %>
                 </div>
             </div>
         </div>
