@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WISLEY {
+namespace WISLEY.Views.Group {
     
     
-    public partial class NestedMasterPage1 {
+    public partial class viewAllGroups {
         
         /// <summary>
-        /// groupBtns control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater groupBtns;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// groupData control.
+        /// ReorderList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource groupData;
+        protected global::AjaxControlToolkit.ReorderList ReorderList1;
         
         /// <summary>
-        /// sidebarContent control.
+        /// SQLgroupData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder sidebarContent;
+        protected global::System.Web.UI.WebControls.SqlDataSource SQLgroupData;
     }
 }

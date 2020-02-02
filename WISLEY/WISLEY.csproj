@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=19.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.19.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -122,6 +125,7 @@
     <Content Include="Views\Group\editGroup.aspx" />
     <Content Include="Views\Group\joinGroup.aspx" />
     <Content Include="Views\Group\members.aspx" />
+    <Content Include="Views\Group\viewAllGroups.aspx" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
     <Content Include="Public\css\toast\toastr.css" />
@@ -294,6 +298,13 @@
     </Compile>
     <Compile Include="Views\Group\members.aspx.designer.cs">
       <DependentUpon>members.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Group\viewAllGroups.aspx.cs">
+      <DependentUpon>viewAllGroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Group\viewAllGroups.aspx.designer.cs">
+      <DependentUpon>viewAllGroups.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>

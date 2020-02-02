@@ -20,15 +20,20 @@ namespace WISLEY
             if (Session["email"] != null)
             {
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
-           
+
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
+                //das.SelectCommand = "SELECT * FROM [Group] " +
+                //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
+                //"ORDER BY Id ASC";
+
                 das.SelectCommand = "SELECT * FROM [Group] " +
-                "WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
-                "ORDER BY Id ASC";
+                    "INNER JOIN [GroupUserRelations] " +
+                    "ON [Group].Id = [GroupUserRelations].groupID " +
+                    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
+                    "ORDER BY customOrder ASC";
 
 
-                
 
             }
 
