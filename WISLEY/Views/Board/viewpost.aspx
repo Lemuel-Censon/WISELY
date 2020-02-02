@@ -27,6 +27,7 @@
                                     </div>
                                 </div>
                                 <%#Eval("content")%>
+                                <asp:LinkButton runat="server" ID="btnDownload" CssClass="d-block" CommandName="download" CommandArgument='<%#Eval("groupId")+","+Eval("fileName") %>'><%#Eval("fileName") %></asp:LinkButton>
                             </div>
                         </div>
                     </div>

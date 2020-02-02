@@ -51,11 +51,11 @@ $('select.sort-select').on('change', function (e) {
         $("#postcon").html(cards);
     }
     else if (sort == "Most Viewed") {
-        cards.sort(function (a, b) { return $(a).data("views") - $(b).data("views") });
+        cards.sort(function (a, b) { return $(b).data("views") - $(a).data("views") });
         $("#postcon").html(cards);
     }
     else if (sort == "Most Liked") {
-        cards.sort(function (a, b) { return $(a).data("likes") - $(b).data("likes") });
+        cards.sort(function (a, b) { return $(b).data("likes") - $(a).data("likes") });
         $("#postcon").html(cards);
     }
 });
