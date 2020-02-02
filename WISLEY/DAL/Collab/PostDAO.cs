@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, views, likes, status)" +
-                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraViews, @paraLikes, @paraStatus)";
+            string sqlStmt = "INSERT INTO Post (userId, groupId, title, content, datecreated, fileName, views, likes, status)" +
+                             "VALUES (@paraUserID, @paraGroupID, @paraTitle, @paraContent, @paraDatecreate, @paraFile, @paraViews, @paraLikes, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -27,6 +27,7 @@ namespace WISLEY.DAL.Collab
             sqlCmd.Parameters.AddWithValue("@paraTitle", post.title);
             sqlCmd.Parameters.AddWithValue("@paraContent", post.content);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", post.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraFile", post.fileName);
             sqlCmd.Parameters.AddWithValue("@paraViews", post.views);
             sqlCmd.Parameters.AddWithValue("@paraLikes", post.likes);
             sqlCmd.Parameters.AddWithValue("@paraStatus", post.status);
@@ -64,11 +65,12 @@ namespace WISLEY.DAL.Collab
                 string content = row["content"].ToString();
                 string group = row["groupId"].ToString();
                 string datecreated = row["datecreated"].ToString();
+                string fileName = row["fileName"].ToString();
                 string username = row["name"].ToString();
                 int views = int.Parse(row["views"].ToString());
                 int likes = int.Parse(row["likes"].ToString());
                 int Id = int.Parse(row["Id"].ToString());
-                obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
+                obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
                 post.Add(obj);
             }
 
@@ -103,11 +105,12 @@ namespace WISLEY.DAL.Collab
                     string title = row["title"].ToString();
                     string content = row["content"].ToString();
                     string datecreated = row["datecreated"].ToString();
+                    string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, groupId, datecreated, Id, username, views, likes);
+                    obj = new Post(title, content, userId, groupId, datecreated, fileName, Id, username, views, likes);
                     grppostlist.Add(obj);
                 }
             }
@@ -141,11 +144,12 @@ namespace WISLEY.DAL.Collab
                     string content = row["content"].ToString();
                     string group = row["groupId"].ToString();
                     string datecreated = row["datecreated"].ToString();
+                    string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
+                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
                     userpostlist.Add(obj);
                 }
             }
@@ -183,11 +187,12 @@ namespace WISLEY.DAL.Collab
                     string content = row["content"].ToString();
                     string group = row["groupId"].ToString();
                     string datecreated = row["datecreated"].ToString();
+                    string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, Id, username, views, likes);
+                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
                     userpostlist.Add(obj);
                 }
             }

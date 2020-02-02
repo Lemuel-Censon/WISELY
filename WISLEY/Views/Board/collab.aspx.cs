@@ -126,7 +126,25 @@ namespace WISLEY
                     if (fileUpload.PostedFile.ContentLength < 3000000)
                     {
                         string filename = Path.GetFileName(fileUpload.FileName);
-                        fileUpload.SaveAs(Server.MapPath("~/Public/uploads/") + filename);
+                        string grpId;
+
+                        if (Request.QueryString["groupId"] != null)
+                        {
+                            grpId = Request.QueryString["groupId"];
+                        }
+                        else
+                        {
+                            grpId = ddlgrp.SelectedValue;
+                        }
+
+                        string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/";
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        fileUpload.SaveAs(folderPath + filename);
+
                         toast(this, "File uploaded!", "Success", "success");
                         save = true;
                     }
@@ -135,8 +153,9 @@ namespace WISLEY
                         toast(this, "The file has to be less than 3MB!", "Error", "error");
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    System.Diagnostics.Debug.WriteLine("Upload status: The file could not be uploaded. The following error occured: " + e.Message);
                     toast(this, "The file could not be uploaded.", "Error", "error");
                 }
             }
@@ -157,6 +176,8 @@ namespace WISLEY
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
                 string userId = user().id.ToString();
                 string grpId;
+                string fileName = "";
+
                 if (Request.QueryString["groupId"] != null)
                 {
                     grpId = Request.QueryString["groupId"];
@@ -166,7 +187,12 @@ namespace WISLEY
                     grpId = ddlgrp.SelectedValue;
                 }
 
-                Post post = new Post(title, content, userId, grpId, date);
+                if (fileUpload.HasFile)
+                {
+                    fileName = Path.GetFileName(fileUpload.FileName);
+                }
+
+                Post post = new Post(title, content, userId, grpId, date, fileName);
                 int result = post.AddPost();
 
                 if (result == 1)
@@ -253,6 +279,19 @@ namespace WISLEY
                     postinfo.DataBind();
                 }
 
+            }
+
+            if (e.CommandName == "download")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string grpId = commandArgs[0];
+                string fileName = commandArgs[1];
+                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId;
+
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("content-disposition", $"filename={fileName}");
+                Response.TransmitFile(folderPath + "/" + fileName);
             }
 
             if (e.CommandName == "editpost")
