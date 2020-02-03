@@ -61,6 +61,13 @@ namespace WISLEY
                     }
                     ddlgrp.Visible = true; 
                 }
+                if (Session["file"] != null && Session["folder"] != null)
+                {
+                    Response.Clear();
+                    Response.ContentType = "application/octet-stream";
+                    Response.AppendHeader("content-disposition", $"filename={Session["file"].ToString()}");
+                    Response.TransmitFile(Session["folder"].ToString() + "\\" + Session["file"].ToString());
+                }
             }
             else
             {
@@ -142,7 +149,7 @@ namespace WISLEY
                             grpId = ddlgrp.SelectedValue;
                         }
 
-                        string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/";
+                        string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id + "/";
                         if (!Directory.Exists(folderPath))
                         {
                             Directory.CreateDirectory(folderPath);
@@ -291,12 +298,11 @@ namespace WISLEY
                 string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
                 string grpId = commandArgs[0];
                 string fileName = commandArgs[1];
-                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId;
+                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id;
 
-                Response.Clear();
-                Response.ContentType = "application/octet-stream";
-                Response.AppendHeader("content-disposition", $"filename={fileName}");
-                Response.TransmitFile(folderPath + "/" + fileName);
+                Session["file"] = fileName;
+                Session["folder"] = folderPath;
+                Response.Redirect("collab.aspx");
             }
 
             if (e.CommandName == "editpost")
