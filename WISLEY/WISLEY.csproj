@@ -197,7 +197,6 @@
     <Content Include="Views\Profile\forgotpassword.aspx" />
     <Content Include="Views\Auth\register.aspx" />
     <Content Include="Views\Quiztool\editquiz.aspx" />
-    <Content Include="Views\Quiztool\question.aspx" />
     <Content Include="Views\Quiztool\quizcreator.aspx" />
     <Content Include="Views\Quiztool\quizstart.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
@@ -405,13 +404,6 @@
     </Compile>
     <Compile Include="Views\Quiztool\editquiz.aspx.designer.cs">
       <DependentUpon>editquiz.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Quiztool\question.aspx.cs">
-      <DependentUpon>question.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Quiztool\question.aspx.designer.cs">
-      <DependentUpon>question.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quiztool\quizcreator.aspx.cs">
       <DependentUpon>quizcreator.aspx</DependentUpon>

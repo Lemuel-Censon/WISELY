@@ -14,7 +14,6 @@ namespace WISLEY.BLL.Quiz
         public string option2 { get; set; }
         public string option3 { get; set; }
         public string option4 { get; set; }
-        public string option5 { get; set; }
         public string answer { get; set; }
         public string quizId { get; set; }
 
@@ -23,7 +22,7 @@ namespace WISLEY.BLL.Quiz
 
         }
 
-        public Question(string question, string number, string option1, string option2, string option3, string option4, string option5, string answer, string quizId)
+        public Question(string question, string number, string option1, string option2, string option3, string option4, string answer, string quizId)
         {
             this.question = question;
             this.number = number;
@@ -31,7 +30,6 @@ namespace WISLEY.BLL.Quiz
             this.option2 = option2;
             this.option3 = option3;
             this.option4 = option4;
-            this.option5 = option5;
             this.answer = answer;
             this.quizId = quizId;
         }
@@ -42,10 +40,10 @@ namespace WISLEY.BLL.Quiz
             return questiondao.Insert(this);
         }
 
-        public Question GetQuestion(string number, string quizId)
+        public List<Question> SelectQuestion(string quizId)
         {
             QuestionDAO questiondao = new QuestionDAO();
-            return questiondao.GetQuestion(number, quizId);
+            return questiondao.SelectQuestion(quizId);
         }
     }
 }

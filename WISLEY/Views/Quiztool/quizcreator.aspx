@@ -13,7 +13,7 @@
                     <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="300px"></asp:TextBox>
                 </div>
                 <div class="text-right">
-                    <asp:Button ID="btnCreateQuestions" CssClass="btn btn-block btn-info text-left rounded-0 mb-1 text-center" runat="server" Text="+ Create Questions" OnClick="btnCreateQuestions_Click" />
+                    <asp:Button ID="btnCreateQuestions" CssClass="btn btn-block btn-success text-left rounded-0 mb-1 text-center" runat="server" Text="+ Create Questions" OnClick="btnCreateQuestions_Click" />
                 </div>
             </div>
         </div>
