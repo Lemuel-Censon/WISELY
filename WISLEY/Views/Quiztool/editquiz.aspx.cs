@@ -20,6 +20,12 @@ namespace WISLEY.Views.Quiztool
                     Session["success"] = null;
                 }
 
+                if (Session["error"] != null)
+                {
+                    toast(this, Session["error"].ToString(), "Error", "error");
+                    Session["error"] = null;
+                }
+
                 if (Session["quizId"] != null)
                 {
                     LbQuizID.Value = Session["quizId"].ToString();
