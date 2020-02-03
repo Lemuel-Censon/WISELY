@@ -68,9 +68,10 @@ namespace WISLEY.Views.Quiztool
                     description = "Not set";
                 }
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
+                int totalquestions = 0;
                 string userId = user.id.ToString();
                 string quizId = GenerateRandomNo().ToString();
-                Quiz quiz = new Quiz(title, description, date, userId, quizId);
+                Quiz quiz = new Quiz(title, description, date, totalquestions, userId, quizId);
                 int result = quiz.AddQuiz();
                 if (result == 1)
                 {

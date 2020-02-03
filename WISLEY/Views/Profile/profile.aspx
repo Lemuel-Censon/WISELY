@@ -207,8 +207,6 @@
                         <ItemTemplate>
                             <div class="card-body">
                                 <div class="media mt-4 px-1">
-                                    <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
-                                        alt="Generic placeholder image">
                                     <div class="media-body">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -220,7 +218,7 @@
                                                 <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
                                                 </span>
                                                 <br />
-                                                <i class="fas fa-question-circle mr-1"></i><span>No of. Questions: 1</span>
+                                                <i class="fas fa-exclamation-circle mr-1"></i><span>No of. Questions: <%#Eval("totalquestions") %></span>
                                             </div>
                                         </div>
                                         Description: <%#Eval("description")%>

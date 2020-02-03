@@ -10,14 +10,14 @@
                     <asp:TextBox ID="TbTitle" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="md-form md-outline">
-                    <asp:Label AssociatedControlID="TbDesc" ID="LbDesc" runat="server" Text="Enter quiz description"></asp:Label>
-                    <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="300px"></asp:TextBox>
+                    <asp:Label AssociatedControlID="TbDesc" ID="LbDesc" runat="server" Text="Enter quiz description (Optional)"></asp:Label>
+                    <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="200px"></asp:TextBox>
                 </div>
                 <div id="questions">
                     <asp:Repeater runat="server" ID="question" OnItemCommand="question_ItemCommand" OnItemDataBound="question_ItemDataBound">
                         <ItemTemplate>
                             <div class="card-body">
-                                <h5 class="card-title mb-4">Question <asp:Label ID="LbQuestionNo" runat="server" Text="1"></asp:Label></h5>
+                                <h5 class="card-title mb-4">Question <%#Eval("number") %></h5>
                                 <div class="md-form md-outline">
                                     <asp:Label AssociatedControlID="TbQuestion" ID="LbQuestion" runat="server" Text="Enter question"></asp:Label>
                                     <asp:TextBox ID="TbQuestion" runat="server" CssClass="form-control"></asp:TextBox>

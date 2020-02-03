@@ -74,5 +74,20 @@ namespace WISLEY.DAL.Quiztool
 
             return questionlist;
         }
+
+        public int GetQuestionCount(string quizId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * From Question Where quizId = @paraQuizID";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraQuizID", quizId);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            return rec_cnt;
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace WISLEY.BLL.Quiz
         public string title { get; set; }
         public string description { get; set; }
         public string datecreated { get; set; }
+        public int totalquestions { get; set; }
         public string userId { get; set; }
         public string quizId { get; set; }
 
@@ -19,11 +20,12 @@ namespace WISLEY.BLL.Quiz
 
         }
 
-        public Quiz(string title, string description, string datecreated, string userId, string quizId)
+        public Quiz(string title, string description, string datecreated, int totalquestions, string userId, string quizId)
         {
             this.title = title;
             this.description = description;
             this.datecreated = datecreated;
+            this.totalquestions = totalquestions;
             this.userId = userId;
             this.quizId = quizId;
         }
@@ -49,6 +51,12 @@ namespace WISLEY.BLL.Quiz
         {
             QuizDAO quizdao = new QuizDAO();
             return quizdao.DeleteById(quizId);
+        }
+
+        public int UpdateTotalQuestions(int totalquestions, string quizId)
+        {
+            QuizDAO quizdao = new QuizDAO();
+            return quizdao.UpdateTotalQuestions(totalquestions, quizId);
         }
     }
 }

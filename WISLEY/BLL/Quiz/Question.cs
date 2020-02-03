@@ -45,5 +45,11 @@ namespace WISLEY.BLL.Quiz
             QuestionDAO questiondao = new QuestionDAO();
             return questiondao.SelectQuestion(quizId);
         }
+
+        public string GetQuestionCount(string quizId)
+        {
+            QuestionDAO questiondao = new QuestionDAO();
+            return questiondao.GetQuestionCount(quizId).ToString();
+        }
     }
 }

@@ -9,8 +9,8 @@
                     <asp:TextBox ID="TbTitle" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="md-form md-outline">
-                    <asp:Label AssociatedControlID="TbDesc" ID="LbDesc" runat="server" Text="Enter quiz description"></asp:Label>
-                    <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="300px"></asp:TextBox>
+                    <asp:Label AssociatedControlID="TbDesc" ID="LbDesc" runat="server" Text="Enter quiz description (Optional)"></asp:Label>
+                    <asp:TextBox ID="TbDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Height="200px"></asp:TextBox>
                 </div>
                 <div class="text-right">
                     <asp:Button ID="btnCreateQuestions" CssClass="btn btn-block btn-success text-left rounded-0 mb-1 text-center" runat="server" Text="+ Create Questions" OnClick="btnCreateQuestions_Click" />

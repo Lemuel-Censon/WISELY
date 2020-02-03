@@ -15,8 +15,8 @@ namespace WISLEY.DAL.Quiztool
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO Quiz (title, description, datecreated, userId, quizId)" +
-                             "VALUES (@paraTitle, @paraDescription, @paraDatecreate, @paraUserID, @paraQuizID)";
+            string sqlStmt = "INSERT INTO Quiz (title, description, datecreated, totalquestions, userId, quizId)" +
+                             "VALUES (@paraTitle, @paraDescription, @paraDatecreate, @paraTotalquestions, @paraUserID, @paraQuizID)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -24,6 +24,7 @@ namespace WISLEY.DAL.Quiztool
             sqlCmd.Parameters.AddWithValue("@paraTitle", quiz.title);
             sqlCmd.Parameters.AddWithValue("@paraDescription", quiz.description);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", quiz.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraTotalquestions", quiz.totalquestions);
             sqlCmd.Parameters.AddWithValue("@paraUserID", quiz.userId);
             sqlCmd.Parameters.AddWithValue("@paraQuizID", quiz.quizId);
 
@@ -58,10 +59,11 @@ namespace WISLEY.DAL.Quiztool
                     string title = row["title"].ToString();
                     string description = row["description"].ToString();
                     string datecreated = row["datecreated"].ToString();
+                    int totalquestions = int.Parse(row["totalquestions"].ToString());
                     string userID = row["userId"].ToString();
                     string quizID = row["quizId"].ToString();
 
-                    obj = new Quiz(title, description, datecreated, userID, quizID);
+                    obj = new Quiz(title, description, datecreated, totalquestions, userID, quizID);
                     userquizlist.Add(obj);
                 }
             }
@@ -89,10 +91,11 @@ namespace WISLEY.DAL.Quiztool
                 string title = row["title"].ToString();
                 string description = row["description"].ToString();
                 string datecreated = row["datecreated"].ToString();
+                int totalquestions = int.Parse(row["totalquestions"].ToString());
                 string userId = row["userId"].ToString();
                 string quizID = row["quizId"].ToString();
 
-                obj = new Quiz(title, description, datecreated, userId, quizID);
+                obj = new Quiz(title, description, datecreated, totalquestions, userId, quizID);
             }
 
             return obj;
@@ -107,6 +110,26 @@ namespace WISLEY.DAL.Quiztool
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
 
+            sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateTotalQuestions(int totalquestions, string quizId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlstmt = "Update Quiz Set totalquestions = @paraTotalquestions where quizId = @paraQuizID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraTotalQuestions", totalquestions);
             sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
 
             myConn.Open();

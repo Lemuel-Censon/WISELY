@@ -26,15 +26,12 @@ namespace WISLEY.Views.Quiztool
                         Quiz quiz = new Quiz().SelectById(Session["quizId"].ToString());
                         TbTitle.Text = quiz.title;
                         TbDesc.Text = quiz.description;
+                        LbQuestionCount.Text = quiz.totalquestions.ToString();
                     }
                     LbQuizId.Text = Session["quizId"].ToString();
                     List<Question> questions = new Question().SelectQuestion(Session["quizId"].ToString());
                     question.DataSource = questions;
                     question.DataBind();
-                }
-                if (Session["next"] != null)
-                {
-                    LbQuestionCount.Text = Session["next"].ToString();
                 }
             }
             else
@@ -58,13 +55,14 @@ namespace WISLEY.Views.Quiztool
 
         protected void btnaddQuestion_Click(object sender, EventArgs e)
         {
-            string questionNo = (int.Parse(LbQuestionCount.Text) + 1).ToString();
-            Question question = new Question("", questionNo, "", "", "", "", "", LbQuizId.Text);
+            int questionNo = int.Parse(LbQuestionCount.Text) + 1;
+            Question question = new Question("", questionNo.ToString(), "", "", "", "", "", LbQuizId.Text);
+            Quiz quiz = new Quiz();
             int result = question.AddQuestion();
             if (result == 1)
             {
+                quiz.UpdateTotalQuestions(questionNo, LbQuizId.Text);
                 Session["success"] = "Question added!";
-                Session["next"] = questionNo;
                 Response.Redirect("editquiz.aspx");
             }
             else
@@ -77,7 +75,6 @@ namespace WISLEY.Views.Quiztool
         {
             if (question.Items.Count < 1)
             {
-                LbQuestionCount.Text = "0";
                 if (e.Item.ItemType == ListItemType.Footer)
                 {
                     e.Item.FindControl("LbErr").Visible = true;
