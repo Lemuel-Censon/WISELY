@@ -63,6 +63,12 @@ namespace WISLEY.BLL.Quiz
             return quizdao.DeleteById(quizId);
         }
 
+        public int UpdateQuiz(string title, string desc, string quizId)
+        {
+            QuizDAO quizdao = new QuizDAO();
+            return quizdao.UpdateQuiz(title, desc, quizId);
+        }
+
         public int UpdateTotalQuestions(int totalquestions, string quizId)
         {
             QuizDAO quizdao = new QuizDAO();

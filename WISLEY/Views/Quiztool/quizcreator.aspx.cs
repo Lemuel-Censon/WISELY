@@ -22,7 +22,7 @@ namespace WISLEY.Views.Quiztool
             }
             else
             {
-                Session["error"] = "You must be logged in to have access to the quiz creator!";
+                Session["error"] = "You must be logged in to create quiz!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
         }

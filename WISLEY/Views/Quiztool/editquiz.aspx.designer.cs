@@ -13,22 +13,13 @@ namespace WISLEY.Views.Quiztool {
     public partial class editquiz {
         
         /// <summary>
-        /// LbQuizId control.
+        /// LbQuizID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbQuizId;
-        
-        /// <summary>
-        /// LbQuestionCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbQuestionCount;
+        protected global::System.Web.UI.WebControls.HiddenField LbQuizID;
         
         /// <summary>
         /// LbTitle control.
@@ -67,6 +58,33 @@ namespace WISLEY.Views.Quiztool {
         protected global::System.Web.UI.WebControls.TextBox TbDesc;
         
         /// <summary>
+        /// LbQuestionCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbQuestionCount;
+        
+        /// <summary>
+        /// qnScript control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager qnScript;
+        
+        /// <summary>
+        /// qnupdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel qnupdate;
+        
+        /// <summary>
         /// question control.
         /// </summary>
         /// <remarks>
@@ -82,7 +100,7 @@ namespace WISLEY.Views.Quiztool {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaddQuestion;
+        protected global::System.Web.UI.WebControls.LinkButton btnaddQuestion;
         
         /// <summary>
         /// btnSaveQuiz control.
@@ -91,6 +109,6 @@ namespace WISLEY.Views.Quiztool {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveQuiz;
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveQuiz;
     }
 }

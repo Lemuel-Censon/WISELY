@@ -141,7 +141,7 @@ namespace WISLEY.DAL.Quiztool
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlstmt = "Delete from Quiz where quizId = @paraQuizID";
+            string sqlstmt = "Delete from Quiz where Id = @paraQuizID";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
@@ -156,11 +156,32 @@ namespace WISLEY.DAL.Quiztool
             return result;
         }
 
+        public int UpdateQuiz(string title, string desc, string quizId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlstmt = "Update Quiz Set title = @paraTitle, description = @paraDesc where Id = @paraQuizID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraTitle", title);
+            sqlCmd.Parameters.AddWithValue("@paraDesc", desc);
+            sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
         public int UpdateTotalQuestions(int totalquestions, string quizId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlstmt = "Update Quiz Set totalquestions = @paraTotalquestions where quizId = @paraQuizID";
+            string sqlstmt = "Update Quiz Set totalquestions = @paraTotalquestions where Id = @paraQuizID";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);

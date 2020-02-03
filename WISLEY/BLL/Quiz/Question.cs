@@ -40,10 +40,10 @@ namespace WISLEY.BLL.Quiz
             return questiondao.Insert(this);
         }
 
-        public List<Question> SelectQuestion(string quizId)
+        public List<Question> SelectByQuiz(string quizId)
         {
             QuestionDAO questiondao = new QuestionDAO();
-            return questiondao.SelectQuestion(quizId);
+            return questiondao.SelectByQuiz(quizId);
         }
 
         public string GetQuestionCount(string quizId)

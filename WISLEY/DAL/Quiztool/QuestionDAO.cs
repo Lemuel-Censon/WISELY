@@ -38,7 +38,7 @@ namespace WISLEY.DAL.Quiztool
             return result;
         }
 
-        public List<Question> SelectQuestion(string quizId)
+        public List<Question> SelectByQuiz(string quizId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);

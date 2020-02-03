@@ -19,55 +19,90 @@ namespace WISLEY.Views.Quiztool
                     toast(this, Session["success"].ToString(), "Success", "success");
                     Session["success"] = null;
                 }
+
                 if (Session["quizId"] != null)
                 {
+                    LbQuizID.Value = Session["quizId"].ToString();
+
                     if (!Page.IsPostBack)
                     {
-                        Quiz quiz = new Quiz().SelectById(Session["quizId"].ToString());
+                        Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
                         TbTitle.Text = quiz.title;
                         TbDesc.Text = quiz.description;
                         LbQuestionCount.Text = quiz.totalquestions.ToString();
                     }
-                    LbQuizId.Text = Session["quizId"].ToString();
-                    List<Question> questions = new Question().SelectQuestion(Session["quizId"].ToString());
+                    
+                    List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
                     question.DataSource = questions;
                     question.DataBind();
                 }
             }
             else
             {
-                Session["error"] = "You must be logged in to have access to the quiz creator!";
+                Session["error"] = "You must be logged in to edit a quiz!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
         }
 
         public void toast(Page page, string message, string title, string type)
         {
-            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+            ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        public bool ValidateInput()
+        {
+            bool valid = true;
+            if (String.IsNullOrEmpty(TbTitle.Text))
+            {
+                toast(this, "Please enter a title!", "Error", "error");
+                valid = false;
+            }
+
+            return valid;
         }
 
 
         protected void btnSaveQuiz_Click(object sender, EventArgs e)
         {
-            Session["success"] = "Your quiz has been saved! You may view it in your profile.";
-            Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+            if (ValidateInput())
+            {
+                string desc = "No Description";
+
+                if (!String.IsNullOrEmpty(TbDesc.Text))
+                {
+                    desc = TbDesc.Text;
+                }
+                int result = new Quiz().UpdateQuiz(TbTitle.Text, desc, LbQuizID.Value);
+
+                if (result == 1)
+                {
+                    Session["success"] = "Quiz saved successfully! You may view it in your profile.";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+                }
+                else
+                {
+                    toast(this, "Quiz could not be saved, please contact system administrator!", "Error", "error");
+                }
+            }
         }
 
         protected void btnaddQuestion_Click(object sender, EventArgs e)
         {
             int questionNo = int.Parse(LbQuestionCount.Text) + 1;
-            Question question = new Question("", questionNo.ToString(), "", "", "", "", "", LbQuizId.Text);
+            Question newquestion = new Question("", questionNo.ToString(), "", "", "", "", "", LbQuizID.Value);
             Quiz quiz = new Quiz();
-            int result = question.AddQuestion();
+            int result = newquestion.AddQuestion();
             if (result == 1)
             {
-                quiz.UpdateTotalQuestions(questionNo, LbQuizId.Text);
-                Session["success"] = "Question added!";
-                Response.Redirect("editquiz.aspx");
+                quiz.UpdateTotalQuestions(questionNo, LbQuizID.Value);
+                toast(this, "Question added!", "Success", "success");
+                List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                question.DataSource = questions;
+                question.DataBind();
             }
             else
             {
-                toast(this, "Question cannot be added, please contact system administrator!", "Error", "error");
+                toast(this, "Question could not be added, please contact system administrator!", "Error", "error");
             }
         }
 
@@ -87,9 +122,5 @@ namespace WISLEY.Views.Quiztool
 
         }
 
-        protected void DdlCorrect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
