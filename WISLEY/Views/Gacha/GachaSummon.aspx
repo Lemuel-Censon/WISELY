@@ -4,8 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
 
-    <div class="card">
-        <div class="card-body">
+
             <asp:Button ID="ButtonBack" CssClass="btn btn-danger btn-sm" runat="server" Text="Back" OnClick="ButtonBack_Click" />
             <div class="text-center">
                 <video controls autoplay>

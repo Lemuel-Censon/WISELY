@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=19.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.19.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -109,6 +112,7 @@
     <Content Include="Public\img\Badges\Badge_Post.png" />
     <Content Include="Public\img\default.jpg" />
     <Content Include="Public\img\Gacha\banner.jpg" />
+    <Content Include="Public\img\Gacha\banner.png" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
     <Content Include="Public\videos\gacha_common.mp4" />
     <Content Include="Public\videos\gacha_rare.mp4" />
@@ -122,6 +126,7 @@
     <Content Include="Views\Group\editGroup.aspx" />
     <Content Include="Views\Group\joinGroup.aspx" />
     <Content Include="Views\Group\members.aspx" />
+    <Content Include="Views\Group\viewAllGroups.aspx" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
     <Content Include="Public\css\toast\toastr.css" />
@@ -191,7 +196,7 @@
     <Content Include="Public\js\popper.min.js" />
     <Content Include="Views\Profile\forgotpassword.aspx" />
     <Content Include="Views\Auth\register.aspx" />
-    <Content Include="Views\Quiztool\question.aspx" />
+    <Content Include="Views\Quiztool\editquiz.aspx" />
     <Content Include="Views\Quiztool\quizcreator.aspx" />
     <Content Include="Views\Quiztool\quizstart.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
@@ -213,6 +218,7 @@
   <ItemGroup>
     <Compile Include="BLL\Collab\Comment.cs" />
     <Compile Include="BLL\Collab\Post.cs" />
+    <Compile Include="BLL\Collab\PostLikes.cs" />
     <Compile Include="BLL\Gacha\Avatar.cs" />
     <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
@@ -221,6 +227,7 @@
     <Compile Include="BLL\Quiz\Question.cs" />
     <Compile Include="BLL\Quiz\Quiz.cs" />
     <Compile Include="BLL\User\User.cs" />
+    <Compile Include="DAL\Collab\PostLikesDAO.cs" />
     <Compile Include="DAL\Gacha\AvatarDAO.cs" />
     <Compile Include="DAL\Gacha\GachaDAO.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />
@@ -291,6 +298,13 @@
     </Compile>
     <Compile Include="Views\Group\members.aspx.designer.cs">
       <DependentUpon>members.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Group\viewAllGroups.aspx.cs">
+      <DependentUpon>viewAllGroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Group\viewAllGroups.aspx.designer.cs">
+      <DependentUpon>viewAllGroups.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
@@ -384,12 +398,12 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Quiztool\question.aspx.cs">
-      <DependentUpon>question.aspx</DependentUpon>
+    <Compile Include="Views\Quiztool\editquiz.aspx.cs">
+      <DependentUpon>editquiz.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Quiztool\question.aspx.designer.cs">
-      <DependentUpon>question.aspx</DependentUpon>
+    <Compile Include="Views\Quiztool\editquiz.aspx.designer.cs">
+      <DependentUpon>editquiz.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quiztool\quizcreator.aspx.cs">
       <DependentUpon>quizcreator.aspx</DependentUpon>

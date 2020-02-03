@@ -15,8 +15,8 @@ namespace WISLEY.DAL.Quiztool
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO Question (question, number, option1, option2, option3, option4, option5, answer, quizId)" +
-                             "VALUES (@paraQuestion, @paraNumber, @paraOption1, @paraOption2, @paraOption3, @paraOption4, @paraOption5, @paraAnswer, @paraQuizID)";
+            string sqlStmt = "INSERT INTO Question (question, number, option1, option2, option3, option4, answer, quizId)" +
+                             "VALUES (@paraQuestion, @paraNumber, @paraOption1, @paraOption2, @paraOption3, @paraOption4, @paraAnswer, @paraQuizID)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -27,7 +27,6 @@ namespace WISLEY.DAL.Quiztool
             sqlCmd.Parameters.AddWithValue("@paraOption2", question.option2);
             sqlCmd.Parameters.AddWithValue("@paraOption3", question.option3);
             sqlCmd.Parameters.AddWithValue("@paraOption4", question.option4);
-            sqlCmd.Parameters.AddWithValue("@paraOption5", question.option5);
             sqlCmd.Parameters.AddWithValue("@paraAnswer", question.answer);
             sqlCmd.Parameters.AddWithValue("@paraQuizID", question.quizId);
 
@@ -39,14 +38,13 @@ namespace WISLEY.DAL.Quiztool
             return result;
         }
 
-        public Question GetQuestion(string number, string quizId)
+        public List<Question> SelectQuestion(string quizId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * From Question Where number = @paraNumber And quizId = @paraQuizID";
+            string sqlstmt = "Select * From Question Where quizId = @paraQuizID";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
-            da.SelectCommand.Parameters.AddWithValue("@paraNumber", number);
             da.SelectCommand.Parameters.AddWithValue("@paraQuizID", quizId);
 
             DataSet ds = new DataSet();
@@ -54,23 +52,27 @@ namespace WISLEY.DAL.Quiztool
             int rec_cnt = ds.Tables[0].Rows.Count;
 
             Question obj = null;
+            List<Question> questionlist = new List<Question>();
             if (rec_cnt > 0)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                string question = row["question"].ToString();
-                string questionNo = row["number"].ToString();
-                string option1 = row["option1"].ToString();
-                string option2 = row["option2"].ToString();
-                string option3 = row["option3"].ToString();
-                string option4 = row["option4"].ToString();
-                string option5 = row["option5"].ToString();
-                string answer = row["answer"].ToString();
-                string quizID = row["quizId"].ToString();
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string question = row["question"].ToString();
+                    string questionNo = row["number"].ToString();
+                    string option1 = row["option1"].ToString();
+                    string option2 = row["option2"].ToString();
+                    string option3 = row["option3"].ToString();
+                    string option4 = row["option4"].ToString();
+                    string answer = row["answer"].ToString();
+                    string quizID = row["quizId"].ToString();
 
-                obj = new Question(question, questionNo, option1, option2, option3, option4, option5, answer, quizID);
+                    obj = new Question(question, questionNo, option1, option2, option3, option4, answer, quizID);
+                    questionlist.Add(obj);
+                }
             }
 
-            return obj;
+            return questionlist;
         }
     }
 }

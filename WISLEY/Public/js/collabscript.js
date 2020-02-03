@@ -43,11 +43,19 @@ $('select.sort-select').on('change', function (e) {
     let cards = $('.postcards');
     let sort = $(this).find('option:selected').text();
     if (sort == "Newest first") {
-        cards.sort(function (a, b) { return $(b).data("id") - $(a).data("id")});    
+        cards.sort(function (a, b) { return $(b).data("id") - $(a).data("id") });
         $("#postcon").html(cards);
     }
-    else if (sort == "Oldest first"){
-        cards.sort(function (a, b) { return $(a).data("id") - $(b).data("id")});    
+    else if (sort == "Oldest first") {
+        cards.sort(function (a, b) { return $(a).data("id") - $(b).data("id") });
+        $("#postcon").html(cards);
+    }
+    else if (sort == "Most Viewed") {
+        cards.sort(function (a, b) { return $(b).data("views") - $(a).data("views") });
+        $("#postcon").html(cards);
+    }
+    else if (sort == "Most Liked") {
+        cards.sort(function (a, b) { return $(b).data("likes") - $(a).data("likes") });
         $("#postcon").html(cards);
     }
 });

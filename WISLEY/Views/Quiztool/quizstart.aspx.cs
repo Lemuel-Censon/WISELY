@@ -18,10 +18,8 @@ namespace WISLEY.Views.Quiztool
                 if (!Page.IsPostBack)
                 {
                     User user = new User().SelectByEmail(Session["email"].ToString());
-                    Quiz quiz = new Quiz();
-                    int result = quiz.GetQuizCount(user.id.ToString());
+                    List<Quiz> quiz = new Quiz().SelectByUserId(user.id.ToString());
                     LbName.Text = user.name;
-                    LbNofQuiz.Text = result.ToString();
                 }
                 if (Session["success"] != null)
                 {

@@ -34,8 +34,7 @@
                 <div class="col-12">
                     <h4 class="text-center mx-auto">Groups</h4>
                     <hr class="hr-primary">
-                    <%if (true)
-                        {%>
+
 
                     <div class="min-vh-30 max-vh-30 overflow-auto">
                     <asp:Repeater
@@ -57,7 +56,6 @@
 
 
 
-                    <%} %>
                     <hr class="hr-primary" />
                 </div>
 
@@ -69,7 +67,8 @@
 
 
                 <div class="col-12 justify-content-center">
-                    <a id="createGroupBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join Group </a>
+                    <a id="showAllGroupsBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  View All Groups </a>
+                    <a id="joinGroupBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join Group </a>
                         <% if (TeacherCheck())
                             {
                         %>

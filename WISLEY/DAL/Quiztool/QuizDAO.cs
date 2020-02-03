@@ -35,7 +35,7 @@ namespace WISLEY.DAL.Quiztool
             return result;
         }
 
-        public int SelectCountById(string userId)
+        public List<Quiz> SelectByUserId(string userId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
@@ -47,7 +47,26 @@ namespace WISLEY.DAL.Quiztool
             DataSet ds = new DataSet();
             da.Fill(ds);
             int rec_cnt = ds.Tables[0].Rows.Count;
-            return rec_cnt;
+
+            Quiz obj = null;
+            List<Quiz> userquizlist = new List<Quiz>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string title = row["title"].ToString();
+                    string description = row["description"].ToString();
+                    string datecreated = row["datecreated"].ToString();
+                    string userID = row["userId"].ToString();
+                    string quizID = row["quizId"].ToString();
+
+                    obj = new Quiz(title, description, datecreated, userID, quizID);
+                    userquizlist.Add(obj);
+                }
+            }
+
+            return userquizlist;
         }
 
         public Quiz SelectById(string quizId)
@@ -77,6 +96,25 @@ namespace WISLEY.DAL.Quiztool
             }
 
             return obj;
+        }
+
+        public int DeleteById(string quizId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlstmt = "Delete from Quiz where quizId = @paraQuizID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }

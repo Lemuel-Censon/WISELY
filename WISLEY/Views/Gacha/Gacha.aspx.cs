@@ -123,7 +123,7 @@ namespace WISLEY.Views.Gacha
 
         protected void ButtonI_R(object sender, EventArgs e)
         {
-            Session["SSSummon"] = "Regular Summon";
+            Session["SSSummon"] = "Featured Summon";
             Response.Redirect("GachaDetails.aspx");
         }
     }

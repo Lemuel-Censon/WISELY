@@ -21,8 +21,7 @@
                         <div class="card-header p-1 row justify-content-between" id="heading<%#Eval("resourceType").ToString().Replace(" ", "")%>" data-toggle="collapse" data-target="#collapse<%#Eval("resourceType").ToString().Replace(" ", "")%>" aria-expanded="true" aria-controls="collapseOne">
                             <h3 class="mb-0 mx-3 col-7">
                                 <%#Eval("resourceType")%>
-                       <%--         <button class="btn btn-link p-0" type="button">
-                                </button>--%>
+ 
                             </h3>
                             <h3 class="mb-0 mx-3 col-3 text-right">
                                 <i id="arrow<%#Eval("resourceType").ToString().Replace(" ", "")%>" class="fas fa-angle-down"></i>
