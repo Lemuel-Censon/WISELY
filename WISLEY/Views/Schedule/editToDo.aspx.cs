@@ -38,5 +38,63 @@ namespace WISLEY.Views.Schedule
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
         }
+
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("schedule.aspx");
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (validateInput())
+            {
+                string ID = todoID.Value;
+                string title = tbEditTitle.Text;
+                string description = tbEditDesc.Text;
+
+                Planner todolist = new Planner();
+
+                int result = todolist.UpdateToDo(ID, title, description);
+
+                if (result == 1)
+                {
+                    Session["success"] = "Your plan has been updated successfully!";
+                    Response.Redirect("schedule.aspx");
+                }
+
+                else
+                {
+                    Session["error"] = "Changes were unable to be saved, please inform system administrator!";
+                    Response.Redirect("schedule.aspx");
+                }
+            }
+        }
+
+        public bool validateInput()
+        {
+            bool isValid = false;
+
+            if (String.IsNullOrEmpty(tbEditTitle.Text))
+            {
+                toast(this, "Please enter your title!", "Error", "error");
+            }
+
+            else if (String.IsNullOrEmpty(tbEditDesc.Text))
+            {
+                toast(this, "Please enter your description!", "Error", "error");
+            }
+
+            else
+            {
+                isValid = true;
+            }
+
+            return isValid;
+        }
     }
 }

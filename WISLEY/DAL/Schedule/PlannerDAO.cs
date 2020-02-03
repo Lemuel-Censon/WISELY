@@ -101,5 +101,29 @@ namespace WISLEY.DAL.Schedule
 
             return plannerObj;
         }
+
+        public int UpdateToDoList(string todoID, string title, string description)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Planner " +
+                "SET ToDotitle = @paraTitle, description = @paraDescription " +
+                "WHERE Id = @paraToDoID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConnection);
+
+            sqlCmd.Parameters.AddWithValue("@paraToDoID", todoID);
+            sqlCmd.Parameters.AddWithValue("@paraTitle", title);
+            sqlCmd.Parameters.AddWithValue("@paraDescription", description);
+
+            myConnection.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConnection.Close();
+
+            return result;
+        }
     }
 }

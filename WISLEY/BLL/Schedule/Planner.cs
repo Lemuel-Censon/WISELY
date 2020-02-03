@@ -46,5 +46,11 @@ namespace WISLEY.BLL.Schedule
             PlannerDAO plannerDAO = new PlannerDAO();
             return plannerDAO.SelectByID(id);
         }
+
+        public int UpdateToDo(string todoID, string title, string description)
+        {
+            PlannerDAO plannerDAO = new PlannerDAO();
+            return plannerDAO.UpdateToDoList(todoID, title, description);
+        }
     }
 }

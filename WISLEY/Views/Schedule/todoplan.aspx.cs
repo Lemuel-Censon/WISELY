@@ -79,5 +79,13 @@ namespace WISLEY
 
             return isValid;
         }
+
+        protected void btnSaveInputs_Click(object sender, EventArgs e)
+        {
+            Session["date"] = LblSelectedDate.Text;
+            Session["todoTitle"] = tbTitle.Text;
+            Session["todoDesc"] = tbDesc.Text;
+            Response.Redirect("schedule.aspx");
+        }
     }
 }

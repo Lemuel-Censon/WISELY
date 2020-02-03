@@ -33,16 +33,18 @@
                     <ItemTemplate>
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-title font-weight-bold"><%#Eval("todoTitle") %></p>
+                                <p class="card-title font-weight-bold">Title of to-do-list: <%#Eval("todoTitle") %></p>
+                                <hr />
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="card-text"><%#Eval("todoDescription") %></p>
+                                        <p class="card-text">Description of to-do-list: <%#Eval("todoDescription") %></p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <i class="fas fa-clock mr-1"></i><span><%#Eval("todoDate") %></span>
+                                        <i class="fas fa-clock mr-1"></i><span>Date of to-do-list: <%#Eval("todoDate") %></span>
                                     </div>
                                 </div>
                                 <div class="text-right">
+                                    <asp:LinkButton runat="server" ID="btnDelete" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="delete" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                     <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                 </div>
                             </div>

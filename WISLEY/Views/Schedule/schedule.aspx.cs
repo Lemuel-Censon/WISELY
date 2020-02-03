@@ -36,6 +36,7 @@ namespace WISLEY.Views.Schedule
                 todolistRepeater.DataSource = todoList;
                 todolistRepeater.DataBind();
             }
+
             else
             {
                 Session["error"] = "You must be logged in to see your schedule!";
@@ -60,10 +61,32 @@ namespace WISLEY.Views.Schedule
             return publicHol;
         }
 
+        public bool validateSelectedDate()
+        {
+            bool isValid = false;
+
+            var dateSelecteed = new DateTime(calendarPlan.SelectedDate.Year, calendarPlan.SelectedDate.Month, calendarPlan.SelectedDate.Day);
+
+            if (dateSelecteed < DateTime.Today)
+            {
+                toast(this, "Selected date must be after today!", "Error", "error");
+            }
+
+            else
+            {
+                isValid = true;
+            }
+
+            return isValid;
+        }
+
         protected void calendarPlan_SelectionChanged(object sender, EventArgs e)
         {
-            Session["selectDate"] = calendarPlan.SelectedDate.ToShortDateString();
-            Response.Redirect("todoplan.aspx");
+            if (validateSelectedDate())
+            {
+                Session["selectDate"] = calendarPlan.SelectedDate.ToShortDateString();
+                Response.Redirect("todoplan.aspx");
+            }
         }
 
         protected void calendarPlan_DayRender(object sender, DayRenderEventArgs e)
