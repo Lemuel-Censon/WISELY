@@ -41,7 +41,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "SELECT comment.*, [User].name FROM COMMENT " +
+            string sqlstmt = "SELECT comment.*, [User].name, [User].profilesrc FROM COMMENT " +
                     "INNER JOIN [User] ON comment.userId = [User].Id " +
                     "WHERE comment.postId = @paraPostId AND status = '' ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
@@ -62,8 +62,9 @@ namespace WISLEY.DAL.Collab
                     string content = row["content"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string username = row["name"].ToString();
+                    string profilesrc = row["profilesrc"].ToString();
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Comment(postId, userId, content, datecreated, Id, username);
+                    obj = new Comment(postId, userId, content, datecreated, Id, username, profilesrc);
                     commpostlist.Add(obj);
                 }
             }

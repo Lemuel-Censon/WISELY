@@ -45,7 +45,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "SELECT post.*, [User].name FROM POST " +
+            string sqlstmt = "SELECT post.*, [User].name, [User].profilesrc FROM POST " +
                     "INNER JOIN [User] ON post.userId = [User].Id " +
                     "WHERE post.Id = @parapostId";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
@@ -67,10 +67,11 @@ namespace WISLEY.DAL.Collab
                 string datecreated = row["datecreated"].ToString();
                 string fileName = row["fileName"].ToString();
                 string username = row["name"].ToString();
+                string profilesrc = row["profilesrc"].ToString();
                 int views = int.Parse(row["views"].ToString());
                 int likes = int.Parse(row["likes"].ToString());
                 int Id = int.Parse(row["Id"].ToString());
-                obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
+                obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, profilesrc, views, likes);
                 post.Add(obj);
             }
 
@@ -82,7 +83,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((post " +
+            string sqlstmt = "SELECT post.*, [User].name as username, [User].profilesrc, [Group].name as grpname FROM ((post " +
                         "INNER JOIN [User] ON post.userId = [User].Id) " +
                         "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
                         "WHERE post.groupId = @paraGrpId " +
@@ -107,10 +108,11 @@ namespace WISLEY.DAL.Collab
                     string datecreated = row["datecreated"].ToString();
                     string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
+                    string profilesrc = row["profilesrc"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, groupId, datecreated, fileName, Id, username, views, likes);
+                    obj = new Post(title, content, userId, groupId, datecreated, fileName, Id, username, profilesrc, views, likes);
                     grppostlist.Add(obj);
                 }
             }
@@ -123,7 +125,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select post.*, [User].name as username from Post " +
+            string sqlstmt = "Select post.*, [User].name as username, [User].profilesrc from Post " +
                 "INNER JOIN [User] ON post.userId = [User].Id " +
                 "where userId = @paraUserId ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
@@ -146,10 +148,11 @@ namespace WISLEY.DAL.Collab
                     string datecreated = row["datecreated"].ToString();
                     string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
+                    string profilesrc = row["profilesrc"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
+                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, profilesrc, views, likes);
                     userpostlist.Add(obj);
                 }
             }
@@ -162,7 +165,7 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "SELECT post.*, [User].name as username, [Group].name as grpname FROM ((POST " +
+            string sqlstmt = "SELECT post.*, [User].name as username, [User].profilesrc, [Group].name as grpname FROM ((POST " +
                         "INNER JOIN [User] ON post.userId = [User].Id) " +
                         "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
                         "WHERE userId in " +
@@ -189,10 +192,11 @@ namespace WISLEY.DAL.Collab
                     string datecreated = row["datecreated"].ToString();
                     string fileName = row["fileName"].ToString();
                     string username = row["username"].ToString();
+                    string profilesrc = row["profilesrc"].ToString();
                     int views = int.Parse(row["views"].ToString());
                     int likes = int.Parse(row["likes"].ToString());
                     int Id = int.Parse(row["Id"].ToString());
-                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, views, likes);
+                    obj = new Post(title, content, userId, group, datecreated, fileName, Id, username, profilesrc, views, likes);
                     userpostlist.Add(obj);
                 }
             }

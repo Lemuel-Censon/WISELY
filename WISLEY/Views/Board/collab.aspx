@@ -104,8 +104,8 @@
                                             </div>
                                         </div>
                                         <div class="media mt-4 px-1">
-                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
-                                                alt="Generic placeholder image">
+                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src='<%#Eval("profilesrc") %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'"
+                                                alt="Image not available">
                                             <div class="media-body">
                                                 <div class="row">
                                                     <div class="col-lg-6">

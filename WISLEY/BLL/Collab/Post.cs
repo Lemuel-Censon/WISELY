@@ -15,6 +15,7 @@ namespace WISLEY.BLL.Collab
         public string fileName { get; set; }
         public string userId { get; set; }
         public string username { get; set; }
+        public string profilesrc { get; set; }
         public int views { get; set; }
         public int likes { get; set; }
         public string groupId { get; set; }
@@ -25,7 +26,7 @@ namespace WISLEY.BLL.Collab
 
         }
 
-        public Post(string title, string content, string userId, string groupId, string datecreated, string fileName = "", int Id = -1, string username = "", int views = 0, int likes = 0, string status = "")
+        public Post(string title, string content, string userId, string groupId, string datecreated, string fileName, int Id = -1, string username = "", string profilesrc = "", int views = 0, int likes = 0, string status = "")
         {
             this.title = title;
             this.content = content;
@@ -34,6 +35,7 @@ namespace WISLEY.BLL.Collab
             this.userId = userId;
             this.groupId = groupId;
             this.username = username;
+            this.profilesrc = profilesrc;
             this.views = views;
             this.likes = likes;
             this.status = status;
