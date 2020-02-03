@@ -19,7 +19,7 @@ namespace WISLEY.Views.Schedule
                     todoID.Value = Session["todoID"].ToString();
                     Planner planner = new Planner().SelectByID(todoID.Value);
 
-                    LblSelectedDate.Text = planner.todoDate.ToShortDateString();
+                    LblSelectedDate.Text = planner.todoDate;
                     if (!Page.IsPostBack)
                     {
                         tbEditTitle.Text = planner.todoTitle;

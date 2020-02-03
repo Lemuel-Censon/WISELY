@@ -84,7 +84,7 @@ namespace WISLEY.Views.Schedule
         {
             if (validateSelectedDate())
             {
-                Session["selectDate"] = calendarPlan.SelectedDate.ToShortDateString();
+                Session["selectDate"] = calendarPlan.SelectedDate.ToString("dddd, dd MMMMM yyyy");
                 Response.Redirect("todoplan.aspx");
             }
         }
@@ -136,6 +136,16 @@ namespace WISLEY.Views.Schedule
                     e.Item.FindControl("LbErr").Visible = true;
                 }
             }
+        }
+
+        protected void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

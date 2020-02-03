@@ -10,7 +10,7 @@ namespace WISLEY.BLL.Schedule
     {
         public int Id { get; set; }
         public int userId { get; set; }
-        public DateTime todoDate { get; set; }
+        public string todoDate { get; set; }
         public string todoTitle { get; set; }
         public string todoDescription { get; set; }
 
@@ -19,7 +19,7 @@ namespace WISLEY.BLL.Schedule
 
         }
 
-        public Planner(int userID, DateTime tododate, string todotitle, string tododescription, int Id = -1)
+        public Planner(int userID, string tododate, string todotitle, string tododescription, int Id = -1)
         {
             this.userId = userID;
             this.todoDate = tododate;

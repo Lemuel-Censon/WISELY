@@ -37,7 +37,7 @@ namespace WISLEY
             if (validateInput())
             {
                 int userId = currUser().id;
-                DateTime selectedToDoDate = Convert.ToDateTime(LblSelectedDate.Text);
+                string selectedToDoDate = LblSelectedDate.Text;
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
 
@@ -78,14 +78,6 @@ namespace WISLEY
             }
 
             return isValid;
-        }
-
-        protected void btnSaveInputs_Click(object sender, EventArgs e)
-        {
-            Session["date"] = LblSelectedDate.Text;
-            Session["todoTitle"] = tbTitle.Text;
-            Session["todoDesc"] = tbDesc.Text;
-            Response.Redirect("schedule.aspx");
         }
     }
 }

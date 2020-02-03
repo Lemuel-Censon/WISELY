@@ -20,8 +20,8 @@
                 <asp:TextBox ID="tbEditDesc" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="7"></asp:TextBox>
             </div>
 
-            <div class="row">
-                <asp:Button runat="server" ID="btnBack" CssClass="btn btn-danger" OnClick="btnBack_Click" Text="Back" />
+            <div class="text-right">
+                <asp:Button ID="btnBack" runat="server" CssClass="btn btn-danger" OnClick="btnBack_Click" Text="Back" />
                 <asp:Button runat="server" ID="btnUpdate" CssClass="btn btn-success" OnClick="btnUpdate_Click" Text="Update" />
             </div>
         </div>

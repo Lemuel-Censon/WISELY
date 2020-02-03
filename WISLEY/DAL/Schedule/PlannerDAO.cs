@@ -58,7 +58,7 @@ namespace WISLEY.DAL.Schedule
                 for (int i = 0; i < count; i++)
                 {
                     DataRow row = ds.Tables[0].Rows[i];
-                    DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
+                    string dateSelected = row["dateSelected"].ToString();
                     string title = row["ToDotitle"].ToString();
                     string description = row["description"].ToString();
                     int id = int.Parse(row["Id"].ToString());
@@ -92,7 +92,7 @@ namespace WISLEY.DAL.Schedule
                 DataRow row = ds.Tables[0].Rows[0];
 
                 int userId = int.Parse(row["userId"].ToString());
-                DateTime dateSelected = DateTime.Parse(row["dateSelected"].ToString());
+                string dateSelected = row["dateSelected"].ToString();
                 string title = row["ToDotitle"].ToString();
                 string description = row["description"].ToString();
 
