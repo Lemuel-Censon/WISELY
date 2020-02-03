@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
+using WISLEY.BLL.Profile;
 
 namespace WISLEY
 {
@@ -52,6 +53,12 @@ namespace WISLEY
         public void toast(Page page, string message, string title, string type)
         {
             ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
+        public User user()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
         }
 
         public bool ValidateInput(string content)
@@ -173,7 +180,7 @@ namespace WISLEY
                 string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
                 string grpId = commandArgs[0];
                 string fileName = commandArgs[1];
-                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId;
+                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id;
 
                 Response.Clear();
                 Response.ContentType = "application/octet-stream";

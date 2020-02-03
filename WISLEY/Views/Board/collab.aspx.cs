@@ -67,6 +67,8 @@ namespace WISLEY
                     Response.ContentType = "application/octet-stream";
                     Response.AppendHeader("content-disposition", $"filename={Session["file"].ToString()}");
                     Response.TransmitFile(Session["folder"].ToString() + "\\" + Session["file"].ToString());
+                    Session["file"] = null;
+                    Session["folder"] = null;
                 }
             }
             else
