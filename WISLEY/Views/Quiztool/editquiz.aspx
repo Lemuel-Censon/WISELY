@@ -60,7 +60,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="text-right">
-                                            <asp:LinkButton runat="server" ID="btnSaveQn" CommandName="saveqn" CssClass="btn btn-success btn-sm">Save Question</asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="btnSaveQn" CommandName="saveqn" CommandArgument='<%#Eval("number") %>' CssClass="btn btn-success btn-sm">Save Question</asp:LinkButton>
                                         </div>
                                     </div>
                                 </ItemTemplate>

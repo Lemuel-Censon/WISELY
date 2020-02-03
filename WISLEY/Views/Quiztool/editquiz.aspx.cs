@@ -36,11 +36,10 @@ namespace WISLEY.Views.Quiztool
                         TbTitle.Text = quiz.title;
                         TbDesc.Text = quiz.description;
                         LbQuestionCount.Text = quiz.totalquestions.ToString();
+                        List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                        question.DataSource = questions;
+                        question.DataBind();
                     }
-                    
-                    List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
-                    question.DataSource = questions;
-                    question.DataBind();
                 }
             }
             else
@@ -125,8 +124,51 @@ namespace WISLEY.Views.Quiztool
 
         protected void question_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-
+            if (e.CommandName == "saveqn")
+            {
+                string ddlselect = ((DropDownList)e.Item.FindControl("DdlCorrect")).SelectedItem.Text;
+                if (ddlselect == "-- Select --")
+                {
+                    toast(this, "Select a correct answer!", "Error", "error");
+                }
+                else
+                {
+                    string number = e.CommandArgument.ToString();
+                    string quizId = Session["quizId"].ToString();
+                    string questionTitle = (e.Item.FindControl("TbQuestion") as TextBox).Text;
+                    string option1 = (e.Item.FindControl("TbOption1") as TextBox).Text;
+                    string option2 = (e.Item.FindControl("TbOption2") as TextBox).Text;
+                    string option3 = (e.Item.FindControl("TbOption3") as TextBox).Text;
+                    string option4 = (e.Item.FindControl("TbOption4") as TextBox).Text;
+                    string answer = "";
+                    if (ddlselect == "1")
+                    {
+                        answer = option1;
+                    }
+                    else if (ddlselect == "2")
+                    {
+                        answer = option2;
+                    }
+                    else if (ddlselect == "3")
+                    {
+                        answer = option3;
+                    }
+                    else if (ddlselect == "4")
+                    {
+                        answer = option4;
+                    }
+                    Question question = new Question();
+                    int result = question.UpdateQuestion(number, quizId, questionTitle, option1, option2, option3, option4, answer);
+                    if (result == 1)
+                    {
+                        toast(this, "Question saved!", "Success", "success");
+                    }
+                    else
+                    {
+                        toast(this, "Question cannot be saved, please contact system administrator!", "Error", "error");
+                    }
+                }
+            }
         }
-
     }
 }
