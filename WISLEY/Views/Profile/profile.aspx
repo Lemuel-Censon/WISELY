@@ -165,7 +165,7 @@
                                                 </h5>
                                             </div>
                                             <div class="col-lg-6">
-                                                <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
+                                                <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                 </span>
                                             </div>
                                         </div>
@@ -211,21 +211,21 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h5 class="font-weight-bold mt-0">
-                                                    <asp:LinkButton runat="server" ID="viewquiz"><%#Eval("title") %></asp:LinkButton>
+                                                    <asp:LinkButton runat="server" ID="viewquiz" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>'><%#Eval("title") %></asp:LinkButton>
                                                 </h5>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <i class="fas fa-clock mr-1 "></i><span>Created on: <%#Eval("datecreated") %>
+                                            <div class="col-lg-6 text-right">
+                                                <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                 </span>
                                                 <br />
-                                                <i class="fas fa-exclamation-circle mr-1"></i><span>No of. Questions: <%#Eval("totalquestions") %></span>
+                                                <span class="text-muted"><i class="fas fa-exclamation-circle mr-1"></i>No of. Questions: <%#Eval("totalquestions") %></span>
                                             </div>
                                         </div>
                                         Description: <%#Eval("description")%>
                                         <br />
                                         <div class="text-right flex-fill">
-                                            <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("quizId") %>'></asp:LinkButton>
-                                            <asp:LinkButton runat="server" ID="deletequiz" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="deletequiz" CommandArgument='<%#Eval("quizId") %>'></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="deletequiz" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="deletequiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>

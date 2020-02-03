@@ -15,8 +15,8 @@ namespace WISLEY.DAL.Quiztool
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO Quiz (title, description, datecreated, totalquestions, userId, quizId)" +
-                             "VALUES (@paraTitle, @paraDescription, @paraDatecreate, @paraTotalquestions, @paraUserID, @paraQuizID)";
+            string sqlStmt = "INSERT INTO Quiz (title, description, datecreated, totalquestions, userId)" +
+                             "VALUES (@paraTitle, @paraDescription, @paraDatecreate, @paraTotalquestions, @paraUserID)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -26,7 +26,6 @@ namespace WISLEY.DAL.Quiztool
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", quiz.datecreated);
             sqlCmd.Parameters.AddWithValue("@paraTotalquestions", quiz.totalquestions);
             sqlCmd.Parameters.AddWithValue("@paraUserID", quiz.userId);
-            sqlCmd.Parameters.AddWithValue("@paraQuizID", quiz.quizId);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -34,6 +33,43 @@ namespace WISLEY.DAL.Quiztool
             myConn.Close();
 
             return result;
+        }
+
+        public List<Quiz> SelectAll()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select quiz.*, [User].name, [User].profilesrc from Quiz " +
+                "INNER JOIN [User] ON quiz.userId = [User].Id ";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Quiz obj = null;
+            List<Quiz> quizlist = new List<Quiz>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string title = row["title"].ToString();
+                    string description = row["description"].ToString();
+                    string datecreated = row["datecreated"].ToString();
+                    int totalquestions = int.Parse(row["totalquestions"].ToString());
+                    string userID = row["userId"].ToString();
+                    string username = row["name"].ToString();
+                    string profilesrc = row["profilesrc"].ToString();
+                    int quizID = int.Parse(row["Id"].ToString());
+
+                    obj = new Quiz(title, description, datecreated, totalquestions, userID, quizID, username, profilesrc);
+                    quizlist.Add(obj);
+                }
+            }
+
+            return quizlist;
         }
 
         public List<Quiz> SelectByUserId(string userId)
@@ -61,7 +97,7 @@ namespace WISLEY.DAL.Quiztool
                     string datecreated = row["datecreated"].ToString();
                     int totalquestions = int.Parse(row["totalquestions"].ToString());
                     string userID = row["userId"].ToString();
-                    string quizID = row["quizId"].ToString();
+                    int quizID = int.Parse(row["Id"].ToString());
 
                     obj = new Quiz(title, description, datecreated, totalquestions, userID, quizID);
                     userquizlist.Add(obj);
@@ -76,7 +112,7 @@ namespace WISLEY.DAL.Quiztool
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Quiz where quizId = @paraQuizID";
+            string sqlstmt = "Select * from Quiz where Id = @paraQuizID";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraQuizID", quizId);
 
@@ -93,7 +129,7 @@ namespace WISLEY.DAL.Quiztool
                 string datecreated = row["datecreated"].ToString();
                 int totalquestions = int.Parse(row["totalquestions"].ToString());
                 string userId = row["userId"].ToString();
-                string quizID = row["quizId"].ToString();
+                int quizID = int.Parse(row["Id"].ToString());
 
                 obj = new Quiz(title, description, datecreated, totalquestions, userId, quizID);
             }

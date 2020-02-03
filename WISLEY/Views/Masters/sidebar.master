@@ -12,7 +12,7 @@
             <div class="card card-body mb-4">
                 <div class="row justify-content-center">
                     <div class="col-4">
-                        <img src="https://picsum.photos/100" class="mx-auto md-block">
+                        <img src='<%=user().profilesrc %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'" class="mx-auto md-block w-100 h-100">
                         <!-- Social shares button -->
                     </div>
 

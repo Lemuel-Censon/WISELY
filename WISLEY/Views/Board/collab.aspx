@@ -114,12 +114,12 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 text-right">
-                                                        <i class="fas fa-clock mr-1"></i><span>Created on: <%#Eval("datecreated") %>
+                                                        <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                         </span>
                                                         <div class="mt-2">
-                                                            <i class="fas fa-eye mr-1"></i><span><%#Eval("views") %>
+                                                            <span><i class="fas fa-eye mr-1"></i><%#Eval("views") %>
                                                             </span>
-                                                            <i class="fas fa-heart mr-1"></i><span><%#Eval("likes") %>
+                                                            <span><i class="fas fa-heart mr-1"></i><%#Eval("likes") %>
                                                             </span>
                                                         </div>
                                                     </div>

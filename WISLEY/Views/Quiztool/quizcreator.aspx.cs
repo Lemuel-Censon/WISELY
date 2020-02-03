@@ -43,15 +43,6 @@ namespace WISLEY.Views.Quiztool
             return valid;
         }
 
-        //Generate RandomNo
-        public int GenerateRandomNo()
-        {
-            int _min = 100000;
-            int _max = 999999;
-            Random _rdm = new Random();
-            return _rdm.Next(_min, _max);
-        }
-
         protected void btnCreateQuestions_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
@@ -65,17 +56,16 @@ namespace WISLEY.Views.Quiztool
                 }
                 else
                 {
-                    description = "Not set";
+                    description = "No Description";
                 }
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
                 int totalquestions = 0;
                 string userId = user.id.ToString();
-                string quizId = GenerateRandomNo().ToString();
-                Quiz quiz = new Quiz(title, description, date, totalquestions, userId, quizId);
+                Quiz quiz = new Quiz(title, description, date, totalquestions, userId);
                 int result = quiz.AddQuiz();
                 if (result == 1)
                 {
-                    Session["quizId"] = quizId;
+                    Session["quizId"] = quiz.Id;
                     Session["email"] = user.email;
                     Response.Redirect("editquiz.aspx");
                 }
