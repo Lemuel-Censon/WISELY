@@ -67,15 +67,15 @@ namespace WISLEY.Views.Gacha
             Image avatar = (Image)e.Item.FindControl("avatarimg");
             if (rarity.Value == "Common")
             {
-                avatar.CssClass = "card-img-top border border-success";
+                avatar.CssClass = " border border-success";
             }
             else if (rarity.Value == "Rare")
             {
-                avatar.CssClass = "card-img-top border border-primary";
+                avatar.CssClass = " border border-primary";
             }
             else if (rarity.Value == "Super_Rare")
             {
-                avatar.CssClass = "card-img-top border border-secondary";
+                avatar.CssClass = " border border-secondary";
             }
         }
     }

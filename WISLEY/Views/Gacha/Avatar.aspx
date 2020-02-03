@@ -12,8 +12,8 @@
                         <div class="col-12 col-md-3 col-lg-4 d-flex align-items-stretch mt-4">
                             <asp:HiddenField runat="server" ID="avatarrarity" Value='<%#Eval("rarity") %>' />
                             <div class="card w-100">
-                                <div class="view overlay border-bottom border-primary rounded-top">
-                                    <asp:Image runat="server" ID="avatarimg" ImageUrl='<%#Eval("src") %>' AlternateText="Image not Available" />
+                                <div class="view overlay border-bottom border-primary rounded-top text-center">
+                                    <asp:Image runat="server" ID="avatarimg" ImageUrl='<%#Eval("src") %>' CssClass="card-img-top w-100 h-100" AlternateText="Image not Available" />
                                     <a>
                                         <div class="mask rgba-black-light"></div>
                                     </a>
