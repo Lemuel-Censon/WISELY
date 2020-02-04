@@ -66,8 +66,9 @@ namespace WISLEY.DAL.Quiztool
                     string option4 = row["option4"].ToString();
                     string answer = row["answer"].ToString();
                     string quizID = row["quizId"].ToString();
+                    int Id = int.Parse(row["Id"].ToString());
 
-                    obj = new Question(question, questionNo, option1, option2, option3, option4, answer, quizID);
+                    obj = new Question(question, questionNo, option1, option2, option3, option4, answer, quizID, Id);
                     questionlist.Add(obj);
                 }
             }

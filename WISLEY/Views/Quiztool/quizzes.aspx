@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <asp:LinkButton runat="server" ID="btnView" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>' CssClass="btn btn-success btn-sm">View Quiz</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnView" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>' CssClass="btn btn-success btn-sm">Take Quiz</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>

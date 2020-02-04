@@ -8,6 +8,7 @@ namespace WISLEY.BLL.Quiz
 {
     public class Question
     {
+        public int Id { get; set; }
         public string question { get; set; }
         public string number { get; set; }
         public string option1 { get; set; }
@@ -22,7 +23,7 @@ namespace WISLEY.BLL.Quiz
 
         }
 
-        public Question(string question, string number, string option1, string option2, string option3, string option4, string answer, string quizId)
+        public Question(string question, string number, string option1, string option2, string option3, string option4, string answer, string quizId, int Id = -1)
         {
             this.question = question;
             this.number = number;
@@ -32,6 +33,7 @@ namespace WISLEY.BLL.Quiz
             this.option4 = option4;
             this.answer = answer;
             this.quizId = quizId;
+            this.Id = Id;
         }
 
         public int AddQuestion()

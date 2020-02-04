@@ -65,7 +65,6 @@ namespace WISLEY.Views.Quiztool
                 if (result == 1)
                 {
                     Session["quizId"] = quiz.GetLastID();
-                    Session["email"] = user.email;
                     Session["success"] = "Quiz created!";
                     Response.Redirect("editquiz.aspx");
                 }

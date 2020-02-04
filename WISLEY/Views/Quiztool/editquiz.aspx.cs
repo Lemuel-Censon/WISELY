@@ -35,11 +35,16 @@ namespace WISLEY.Views.Quiztool
                         Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
                         TbTitle.Text = quiz.title;
                         TbDesc.Text = quiz.description;
-                        LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value).ToString();
+                        LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value);
                         List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
                         question.DataSource = questions;
                         question.DataBind();
                     }
+                }
+                else
+                {
+                    Session["error"] = "Please select a quiz to edit";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
                 }
             }
             else
@@ -138,10 +143,6 @@ namespace WISLEY.Views.Quiztool
 
         protected void question_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-
-            }
             if (question.Items.Count < 1 && e.Item.ItemType == ListItemType.Footer)
             {
                 e.Item.FindControl("LbErr").Visible = true;
@@ -173,6 +174,7 @@ namespace WISLEY.Views.Quiztool
                     TbOption3.Text = "";
                     TbOption4.Text = "";
                     DdlCorrect.SelectedIndex = -1;
+                    LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value);
                     List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
                     question.DataSource = questions;
                     question.DataBind();
@@ -181,6 +183,38 @@ namespace WISLEY.Views.Quiztool
                 {
                     toast(this, "Question could not be added, please contact system administrator!", "Error", "error");
                 }
+            }
+        }
+
+        protected void question_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "edit")
+            {
+                e.Item.FindControl("qnName").Visible = false;
+                e.Item.FindControl("qnOp1").Visible = false;
+                e.Item.FindControl("qnOp2").Visible = false;
+                e.Item.FindControl("qnOp3").Visible = false;
+                e.Item.FindControl("qnOp4").Visible = false;
+                e.Item.FindControl("editbtns").Visible = true;
+                e.Item.FindControl("tbUpName").Visible = true;
+                e.Item.FindControl("tbOp1").Visible = true;
+                e.Item.FindControl("tbOp2").Visible = true;
+                e.Item.FindControl("tbOp3").Visible = true;
+                e.Item.FindControl("tbOp4").Visible = true;
+            }
+            if (e.CommandName == "cancel")
+            {
+                e.Item.FindControl("qnName").Visible = true;
+                e.Item.FindControl("qnOp1").Visible = true;
+                e.Item.FindControl("qnOp2").Visible = true;
+                e.Item.FindControl("qnOp3").Visible = true;
+                e.Item.FindControl("qnOp4").Visible = true;
+                e.Item.FindControl("editbtns").Visible = false;
+                e.Item.FindControl("tbUpName").Visible = false;
+                e.Item.FindControl("tbOp1").Visible = false;
+                e.Item.FindControl("tbOp2").Visible = false;
+                e.Item.FindControl("tbOp3").Visible = false;
+                e.Item.FindControl("tbOp4").Visible = false;
             }
         }
     }

@@ -94,6 +94,15 @@ namespace WISLEY.Views.Quiztool {
         protected global::System.Web.UI.WebControls.LinkButton btnsavequiz2;
         
         /// <summary>
+        /// question control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater question;
+        
+        /// <summary>
         /// LbQuestion control.
         /// </summary>
         /// <remarks>
@@ -209,15 +218,6 @@ namespace WISLEY.Views.Quiztool {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSaveQn;
-        
-        /// <summary>
-        /// question control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater question;
         
         /// <summary>
         /// btnSaveQuiz control.
