@@ -22,6 +22,24 @@ namespace WISLEY.Views.Quiztool {
         protected global::System.Web.UI.WebControls.HiddenField LbQuizID;
         
         /// <summary>
+        /// qnScript control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager qnScript;
+        
+        /// <summary>
+        /// qnupdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel qnupdate;
+        
+        /// <summary>
         /// LbTitle control.
         /// </summary>
         /// <remarks>
@@ -74,24 +92,6 @@ namespace WISLEY.Views.Quiztool {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnsavequiz2;
-        
-        /// <summary>
-        /// qnScript control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager qnScript;
-        
-        /// <summary>
-        /// qnupdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel qnupdate;
         
         /// <summary>
         /// LbQuestion control.

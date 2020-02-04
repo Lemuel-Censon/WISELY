@@ -35,7 +35,7 @@ namespace WISLEY.Views.Quiztool
                         Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
                         TbTitle.Text = quiz.title;
                         TbDesc.Text = quiz.description;
-                        LbQuestionCount.Text = quiz.totalquestions.ToString();
+                        LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value).ToString();
                         List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
                         question.DataSource = questions;
                         question.DataBind();
@@ -160,11 +160,11 @@ namespace WISLEY.Views.Quiztool
                 int questionNo = int.Parse(LbQuestionCount.Text) + 1;
 
                 Question newquestion = new Question(questionname, questionNo.ToString(), option1, option2, option3, option4, correct, LbQuizID.Value);
-                Quiz quiz = new Quiz();
+                Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
                 int result = newquestion.AddQuestion();
                 if (result == 1)
                 {
-                    quiz.UpdateTotalQuestions(questionNo, LbQuizID.Value);
+                    quiz.UpdateTotalQuestions(quiz.totalquestions + 1, LbQuizID.Value);
                     toast(this, "Question added!", "Success", "success");
                     TbQuestion.Text = "";
                     TbOption1.Text = "";

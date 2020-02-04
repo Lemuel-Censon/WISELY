@@ -5,28 +5,29 @@
         <div class="card z-depth-3 pb-0 px-0">
             <div class="card-body px-5">
                 <asp:HiddenField runat="server" ID="LbQuizID" />
-                <h4 class="card-title font-weight-bold mb-4 text-info">Edit Quiz
-                </h4>
-                <div class="md-form md-outline">
-                    <asp:Label runat="server" ID="LbTitle" AssociatedControlID="TbTitle" Text="Quiz Title"></asp:Label>
-                    <asp:TextBox runat="server" ID="TbTitle" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="md-form md-outline">
-                    <asp:Label runat="server" ID="LbDesc" AssociatedControlID="TbDesc" Text="Quiz Description (Optional)"></asp:Label>
-                    <asp:TextBox runat="server" ID="TbDesc" CssClass="form-control" TextMode="MultiLine" Rows="6"></asp:TextBox>
-                </div>
-                <p>
-                    No. of Questions:
+                <asp:ScriptManager runat="server" ID="qnScript"></asp:ScriptManager>
+                <asp:UpdatePanel runat="server" ID="qnupdate">
+                    <ContentTemplate>
+                        <h4 class="card-title font-weight-bold mb-4 text-info">Edit Quiz
+                        </h4>
+                        <div class="md-form md-outline">
+                            <asp:Label runat="server" ID="LbTitle" AssociatedControlID="TbTitle" Text="Quiz Title"></asp:Label>
+                            <asp:TextBox runat="server" ID="TbTitle" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="md-form md-outline">
+                            <asp:Label runat="server" ID="LbDesc" AssociatedControlID="TbDesc" Text="Quiz Description (Optional)"></asp:Label>
+                            <asp:TextBox runat="server" ID="TbDesc" CssClass="form-control" TextMode="MultiLine" Rows="6"></asp:TextBox>
+                        </div>
+                        <p>
+                            No. of Questions:
                     <asp:Label runat="server" ID="LbQuestionCount"></asp:Label>
-                </p>
-                <div class="text-right">
-                    <asp:LinkButton ID="btnsavequiz2" CssClass="btn btn-success btn-sm rounded-0 mb-1" runat="server" OnClick="btnSaveQuiz_Click">Save Quiz</asp:LinkButton>
-                </div>
-                <hr class="w-100" />
-                <div id="questions">
-                    <asp:ScriptManager runat="server" ID="qnScript"></asp:ScriptManager>
-                    <asp:UpdatePanel runat="server" ID="qnupdate">
-                        <ContentTemplate>
+                        </p>
+                        <div class="text-right">
+                            <asp:LinkButton ID="btnsavequiz2" CssClass="btn btn-success btn-sm rounded-0 mb-1" runat="server" OnClick="btnSaveQuiz_Click">Save Quiz</asp:LinkButton>
+                        </div>
+                        <hr class="w-100" />
+                        <div id="questions">
+
                             <div>
                                 <h4 class="card-title mb-4 font-weight-bold text-info">Add Question</h4>
                                 <div class="md-form md-outline">
@@ -74,7 +75,10 @@
                                         <asp:Label runat="server" ID="qnOp2" CssClass="d-block mt-2" Text='<%#Eval("option2") %>'></asp:Label>
                                         <asp:Label runat="server" ID="qnOp3" CssClass="d-block mt-2" Text='<%#Eval("option3") %>'></asp:Label>
                                         <asp:Label runat="server" ID="qnOp4" CssClass="d-block mt-2" Text='<%#Eval("option4") %>'></asp:Label>
-                                        <p class="d-block mt-2">Correct Answer: <asp:Label runat="server" ID="qnCorrAns" Text='<%#Eval("answer") %>'></asp:Label></p>
+                                        <p class="d-block mt-2">
+                                            Correct Answer:
+                                    <asp:Label runat="server" ID="qnCorrAns" Text='<%#Eval("answer") %>'></asp:Label>
+                                        </p>
                                     </div>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -85,12 +89,12 @@
                                     </div>
                                 </FooterTemplate>
                             </asp:Repeater>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-                <div class="text-right">
-                    <asp:LinkButton ID="btnSaveQuiz" CssClass="btn btn-success btn-sm rounded-0 mb-1" runat="server" OnClick="btnSaveQuiz_Click">Save Quiz</asp:LinkButton>
-                </div>
+                        </div>
+                        <div class="text-right">
+                            <asp:LinkButton ID="btnSaveQuiz" CssClass="btn btn-success btn-sm rounded-0 mb-1" runat="server" OnClick="btnSaveQuiz_Click">Save Quiz</asp:LinkButton>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </div>
     </div>

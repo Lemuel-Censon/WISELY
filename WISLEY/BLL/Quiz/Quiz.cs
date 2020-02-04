@@ -22,7 +22,7 @@ namespace WISLEY.BLL.Quiz
 
         }
 
-        public Quiz(string title, string description, string datecreated, int totalquestions, string userId, int Id = -1, string username = "", string profilesrc = "")
+        public Quiz(string title, string description, string datecreated, string userId, int Id = -1, int totalquestions = 0, string username = "", string profilesrc = "")
         {
             this.title = title;
             this.description = description;

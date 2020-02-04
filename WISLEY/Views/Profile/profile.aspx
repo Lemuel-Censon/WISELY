@@ -223,10 +223,13 @@
                                         </div>
                                         Description: <%#Eval("description")%>
                                         <br />
+                                        <%if (userid.Value == hidotheremail.Value)
+                                            { %>
                                         <div class="text-right flex-fill">
                                             <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                             <asp:LinkButton runat="server" ID="deletequiz" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="deletequiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
+                                        <%} %>
                                     </div>
                                 </div>
                                 <hr />

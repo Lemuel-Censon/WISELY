@@ -64,7 +64,7 @@ namespace WISLEY.DAL.Quiztool
                     string profilesrc = row["profilesrc"].ToString();
                     int quizID = int.Parse(row["Id"].ToString());
 
-                    obj = new Quiz(title, description, datecreated, totalquestions, userID, quizID, username, profilesrc);
+                    obj = new Quiz(title, description, datecreated, userID, quizID, totalquestions, username, profilesrc);
                     quizlist.Add(obj);
                 }
             }
@@ -99,7 +99,7 @@ namespace WISLEY.DAL.Quiztool
                     string userID = row["userId"].ToString();
                     int quizID = int.Parse(row["Id"].ToString());
 
-                    obj = new Quiz(title, description, datecreated, totalquestions, userID, quizID);
+                    obj = new Quiz(title, description, datecreated, userID, quizID, totalquestions);
                     userquizlist.Add(obj);
                 }
             }
@@ -131,7 +131,7 @@ namespace WISLEY.DAL.Quiztool
                 string userId = row["userId"].ToString();
                 int quizID = int.Parse(row["Id"].ToString());
 
-                obj = new Quiz(title, description, datecreated, totalquestions, userId, quizID);
+                obj = new Quiz(title, description, datecreated, userId, quizID, totalquestions);
             }
 
             return obj;
