@@ -66,6 +66,51 @@ namespace WISLEY.Views.Quiztool
             return valid;
         }
 
+        public bool ValidateQuestion()
+        {
+            bool valid = false;
+            if (String.IsNullOrEmpty(TbQuestion.Text))
+            {
+                toast(this, "Please enter question title!", "Error", "error");
+            }
+            else if (String.IsNullOrEmpty(TbOption1.Text) || String.IsNullOrEmpty(TbOption2.Text) || String.IsNullOrEmpty(TbOption3.Text) || String.IsNullOrEmpty(TbOption4.Text))
+            {
+                toast(this, "Please fill in all options!", "Error", "error");
+            }
+            else if (DdlCorrect.SelectedIndex == -1)
+            {
+                toast(this, "Please select correct answer!", "Error", "error");
+            }
+            else
+            {
+                valid = true;
+            }
+
+            return valid;
+        }
+
+        public string CorrectAnswer()
+        {
+            string correct = "";
+            if (DdlCorrect.SelectedItem.Text == "1")
+            {
+                correct = TbOption1.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Text == "2")
+            {
+                correct = TbOption2.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Text == "3")
+            {
+                correct = TbOption3.Text;
+            }
+            else if (DdlCorrect.SelectedItem.Text == "4")
+            {
+                correct = TbOption4.Text;
+            }
+            return correct;
+        }
+
 
         protected void btnSaveQuiz_Click(object sender, EventArgs e)
         {
@@ -91,26 +136,6 @@ namespace WISLEY.Views.Quiztool
             }
         }
 
-        protected void btnaddQuestion_Click(object sender, EventArgs e)
-        {
-            int questionNo = int.Parse(LbQuestionCount.Text) + 1;
-            Question newquestion = new Question("", questionNo.ToString(), "", "", "", "", "", LbQuizID.Value);
-            Quiz quiz = new Quiz();
-            int result = newquestion.AddQuestion();
-            if (result == 1)
-            {
-                quiz.UpdateTotalQuestions(questionNo, LbQuizID.Value);
-                toast(this, "Question added!", "Success", "success");
-                List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
-                question.DataSource = questions;
-                question.DataBind();
-            }
-            else
-            {
-                toast(this, "Question could not be added, please contact system administrator!", "Error", "error");
-            }
-        }
-
         protected void question_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (question.Items.Count < 1)
@@ -122,54 +147,38 @@ namespace WISLEY.Views.Quiztool
             }
         }
 
-        protected void question_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void btnSaveQn_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "saveqn")
+            if (ValidateQuestion())
             {
-                string ddlselect = ((DropDownList)e.Item.FindControl("DdlCorrect")).SelectedItem.Text;
-                if (ddlselect == "-- Select --")
+                string questionname = TbQuestion.Text;
+                string option1 = TbOption1.Text;
+                string option2 = TbOption2.Text;
+                string option3 = TbOption3.Text;
+                string option4 = TbOption4.Text;
+                string correct = CorrectAnswer();
+                int questionNo = int.Parse(LbQuestionCount.Text) + 1;
+
+                Question newquestion = new Question(questionname, questionNo.ToString(), option1, option2, option3, option4, correct, LbQuizID.Value);
+                Quiz quiz = new Quiz();
+                int result = newquestion.AddQuestion();
+                if (result == 1)
                 {
-                    toast(this, "Select a correct answer!", "Error", "error");
+                    quiz.UpdateTotalQuestions(questionNo, LbQuizID.Value);
+                    toast(this, "Question added!", "Success", "success");
+                    TbQuestion.Text = "";
+                    TbOption1.Text = "";
+                    TbOption2.Text = "";
+                    TbOption3.Text = "";
+                    TbOption4.Text = "";
+                    DdlCorrect.SelectedIndex = -1;
+                    List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                    question.DataSource = questions;
+                    question.DataBind();
                 }
                 else
                 {
-                    string number = e.CommandArgument.ToString();
-                    string quizId = Session["quizId"].ToString();
-                    string questionTitle = (e.Item.FindControl("TbQuestion") as TextBox).Text;
-                    string option1 = (e.Item.FindControl("TbOption1") as TextBox).Text;
-                    string option2 = (e.Item.FindControl("TbOption2") as TextBox).Text;
-                    string option3 = (e.Item.FindControl("TbOption3") as TextBox).Text;
-                    string option4 = (e.Item.FindControl("TbOption4") as TextBox).Text;
-                    string answer = "";
-                    if (ddlselect == "1")
-                    {
-                        answer = option1;
-                    }
-                    else if (ddlselect == "2")
-                    {
-                        answer = option2;
-                    }
-                    else if (ddlselect == "3")
-                    {
-                        answer = option3;
-                    }
-                    else if (ddlselect == "4")
-                    {
-                        answer = option4;
-                    }
-                    Question newquestion = new Question();
-                    int result = newquestion.UpdateQuestion(number, quizId, questionTitle, option1, option2, option3, option4, answer);
-                    if (result == 1)
-                    {
-                        toast(this, "Question saved!", "Success", "success");
-                        List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
-                        question.DataSource = questions;
-                        question.DataBind();
-                    }
-                    else
-                    {
-                        toast(this, "Question could be saved, please contact system administrator!", "Error", "error");
-                    }
+                    toast(this, "Question could not be added, please contact system administrator!", "Error", "error");
                 }
             }
         }
