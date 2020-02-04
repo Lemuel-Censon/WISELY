@@ -46,6 +46,10 @@ namespace WISLEY.Views.Group
             return user;
         }
 
+        public void back(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Board/collab.aspx");
+        }
 
     }
 }

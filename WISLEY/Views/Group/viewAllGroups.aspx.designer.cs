@@ -22,13 +22,13 @@ namespace WISLEY.Views.Group {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// ReorderList1 control.
+        /// AllGroupReorderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ReorderList ReorderList1;
+        protected global::AjaxControlToolkit.ReorderList AllGroupReorderList;
         
         /// <summary>
         /// SQLgroupData control.
@@ -38,5 +38,14 @@ namespace WISLEY.Views.Group {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SQLgroupData;
+        
+        /// <summary>
+        /// cancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancelBtn;
     }
 }

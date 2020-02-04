@@ -79,7 +79,15 @@ namespace WISLEY
             int result = grp.resetGroupJoinCode(grp.id);
         }
 
+        public void redirectToJoinGroup(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Group/joinGroup.aspx");
+        }
 
+        public void redirectToCreateGroup(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Group/createGroup.aspx");
+        }
 
         //============================================// Getting Details from DB //============================================//
 

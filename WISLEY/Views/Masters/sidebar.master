@@ -36,15 +36,41 @@
                     <hr class="hr-primary">
 
 
-                    <div class="min-vh-30 max-vh-30 overflow-auto">
-                    <asp:Repeater
-                        runat="server" ID="groupBtns" DataSourceID="groupData"
-                        OnItemCommand="groupItemCommand">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("name")%>' CommandName="redirectToGroup" CommandArgument='<%#Eval("Id") %>'
-                                class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" Style="text-transform: unset;" />
-                        </ItemTemplate>
-                    </asp:Repeater>
+                    <div class="min-vh-30 max-vh-30 overflow-auto row justify-content-center">
+                        <asp:Repeater
+                            runat="server" ID="groupBtns" DataSourceID="groupData"
+                            OnItemCommand="groupItemCommand">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("name")%>' CommandName="redirectToGroup" CommandArgument='<%#Eval("Id") %>'
+                                    class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" Style="text-transform: unset;" />
+                            </ItemTemplate>
+
+                            <FooterTemplate>
+
+                                <%--                                <asp:Label ID="defaultItem" runat="server"
+                                    Visible='<%# groupBtns.Items.Count == 0 %>' Text="You have not joined any groups. Join one now!" class="text-center"/>--%>
+                                <div class="row col-12 justify-content-center align-content-start <% if (groupBtns.Items.Count == 0)
+                                    { %> visible <%}
+                                    else
+                                    { %> invisible <%} %>">
+                                    <h6 class="text-center col-12 pb-2">You are not inside any groups.
+                                    </h6>
+                                    
+
+                                    <div class="col-12 row justify-content-center">
+                                        <a id="noGroupJoinBtn" class="btn btn-white text-left col-10 rounded-0 text-center "
+                                            href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join a Group </a>
+                                        <% if (TeacherCheck())
+                                            {
+                                        %>
+                                        <h5 class="text-center col-12 m-0 py-2">or</h5>
+                                        <a id="noGroupCreateBtn" class="btn btn-success text-left col-10 rounded-0 text-center "
+                                            href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create a Group</a>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </FooterTemplate>
+                        </asp:Repeater>
                     </div>
 
                     <asp:SqlDataSource ID="groupData"
@@ -67,13 +93,19 @@
 
 
                 <div class="col-12 justify-content-center">
+                    <% if (groupBtns.Items.Count != 0)
+                        { %>
                     <a id="showAllGroupsBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  View All Groups </a>
+
+
                     <a id="joinGroupBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join Group </a>
-                        <% if (TeacherCheck())
-                            {
-                        %>
-                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create Group </a>
-                        <% } %>
+                    <% if (TeacherCheck())
+                        {
+                    %>
+                    <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 text-center"
+                        href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create Group </a>
+                    <% } %>
+                    <%} %>
                 </div>
             </div>
 
@@ -87,7 +119,7 @@
         <div class="col-3">
             <div class="card card-body mb-4">
                 <div class="row justify-content-center">
-                    <h1 class="col-12 text-center"> Schedule </h1>
+                    <h1 class="col-12 text-center">Schedule </h1>
                     <div class="col-4">
                         <!-- Social shares button -->
                     </div>

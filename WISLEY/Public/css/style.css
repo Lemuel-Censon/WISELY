@@ -244,3 +244,8 @@
 .text-black {
     color: black;
 }
+
+.no-list-decor li {
+    list-style: none;
+    border: 1px solid groove;
+}
