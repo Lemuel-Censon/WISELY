@@ -12,9 +12,24 @@ namespace WISLEY.Views.Quiztool
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["success"] != null)
+            {
+                toast(this, Session["success"].ToString(), "Success", "success");
+                Session["success"] = null;
+            }
+            if (Session["error"] != null)
+            {
+                toast(this, Session["error"].ToString(), "Error", "error");
+                Session["error"] = null;
+            }
             List<Quiz> quizzes = new Quiz().SelectAll();
             quizinfo.DataSource = quizzes;
             quizinfo.DataBind();
+        }
+
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         protected void quizinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -35,6 +50,10 @@ namespace WISLEY.Views.Quiztool
             if (e.CommandName == "viewprofile")
             {
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id=" + e.CommandArgument.ToString()));
+            }
+            if (e.CommandName == "viewquiz")
+            {
+                Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/viewquiz.aspx?id=" + e.CommandArgument.ToString()));
             }
         }
     }

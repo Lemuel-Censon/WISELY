@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="editquiz.aspx.cs" Inherits="WISLEY.Views.Quiztool.editquiz" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.Master" AutoEventWireup="true" CodeBehind="editquiz.aspx.cs" Inherits="WISLEY.Views.Quiztool.editquiz" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
     <div class="container">
         <div class="card z-depth-3 pb-0 px-0">
             <div class="card-body px-5">
@@ -29,24 +29,24 @@
                                         <h5 class="card-title mb-4">Question <%#Eval("number") %></h5>
                                         <div class="md-form md-outline">
                                             <asp:Label AssociatedControlID="TbQuestion" ID="LbQuestion" runat="server" Text="Question"></asp:Label>
-                                            <asp:TextBox ID="TbQuestion" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="TbQuestion" runat="server" CssClass="form-control" Text='<%#Eval("question") %>'></asp:TextBox>
                                         </div>
                                         <div>
                                             <div class="md-form md-outline">
                                                 <asp:Label AssociatedControlID="TbOption1" ID="LbOption1" runat="server" Text="Option 1"></asp:Label>
-                                                <asp:TextBox ID="TbOption1" runat="server" CssClass="form-control w-75"></asp:TextBox>
+                                                <asp:TextBox ID="TbOption1" runat="server" CssClass="form-control w-75" Text='<%#Eval("option1") %>'></asp:TextBox>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <asp:Label AssociatedControlID="TbOption2" ID="LbOption2" runat="server" Text="Option 2"></asp:Label>
-                                                <asp:TextBox ID="TbOption2" runat="server" CssClass="form-control w-75"></asp:TextBox>
+                                                <asp:TextBox ID="TbOption2" runat="server" CssClass="form-control w-75" Text='<%#Eval("option2") %>'></asp:TextBox>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <asp:Label AssociatedControlID="TbOption3" ID="LbOption3" runat="server" Text="Option 3"></asp:Label>
-                                                <asp:TextBox ID="TbOption3" runat="server" CssClass="form-control w-75"></asp:TextBox>
+                                                <asp:TextBox ID="TbOption3" runat="server" CssClass="form-control w-75" Text='<%#Eval("option3") %>'></asp:TextBox>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <asp:Label AssociatedControlID="TbOption4" ID="LbOption4" runat="server" Text="Option 4"></asp:Label>
-                                                <asp:TextBox ID="TbOption4" runat="server" CssClass="form-control w-75"></asp:TextBox>
+                                                <asp:TextBox ID="TbOption4" runat="server" CssClass="form-control w-75" Text='<%#Eval("option4") %>'></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="md-form md-outline">

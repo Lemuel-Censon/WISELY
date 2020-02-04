@@ -157,15 +157,18 @@ namespace WISLEY.Views.Quiztool
                     {
                         answer = option4;
                     }
-                    Question question = new Question();
-                    int result = question.UpdateQuestion(number, quizId, questionTitle, option1, option2, option3, option4, answer);
+                    Question newquestion = new Question();
+                    int result = newquestion.UpdateQuestion(number, quizId, questionTitle, option1, option2, option3, option4, answer);
                     if (result == 1)
                     {
                         toast(this, "Question saved!", "Success", "success");
+                        List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                        question.DataSource = questions;
+                        question.DataBind();
                     }
                     else
                     {
-                        toast(this, "Question cannot be saved, please contact system administrator!", "Error", "error");
+                        toast(this, "Question could be saved, please contact system administrator!", "Error", "error");
                     }
                 }
             }
