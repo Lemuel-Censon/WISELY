@@ -137,35 +137,28 @@ namespace WISLEY
             {
                 try
                 {
-                    if (fileUpload.PostedFile.ContentLength < 3000000)
+                    string filename = Path.GetFileName(fileUpload.FileName);
+                    string grpId;
+             
+                    if (Request.QueryString["groupId"] != null)
                     {
-                        string filename = Path.GetFileName(fileUpload.FileName);
-                        string grpId;
-
-                        if (Request.QueryString["groupId"] != null)
-                        {
-                            grpId = Request.QueryString["groupId"];
-                        }
-                        else
-                        {
-                            grpId = ddlgrp.SelectedValue;
-                        }
-
-                        string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id + "/";
-                        if (!Directory.Exists(folderPath))
-                        {
-                            Directory.CreateDirectory(folderPath);
-                        }
-
-                        fileUpload.SaveAs(folderPath + filename);
-
-                        toast(this, "File uploaded!", "Success", "success");
-                        save = true;
+                        grpId = Request.QueryString["groupId"];
                     }
                     else
                     {
-                        toast(this, "The file has to be less than 3MB!", "Error", "error");
+                        grpId = ddlgrp.SelectedValue;
                     }
+                
+                    string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id + "/";
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    fileUpload.SaveAs(folderPath + filename);
+
+                    toast(this, "File uploaded!", "Success", "success");
+                    save = true;
                 }
                 catch (Exception e)
                 {

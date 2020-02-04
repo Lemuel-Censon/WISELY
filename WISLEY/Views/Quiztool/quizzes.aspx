@@ -40,6 +40,9 @@
                                             <p class="card-text"><%#Eval("description") %></p>
                                         </div>
                                     </div>
+                                    <div class="card-footer text-center">
+                                        <asp:LinkButton runat="server" ID="btnView" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>' CssClass="btn btn-success btn-sm">View Quiz</asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
                         </ItemTemplate>

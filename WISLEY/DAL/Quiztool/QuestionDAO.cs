@@ -89,5 +89,31 @@ namespace WISLEY.DAL.Quiztool
             int rec_cnt = ds.Tables[0].Rows.Count;
             return rec_cnt;
         }
+
+        public int UpdateQuestion(string number, string quizId, string question, string option1, string option2, string option3, string option4, string answer)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlstmt = "Update Question Set question = @paraQuestion, option1 = @paraOption1, option2 = @paraOption2, option3 = @paraOption3, option4 = @paraOption4, answer = @paraAnswer Where number = @paraNumber And quizId = @paraQuizID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraQuestion", question);
+            sqlCmd.Parameters.AddWithValue("@paraNumber", number);
+            sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
+            sqlCmd.Parameters.AddWithValue("@paraOption1", option1);
+            sqlCmd.Parameters.AddWithValue("@paraOption2", option2);
+            sqlCmd.Parameters.AddWithValue("@paraOption3", option3);
+            sqlCmd.Parameters.AddWithValue("@paraOption4", option4);
+            sqlCmd.Parameters.AddWithValue("@paraAnswer", answer);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
     }
 }
