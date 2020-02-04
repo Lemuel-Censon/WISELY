@@ -116,5 +116,25 @@ namespace WISLEY.DAL.Quiztool
 
             return result;
         }
+
+        public int DeleteQuestion(string questionId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlstmt = "DELETE from Question " +
+                "Where Id = @paraId";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraId", questionId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
     }
 }

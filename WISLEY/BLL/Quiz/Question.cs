@@ -59,5 +59,11 @@ namespace WISLEY.BLL.Quiz
             QuestionDAO questiondao = new QuestionDAO();
             return questiondao.UpdateQuestion(questionId, question, option1, option2, option3, option4, answer);
         }
+
+        public int DeleteQuestion(string questionId)
+        {
+            QuestionDAO questiondao = new QuestionDAO();
+            return questiondao.DeleteQuestion(questionId);
+        }
     }
 }
