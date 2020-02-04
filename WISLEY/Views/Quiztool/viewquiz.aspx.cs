@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Quiz;
 
 namespace WISLEY.Views.Quiztool
 {
@@ -16,6 +17,9 @@ namespace WISLEY.Views.Quiztool
                 if (Request.QueryString["id"] != null)
                 {
                     LbQuizID.Value = Request.QueryString["id"];
+                    List <Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                    questionitems.DataSource = questions;
+                    questionitems.DataBind();
                 }
                 else
                 {
@@ -28,6 +32,11 @@ namespace WISLEY.Views.Quiztool
                 Session["error"] = "You need to be logged in to view a quiz!";
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+        }
+
+        public Quiz quiz()
+        {
+            return new Quiz().SelectById(Request.QueryString["id"]);
         }
     }
 }
