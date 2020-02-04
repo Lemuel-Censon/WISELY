@@ -52,8 +52,30 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <asp:LinkButton runat="server" ID="btnDelete" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="delete" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                    <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>">Delete</button>
                                     <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                </div>
+
+                                <div class="modal fade" id="deleteModal<%#Eval("Id") %>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Are you sure you want to delete this to-do-list?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body text-center">
+                                                Deletion of this to-do-list cannot be reverted once confirmed!
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
+                                                <asp:LinkButton runat="server" CommandName="delToDo" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success"></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,5 +92,5 @@
         </div>
     </div>
 
-    <script src="<%= Page.ResolveUrl("~/Public/js/plannerscript.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveUrl("~/Public/js/planner.js") %>" type="text/javascript"></script>
 </asp:Content>

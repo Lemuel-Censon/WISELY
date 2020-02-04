@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Schedule
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStatement = "INSERT INTO Planner (userId, dateSelected, ToDotitle, description) " +
-                                  "VALUES (@paraUserId, @paraDateSelected, @paraTitle, @paraDescription)";
+            string sqlStatement = "INSERT INTO Planner (userId, dateSelected, ToDotitle, description, status) " +
+                                  "VALUES (@paraUserId, @paraDateSelected, @paraTitle, @paraDescription, @paraStatus)";
 
             int result = 0;
             SqlCommand sqlcmd = new SqlCommand(sqlStatement, myConn);
@@ -26,6 +26,7 @@ namespace WISLEY.DAL.Schedule
             sqlcmd.Parameters.AddWithValue("@paraDateSelected", todolist.todoDate);
             sqlcmd.Parameters.AddWithValue("@paraTitle", todolist.todoTitle);
             sqlcmd.Parameters.AddWithValue("@paraDescription", todolist.todoDescription);
+            sqlcmd.Parameters.AddWithValue("@paraStatus", todolist.todoStatus);
 
             myConn.Open();
 
@@ -40,7 +41,7 @@ namespace WISLEY.DAL.Schedule
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(DBConnect);
 
-            string sqlStmt = "SELECT * FROM Planner WHERE userId = @paraUserId ORDER BY dateSelected ASC";
+            string sqlStmt = "SELECT * FROM Planner WHERE userId = @paraUserId AND status = '' ORDER BY dateSelected ASC";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConnection);
 
             da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
@@ -61,9 +62,10 @@ namespace WISLEY.DAL.Schedule
                     string dateSelected = row["dateSelected"].ToString();
                     string title = row["ToDotitle"].ToString();
                     string description = row["description"].ToString();
+                    string status = row["status"].ToString();
                     int id = int.Parse(row["Id"].ToString());
 
-                    plannerObj = new Planner(userId, dateSelected, title, description, id);
+                    plannerObj = new Planner(userId, dateSelected, title, description, status, id);
                     userToDo.Add(plannerObj);
                 }
             }
@@ -95,8 +97,9 @@ namespace WISLEY.DAL.Schedule
                 string dateSelected = row["dateSelected"].ToString();
                 string title = row["ToDotitle"].ToString();
                 string description = row["description"].ToString();
+                string status = row["status"].ToString();
 
-                plannerObj = new Planner(userId, dateSelected, title, description, int.Parse(id));
+                plannerObj = new Planner(userId, dateSelected, title, description, status, int.Parse(id));
             }
 
             return plannerObj;
@@ -117,6 +120,29 @@ namespace WISLEY.DAL.Schedule
             sqlCmd.Parameters.AddWithValue("@paraToDoID", todoID);
             sqlCmd.Parameters.AddWithValue("@paraTitle", title);
             sqlCmd.Parameters.AddWithValue("@paraDescription", description);
+
+            myConnection.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConnection.Close();
+
+            return result;
+        }
+
+        public int DeleteToDoList(string todoID, string status)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Planner " +
+                "SET status = @paraStatus " +
+                "WHERE Id = @paraToDoID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConnection);
+
+            sqlCmd.Parameters.AddWithValue("@paraStatus", status);
+            sqlCmd.Parameters.AddWithValue("@paraToDoID", todoID);
 
             myConnection.Open();
             result = sqlCmd.ExecuteNonQuery();

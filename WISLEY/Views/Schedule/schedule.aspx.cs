@@ -125,6 +125,25 @@ namespace WISLEY.Views.Schedule
                 Session["todoID"] = e.CommandArgument.ToString();
                 Response.Redirect(Page.ResolveUrl("~/Views/Schedule/editToDo.aspx"));
             }
+
+            if (e.CommandName == "delToDo")
+            {
+                string todoID = e.CommandArgument.ToString();
+                Planner todolist = new Planner();
+                int result = todolist.DeleteToDo(todoID, "deleted");
+                
+                if (result == 1)
+                {
+                    Session["success"] = "To-do-list has been deleted successfully!";
+                    Response.Redirect("schedule.aspx");
+                }
+
+                else
+                {
+                    Session["error"] = "To-do-list cannot be deleted, please inform system administrator!";
+                    Response.Redirect("schedule.aspx");
+                }
+            }
         }
 
         protected void todolistRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -136,16 +155,6 @@ namespace WISLEY.Views.Schedule
                     e.Item.FindControl("LbErr").Visible = true;
                 }
             }
-        }
-
-        protected void tbSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

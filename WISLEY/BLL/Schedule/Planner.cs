@@ -13,18 +13,20 @@ namespace WISLEY.BLL.Schedule
         public string todoDate { get; set; }
         public string todoTitle { get; set; }
         public string todoDescription { get; set; }
+        public string todoStatus { get; set; }
 
         public Planner()
         {
 
         }
 
-        public Planner(int userID, string tododate, string todotitle, string tododescription, int Id = -1)
+        public Planner(int userID, string tododate, string todotitle, string tododescription, string todoStatus="", int Id = -1)
         {
             this.userId = userID;
             this.todoDate = tododate;
             this.todoTitle = todotitle;
             this.todoDescription = tododescription;
+            this.todoStatus = todoStatus;
             this.Id = Id;
         }
 
@@ -51,6 +53,12 @@ namespace WISLEY.BLL.Schedule
         {
             PlannerDAO plannerDAO = new PlannerDAO();
             return plannerDAO.UpdateToDoList(todoID, title, description);
+        }
+
+        public int DeleteToDo(string todoId, string status)
+        {
+            PlannerDAO plannerDAO = new PlannerDAO();
+            return plannerDAO.DeleteToDoList(todoId, status);
         }
     }
 }
