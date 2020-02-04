@@ -40,8 +40,9 @@ namespace WISLEY
                 string selectedToDoDate = LblSelectedDate.Text;
                 string todoTitle = tbTitle.Text.ToString();
                 string todoDesc = tbDesc.Text.ToString();
+                string status = "";
 
-                Planner todoPlan = new Planner(userId, selectedToDoDate, todoTitle, todoDesc);
+                Planner todoPlan = new Planner(userId, selectedToDoDate, todoTitle, todoDesc, status);
                 int count = todoPlan.AddToDoList();
 
                 if (count == 1)
