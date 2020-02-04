@@ -91,23 +91,23 @@ namespace WISLEY.DAL.Quiztool
             return rec_cnt;
         }
 
-        public int UpdateQuestion(string number, string quizId, string question, string option1, string option2, string option3, string option4, string answer)
+        public int UpdateQuestion(string questionId, string question, string option1, string option2, string option3, string option4, string answer)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlstmt = "Update Question Set question = @paraQuestion, option1 = @paraOption1, option2 = @paraOption2, option3 = @paraOption3, option4 = @paraOption4, answer = @paraAnswer Where number = @paraNumber And quizId = @paraQuizID";
+            string sqlstmt = "Update Question Set question = @paraQuestion, option1 = @paraOption1, option2 = @paraOption2, option3 = @paraOption3, option4 = @paraOption4, answer = @paraAnswer " +
+                "Where Id = @paraId";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
 
             sqlCmd.Parameters.AddWithValue("@paraQuestion", question);
-            sqlCmd.Parameters.AddWithValue("@paraNumber", number);
-            sqlCmd.Parameters.AddWithValue("@paraQuizID", quizId);
             sqlCmd.Parameters.AddWithValue("@paraOption1", option1);
             sqlCmd.Parameters.AddWithValue("@paraOption2", option2);
             sqlCmd.Parameters.AddWithValue("@paraOption3", option3);
             sqlCmd.Parameters.AddWithValue("@paraOption4", option4);
             sqlCmd.Parameters.AddWithValue("@paraAnswer", answer);
+            sqlCmd.Parameters.AddWithValue("@paraId", questionId);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();

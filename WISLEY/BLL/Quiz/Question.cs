@@ -54,10 +54,10 @@ namespace WISLEY.BLL.Quiz
             return questiondao.GetQuestionCount(quizId).ToString();
         }
 
-        public int UpdateQuestion(string number, string quizId, string question, string option1, string option2, string option3, string option4, string answer)
+        public int UpdateQuestion(string questionId, string question, string option1, string option2, string option3, string option4, string answer)
         {
             QuestionDAO questiondao = new QuestionDAO();
-            return questiondao.UpdateQuestion(number, quizId, question, option1, option2, option3, option4, answer);
+            return questiondao.UpdateQuestion(questionId, question, option1, option2, option3, option4, answer);
         }
     }
 }

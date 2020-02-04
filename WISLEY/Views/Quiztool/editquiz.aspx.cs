@@ -71,18 +71,18 @@ namespace WISLEY.Views.Quiztool
             return valid;
         }
 
-        public bool ValidateQuestion()
+        public bool ValidateQuestion(string question, string option1, string option2, string option3, string option4, DropDownList correct)
         {
             bool valid = false;
-            if (String.IsNullOrEmpty(TbQuestion.Text))
+            if (String.IsNullOrEmpty(question))
             {
                 toast(this, "Please enter question title!", "Error", "error");
             }
-            else if (String.IsNullOrEmpty(TbOption1.Text) || String.IsNullOrEmpty(TbOption2.Text) || String.IsNullOrEmpty(TbOption3.Text) || String.IsNullOrEmpty(TbOption4.Text))
+            else if (String.IsNullOrEmpty(option1) || String.IsNullOrEmpty(option2) || String.IsNullOrEmpty(option3) || String.IsNullOrEmpty(option4))
             {
                 toast(this, "Please fill in all options!", "Error", "error");
             }
-            else if (DdlCorrect.SelectedIndex == -1)
+            else if (correct.SelectedIndex == -1)
             {
                 toast(this, "Please select correct answer!", "Error", "error");
             }
@@ -151,7 +151,7 @@ namespace WISLEY.Views.Quiztool
 
         protected void btnSaveQn_Click(object sender, EventArgs e)
         {
-            if (ValidateQuestion())
+            if (ValidateQuestion(TbQuestion.Text, TbOption1.Text, TbOption2.Text, TbOption3.Text, TbOption4.Text, DdlCorrect))
             {
                 string questionname = TbQuestion.Text;
                 string option1 = TbOption1.Text;
@@ -201,6 +201,7 @@ namespace WISLEY.Views.Quiztool
                 e.Item.FindControl("tbOp2").Visible = true;
                 e.Item.FindControl("tbOp3").Visible = true;
                 e.Item.FindControl("tbOp4").Visible = true;
+                e.Item.FindControl("DdlAns").Visible = true;
             }
             if (e.CommandName == "cancel")
             {
@@ -215,6 +216,75 @@ namespace WISLEY.Views.Quiztool
                 e.Item.FindControl("tbOp2").Visible = false;
                 e.Item.FindControl("tbOp3").Visible = false;
                 e.Item.FindControl("tbOp4").Visible = false;
+                e.Item.FindControl("DdlAns").Visible = false;
+            }
+            if (e.CommandName == "save")
+            {
+                TextBox name = (TextBox)e.Item.FindControl("tbUpName");
+                TextBox op1 = (TextBox)e.Item.FindControl("tbOp1");
+                TextBox op2 = (TextBox)e.Item.FindControl("tbOp2");
+                TextBox op3 = (TextBox)e.Item.FindControl("tbOp3");
+                TextBox op4 = (TextBox)e.Item.FindControl("tbOp4");
+                DropDownList ans = (DropDownList)e.Item.FindControl("DdlAns");
+                Question edited = new Question();
+                string questionid = e.CommandArgument.ToString();
+
+                if (ValidateQuestion(name.Text, op1.Text, op2.Text, op3.Text, op4.Text, ans))
+                {
+                    string corr = "";
+                    if (ans.SelectedItem.Text == "1")
+                    {
+                        corr = op1.Text;
+                    }
+                    else if (ans.SelectedItem.Text == "2")
+                    {
+                        corr = op2.Text;
+                    }
+                    else if (ans.SelectedItem.Text == "3")
+                    {
+                        corr = op3.Text;
+                    }
+                    else if (ans.SelectedItem.Text == "4")
+                    {
+                        corr = op4.Text;
+                    }
+                    int result = edited.UpdateQuestion(questionid, name.Text, op1.Text, op2.Text, op3.Text, op4.Text, corr);
+                    if (result == 1)
+                    {
+                        toast(this, "Question saved successfully!", "Success", "success");
+                        e.Item.FindControl("qnName").Visible = true;
+                        e.Item.FindControl("qnOp1").Visible = true;
+                        e.Item.FindControl("qnOp2").Visible = true;
+                        e.Item.FindControl("qnOp3").Visible = true;
+                        e.Item.FindControl("qnOp4").Visible = true;
+                        e.Item.FindControl("editbtns").Visible = false;
+                        e.Item.FindControl("tbUpName").Visible = false;
+                        e.Item.FindControl("tbOp1").Visible = false;
+                        e.Item.FindControl("tbOp2").Visible = false;
+                        e.Item.FindControl("tbOp3").Visible = false;
+                        e.Item.FindControl("tbOp4").Visible = false;
+                        e.Item.FindControl("DdlAns").Visible = false;
+                        List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
+                        question.DataSource = questions;
+                        question.DataBind();
+                    }
+                    else
+                    {
+                        toast(this, "There was an error while saving question, please contact system administrator!", "Error", "error");
+                        e.Item.FindControl("qnName").Visible = true;
+                        e.Item.FindControl("qnOp1").Visible = true;
+                        e.Item.FindControl("qnOp2").Visible = true;
+                        e.Item.FindControl("qnOp3").Visible = true;
+                        e.Item.FindControl("qnOp4").Visible = true;
+                        e.Item.FindControl("editbtns").Visible = false;
+                        e.Item.FindControl("tbUpName").Visible = false;
+                        e.Item.FindControl("tbOp1").Visible = false;
+                        e.Item.FindControl("tbOp2").Visible = false;
+                        e.Item.FindControl("tbOp3").Visible = false;
+                        e.Item.FindControl("tbOp4").Visible = false;
+                        e.Item.FindControl("DdlAns").Visible = false;
+                    }
+                }
             }
         }
     }
