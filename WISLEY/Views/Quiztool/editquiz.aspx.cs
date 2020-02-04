@@ -138,12 +138,13 @@ namespace WISLEY.Views.Quiztool
 
         protected void question_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (question.Items.Count < 1)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    e.Item.FindControl("LbErr").Visible = true;
-                }
+
+            }
+            if (question.Items.Count < 1 && e.Item.ItemType == ListItemType.Footer)
+            {
+                e.Item.FindControl("LbErr").Visible = true;
             }
         }
 
@@ -157,7 +158,7 @@ namespace WISLEY.Views.Quiztool
                 string option3 = TbOption3.Text;
                 string option4 = TbOption4.Text;
                 string correct = CorrectAnswer();
-                int questionNo = int.Parse(LbQuestionCount.Text) + 1;
+                int questionNo = int.Parse(new Question().GetQuestionCount(LbQuizID.Value)) + 1;
 
                 Question newquestion = new Question(questionname, questionNo.ToString(), option1, option2, option3, option4, correct, LbQuizID.Value);
                 Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
