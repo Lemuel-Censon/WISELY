@@ -127,11 +127,6 @@ namespace WISLEY
             LbBioDesc.Visible = true;
         }
 
-        protected void btnEditCaption_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnCancelChanges_Click(object sender, EventArgs e)
         {
             TbBio.Visible = false;

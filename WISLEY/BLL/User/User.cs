@@ -99,5 +99,11 @@ namespace WISLEY.BLL.Profile
             UserDAO userdao = new UserDAO();
             return userdao.UpdateProfilePic(id, src);
         }
+
+        public int UpdateWISPoints(int id, int points)
+        {
+            UserDAO userdao = new UserDAO();
+            return userdao.UpdateWISPoints(id, points);
+        }
     }
 }

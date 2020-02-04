@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <asp:Label ID="LbNoOfBlogs" runat="server" Text="0"></asp:Label>
-                            <asp:Label ID="Label1" runat="server" Text="Blogs"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="Posts"></asp:Label>
                         </div>
                         <div class="col-lg-4">
                             <asp:Label ID="LbFollowers" runat="server" Text="0"></asp:Label>
@@ -106,12 +106,6 @@
                     <a class="nav-link active" role="tab" data-toggle="tab" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" role="tab" data-toggle="tab" href="#msgwall">Message Wall</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" role="tab" data-toggle="tab" href="#friends">Friends List</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" role="tab" data-toggle="tab" href="#posts">Posts</a>
                 </li>
                 <li class="nav-item">
@@ -139,16 +133,6 @@
                             <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
                         </div>
                     </div>
-                </div>
-                <div id="msgwall" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    Currently Empty
-                        <%if (userid.Value == hidotheremail.Value)
-                            { %>
-                    <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditCaption" runat="server" Text="Edit Caption" OnClick="btnEditCaption_Click" />
-                    <%} %>
-                </div>
-                <div id="friends" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    Currently Empty
                 </div>
                 <div id="posts" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     <asp:Repeater runat="server" ID="userpost" OnItemCommand="userpost_ItemCommand" OnItemDataBound="userpost_ItemDataBound">

@@ -199,6 +199,7 @@
     <Content Include="Views\Auth\register.aspx" />
     <Content Include="Views\Quiztool\editquiz.aspx" />
     <Content Include="Views\Quiztool\quizcreator.aspx" />
+    <Content Include="Views\Quiztool\quizresult.aspx" />
     <Content Include="Views\Quiztool\quizzes.aspx" />
     <Content Include="Views\Quiztool\viewquiz.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
@@ -413,6 +414,13 @@
     </Compile>
     <Compile Include="Views\Quiztool\quizcreator.aspx.designer.cs">
       <DependentUpon>quizcreator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quiztool\quizresult.aspx.cs">
+      <DependentUpon>quizresult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quiztool\quizresult.aspx.designer.cs">
+      <DependentUpon>quizresult.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quiztool\quizzes.aspx.cs">
       <DependentUpon>quizzes.aspx</DependentUpon>
