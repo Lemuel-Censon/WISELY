@@ -35,7 +35,6 @@
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" CommandName="edit">Edit Question</asp:LinkButton>
-                                            <asp:LinkButton runat="server" ID="btnDelete" CssClass="btn btn-danger btn-sm" CommandName="delete" CommandArgument='<%#Eval("Id") %>'>Delete Question</asp:LinkButton>
                                         </div>
                                     </div>
                                     <h4 id="qnName" runat="server"><%#Eval("question") %></h4>

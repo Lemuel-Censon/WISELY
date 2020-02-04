@@ -199,24 +199,24 @@ namespace WISLEY
         {
             if (e.CommandName == "viewquiz")
             {
-                Session["quizId"] = e.CommandArgument.ToString();
-                Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/quizcreator.aspx"));
+                Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/viewquiz.aspx?id=" + e.CommandArgument.ToString()));
             }
 
-            else if (e.CommandName == "deletequiz")
+            if (e.CommandName == "deletequiz")
             {
                 int result = new Quiz().DeleteById(e.CommandArgument.ToString());
                 if (result == 1)
                 {
                     Session["success"] = "Quiz deleted!";
                     Response.Redirect("profile.aspx");
-                } else
+                }
+                else
                 {
-                    toast(this, "Cannot delete quiz, please inform system administrator!", "Error", "error");
+                    toast(this, "Quiz could not be deleted, please inform system administrator!", "Error", "error");
                 }
             }
 
-            else if (e.CommandName == "editquiz")
+            if (e.CommandName == "editquiz")
             {
                 Session["quizId"] = e.CommandArgument.ToString();
                 Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/editquiz.aspx"));

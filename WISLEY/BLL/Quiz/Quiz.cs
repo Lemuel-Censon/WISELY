@@ -13,6 +13,7 @@ namespace WISLEY.BLL.Quiz
         public string description { get; set; }
         public string datecreated { get; set; }
         public int totalquestions { get; set; }
+        public string status { get; set; }
         public string userId { get; set; }
         public string username { get; set; }
         public string profilesrc { get; set; }
@@ -22,12 +23,13 @@ namespace WISLEY.BLL.Quiz
 
         }
 
-        public Quiz(string title, string description, string datecreated, string userId, int Id = -1, int totalquestions = 0, string username = "", string profilesrc = "")
+        public Quiz(string title, string description, string datecreated, string userId, int Id = -1, int totalquestions = 0, string status = "", string username = "", string profilesrc = "")
         {
             this.title = title;
             this.description = description;
             this.datecreated = datecreated;
             this.totalquestions = totalquestions;
+            this.status = status;
             this.userId = userId;
             this.username = username;
             this.profilesrc = profilesrc;

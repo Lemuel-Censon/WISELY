@@ -12,7 +12,8 @@
                     <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" src=<%if (user().profilesrc != "")
                         { %>
                         "<%=user().profilesrc %>"
-                        <%} %><%else { %>
+                        <%} %><%else
+                        { %>
                         src="<%=Page.ResolveUrl("~/Public/img/default.jpg") %>"
                         <%} %>/>
                 </div>
@@ -181,10 +182,8 @@
                             </div>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <div class="text-center mb-4">
-                                <h4>
-                                    <asp:Label runat="server" ID="LbErr" Text="Currently Empty" CssClass="font-weight-bold" Visible="false"></asp:Label>
-                                </h4>
+                            <div class="mb-4">
+                                <asp:Label runat="server" ID="LbErr" Text="Currently Empty" Visible="false"></asp:Label>
                             </div>
                         </FooterTemplate>
                     </asp:Repeater>
@@ -211,35 +210,60 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h5 class="font-weight-bold mt-0">
-                                                    <asp:LinkButton runat="server" ID="viewquiz" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>'><%#Eval("title") %></asp:LinkButton>
+                                                    <%#Eval("title") %>
                                                 </h5>
                                             </div>
+                                            <%if (userid.Value == hidotheremail.Value)
+                                                { %>
+                                        <div class="col-lg-6 text-right">
+                                            <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <div class="modal fade" id="delmodal<%#Eval("Id") %>" tabindex="-1" role="dialog"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Are you sure you want to delete this quiz?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                Deletion of this quiz cannot be reverted once confirmed!
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
+                                                                <asp:LinkButton runat="server" CommandName="deletequiz" CommandArgument='<%#Eval("Id") %>' ID="btnDelete" Text="Yes" CssClass="btn btn-sm btn-success"></asp:LinkButton>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <%} %>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6"><%#Eval("description")%></div>
                                             <div class="col-lg-6 text-right">
+
                                                 <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                 </span>
                                                 <br />
                                                 <span class="text-muted"><i class="fas fa-exclamation-circle mr-1"></i>No of. Questions: <%#Eval("totalquestions") %></span>
                                             </div>
                                         </div>
-                                        <%#Eval("description")%>
-                                        <br />
-                                        <%if (userid.Value == hidotheremail.Value)
-                                            { %>
-                                        <div class="text-right flex-fill">
-                                            <asp:LinkButton runat="server" ID="editquiz" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="editquiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
-                                            <asp:LinkButton runat="server" ID="deletequiz" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="deletequiz" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                        <div class="text-right mt-2 card-header border-0 font-weight-bold">
+                                            <asp:LinkButton runat="server" ID="viewquiz" CssClass="btn btn-success btn-sm" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>'>Take Quiz >></asp:LinkButton>
                                         </div>
-                                        <%} %>
                                     </div>
                                 </div>
                                 <hr />
                             </div>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <div class="text-center mb-4">
-                                <h4>
-                                    <asp:Label runat="server" ID="LbErr" Text="Currently Empty" CssClass="font-weight-bold" Visible="false"></asp:Label>
-                                </h4>
+                            <div class="mb-4">
+                                <asp:Label runat="server" ID="LbErr" Text="Currently Empty" Visible="false"></asp:Label>
                             </div>
                         </FooterTemplate>
                     </asp:Repeater>
