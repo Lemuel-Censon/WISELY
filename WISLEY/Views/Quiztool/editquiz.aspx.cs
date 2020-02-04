@@ -264,7 +264,6 @@ namespace WISLEY.Views.Quiztool
                         e.Item.FindControl("tbOp3").Visible = false;
                         e.Item.FindControl("tbOp4").Visible = false;
                         e.Item.FindControl("DdlAns").Visible = false;
-                        LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value);
                         List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
                         question.DataSource = questions;
                         question.DataBind();
@@ -285,25 +284,6 @@ namespace WISLEY.Views.Quiztool
                         e.Item.FindControl("tbOp4").Visible = false;
                         e.Item.FindControl("DdlAns").Visible = false;
                     }
-                }
-            }
-            if (e.CommandName == "delete")
-            {
-                Question delete = new Question();
-                Quiz quiz = new Quiz().SelectById(LbQuizID.Value);
-                int result = delete.DeleteQuestion(e.CommandArgument.ToString());
-                if (result == 1)
-                {
-                    toast(this, "Question deleted successfully!", "Success", "success");
-                    LbQuestionCount.Text = new Question().GetQuestionCount(LbQuizID.Value);
-                    quiz.UpdateTotalQuestions(quiz.totalquestions - 1, LbQuizID.Value);
-                    List<Question> questions = new Question().SelectByQuiz(LbQuizID.Value);
-                    question.DataSource = questions;
-                    question.DataBind();
-                }
-                else
-                {
-                    toast(this, "There was an error while deleting question, please contact system administrator!", "Error", "error");
                 }
             }
         }
