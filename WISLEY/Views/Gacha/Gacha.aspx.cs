@@ -66,18 +66,27 @@ namespace WISLEY.Views.Gacha
 
             Avatar avatar = new Avatar(addedavatar.src, addedavatar.rarity, user().id.ToString());
             int addresult = avatar.AddAvatar();
-
-            if (addresult == 1)
+            int currentpoints = user().points;
+            if (currentpoints < 1000)
             {
-                Session["SSResults"] = results;
-                Session["SSRarity"] = rarity;
-
-                Response.Redirect("GachaSummon.aspx");
+                toast(this, "Not enough WIS Points!", "Error", "error");
             }
             else
             {
-                Session["error"] = "There was an error while summoning, please inform system administrator!";
-                Response.Redirect("Gacha.aspx");
+                if (addresult == 1)
+                {
+                    Session["SSResults"] = results;
+                    Session["SSRarity"] = rarity;
+                    currentpoints -= 1000;
+                    user().UpdateWISPoints(user().id, currentpoints);
+
+                    Response.Redirect("GachaSummon.aspx");
+                }
+                else
+                {
+                    Session["error"] = "There was an error while summoning, please inform system administrator!";
+                    Response.Redirect("Gacha.aspx");
+                }
             }
 
         }
@@ -107,17 +116,27 @@ namespace WISLEY.Views.Gacha
                 addresults.Add(avatar.AddAvatar());
             }
 
-            if (addresults.Contains(1))
+            int currentpoints = user().points;
+            if (currentpoints < 10000)
             {
-                Session["SSResults"] = results;
-                Session["SSRarity"] = rarity;
-
-                Response.Redirect("GachaSummon.aspx");
+                toast(this, "Not enough WIS Points!", "Error", "error");
             }
             else
             {
-                Session["error"] = "There was an error while summoning, please inform system administrator!";
-                Response.Redirect("Gacha.aspx");
+                if (addresults.Contains(1))
+                {
+                    Session["SSResults"] = results;
+                    Session["SSRarity"] = rarity;
+                    currentpoints -= 10000;
+                    user().UpdateWISPoints(user().id, currentpoints);
+
+                    Response.Redirect("GachaSummon.aspx");
+                }
+                else
+                {
+                    Session["error"] = "There was an error while summoning, please inform system administrator!";
+                    Response.Redirect("Gacha.aspx");
+                }
             }
         }
 
