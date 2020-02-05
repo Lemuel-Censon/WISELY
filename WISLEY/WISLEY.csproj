@@ -128,6 +128,7 @@
     <Content Include="Views\Group\joinGroup.aspx" />
     <Content Include="Views\Group\members.aspx" />
     <Content Include="Views\Group\viewAllGroups.aspx" />
+    <Content Include="Views\Notification\viewnotif.aspx" />
     <Content Include="Views\Profile\changepassword.aspx" />
     <Content Include="Views\Board\collab.aspx" />
     <Content Include="Public\css\toast\toastr.css" />
@@ -225,6 +226,7 @@
     <Compile Include="BLL\Gacha\Avatar.cs" />
     <Compile Include="BLL\Gacha\Gacha.cs" />
     <Compile Include="BLL\Group\Group.cs" />
+    <Compile Include="BLL\Notification\Notify.cs" />
     <Compile Include="BLL\Resources\grpResource.cs" />
     <Compile Include="BLL\Resources\grpResourceType.cs" />
     <Compile Include="BLL\Quiz\Question.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="DAL\Gacha\AvatarDAO.cs" />
     <Compile Include="DAL\Gacha\GachaDAO.cs" />
     <Compile Include="DAL\Group\GroupDAO.cs" />
+    <Compile Include="DAL\Notification\NotifyDAO.cs" />
     <Compile Include="DAL\Quiztool\QuestionDAO.cs" />
     <Compile Include="DAL\Quiztool\QuizDAO.cs" />
     <Compile Include="DAL\Resources\grpResourceDAO.cs" />
@@ -308,6 +311,13 @@
     </Compile>
     <Compile Include="Views\Group\viewAllGroups.aspx.designer.cs">
       <DependentUpon>viewAllGroups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Notification\viewnotif.aspx.cs">
+      <DependentUpon>viewnotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Notification\viewnotif.aspx.designer.cs">
+      <DependentUpon>viewnotif.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
