@@ -15,7 +15,7 @@ namespace WISLEY.Views.Notification
         {
             if (Session["email"] != null)
             {
-                List<Notify> postnotifications = new Notify().SelectPostNotif(user().id.ToString());
+                List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
                 postnotifs.DataSource = postnotifications;
                 postnotifs.DataBind();
             }

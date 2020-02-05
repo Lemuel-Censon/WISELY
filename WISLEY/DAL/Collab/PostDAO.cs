@@ -298,5 +298,29 @@ namespace WISLEY.DAL.Collab
 
             return result;
         }
+
+        public int GetLastID()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select MAX(Id) as LastID from Post";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            int lastID = 1;
+
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+
+                lastID = int.Parse(row["LastID"].ToString());
+
+            }
+
+            return lastID;
+        }
     }
 }

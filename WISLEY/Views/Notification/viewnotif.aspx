@@ -25,7 +25,7 @@
                                         <div class="col-8 row mx-auto my-3">
                                             <div class="pl-2 align-self-center pt-1">
                                                 <h5>
-                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderId") %>'><%#Eval("senderName") %></asp:LinkButton>
+                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderEmail") %>'><%#Eval("senderName") %></asp:LinkButton>
                                                      posted 
                                                     <asp:LinkButton runat="server" CommandName="viewpost" CommandArgument='<%#Eval("postId") %>'><%#Eval("postName") %></asp:LinkButton>
                                                      in group 

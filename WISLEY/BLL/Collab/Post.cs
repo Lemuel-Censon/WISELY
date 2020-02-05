@@ -97,5 +97,11 @@ namespace WISLEY.BLL.Collab
             return postdao.DelPostUpdate(postId, status);
         }
 
+        public int GetLastID()
+        {
+            PostDAO postdao = new PostDAO();
+            return postdao.GetLastID();
+        }
+
     }
 }

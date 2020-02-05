@@ -92,6 +92,12 @@ namespace WISLEY.BLL.Group
             return grpList;
         }
 
+        public List<string> getGroupMembers(string groupId)
+        {
+            GroupDAO groupdao = new GroupDAO();
+            return groupdao.SelectGroupMembers(groupId);
+        }
+
         public List<grpResourceType> getGroupResourceTypes(int grpId)
         {
             //List<grpResourceType> typeList = new List<grpResourceType>();

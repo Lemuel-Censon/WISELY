@@ -43,7 +43,7 @@ namespace WISLEY.DAL.Notification
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlstmt = "SELECT Notification.*, [User].name as sendername, [Group].name, [Post].title FROM (((NOTIFICATION " +
-                    "INNER JOIN [User] ON Notification.senderId = [User].Id) " +
+                    "INNER JOIN [User] ON Notification.senderId = [User].Email) " +
                     "INNER JOIN [Group] ON Notification.groupId = [Group].Id) " +
                     "INNER JOIN [Post] ON Notification.postId = [Post].Id) " +
                     "WHERE Notification.receiverId = @paraUserId AND Notification.type = 'post'";
