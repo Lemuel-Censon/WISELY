@@ -202,7 +202,32 @@ namespace WISLEY.DAL.Group
             return groupIDList;
         }
 
-        
+        public List<string> SelectGroupMembers(string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select userEmail from [GroupUserRelations] where groupId = @paraGroupID";
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlstmt, myConn);
+            sqlCmd.SelectCommand.Parameters.AddWithValue("@paraGroupID", groupId);
+
+            DataSet ds = new DataSet();
+            sqlCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            List<string> userIDList = new List<string>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string userId = row["userEmail"].ToString();
+                    userIDList.Add(userId);
+                }
+            }
+
+            return userIDList;
+        }
 
         public int joinGroup(string email, string code)
         {

@@ -22,8 +22,8 @@ namespace WISLEY.DAL.Notification
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@paraSenderID", postnotif.senderId);
-            sqlCmd.Parameters.AddWithValue("@paraReceiverID", postnotif.receiverId);
+            sqlCmd.Parameters.AddWithValue("@paraSenderID", postnotif.senderEmail);
+            sqlCmd.Parameters.AddWithValue("@paraReceiverID", postnotif.receiverEmail);
             sqlCmd.Parameters.AddWithValue("@paraGroupID", postnotif.groupId);
             sqlCmd.Parameters.AddWithValue("@paraPostID", postnotif.postId);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", postnotif.datecreated);
@@ -61,8 +61,8 @@ namespace WISLEY.DAL.Notification
                 for (int i = 0; i < rec_cnt; i++)
                 {
                     DataRow row = ds.Tables[0].Rows[i];
-                    int senderId = int.Parse(row["senderId"].ToString());
-                    int receiverId = int.Parse(row["receiverId"].ToString());
+                    string senderId = row["senderId"].ToString();
+                    string receiverId = row["receiverId"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string type = row["type"].ToString();
                     int groupId = int.Parse(row["groupId"].ToString());

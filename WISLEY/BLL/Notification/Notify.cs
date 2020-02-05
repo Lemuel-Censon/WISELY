@@ -8,8 +8,8 @@ namespace WISLEY.BLL.Notification
 {
     public class Notify
     {
-        public int senderId { get; set; }
-        public int receiverId { get; set; }
+        public string senderEmail { get; set; }
+        public string receiverEmail { get; set; }
         public string datecreated { get; set; }
         public string type { get; set; }
         public int groupId { get; set; }
@@ -23,10 +23,10 @@ namespace WISLEY.BLL.Notification
 
         }
 
-        public Notify(int senderId, int receiverId, string datecreated, string type, int groupId = -1, int postId = -1, string senderName = "", string groupName = "", string postName = "")
+        public Notify(string senderEmail, string receiverEmail, string datecreated, string type, int groupId = -1, int postId = -1, string senderName = "", string groupName = "", string postName = "")
         {
-            this.senderId = senderId;
-            this.receiverId = receiverId;
+            this.senderEmail = senderEmail;
+            this.receiverEmail = receiverEmail;
             this.datecreated = datecreated;
             this.type = type;
             this.groupId = groupId;
