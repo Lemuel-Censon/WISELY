@@ -8,9 +8,8 @@
                 <hr class="w-100" />
                 <div class="text-center">
                     <h5 class="font-weight-bold">Your Score: <asp:Label ID="LbScore" runat="server"></asp:Label></h5>
-                    <h5 class="font-weight-bold">Rewards: </h5>
+                    <h5 class="font-weight-bold">Rewards: +<asp:Label ID="LbWISPoints" runat="server"></asp:Label> WIS</h5>
                     <br />
-                    <h5 class="font-weight-bold">+<asp:Label ID="LbWISPoints" runat="server"></asp:Label><img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
                 </div>
                 <div class="text-right flex-fill">
                     <asp:LinkButton ID="btnBack" runat="server" OnClick="btnBack_Click" CssClass="btn btn-danger btn-sm rounded-0 mb-1">Back to Quizzes</asp:LinkButton>

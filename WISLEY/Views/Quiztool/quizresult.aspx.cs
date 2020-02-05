@@ -25,6 +25,11 @@ namespace WISLEY.Views.Quiztool
                         LbScore.ForeColor = Color.Gold;
                         LbWISPoints.Text = "50";
                     }
+                    else if (result >= 75)
+                    {
+                        LbScore.ForeColor = Color.Green;
+                        LbWISPoints.Text = "30";
+                    }
                     else if (result >= 50)
                     {
                         LbScore.ForeColor = Color.Green;

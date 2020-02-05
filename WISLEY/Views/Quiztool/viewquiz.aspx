@@ -31,7 +31,7 @@
                                     <li><asp:RadioButton ID="rbtnOption2" GroupName='<%#Eval("number") %>' runat="server" Text=' <%#Eval("option2") %>'/></li>
                                     <li><asp:RadioButton ID="rbtnOption3" GroupName='<%#Eval("number") %>' runat="server" Text=' <%#Eval("option3") %>'/></li>
                                     <li><asp:RadioButton ID="rbtnOption4" GroupName='<%#Eval("number") %>' runat="server" Text=' <%#Eval("option4") %>'/></li>
-                                    <li><asp:Label ID="Label1" runat="server" Visible="false" Text='<%#Eval("answer") %>'></asp:Label></li>
+                                    <li><asp:Label ID="LbAnswer" runat="server" Visible="false" Text='<%#Eval("answer") %>'></asp:Label></li>
                                 </ul>
                             </div>
                         </ItemTemplate>

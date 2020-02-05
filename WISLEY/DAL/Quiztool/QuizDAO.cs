@@ -41,8 +41,9 @@ namespace WISLEY.DAL.Quiztool
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select quiz.*, [User].name, [User].profilesrc from Quiz where status = '' " +
-                "INNER JOIN [User] ON quiz.userId = [User].Id ";
+            string sqlstmt = "Select quiz.*, [User].name, [User].profilesrc from Quiz " +
+                "INNER JOIN [User] ON quiz.userId = [User].Id " +
+                "where status = ''";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
 
             DataSet ds = new DataSet();
