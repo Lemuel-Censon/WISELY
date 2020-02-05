@@ -42,7 +42,30 @@ namespace WISLEY.Views.Notification
 
         protected void postnotifs_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-
+            if (e.CommandName == "viewprofile")
+            {
+                int target = new User().SelectByEmail(e.CommandArgument.ToString()).id;
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id=" + target));
+            }
+            if (e.CommandName == "viewpost")
+            {
+                Session["postId"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/viewpost.aspx"));
+            }
+            if (e.CommandName == "viewgroup")
+            {
+                string groupId = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx?groupId=" + groupId));
+            }
+            if (e.CommandName == "clearnotif")
+            {
+                string notifId = e.CommandArgument.ToString();
+                Notify notif = new Notify();
+                notif.ClearNotifs(notifId);
+                List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
+                postnotifs.DataSource = postnotifications;
+                postnotifs.DataBind();
+            }
         }
     }
 }

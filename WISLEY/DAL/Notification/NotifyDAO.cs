@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Notification
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Notification (senderId, receiverId, groupId, postId, datecreated, type)" +
-                             "VALUES (@paraSenderID, @paraReceiverID, @paraGroupID, @paraPostID, @paraDatecreate, @paraType)";
+            string sqlStmt = "INSERT INTO Notification (senderId, receiverId, groupId, postId, datecreated, type, status)" +
+                             "VALUES (@paraSenderID, @paraReceiverID, @paraGroupID, @paraPostID, @paraDatecreate, @paraType, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -28,6 +28,7 @@ namespace WISLEY.DAL.Notification
             sqlCmd.Parameters.AddWithValue("@paraPostID", postnotif.postId);
             sqlCmd.Parameters.AddWithValue("@paraDatecreate", postnotif.datecreated);
             sqlCmd.Parameters.AddWithValue("@paraType", postnotif.type);
+            sqlCmd.Parameters.AddWithValue("@paraStatus", postnotif.status);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -46,7 +47,7 @@ namespace WISLEY.DAL.Notification
                     "INNER JOIN [User] ON Notification.senderId = [User].Email) " +
                     "INNER JOIN [Group] ON Notification.groupId = [Group].Id) " +
                     "INNER JOIN [Post] ON Notification.postId = [Post].Id) " +
-                    "WHERE Notification.receiverId = @paraUserId AND Notification.type = 'post'";
+                    "WHERE Notification.receiverId = @paraUserId AND Notification.type = 'post' AND Notification.status = ''";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
 
@@ -55,7 +56,7 @@ namespace WISLEY.DAL.Notification
             int rec_cnt = ds.Tables[0].Rows.Count;
 
             Notify obj = null;
-            List<Notify> notif = new List<Notify>();
+            List<Notify> postnotif = new List<Notify>();
             if (rec_cnt > 0)
             {
                 for (int i = 0; i < rec_cnt; i++)
@@ -65,18 +66,41 @@ namespace WISLEY.DAL.Notification
                     string receiverId = row["receiverId"].ToString();
                     string datecreated = row["datecreated"].ToString();
                     string type = row["type"].ToString();
+                    int Id = int.Parse(row["Id"].ToString());
                     int groupId = int.Parse(row["groupId"].ToString());
                     int postId = int.Parse(row["postId"].ToString());
                     string senderName = row["sendername"].ToString();
                     string groupName = row["name"].ToString();
                     string postName = row["title"].ToString();
-                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, senderName, groupName, postName);
-                    notif.Add(obj);
+                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, Id, senderName, groupName, postName);
+                    postnotif.Add(obj);
                 }
 
             }
 
-            return notif;
+            return postnotif;
+        }
+
+        public int ClearNotifs(string notifId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Notification " +
+                "SET status = 'cleared' " +
+                "WHERE Id = @paraNotifID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraNotifID", notifId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }

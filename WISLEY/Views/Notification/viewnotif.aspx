@@ -26,17 +26,25 @@
                                             <div class="pl-2 align-self-center pt-1">
                                                 <h5>
                                                     <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderEmail") %>'><%#Eval("senderName") %></asp:LinkButton>
-                                                     posted 
+                                                    posted 
                                                     <asp:LinkButton runat="server" CommandName="viewpost" CommandArgument='<%#Eval("postId") %>'><%#Eval("postName") %></asp:LinkButton>
-                                                     in group 
+                                                    in group 
                                                     <asp:LinkButton runat="server" CommandName="viewgroup" CommandArgument='<%#Eval("groupId") %>'><%#Eval("groupName") %></asp:LinkButton>
                                                 </h5>
                                             </div>
                                         </div>
+                                        <div class="col-2 align-self-center pt-2 row justify-content-end mx-auto">
+                                            <h6 class="text-muted text-right">
+                                                <%#Eval("datecreated") %>
+                                            </h6>
+                                        </div>
+                                        <asp:LinkButton runat="server" CssClass="close mx-auto align-self-center" CommandName="clearnotif" CommandArgument='<%#Eval("Id") %>'>
+                                            <span aria-hidden="true">&times;</span>
+                                        </asp:LinkButton>
                                     </div>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <div class="text-center mb-4">
+                                    <div class="text-center mt-2">
                                         <h4>
                                             <asp:Label runat="server" ID="LbErr" Text="No Notifications" CssClass="font-weight-bold" Visible="false"></asp:Label>
                                         </h4>
@@ -44,6 +52,9 @@
                                 </FooterTemplate>
                             </asp:Repeater>
                         </div>
+                    </div>
+                    <div class="tab-pane fade" role="tabpanel" id="inotifs">
+
                     </div>
                 </div>
             </div>
