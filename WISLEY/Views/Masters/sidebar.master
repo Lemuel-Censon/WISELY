@@ -7,7 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="contentHolder1" runat="server">
 
     <div class="row justify-content-around" runat="server">
-        <div class="col-3">
+        <div class="col-lg-3 col-md-5">
 
             <div class="card card-body mb-4">
                 <div class="row justify-content-center">
@@ -92,31 +92,35 @@
 
 
 
-                <div class="col-12 justify-content-center">
+                <div class="col-12 row justify-content-center m-0 p-0">
+                   
                     <% if (groupBtns.Items.Count != 0)
                         { %>
-                    <a id="showAllGroupsBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  View All Groups </a>
+<%--                     <div class="btn-group btn-group-sm col-12 p-0">--%>
+                    <a id="showAllGroupsBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All </a>
 
 
-                    <a id="joinGroupBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join Group </a>
+                    <a id="joinGroupBtn" class="btn btn-block btn-white text-left rounded-0 mb-1 text-center" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>">Join Group </a>
                     <% if (TeacherCheck())
                         {
                     %>
                     <a id="createGroupBtn" class="btn btn-block btn-success text-left rounded-0 mb-1 text-center"
-                        href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create Group </a>
+                        href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>">Create Group </a>
                     <% } %>
+<%--                         </div>--%>
                     <%} %>
+                        
                 </div>
             </div>
 
         </div>
 
-        <div class="col-6 p-0">
+        <div class="col-lg-6 col-md-7 p-0">
             <asp:ContentPlaceHolder ID="sidebarContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
 
-        <div class="col-3">
+        <div class="col-lg-3 d-lg-block d-md-none">
             <div class="card card-body mb-4">
                 <div class="row justify-content-center">
                     <h1 class="col-12 text-center">Schedule </h1>
