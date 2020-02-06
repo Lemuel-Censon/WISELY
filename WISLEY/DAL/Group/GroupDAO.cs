@@ -44,12 +44,14 @@ namespace WISLEY.DAL.Group
                 int groupId = int.Parse(SelectGroupByAttribute("joinCode", generatedCode).id.ToString());
                 System.Diagnostics.Debug.WriteLine("Group ID:" + groupId);
 
-                string insertGroupUserRelations = "INSERT INTO [GroupUserRelations] (userEmail, groupID) " +
-                    "VALUES (@paraUserEmail, @paraGroupId)";
+
+                string insertGroupUserRelations = "INSERT INTO [GroupUserRelations] (userEmail, groupID, customOrder) " +
+                    "VALUES (@paraUserEmail, @paraGroupId, @paraOrder)";
 
                 SqlCommand executeInsert = new SqlCommand(insertGroupUserRelations, myConn);
                 executeInsert.Parameters.AddWithValue("@paraUserEmail", email);
                 executeInsert.Parameters.AddWithValue("@paraGroupId", groupId);
+                executeInsert.Parameters.AddWithValue("@paraOrder", higherJoinedGroupOrder(email) + 1);
 
                 myConn.Open();
                 int insertResult = executeInsert.ExecuteNonQuery();
@@ -89,7 +91,7 @@ namespace WISLEY.DAL.Group
 
             if (group_count > 0)
             {
-               inviteCode = generateInviteCode();
+                inviteCode = generateInviteCode();
             }
 
             return inviteCode;
@@ -202,6 +204,33 @@ namespace WISLEY.DAL.Group
             return groupIDList;
         }
 
+        public int higherJoinedGroupOrder(string email)
+        {
+            int order = 0; 
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select customOrder from [GroupUserRelations] where userEmail = @paraUserEmail order by customOrder desc";
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlstmt, myConn);
+            sqlCmd.SelectCommand.Parameters.AddWithValue("@paraUserEmail", email);
+
+            DataSet ds = new DataSet();
+            sqlCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                order = int.Parse(row["customOrder"].ToString());
+            }
+            else
+            {
+                order = 1;
+            }
+
+            return order;
+        }
+
         public List<string> SelectGroupMembers(string groupId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -234,12 +263,13 @@ namespace WISLEY.DAL.Group
             int result = 0;
             int groupId = int.Parse(SelectGroupByAttribute("joinCode", code).id.ToString());
             bool isInList = SelectUserGroupsJoined(email).IndexOf(groupId) != -1;
-            if (!isInList){
+            if (!isInList)
+            {
                 string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
                 SqlConnection myConn = new SqlConnection(DBConnect);
 
                 //Creating Group
-                string sqlStmt = "INSERT INTO [GroupUserRelations] (userEmail, groupID)" +
+                string sqlStmt = "INSERT INTO [GroupUserRelations] (userEmail, groupID, customOrder)" +
                      "VALUES (@paraEmail, @paraGroupID)";
 
 
@@ -248,6 +278,7 @@ namespace WISLEY.DAL.Group
 
                 sqlCmd.Parameters.AddWithValue("@paraEmail", email);
                 sqlCmd.Parameters.AddWithValue("@paraGroupID", groupId);
+                sqlCmd.Parameters.AddWithValue("@paraOrder", higherJoinedGroupOrder(email) + 1);
 
                 myConn.Open();
                 result = sqlCmd.ExecuteNonQuery(); //Result 
@@ -257,6 +288,58 @@ namespace WISLEY.DAL.Group
             {
                 result = -1;
             }
+            return result;
+        }
+
+        public int hideJoinedGroup(string email, string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [GroupUserRelations] " +
+                "SET show = @paraStatus, customOrder = @paraOrder " +
+                "WHERE groupID = @paraId and userEmail = @paraEmail";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraStatus", 0);
+            sqlCmd.Parameters.AddWithValue("@paraOrder", -1);
+            sqlCmd.Parameters.AddWithValue("@paraId", groupId);
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int showJoinedGroup(string email, string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE [GroupUserRelations] " +
+                "SET show = @paraStatus, customOrder = @paraOrder " +
+                "WHERE groupID = @paraId and userEmail = @paraEmail";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraStatus", 1);
+            sqlCmd.Parameters.AddWithValue("@paraOrder", higherJoinedGroupOrder(email) + 1);
+            sqlCmd.Parameters.AddWithValue("@paraId", groupId);
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
             return result;
         }
 

@@ -32,6 +32,7 @@
             }
             toastr[type](msg, title);
         }
+
     </script>
 
 
@@ -44,7 +45,7 @@
     <asp:Label runat="server" ID="Lbemail" Visible="false"></asp:Label>
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark z-depth-3 primary-color sticky-top scrolling-navbar" style="padding-left: 12px 1rem !important;">
+    <nav class="navbar navbar-expand-md navbar-dark z-depth-0 primary-color sticky-top scrolling-navbar" style="padding-left: 12px 1rem !important;">
 
         <!-- Navbar brand -->
         <a class="navbar-brand" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a>

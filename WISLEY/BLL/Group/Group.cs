@@ -105,6 +105,17 @@ namespace WISLEY.BLL.Group
             return RsTypeDAO.GetGrpResourceTypes(grpId);
         }
 
+        public int hideJoinedGroup(string email, string groupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.hideJoinedGroup(email, groupId);
+        }
+
+        public int showJoinedGroup(string email, string groupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.showJoinedGroup(email, groupId);
+        }
 
     }
 }

@@ -75,7 +75,7 @@
 
                     <asp:SqlDataSource ID="groupData"
                         ConnectionString="<%$ connectionStrings: ConnStr%>"
-                        runat="server"></asp:SqlDataSource>
+                        runat="server"/>
 
 
 

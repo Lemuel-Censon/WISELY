@@ -47,5 +47,23 @@ namespace WISLEY.Views.Group {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cancelBtn;
+        
+        /// <summary>
+        /// hiddenGroupsBtns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater hiddenGroupsBtns;
+        
+        /// <summary>
+        /// SQLhiddenGroupData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SQLhiddenGroupData;
     }
 }
