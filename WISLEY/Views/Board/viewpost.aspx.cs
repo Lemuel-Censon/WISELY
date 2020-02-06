@@ -85,13 +85,14 @@ namespace WISLEY
                 int result = comment.AddComment();
                 Post postcreator = new Post().SelectByID(postId)[0];
                 int creatorId = int.Parse(postcreator.userId);
+                int grpId = int.Parse(postcreator.groupId);
 
                 if (result == 1)
                 {
                     if (user().id != creatorId)
                     {
                         string creatorEmail = new User().SelectById(creatorId.ToString()).email;
-                        Notify notif = new Notify(user().email, creatorEmail, date, "comment");
+                        Notify notif = new Notify(user().email, creatorEmail, date, "comment", grpId, int.Parse(postId));
                         notif.AddPostNotif();
                     }
                     Session["success"] = "Comment posted!";

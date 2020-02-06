@@ -80,9 +80,7 @@ namespace WISLEY.Views.Notification
                 string notifId = e.CommandArgument.ToString();
                 Notify notif = new Notify();
                 notif.ClearNotifs(notifId);
-                List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
-                postnotifs.DataSource = postnotifications;
-                postnotifs.DataBind();
+                Response.Redirect("viewnotif.aspx");
             }
         }
 
@@ -102,9 +100,7 @@ namespace WISLEY.Views.Notification
                 string notifId = e.CommandArgument.ToString();
                 Notify notif = new Notify();
                 notif.ClearNotifs(notifId);
-                List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
-                invitenotifs.DataSource = invnotifications;
-                invitenotifs.DataBind();
+                Response.Redirect("viewnotif.aspx");
             }
         }
 
@@ -138,9 +134,7 @@ namespace WISLEY.Views.Notification
                 string notifId = e.CommandArgument.ToString();
                 Notify notif = new Notify();
                 notif.ClearNotifs(notifId);
-                List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
-                postnotifs.DataSource = postnotifications;
-                postnotifs.DataBind();
+                Response.Redirect("viewnotif.aspx");
             }
         }
 

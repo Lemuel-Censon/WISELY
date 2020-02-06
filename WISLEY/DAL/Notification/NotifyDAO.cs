@@ -239,7 +239,7 @@ namespace WISLEY.DAL.Notification
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "Select * from Notification where receiverId = @paraReceiverID";
+            string sqlstmt = "Select * from Notification where receiverId = @paraReceiverID AND status = ''";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraReceiverID", userEmail);
 
