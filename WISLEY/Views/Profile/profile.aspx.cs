@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
 using WISLEY.BLL.Profile;
 using WISLEY.BLL.Quiz;
+using WISLEY.BLL.User;
 
 namespace WISLEY
 {
@@ -83,10 +84,18 @@ namespace WISLEY
                     postcount();
                     List <Post> userposts = new Post().SelectByUser(userid.Value);
                     List <Quiz> quizposts = new Quiz().SelectByUserId(userid.Value);
+                    List <Badge> unlockedbadges = new Badge().SelectByUserId(userid.Value, "Unlocked");
+                    List <Badge> lockedbadges = new Badge().SelectByUserId(userid.Value, "Locked");
                     userpost.DataSource = userposts;
                     userpost.DataBind();
                     userquiz.DataSource = quizposts;
                     userquiz.DataBind();
+                    unlocked_badges.DataSource = unlockedbadges;
+                    unlocked_badges.DataBind();
+                    locked_badges.DataSource = lockedbadges;
+                    locked_badges.DataBind();
+                    LbNofUnlockedBadges.Text = new Badge().GetBadgeCount(userid.Value, "Unlocked").ToString();
+                    LbNofLockedBadges.Text = new Badge().GetBadgeCount(userid.Value, "Locked").ToString();
                 }
             }
             else

@@ -231,6 +231,7 @@
     <Compile Include="BLL\Resources\grpResourceType.cs" />
     <Compile Include="BLL\Quiz\Question.cs" />
     <Compile Include="BLL\Quiz\Quiz.cs" />
+    <Compile Include="BLL\User\Badge.cs" />
     <Compile Include="BLL\User\User.cs" />
     <Compile Include="DAL\Collab\PostLikesDAO.cs" />
     <Compile Include="DAL\Gacha\AvatarDAO.cs" />
@@ -241,7 +242,8 @@
     <Compile Include="DAL\Quiztool\QuizDAO.cs" />
     <Compile Include="DAL\Resources\grpResourceDAO.cs" />
     <Compile Include="DAL\Resources\grpResourceTypeDAO.cs" />
-    <Compile Include="DAL\User\UserDAO.cs" />
+    <Compile Include="DAL\Profile\BadgeDAO.cs" />
+    <Compile Include="DAL\Profile\UserDAO.cs" />
     <Compile Include="Views\Auth\logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

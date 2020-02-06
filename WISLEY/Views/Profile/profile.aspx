@@ -33,20 +33,6 @@
                     <div>
                         <asp:Label ID="LbContact" runat="server"></asp:Label>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <asp:Label ID="LbNoOfBlogs" runat="server" Text="0"></asp:Label>
-                            <asp:Label ID="Label1" runat="server" Text="Posts"></asp:Label>
-                        </div>
-                        <div class="col-lg-4">
-                            <asp:Label ID="LbFollowers" runat="server" Text="0"></asp:Label>
-                            <asp:Label ID="Label2" runat="server" Text="Followers"></asp:Label>
-                        </div>
-                        <div class="col-lg-4">
-                            <asp:Label ID="LbFollowing" runat="server" Text="0"></asp:Label>
-                            <asp:Label ID="Label3" runat="server" Text="Following"></asp:Label>
-                        </div>
-                    </div>
                     <%}
                         else
                         { %>
@@ -57,7 +43,7 @@
                 </div>
                 <div class="col-lg-4 text-right">
                     <h5>
-                        <asp:Label ID="LbWISPoints" runat="server"></asp:Label><img src="https://vignette.wikia.nocookie.net/brawlstars/images/e/e8/Star_Points.png/revision/latest?cb=20190827015915" class="img-fluid col-lg-1" style="width: 60px;"></h5>
+                        <asp:Label ID="LbWISPoints" runat="server"></asp:Label> WIS</h5>
                     <h5 class="font-weight-bold">
                         <asp:Label runat="server" ID="LbType"></asp:Label></h5>
                     <h5>
@@ -67,12 +53,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <h5>Level 1 Newbie</h5>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100" style="width: 69%">
-                            69/100 XP
-                        </div>
-                    </div>
                 </div>
                 <%if (userid.Value == hidotheremail.Value)
                     { %>
@@ -172,18 +152,43 @@
                         </FooterTemplate>
                     </asp:Repeater>
                 </div>
-                <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">
-                    <h3>Unlocked Badges</h3>
-                    <p>
-                        <img src="../../Public/img/Badges/Badge_Beginner.png" alt="Badge_Beginner.png" width="55" height="55" />Become a WISELY member.
-                    </p>
-                    <h3>Locked Badges</h3>
-                    <p>
-                        <img src="../../Public/img/Badges/Badge_Group.png" alt="Badge_Group.png" width="55" height="55" style="filter: grayscale(100%)" />Join a group.
-                    </p>
-                    <p>
-                        <img src="../../Public/img/Badges/Badge_Post.png" alt="Badge_Post.png" width="55" height="55" style="filter: grayscale(100%)" />Create a post.
-                    </p>
+                <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">       
+                    <h3>Unlocked Badges ( <asp:Label ID="LbNofUnlockedBadges" runat="server"></asp:Label> )</h3>
+                    <asp:Repeater ID="unlocked_badges" runat="server">
+                        <ItemTemplate>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="55" height="55"/>
+                                    </div>
+                                    <div class="col-8">
+                                        <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
+                                        <p><i class="fas fa-gift mr-1"></i><span class="font-weight-bold">Reward: </span><%#Eval("points") %> WIS</p>
+                                        <p><i class="fas fa-clock mr-1"></i><span class="font-weight-bold">Achieved On: </span><%#Eval("dateachieved") %></p>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <br />
+                    <h3>Locked Badges ( <asp:Label ID="LbNofLockedBadges" runat="server"></asp:Label> )</h3>
+                    <asp:Repeater ID="locked_badges" runat="server">
+                        <ItemTemplate>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="55" height="55" style="filter: grayscale(100%)" />
+                                    </div>
+                                    <div class="col-8">
+                                        <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
+                                        <p><i class="fas fa-gift mr-1"></i><span class="font-weight-bold">Reward: </span><%#Eval("points") %> WIS</p>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
                 <div id="quizzes" class="tab-pane fade m-2 ml-2" role="tabpanel">
                     <asp:Repeater runat="server" ID="userquiz" OnItemCommand="userquiz_ItemCommand" OnItemDataBound="userquiz_ItemDataBound">

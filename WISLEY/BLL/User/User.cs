@@ -105,5 +105,11 @@ namespace WISLEY.BLL.Profile
             UserDAO userdao = new UserDAO();
             return userdao.UpdateWISPoints(id, points);
         }
+
+        public int GetLastID()
+        {
+            UserDAO userdao = new UserDAO();
+            return userdao.GetLastID();
+        }
     }
 }
