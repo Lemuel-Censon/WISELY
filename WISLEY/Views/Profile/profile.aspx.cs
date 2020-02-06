@@ -31,14 +31,15 @@ namespace WISLEY
                     toast(this, Session["success"].ToString(), "Success", "success");
                     Session["success"] = null;
                 }
-                if (Request.QueryString["id"] != null)
-                {
-                    userid.Value = Request.QueryString["id"];
-                }
 
                 if (!Page.IsPostBack)
                 {
+                    if (Request.QueryString["id"] != null)
+                    {
+                        userid.Value = Request.QueryString["id"];
+                    }
                     User user = new User().SelectById(userid.Value);
+                    LbEmail.Text = user.email;
                     LbName.Text = user.name;
                     LbType.Text = user.userType;
                     LbWISPoints.Text = user.points.ToString();

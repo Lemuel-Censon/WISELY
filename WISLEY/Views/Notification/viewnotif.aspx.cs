@@ -18,6 +18,12 @@ namespace WISLEY.Views.Notification
                 List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
                 postnotifs.DataSource = postnotifications;
                 postnotifs.DataBind();
+                List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
+                invitenotifs.DataSource = invnotifications;
+                invitenotifs.DataBind();
+                List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
+                commentnotifs.DataSource = commnotifications;
+                commentnotifs.DataBind();
             }
             else
             {
@@ -65,6 +71,72 @@ namespace WISLEY.Views.Notification
                 List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
                 postnotifs.DataSource = postnotifications;
                 postnotifs.DataBind();
+            }
+        }
+
+        protected void invitenotifs_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewprofile")
+            {
+                int target = new User().SelectByEmail(e.CommandArgument.ToString()).id;
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id=" + target));
+            }
+            if (e.CommandName == "acceptinv")
+            {
+
+            }
+            if (e.CommandName == "clearnotif")
+            {
+                string notifId = e.CommandArgument.ToString();
+                Notify notif = new Notify();
+                notif.ClearNotifs(notifId);
+                List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
+                invitenotifs.DataSource = invnotifications;
+                invitenotifs.DataBind();
+            }
+        }
+
+        protected void invitenotifs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer && invitenotifs.Items.Count < 1)
+            {
+                e.Item.FindControl("LbErr").Visible = true;
+            }
+        }
+
+        protected void commentnotifs_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewprofile")
+            {
+                int target = new User().SelectByEmail(e.CommandArgument.ToString()).id;
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id=" + target));
+            }
+            if (e.CommandName == "viewpost")
+            {
+                Session["postId"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/viewpost.aspx"));
+            }
+            if (e.CommandName == "viewgroup")
+            {
+                string groupId = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx?groupId=" + groupId));
+            }
+            if (e.CommandName == "clearnotif")
+            {
+                string notifId = e.CommandArgument.ToString();
+                Notify notif = new Notify();
+                notif.ClearNotifs(notifId);
+                List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
+                postnotifs.DataSource = postnotifications;
+                postnotifs.DataBind();
+            }
+        }
+
+        protected void commentnotifs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer && commentnotifs.Items.Count < 1)
+            {
+                e.Item.FindControl("LbErr").Visible = true;
             }
         }
     }

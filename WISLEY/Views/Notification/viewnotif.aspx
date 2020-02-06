@@ -13,6 +13,9 @@
                         <li class="nav-item">
                             <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#inotifs">Invites</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#cnotifs">Comments</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -46,7 +49,7 @@
                                 <FooterTemplate>
                                     <div class="text-center mt-2">
                                         <h4>
-                                            <asp:Label runat="server" ID="LbErr" Text="No Notifications" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                                            <asp:Label runat="server" ID="LbErr" Text="No Notifications" Visible="false"></asp:Label>
                                         </h4>
                                     </div>
                                 </FooterTemplate>
@@ -54,7 +57,75 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" role="tabpanel" id="inotifs">
-
+                        <div class="row justify-content-center mx-auto p-2 col-12">
+                            <asp:Repeater runat="server" ID="invitenotifs" OnItemCommand="invitenotifs_ItemCommand" OnItemDataBound="invitenotifs_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="col-12 row justify-content-between z-depth-1 my-2">
+                                        <div class="col-8 row mx-auto my-3">
+                                            <div class="pl-2 align-self-center pt-1">
+                                                <h5>
+                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderEmail") %>'><%#Eval("senderName") %></asp:LinkButton>
+                                                    invited you to group 
+                                                    <%#Eval("groupName") %>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 align-self-center pt-2 row justify-content-end mx-auto">
+                                            <h6 class="text-muted text-right">
+                                                <%#Eval("datecreated") %>
+                                            </h6>
+                                        </div>
+                                        <asp:LinkButton runat="server" CommandName="acceptinv" CommandArgument='<%#Eval("groupId") %>' CssClass="btn btn-success btn-sm mx-auto align-self-center">Accept</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="close mx-auto align-self-center" CommandName="clearnotif" CommandArgument='<%#Eval("Id") %>'>
+                                            <span aria-hidden="true">&times;</span>
+                                        </asp:LinkButton>
+                                    </div>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <div class="text-center mt-2">
+                                        <h4>
+                                            <asp:Label runat="server" ID="LbErr" Text="No Notifications" Visible="false"></asp:Label>
+                                        </h4>
+                                    </div>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" role="tabpanel" id="cnotifs">
+                        <div class="row justify-content-center mx-auto p-2 col-12">
+                            <asp:Repeater runat="server" ID="commentnotifs" OnItemCommand="commentnotifs_ItemCommand" OnItemDataBound="commentnotifs_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="col-12 row justify-content-between z-depth-1 my-2">
+                                        <div class="col-8 row mx-auto my-3">
+                                            <div class="pl-2 align-self-center pt-1">
+                                                <h5>
+                                                    <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderEmail") %>'><%#Eval("senderName") %></asp:LinkButton>
+                                                    commented on your post  
+                                                    <asp:LinkButton runat="server" CommandName="viewpost" CommandArgument='<%#Eval("postId") %>'><%#Eval("postName") %></asp:LinkButton>
+                                                    in group 
+                                                    <asp:LinkButton runat="server" CommandName="viewgroup" CommandArgument='<%#Eval("groupId") %>'><%#Eval("groupName") %></asp:LinkButton>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 align-self-center pt-2 row justify-content-end mx-auto">
+                                            <h6 class="text-muted text-right">
+                                                <%#Eval("datecreated") %>
+                                            </h6>
+                                        </div>
+                                        <asp:LinkButton runat="server" CssClass="close mx-auto align-self-center" CommandName="clearnotif" CommandArgument='<%#Eval("Id") %>'>
+                                            <span aria-hidden="true">&times;</span>
+                                        </asp:LinkButton>
+                                    </div>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <div class="text-center mt-2">
+                                        <h4>
+                                            <asp:Label runat="server" ID="LbErr" Text="No Notifications" Visible="false"></asp:Label>
+                                        </h4>
+                                    </div>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </div>
                     </div>
                 </div>
             </div>

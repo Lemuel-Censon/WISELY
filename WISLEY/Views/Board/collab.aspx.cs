@@ -210,21 +210,20 @@ namespace WISLEY
                 Post post = new Post(title, content, userId, grpId, date, fileName);
                 int result = post.AddPost();
 
-                if (user().userType == "Teacher")
-                {
-                    List<string> members = new Group().getGroupMembers(grpId);
-                    foreach (var member in members)
-                    {
-                        if (member != user().email)
-                        {
-                            Notify notif = new Notify(user().email, member, date, "post", int.Parse(grpId), post.GetLastID());
-                            notif.AddPostNotif();
-                        }
-                    }
-                }
-
                 if (result == 1)
                 {
+                    if (user().userType == "Teacher")
+                    {
+                        List<string> members = new Group().getGroupMembers(grpId);
+                        foreach (var member in members)
+                        {
+                            if (member != user().email)
+                            {
+                                Notify notif = new Notify(user().email, member, date, "post", int.Parse(grpId), post.GetLastID());
+                                notif.AddPostNotif();
+                            }
+                        }
+                    }
                     Session["success"] = "Post Added!";
                     Response.Redirect("collab.aspx");
                 }

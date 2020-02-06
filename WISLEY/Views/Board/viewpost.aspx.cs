@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Collab;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
 
 namespace WISLEY
@@ -82,9 +83,17 @@ namespace WISLEY
 
                 Comment comment = new Comment(postId, LbUserID.Value, content, date);
                 int result = comment.AddComment();
+                Post postcreator = new Post().SelectByID(postId)[0];
+                int creatorId = int.Parse(postcreator.userId);
 
                 if (result == 1)
                 {
+                    if (user().id != creatorId)
+                    {
+                        string creatorEmail = new User().SelectById(creatorId.ToString()).email;
+                        Notify notif = new Notify(user().email, creatorEmail, date, "comment");
+                        notif.AddPostNotif();
+                    }
                     Session["success"] = "Comment posted!";
                     Response.Redirect("viewpost.aspx");
                 }

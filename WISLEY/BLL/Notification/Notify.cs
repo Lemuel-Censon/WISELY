@@ -46,10 +46,28 @@ namespace WISLEY.BLL.Notification
             return notifydao.InsertPost(this);
         }
 
-        public List<Notify> SelectPostNotif(string userId)
+        public List<Notify> SelectPostNotif(string userEmail)
         {
             NotifyDAO notifydao = new NotifyDAO();
-            return notifydao.SelectPostNotif(userId);
+            return notifydao.SelectPostNotif(userEmail);
+        }
+
+        public int AddInvNotif()
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.InsertInvite(this);
+        }
+
+        public List<Notify> SelectInvNotif(string userEmail)
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.SelectInvNotif(userEmail);
+        }
+
+        public List<Notify> SelectCommNotif(string userEmail)
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.SelectCommNotif(userEmail);
         }
 
         public int ClearNotifs(string notifId)
