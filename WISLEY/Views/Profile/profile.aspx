@@ -21,9 +21,6 @@
                     <h3 class="font-weight-bold">
                         <asp:Label ID="LbName" runat="server"></asp:Label>
                     </h3>
-                    <%
-                        if (userid.Value == hidotheremail.Value || LbPrivacy.Text == "Privacy is Off")
-                        { %>
                     <h5>
                         <asp:Label ID="LbEmail" runat="server"></asp:Label>
                     </h5>
@@ -33,22 +30,12 @@
                     <div>
                         <asp:Label ID="LbContact" runat="server"></asp:Label>
                     </div>
-                    <%}
-                        else
-                        { %>
-                    <div>
-                        <h3><i class="fas fa-lock mr-1"></i>Account is private!</h3>
-                    </div>
-                    <% } %>
                 </div>
                 <div class="col-lg-4 text-right">
                     <h5>
                         <asp:Label ID="LbWISPoints" runat="server"></asp:Label> WIS</h5>
                     <h5 class="font-weight-bold">
                         <asp:Label runat="server" ID="LbType"></asp:Label></h5>
-                    <h5>
-                        <asp:Label ID="LbPrivacy" runat="server" Visible="false"></asp:Label>
-                    </h5>
                 </div>
             </div>
             <div class="row">

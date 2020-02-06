@@ -209,7 +209,6 @@
     <Content Include="Views\Schedule\editToDo.aspx" />
     <Content Include="Views\Schedule\schedule.aspx" />
     <Content Include="Views\Testing Folder\fileUploadTest.aspx" />
-    <Content Include="Views\Profile\settings.aspx" />
     <Content Include="Public\js\toast\toastr.js" />
     <Content Include="Public\js\toast\toastr.min.js" />
     <Content Include="Views\Schedule\todoplan.aspx" />
@@ -482,13 +481,6 @@
     </Compile>
     <Compile Include="Views\Testing Folder\fileUploadTest.aspx.designer.cs">
       <DependentUpon>fileUploadTest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Profile\settings.aspx.cs">
-      <DependentUpon>settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Profile\settings.aspx.designer.cs">
-      <DependentUpon>settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Schedule\todoplan.aspx.cs">
       <DependentUpon>todoplan.aspx</DependentUpon>

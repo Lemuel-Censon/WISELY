@@ -65,14 +65,6 @@ namespace WISLEY
                     {
                         LbContact.Text += "Not set";
                     }
-                    if (user.privacy == "T")
-                    {
-                        LbPrivacy.Text = "Privacy is On";
-                    }
-                    else
-                    {
-                        LbPrivacy.Text = "Privacy is Off";
-                    }
                     if (String.IsNullOrEmpty(user.bio))
                     {
                         LbBio.Text = "Currently Empty";
