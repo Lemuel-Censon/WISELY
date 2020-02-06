@@ -8,13 +8,28 @@
                 <div class="mx-auto">
                     <ul class="nav nav-tabs rounded-0" role="tablist">
                         <li class="nav-item ml-0">
-                            <a class="nav-link waves-light active show" data-toggle="tab" role="tab" href="#pnotifs">Posts</a>
+                            <a class="nav-link waves-light active show" data-toggle="tab" role="tab" href="#pnotifs">Posts
+                                <%if (notifcount()[0] > 0)
+                                    { %>
+                                <span class="font-weight-bold text-danger">!</span>
+                                <%} %>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#inotifs">Invites</a>
+                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#inotifs">Invites
+                                                            <%if (notifcount()[1] > 0)
+                                                                { %>
+                                <span class="font-weight-bold text-danger">!</span>
+                                <%} %>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#cnotifs">Comments</a>
+                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#cnotifs">Comments
+                                                            <%if (notifcount()[2] > 0)
+                                                                { %>
+                                <span class="font-weight-bold text-danger">!</span>
+                                <%} %>
+                            </a>
                         </li>
                     </ul>
                 </div>

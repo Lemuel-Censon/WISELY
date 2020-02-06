@@ -395,6 +395,8 @@ namespace WISLEY
                 int result = post.DelPostUpdate(postId, "deleted");
                 if (result == 1)
                 {
+                    Notify notif = new Notify();
+                    notif.ClearDelPostNotifs(postId);
                     Session["success"] = "Post deleted successfully!";
                     Response.Redirect("collab.aspx");
                 }

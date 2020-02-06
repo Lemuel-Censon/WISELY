@@ -211,5 +211,52 @@ namespace WISLEY.DAL.Notification
 
             return result;
         }
+
+        public int ClearDeletedPostNotifs(string postId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Notification " +
+                "SET status = 'cleared' " +
+                "WHERE postId = @paraPostID";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraPostID", postId);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UserNotifCount(string userEmail)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from Notification where receiverId = @paraReceiverID";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraReceiverID", userEmail);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            int notifcount = 0;
+
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    notifcount++;
+                }
+            }
+
+            return notifcount;
+        }
     }
 }

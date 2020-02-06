@@ -32,6 +32,18 @@ namespace WISLEY.Views.Notification
             }
         }
 
+        public List<int> notifcount()
+        {
+            List<int> notifscount = new List<int>();
+            List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
+            List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
+            List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
+            notifscount.Add(postnotifications.Count);
+            notifscount.Add(invnotifications.Count);
+            notifscount.Add(commnotifications.Count);
+            return notifscount;
+        }
+
         public User user()
         {
             User user = new User().SelectByEmail(Session["email"].ToString());

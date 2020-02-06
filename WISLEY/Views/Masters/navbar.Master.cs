@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
 
 namespace WISLEY
@@ -35,7 +36,11 @@ namespace WISLEY
             }
         }
 
-
+        public int notifnum()
+        {
+            int notifcount = new Notify().UserNotifCount(user().email);
+            return notifcount;
+        }
 
     }
 }

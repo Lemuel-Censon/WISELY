@@ -75,5 +75,17 @@ namespace WISLEY.BLL.Notification
             NotifyDAO notifydao = new NotifyDAO();
             return notifydao.ClearNotifs(notifId);
         }
+
+        public int ClearDelPostNotifs(string postId)
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.ClearDeletedPostNotifs(postId);
+        }
+
+        public int UserNotifCount(string userEmail)
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.UserNotifCount(userEmail);
+        }
     }
 }
