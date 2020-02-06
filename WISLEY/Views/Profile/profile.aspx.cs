@@ -32,12 +32,13 @@ namespace WISLEY
                     Session["success"] = null;
                 }
 
+                if (Request.QueryString["id"] != null)
+                {
+                    userid.Value = Request.QueryString["id"];
+                }
+
                 if (!Page.IsPostBack)
                 {
-                    if (Request.QueryString["id"] != null)
-                    {
-                        userid.Value = Request.QueryString["id"];
-                    }
                     User user = new User().SelectById(userid.Value);
                     LbEmail.Text = user.email;
                     LbName.Text = user.name;
