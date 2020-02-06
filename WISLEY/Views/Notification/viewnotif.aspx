@@ -16,7 +16,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#inotifs">Invites
+                            <a class="nav-link waves-light" data-toggle="tab" role="tab" href="#inotifs">Groups
                                                             <%if (notifcount()[1] > 0)
                                                                 { %>
                                 <span class="font-weight-bold text-danger">!</span>
@@ -79,9 +79,10 @@
                                         <div class="col-8 row mx-auto my-3">
                                             <div class="pl-2 align-self-center pt-1">
                                                 <h5>
+                                                    You have been added to group
+                                                    <asp:LinkButton runat="server" CommandName="viewgroup" CommandArgument='<%#Eval("groupId") %>'><%#Eval("groupName") %></asp:LinkButton>
+                                                    by 
                                                     <asp:LinkButton runat="server" CommandName="viewprofile" CommandArgument='<%#Eval("senderEmail") %>'><%#Eval("senderName") %></asp:LinkButton>
-                                                    invited you to group 
-                                                    <%#Eval("groupName") %>
                                                 </h5>
                                             </div>
                                         </div>
@@ -90,7 +91,6 @@
                                                 <%#Eval("datecreated") %>
                                             </h6>
                                         </div>
-                                        <asp:LinkButton runat="server" CommandName="acceptinv" CommandArgument='<%#Eval("groupId") %>' CssClass="btn btn-success btn-sm mx-auto align-self-center">Accept</asp:LinkButton>
                                         <asp:LinkButton runat="server" CssClass="close mx-auto align-self-center" CommandName="clearnotif" CommandArgument='<%#Eval("Id") %>'>
                                             <span aria-hidden="true">&times;</span>
                                         </asp:LinkButton>

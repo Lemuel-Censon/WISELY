@@ -53,7 +53,7 @@
     </div>
     <br />
     <div class="row mt-3">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
                     <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" role="tab" data-toggle="tab" href="#about">About</a>
@@ -116,7 +116,7 @@
                                                     <asp:LinkButton runat="server" ID="postlink"><%#Eval("username") %></asp:LinkButton>
                                                 </h5>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 text-right">
                                                 <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                 </span>
                                             </div>

@@ -91,9 +91,10 @@ namespace WISLEY.Views.Notification
                 int target = new User().SelectByEmail(e.CommandArgument.ToString()).id;
                 Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx?id=" + target));
             }
-            if (e.CommandName == "acceptinv")
+            if (e.CommandName == "viewgroup")
             {
-
+                string groupId = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx?groupId=" + groupId));
             }
             if (e.CommandName == "clearnotif")
             {
