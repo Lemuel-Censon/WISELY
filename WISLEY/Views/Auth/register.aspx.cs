@@ -76,7 +76,7 @@ namespace WISLEY
                 string name = TbName.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, "Student", name, "", "", "", 0, 0, "F", "F", "");
+                User user = new User(email, password, "Student", name, "", "", "", 0, "F", "F", "");
                 int result = user.AddUser();
                 Badge badge1 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Badge_Beginner.png", "Become a WISELY member", 50, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
                 Badge badge2 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Group.png", "Badge_Group.png", "Join a group.", 50, "", "Locked");

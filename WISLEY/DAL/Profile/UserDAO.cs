@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Profile
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, experience, wisPoints, accType, privacy, notification, bio)" +
-                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @paraexp, @parapoints, @paraUserType, @paraPrivacy, @paraNotification, @paraBio)";
+            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, wisPoints, accType, privacy, notification, bio)" +
+                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @parapoints, @paraUserType, @paraPrivacy, @paraNotification, @paraBio)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -28,7 +28,6 @@ namespace WISLEY.DAL.Profile
             sqlCmd.Parameters.AddWithValue("@paraContactNo", user.contactNo);
             sqlCmd.Parameters.AddWithValue("@paragender", user.gender);
             sqlCmd.Parameters.AddWithValue("@paraDob", user.dob);
-            sqlCmd.Parameters.AddWithValue("@paraexp", user.experience);
             sqlCmd.Parameters.AddWithValue("@parapoints", user.points);
             sqlCmd.Parameters.AddWithValue("@paraUserType", user.userType);
             sqlCmd.Parameters.AddWithValue("@paraPrivacy", user.privacy);
@@ -66,7 +65,6 @@ namespace WISLEY.DAL.Profile
                 string dob = row["dob"].ToString();
                 string contactNo = row["contactNo"].ToString();
                 string gender = row["gender"].ToString();
-                int exp = int.Parse(row["experience"].ToString());
                 int points = int.Parse(row["wisPoints"].ToString());
                 string privacy = row["privacy"].ToString();
                 string notification = row["notification"].ToString();
@@ -75,7 +73,7 @@ namespace WISLEY.DAL.Profile
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, src, id);
+                obj = new User(email, password, type, name, dob, contactNo, gender, points, privacy, notification, bio, src, id);
             }
 
             return obj;
@@ -105,7 +103,6 @@ namespace WISLEY.DAL.Profile
                 string dob = row["dob"].ToString();
                 string contactNo = row["contactNo"].ToString();
                 string gender = row["gender"].ToString();
-                int exp = int.Parse(row["experience"].ToString());
                 int points = int.Parse(row["wisPoints"].ToString());
                 string privacy = row["privacy"].ToString();
                 string notification = row["notification"].ToString();
@@ -114,7 +111,7 @@ namespace WISLEY.DAL.Profile
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, exp, points, privacy, notification, bio, src, id);
+                obj = new User(email, password, type, name, dob, contactNo, gender, points, privacy, notification, bio, src, id);
             }
 
             return obj;
