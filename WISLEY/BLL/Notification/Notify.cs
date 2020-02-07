@@ -15,9 +15,11 @@ namespace WISLEY.BLL.Notification
         public string type { get; set; }
         public int groupId { get; set; }
         public int postId { get; set; }
+        public int badgeId { get; set; }
         public string senderName { get; set; }
         public string groupName { get; set; }
         public string postName { get; set; }
+        public string badgeName { get; set; }
         public string status { get; set; }
 
         public Notify()
@@ -25,7 +27,7 @@ namespace WISLEY.BLL.Notification
 
         }
 
-        public Notify(string senderEmail, string receiverEmail, string datecreated, string type, int groupId = -1, int postId = -1, int Id = -1, string senderName = "", string groupName = "", string postName = "", string status = "")
+        public Notify(string senderEmail, string receiverEmail, string datecreated, string type, int groupId = -1, int postId = -1, int badgeId = -1, int Id = -1, string senderName = "", string groupName = "", string postName = "", string badgeName = "", string status = "")
         {
             this.senderEmail = senderEmail;
             this.receiverEmail = receiverEmail;
@@ -34,9 +36,11 @@ namespace WISLEY.BLL.Notification
             this.Id = Id;
             this.groupId = groupId;
             this.postId = postId;
+            this.badgeId = badgeId;
             this.senderName = senderName;
             this.groupName = groupName;
             this.postName = postName;
+            this.badgeName = badgeName;
             this.status = status;
         }
 
@@ -68,6 +72,18 @@ namespace WISLEY.BLL.Notification
         {
             NotifyDAO notifydao = new NotifyDAO();
             return notifydao.SelectCommNotif(userEmail);
+        }
+
+        public int AddBadgeNotif()
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.InsertBadgeNotif(this);
+        }
+
+        public List<Notify> SelectBadgeNotif(string userEmail)
+        {
+            NotifyDAO notifydao = new NotifyDAO();
+            return notifydao.SelectBadgeNotifs(userEmail);
         }
 
         public int ClearNotifs(string notifId)

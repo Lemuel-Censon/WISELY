@@ -22,6 +22,15 @@ namespace WISLEY.Views.Notification {
         protected global::System.Web.UI.WebControls.Repeater postnotifs;
         
         /// <summary>
+        /// commentnotifs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater commentnotifs;
+        
+        /// <summary>
         /// invitenotifs control.
         /// </summary>
         /// <remarks>
@@ -31,12 +40,12 @@ namespace WISLEY.Views.Notification {
         protected global::System.Web.UI.WebControls.Repeater invitenotifs;
         
         /// <summary>
-        /// commentnotifs control.
+        /// badgenotifs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater commentnotifs;
+        protected global::System.Web.UI.WebControls.Repeater badgenotifs;
     }
 }

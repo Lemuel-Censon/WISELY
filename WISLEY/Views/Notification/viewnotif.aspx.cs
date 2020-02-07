@@ -24,6 +24,9 @@ namespace WISLEY.Views.Notification
                 List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
                 commentnotifs.DataSource = commnotifications;
                 commentnotifs.DataBind();
+                List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email);
+                badgenotifs.DataSource = badgenotifications;
+                badgenotifs.DataBind();
             }
             else
             {
@@ -38,9 +41,11 @@ namespace WISLEY.Views.Notification
             List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
             List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
             List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
+            List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email);
             notifscount.Add(postnotifications.Count);
-            notifscount.Add(invnotifications.Count);
             notifscount.Add(commnotifications.Count);
+            notifscount.Add(invnotifications.Count);
+            notifscount.Add(badgenotifications.Count);
             return notifscount;
         }
 
@@ -144,6 +149,29 @@ namespace WISLEY.Views.Notification
             if (e.Item.ItemType == ListItemType.Footer && commentnotifs.Items.Count < 1)
             {
                 e.Item.FindControl("LbErr").Visible = true;
+            }
+        }
+
+        protected void badgenotifs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer && badgenotifs.Items.Count < 1)
+            {
+                e.Item.FindControl("LbErr").Visible = true;
+            }
+        }
+
+        protected void badgenotifs_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewprofile")
+            {
+                Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
+            }
+            if (e.CommandName == "clearnotif")
+            {
+                string notifId = e.CommandArgument.ToString();
+                Notify notif = new Notify();
+                notif.ClearNotifs(notifId);
+                Response.Redirect("viewnotif.aspx");
             }
         }
     }
