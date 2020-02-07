@@ -151,5 +151,39 @@ namespace WISLEY.DAL.Schedule
 
             return result;
         }
+
+        public Planner SelectByDate(string todoDate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(DBConnect);
+
+            string sqlStmt = "SELECT * FROM Planner " +
+                "WHERE dateSelected = @paraToDoDate";
+
+            SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConnection);
+
+            da.SelectCommand.Parameters.AddWithValue("@paraToDoDate", todoDate);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+
+            Planner plannerObj = new Planner();
+
+            int count = ds.Tables[0].Rows.Count;
+
+            if (count > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                int userId = int.Parse(row["userId"].ToString());
+                string dateSelected = row["dateSelected"].ToString();
+                string title = row["ToDotitle"].ToString();
+                string description = row["description"].ToString();
+                string status = row["status"].ToString();
+                plannerObj = new Planner(userId, dateSelected, title, description, status);
+            }
+
+            return plannerObj;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Group;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.Schedule;
 
 namespace WISLEY
 {
@@ -33,8 +34,26 @@ namespace WISLEY
                     "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
                     "ORDER BY customOrder ASC";
 
+                //if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
+                //{
+                //das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
+                //das.SelectCommand = "SELECT * FROM [Group] " +
+                //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') " +
+                //"ORDER BY Id ASC";
+                //if (getGroupIds().Count > 0)
+                //{
+                //    das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
 
+                //}
+                //}
 
+                List<Planner> todolist = new Planner().SelectByUser(currUser().id);
+                //scheduleitems.DataSource = todolist;
+                //scheduleitems.DataBind();
+
+                Repeater schedule = (Repeater)cp.FindControl("scheduleitems");
+                schedule.DataSource = todolist;
+                schedule.DataBind();
             }
 
         }
@@ -52,6 +71,12 @@ namespace WISLEY
                 }
             }
             return isTeacher;
+        }
+
+        public User currUser()
+        {
+            User user = new User().SelectByEmail(Session["email"].ToString());
+            return user;
         }
 
         public void toMembers()
@@ -112,6 +137,20 @@ namespace WISLEY
             return user;
         }
 
+        protected void scheduleRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
 
+        }
+
+        protected void scheduleRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (scheduleitems.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LblMsg").Visible = true;
+                }
+            }
+        }
     }
 }

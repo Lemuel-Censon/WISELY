@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.master" AutoEventWireup="true" CodeBehind="schedule.aspx.cs" Inherits="WISLEY.Views.Schedule.schedules" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="sidebarContent" runat="server">
-    <div class="col-12 border border-secondary">
+    <link rel="stylesheet" type="text/css" href="<%= Page.ResolveUrl("~/Public/css/planner.css") %>" />
+
+    <div class="col-12">
         <div class="card">
             <div class="card-body m-0 m-auto">
                 <div class="row">
@@ -30,6 +32,11 @@
                 <h4 class="text-center font-weight-bold">Your To-Do-Lists</h4>
                 <p class="text-center font-weight-bold">Total To-do-lists: <%=ToDoListcount().ToString() %></p>
                 
+                <%--<label class="switch">
+                    <input type="checkbox" />
+                    <div class="slider"></div>
+                </label>--%>
+
                 <div class="input-group md-form md-outline">
                     <input type="text" id="search" class="form-control" placeholder="Find by Title" />
                     <div class="input-group-append">
@@ -41,7 +48,7 @@
                     <ItemTemplate>
                         <div class="card plannerCards">
                             <div class="card-body">
-                                <p class="card-title font-weight-bold plannerTitle">Title: <%#Eval("todoTitle") %></p>
+                                <p class="card-title font-weight-bold plannerTitle" data-pname="<%#Eval("todoTitle") %>">Title: <%#Eval("todoTitle") %></p>
                                 <hr />
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -51,6 +58,7 @@
                                         <i class="fas fa-clock mr-1"></i><span>Date: <%#Eval("todoDate") %></span>
                                     </div>
                                 </div>
+                                <hr />
                                 <div class="text-right">
                                     <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>">Delete</button>
                                     <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
@@ -88,9 +96,11 @@
                         </div>
                     </FooterTemplate>
                 </asp:Repeater>
+
+                <h4 class="card-title font-weight-bold" id="searchMsg" style="display:none;">No results found!</h4>
             </div>
         </div>
     </div>
 
-    <script src="<%= Page.ResolveUrl("~/Public/js/planner.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveUrl("~/Public/js/planners.js") %>" type="text/javascript"></script>
 </asp:Content>

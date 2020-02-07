@@ -30,7 +30,6 @@
 
 
 
-
                 <div class="col-12">
                     <h4 class="text-center mx-auto">Groups</h4>
                     <hr class="hr-primary">
@@ -123,9 +122,39 @@
         <div class="col-lg-3 d-lg-block d-md-none">
             <div class="card card-body mb-4">
                 <div class="row justify-content-center">
-                    <h1 class="col-12 text-center">Schedule </h1>
-                    <div class="col-4">
+                    <h1 class="col-12 text-center"> Schedule</h1>
+                    <div class="col-12">
                         <!-- Social shares button -->
+                        <asp:Repeater ID="scheduleitems" runat="server" OnItemCommand="scheduleRepeater_ItemCommand" OnItemDataBound="scheduleRepeater_ItemDataBound">
+                            <ItemTemplate>
+                                <div class="card scheduleCards">
+                                    <div class="card-body">
+                                        <p class="card-title font-weight-bold scheduleTitle mb-2"><%#Eval("todoTitle") %></p>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <span class="text-muted"><i class="fas fa-clock mr-1"></i><%#Eval("todoDate") %></span>
+                                                <hr />
+                                            </div>
+                                            
+                                            <div class="col-lg-12">
+                                                <p class="card-text"><%#Eval("todoDescription") %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <asp:LinkButton runat="server" ID="btnView" CssClass="btn btn-info btn-sm" Text="View" CommandName="view" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <div class="text-center mb-4">
+                                    <h4>
+                                        <asp:Label runat="server" ID="LblMsg" Text="No Plans at the moment" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                                    </h4>
+                                </div>
+                            </FooterTemplate>
+                        </asp:Repeater>
                     </div>
 
 
