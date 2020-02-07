@@ -78,18 +78,18 @@ namespace WISLEY
 
                 User user = new User(email, password, "Student", name, "", "", "", 0, "");
                 int result = user.AddUser();
-                Badge badge1 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Badge_Beginner.png", "Become a WISELY member", 0, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
-                Badge badge2 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Group.png", "Badge_Group.png", "Join a group.", 50, "", "Locked");
-                Badge badge3 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Post.png", "Badge_Post.png", "Create a post.", 50, "", "Locked");
-                Badge badge4 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Quiz.png", "Badge_Quiz.png", "Create a quiz.", 50, "", "Locked");
-                Badge badge5 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Quiz_10.png", "Badge_Quiz_10.png", "Create 10 quizzes.", 200, "", "Locked");
-                Badge badge6 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_1000WIS.png", "Badge_1000WIS.png", "Earn 1000 WIS points.", 50, "", "Locked");
-                Badge badge7 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_10000WIS.png", "Badge_10000WIS.png", "Earn 10000 WIS points.", 200, "", "Locked");
-                Badge badge8 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_100000WIS.png", "Badge_100000WIS.png", "Earn 100000 WIS points.", 1000, "", "Locked");
-                Badge badge9 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Gacha.png", "Badge_Gacha.png", "Summon a x1 gacha.", 50, "", "Locked");
-                Badge badge10 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Gacha_11.png", "Badge_Gacha_11.png", "Summon a x11 gacha.", 200, "", "Locked");
-                Badge badge11 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_ToDoList.png", "Badge_ToDoList.png", "Create a to-do-list.", 50, "", "Locked");
-                Badge badge12 = new Badge(user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Thuglife.png", "Badge_Thuglife.png", "Earn all badges to become truly WISELY.", 1000, "", "Locked");
+                Badge badge1 = new Badge(1, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Badge_Beginner.png", "Become a WISELY member", 0, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                Badge badge2 = new Badge(2, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Group.png", "Badge_Group.png", "Join a group.", 50, "", "Locked");
+                Badge badge3 = new Badge(3, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Post.png", "Badge_Post.png", "Create a post.", 50, "", "Locked");
+                Badge badge4 = new Badge(4, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Quiz.png", "Badge_Quiz.png", "Create a quiz.", 50, "", "Locked");
+                Badge badge5 = new Badge(5, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Quiz_10.png", "Badge_Quiz_10.png", "Create 10 quizzes.", 200, "", "Locked");
+                Badge badge6 = new Badge(6, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_1000WIS.png", "Badge_1000WIS.png", "Earn 1000 WIS points.", 50, "", "Locked");
+                Badge badge7 = new Badge(7, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_10000WIS.png", "Badge_10000WIS.png", "Earn 10000 WIS points.", 200, "", "Locked");
+                Badge badge8 = new Badge(8, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_100000WIS.png", "Badge_100000WIS.png", "Earn 100000 WIS points.", 1000, "", "Locked");
+                Badge badge9 = new Badge(9, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Gacha.png", "Badge_Gacha.png", "Summon a x1 gacha.", 50, "", "Locked");
+                Badge badge10 = new Badge(10, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Gacha_11.png", "Badge_Gacha_11.png", "Summon a x11 gacha.", 200, "", "Locked");
+                Badge badge11 = new Badge(11, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_ToDoList.png", "Badge_ToDoList.png", "Create a to-do-list.", 50, "", "Locked");
+                Badge badge12 = new Badge(12, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Thuglife.png", "Badge_Thuglife.png", "Earn all badges to become truly WISELY.", 1000, "", "Locked");
                 if (result == 1)
                 {
                     badge1.AddBadge();

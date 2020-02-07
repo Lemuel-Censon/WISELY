@@ -84,19 +84,21 @@
             </ul>
             <div class="tab-content">
                 <div id="about" class="tab-pane fade show active m-2 ml-2" role="tabpanel">
-                    <asp:Label ID="LbBio" runat="server"></asp:Label>
-                    <%if (userid.Value == hidotheremail.Value)
-                        { %>
-                    <br />
-                    <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
-                    <%} %>
                     <div>
-                        <div class="md-form md-outline">
-                            <asp:Label AssociatedControlID="TbBio" ID="LbBioDesc" runat="server" Text="Bio Description" Visible="False"></asp:Label>
-                            <asp:TextBox ID="TbBio" runat="server" CssClass="form-control" TextMode="MultiLine" Visible="False" Width="700px" Height="300px"></asp:TextBox>
-                            <div class="text-right flex-fill">
-                                <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
-                                <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
+                        <asp:Label ID="LbBio" runat="server"></asp:Label>
+                        <%if (userid.Value == hidotheremail.Value)
+                            { %>
+                        <br />
+                        <asp:Button CssClass="btn btn-sm btn-info" ID="btnEditBio" runat="server" Text="Edit Bio" OnClick="btnEditBio_Click" />
+                        <%} %>
+                        <div>
+                            <div class="md-form md-outline">
+                                <asp:Label AssociatedControlID="TbBio" ID="LbBioDesc" runat="server" Text="Bio Description" Visible="False"></asp:Label>
+                                <asp:TextBox ID="TbBio" runat="server" CssClass="form-control" TextMode="MultiLine" Visible="False" Height="300px"></asp:TextBox>
+                                <div class="text-right flex-fill">
+                                    <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
+                                    <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
+                                </div>
                             </div>
                         </div>
                     </div>

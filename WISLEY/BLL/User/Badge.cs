@@ -9,6 +9,7 @@ namespace WISLEY.BLL.User
     public class Badge
     {
         public int Id { get; set; }
+        public int badgeId { get; set; }
         public string userId { get; set; }
         public string src { get; set; }
         public string alt { get; set; }
@@ -22,8 +23,9 @@ namespace WISLEY.BLL.User
 
         }
 
-        public Badge(string userId, string src, string alt, string requirement, int points, string dateachieved, string status)
+        public Badge(int badgeId, string userId, string src, string alt, string requirement, int points, string dateachieved, string status)
         {
+            this.badgeId = badgeId;
             this.userId = userId;
             this.src = src;
             this.alt = alt;
@@ -45,10 +47,10 @@ namespace WISLEY.BLL.User
             return badgedao.SelectByUserId(userId, status);
         }
 
-        public int UpdateBadge(string userId, string requirement, string dateachieved, string status)
+        public int UpdateBadge(string userId, int badgeId, string dateachieved, string status)
         {
             BadgeDAO badgedao = new BadgeDAO();
-            return badgedao.UpdateBadge(userId, requirement, dateachieved, status);
+            return badgedao.UpdateBadge(userId, badgeId, dateachieved, status);
         }
 
         public int GetLastID()
@@ -61,6 +63,12 @@ namespace WISLEY.BLL.User
         {
             BadgeDAO badgedao = new BadgeDAO();
             return badgedao.GetBadgeCount(userId, status);
+        }
+
+        public Badge SelectByBadgeId(string userId, int badgeId)
+        {
+            BadgeDAO badgedao = new BadgeDAO();
+            return badgedao.SelectByBadgeId(userId, badgeId);
         }
     }
 }

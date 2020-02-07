@@ -15,12 +15,13 @@ namespace WISLEY.DAL.Profile
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO Badge (userId, src, alt, requirement, points, dateachieved, status)" +
-                             "VALUES (@paraUserID, @paraSrc, @paraAlt, @paraRequirement, @paraPoints, @paraDateachieved, @paraStatus)";
+            string sqlStmt = "INSERT INTO Badge (badgeId, userId, src, alt, requirement, points, dateachieved, status)" +
+                             "VALUES (@paraBadgeID, @paraUserID, @paraSrc, @paraAlt, @paraRequirement, @paraPoints, @paraDateachieved, @paraStatus)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
+            sqlCmd.Parameters.AddWithValue("@paraBadgeID", badge.badgeId);
             sqlCmd.Parameters.AddWithValue("@paraUserID", badge.userId);
             sqlCmd.Parameters.AddWithValue("@paraSrc", badge.src);
             sqlCmd.Parameters.AddWithValue("@paraAlt", badge.alt);
@@ -35,6 +36,39 @@ namespace WISLEY.DAL.Profile
             myConn.Close();
 
             return result;
+        }
+
+        public Badge SelectByBadgeId(string userId, int badgeId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from Badge where userId = @paraUserID and badgeId = @paraBadgeID";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraUserID", userId);
+            da.SelectCommand.Parameters.AddWithValue("@paraBadgeID", badgeId);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Badge obj = null;
+            if (rec_cnt > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                int badgeID = int.Parse(row["badgeId"].ToString());
+                string userID = row["userId"].ToString();
+                string src = row["src"].ToString();
+                string alt = row["alt"].ToString();
+                string requirement = row["requirement"].ToString();
+                int points = int.Parse(row["points"].ToString());
+                string dateachieved = row["dateachieved"].ToString();
+                string badge_status = row["status"].ToString();
+
+                obj = new Badge(badgeID, userID, src, alt, requirement, points, dateachieved, badge_status);
+            }
+
+            return obj;
         }
 
         public List<Badge> SelectByUserId(string userId, string status)
@@ -58,6 +92,7 @@ namespace WISLEY.DAL.Profile
                 for (int i = 0; i < rec_cnt; i++)
                 {
                     DataRow row = ds.Tables[0].Rows[i];
+                    int badgeID = int.Parse(row["badgeId"].ToString());
                     string userID = row["userId"].ToString();
                     string src = row["src"].ToString();
                     string alt = row["alt"].ToString();
@@ -66,7 +101,7 @@ namespace WISLEY.DAL.Profile
                     string dateachieved = row["dateachieved"].ToString();
                     string badge_status = row["status"].ToString();
 
-                    obj = new Badge(userID, src, alt, requirement, points, dateachieved, badge_status);
+                    obj = new Badge(badgeID, userID, src, alt, requirement, points, dateachieved, badge_status);
                     userbadgelist.Add(obj);
                 }
             }
@@ -90,11 +125,11 @@ namespace WISLEY.DAL.Profile
             return rec_cnt;
         }
 
-            public int UpdateBadge(string userId, string requirement, string dateachieved, string status)
+        public int UpdateBadge(string userId, int badgeId, string dateachieved, string status)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlstmt = "Update Badge Set dateachieved = @paraDateachieved, status = @paraStatus where userId = @paraUserID and requirement = @paraRequirement";
+            string sqlstmt = "Update Badge Set dateachieved = @paraDateachieved, status = @paraStatus where userId = @paraUserID and badgeId = @paraBadgeID";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlstmt, myConn);
@@ -102,7 +137,7 @@ namespace WISLEY.DAL.Profile
             sqlCmd.Parameters.AddWithValue("@paraDateachieved", dateachieved);
             sqlCmd.Parameters.AddWithValue("@paraStatus", status);
             sqlCmd.Parameters.AddWithValue("@paraUserID", userId);
-            sqlCmd.Parameters.AddWithValue("@paraRequirement", requirement);
+            sqlCmd.Parameters.AddWithValue("@paraBadgeID", badgeId);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
