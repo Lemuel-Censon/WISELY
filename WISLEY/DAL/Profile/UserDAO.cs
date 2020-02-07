@@ -16,8 +16,8 @@ namespace WISLEY.DAL.Profile
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            string sqlStmt = "INSERT INTO [User] (email, name, password, contactNo, gender, dob, wisPoints, accType, bio)" +
-                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraContactNo, @paragender, @paraDob, @parapoints, @paraUserType, @paraBio)";
+            string sqlStmt = "INSERT INTO [User] (email, name, password, salt, contactNo, gender, dob, wisPoints, accType, bio)" +
+                             "VALUES (@paraEmail, @paraName, @paraPassword, @paraSalt, @paraContactNo, @paragender, @paraDob, @parapoints, @paraUserType, @paraBio)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -25,6 +25,7 @@ namespace WISLEY.DAL.Profile
             sqlCmd.Parameters.AddWithValue("@paraEmail", user.email);
             sqlCmd.Parameters.AddWithValue("@paraName", user.name);
             sqlCmd.Parameters.AddWithValue("@paraPassword", user.password);
+            sqlCmd.Parameters.AddWithValue("@paraSalt", user.salt);
             sqlCmd.Parameters.AddWithValue("@paraContactNo", user.contactNo);
             sqlCmd.Parameters.AddWithValue("@paragender", user.gender);
             sqlCmd.Parameters.AddWithValue("@paraDob", user.dob);
@@ -58,6 +59,7 @@ namespace WISLEY.DAL.Profile
             {
                 DataRow row = ds.Tables[0].Rows[0];
                 string password = row["password"].ToString();
+                string salt = row["salt"].ToString();
                 string type = row["accType"].ToString();
                 string name = row["name"].ToString();
                 string dob = row["dob"].ToString();
@@ -69,7 +71,7 @@ namespace WISLEY.DAL.Profile
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, points, bio, src, id);
+                obj = new User(email, password, salt, type, name, dob, contactNo, gender, points, bio, src, id);
             }
 
             return obj;
@@ -94,6 +96,7 @@ namespace WISLEY.DAL.Profile
                 DataRow row = ds.Tables[0].Rows[0];
                 string email = row["email"].ToString();
                 string password = row["password"].ToString();
+                string salt = row["salt"].ToString();
                 string type = row["accType"].ToString();
                 string name = row["name"].ToString();
                 string dob = row["dob"].ToString();
@@ -105,7 +108,7 @@ namespace WISLEY.DAL.Profile
                 int id = int.Parse(row["Id"].ToString());
 
 
-                obj = new User(email, password, type, name, dob, contactNo, gender, points, bio, src, id);
+                obj = new User(email, password, salt, type, name, dob, contactNo, gender, points, bio, src, id);
             }
 
             return obj;

@@ -12,6 +12,7 @@ namespace WISLEY.BLL.Profile
         public string email { get; set; }
         public string name { get; set; }
         public string password { get; set; }
+        public string salt { get; set; }
         public string contactNo { get; set; }
         public string userType { get; set; }
         public string dob { get; set; }
@@ -25,11 +26,12 @@ namespace WISLEY.BLL.Profile
 
         }
 
-        public User(string email, string password, string userType, string name, string dob, string contactNo, string gender, int points, string bio, string profilesrc = "", int id = -1)
+        public User(string email, string password, string salt, string userType, string name, string dob, string contactNo, string gender, int points, string bio, string profilesrc = "", int id = -1)
         {
             this.id = id;
             this.email = email;
             this.password = password;
+            this.salt = salt;
             this.userType = userType;
             this.name = name;
             this.dob = dob;

@@ -243,7 +243,7 @@ namespace WISLEY.DAL.Notification
                     string datecreated = row["datecreated"].ToString();
                     string type = row["type"].ToString();
                     int Id = int.Parse(row["Id"].ToString());
-                    string badgeName = row["name"].ToString();
+                    string badgeName = row["alt"].ToString();
                     obj = new Notify(senderId, receiverId, datecreated, type, -1, -1, -1, Id, "", "", "", badgeName);
                     badgenotif.Add(obj);
                 }

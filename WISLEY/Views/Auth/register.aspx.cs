@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -68,6 +69,35 @@ namespace WISLEY
             return valid;
         }
 
+        private static string CreateSalt(int size)
+        {
+            //Generate a cryptographic random number.
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            byte[] buff = new byte[size];
+            rng.GetBytes(buff);
+
+            // Return a Base64 string representation of the random number.
+            return Convert.ToBase64String(buff);
+        }
+
+        static string GenerateSaltedHash(byte[] plainText, byte[] salt)
+        {
+            HashAlgorithm algorithm = new SHA256Managed();
+
+            byte[] plainTextWithSaltBytes = new byte[plainText.Length + salt.Length];
+
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                plainTextWithSaltBytes[i] = plainText[i];
+            }
+            for (int i = 0; i < salt.Length; i++)
+            {
+                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+            }
+
+            return Convert.ToBase64String(algorithm.ComputeHash(plainTextWithSaltBytes));
+        }
+
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
@@ -76,7 +106,10 @@ namespace WISLEY
                 string name = TbName.Text;
                 string password = TbPassword.Text;
 
-                User user = new User(email, password, "Student", name, "", "", "", 0, "");
+                string salt = CreateSalt(5);
+                string hash = GenerateSaltedHash(System.Text.Encoding.Unicode.GetBytes(password), System.Text.Encoding.Unicode.GetBytes(salt));
+
+                User user = new User(email, hash, salt, "Student", name, "", "", "", 0, "");
                 int result = user.AddUser();
                 Badge badge1 = new Badge(1, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Beginner", "Become a WISELY member", 0, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
                 Badge badge2 = new Badge(2, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Group.png", "Join a Group", "Join a group.", 50, "", "Locked");

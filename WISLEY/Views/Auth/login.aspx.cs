@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -35,6 +36,38 @@ namespace WISLEY
             return user;
         }
 
+        static string GenerateSaltedHash(byte[] plainText, byte[] salt)
+        {
+            HashAlgorithm algorithm = new SHA256Managed();
+
+            byte[] plainTextWithSaltBytes = new byte[plainText.Length + salt.Length];
+
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                plainTextWithSaltBytes[i] = plainText[i];
+            }
+            for (int i = 0; i < salt.Length; i++)
+            {
+                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+            }
+
+            return Convert.ToBase64String(algorithm.ComputeHash(plainTextWithSaltBytes));
+        }
+
+        public bool CompareHash()
+        {
+            User user = new User().SelectByEmail(TbEmail.Text);
+            string compare = GenerateSaltedHash(System.Text.Encoding.Unicode.GetBytes(TbPassword.Text), System.Text.Encoding.Unicode.GetBytes(user.salt));
+            if (compare == user.password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ValidateInput()
         {
             bool valid = false;
@@ -60,7 +93,7 @@ namespace WISLEY
                 toast(this, "Account does not exist!", "Error", "error");
             }
 
-            else if (user.password != TbPassword.Text)
+            else if (!CompareHash())
             {
                 toast(this, "Password is incorrect!", "Error", "error");
             }
