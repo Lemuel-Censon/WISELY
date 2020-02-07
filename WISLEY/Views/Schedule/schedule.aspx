@@ -5,11 +5,11 @@
 
     <div class="col-12">
         <div class="card">
-            <div class="card-body m-0 m-auto">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <h3 class="text-center font-weight-bold">My Calendar</h3>
-                        <asp:Calendar ID="calendarPlan" CssClass="planner" runat="server" BackColor="White" BorderColor="Black" Font-Names="Arial Black" ForeColor="Black" Height="430px" Width="690px" ShowGridLines="True" OnSelectionChanged="calendarPlan_SelectionChanged" OnDayRender="calendarPlan_DayRender">
+                        <asp:Calendar ID="calendarPlan" CssClass="planner col-12" runat="server" BackColor="White" BorderColor="Black" Font-Names="Arial Black" ForeColor="Black" Height="430px" ShowGridLines="True" OnSelectionChanged="calendarPlan_SelectionChanged" OnDayRender="calendarPlan_DayRender">
                             <DayHeaderStyle BackColor="#CCCCCC" CssClass="plannerDay" Font-Bold="True" ForeColor="#333333" Height="10pt" VerticalAlign="Middle" />
                             <DayStyle Width="14%" Font-Bold="True" />
                             <NextPrevStyle Font-Size="8pt" ForeColor="Black" Font-Bold="True" />
