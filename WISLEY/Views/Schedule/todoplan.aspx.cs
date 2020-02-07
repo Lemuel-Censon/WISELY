@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
 using WISLEY.BLL.Schedule;
+using WISLEY.BLL.User;
 
 namespace WISLEY
 {
@@ -44,9 +46,19 @@ namespace WISLEY
 
                 Planner todoPlan = new Planner(userId, selectedToDoDate, todoTitle, todoDesc, status);
                 int count = todoPlan.AddToDoList();
+                int currentpoints = currUser().points;
+                Badge badge = new Badge().SelectByBadgeId(currUser().id.ToString(), 11);
+                Notify notify = new Notify(currUser().email, currUser().email, DateTime.Now.ToString(), "badge", -1, -1, 11);
 
                 if (count == 1)
                 {
+                    if (badge.status == "Locked")
+                    {
+                        currentpoints += 50;
+                        currUser().UpdateWISPoints(currUser().id, currentpoints);
+                        badge.UpdateBadge(currUser().id.ToString(), 11, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                        notify.AddBadgeNotif();
+                    }
                     Session["success"] = "Your plan has been added sucessfully!";
                     Response.Redirect("schedule.aspx");
                 }

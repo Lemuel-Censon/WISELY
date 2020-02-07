@@ -156,7 +156,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                     <h4 class="mt-3">Locked Badges (<asp:Label ID="LbNofLockedBadges" runat="server"></asp:Label>)</h4>
-                    <asp:Repeater ID="locked_badges" runat="server">
+                    <asp:Repeater ID="locked_badges" runat="server" OnItemDataBound="locked_badges_ItemDataBound">
                         <ItemTemplate>
                             <div class="media-body">
                                 <div class="row">
@@ -171,6 +171,11 @@
                                 <hr />
                             </div>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <div class="mb-4">
+                                <asp:Label runat="server" ID="LbErr" Text="You have already unlocked all badges!" CssClass="font-weight-bold" Visible="false"></asp:Label>
+                            </div>
+                        </FooterTemplate>
                     </asp:Repeater>
                 </div>
                 <div id="quizzes" class="tab-pane fade m-2 ml-2" role="tabpanel">

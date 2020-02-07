@@ -10,6 +10,7 @@ using WISLEY.BLL.Collab;
 using WISLEY.BLL.Group;
 using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.User;
 
 namespace WISLEY
 {
@@ -223,6 +224,16 @@ namespace WISLEY
                                 notif.AddPostNotif();
                             }
                         }
+                    }
+                    int currentpoints = user().points;
+                    Badge badge = new Badge().SelectByBadgeId(user().id.ToString(), 3);
+                    Notify notify = new Notify(user().email, user().email, DateTime.Now.ToString(), "badge", -1, -1, 3);
+                    if (badge.status == "Locked")
+                    {
+                        currentpoints += 50;
+                        user().UpdateWISPoints(user().id, currentpoints);
+                        badge.UpdateBadge(user().id.ToString(), 3, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                        notify.AddBadgeNotif();
                     }
                     Session["success"] = "Post Added!";
                     Response.Redirect("collab.aspx");

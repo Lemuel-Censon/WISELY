@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="quizcreator.aspx.cs" Inherits="WISLEY.Views.Quiztool.quizcreator1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="quizcreator.aspx.cs" Inherits="WISLEY.Views.Quiztool.quizcreator" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <div class="container">
         <div class="card z-depth-3 pb-0 px-0">

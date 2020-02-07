@@ -10,7 +10,7 @@
 namespace WISLEY.Views.Quiztool {
     
     
-    public partial class quizcreator1 {
+    public partial class quizcreator {
         
         /// <summary>
         /// LbTitle control.

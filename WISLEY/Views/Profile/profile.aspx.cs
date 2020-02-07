@@ -232,5 +232,16 @@ namespace WISLEY
                 Response.Redirect(Page.ResolveUrl("~/Views/Quiztool/editquiz.aspx"));
             }
         }
+
+        protected void locked_badges_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (locked_badges.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    e.Item.FindControl("LbErr").Visible = true;
+                }
+            }
+        }
     }
 }

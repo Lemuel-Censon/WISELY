@@ -36,6 +36,21 @@ namespace WISLEY.DAL.Quiztool
             return result;
         }
 
+        public int GetQuizCount(string userId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from Quiz where userId = @paraUid and status = ''";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraUid", userId);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            return rec_cnt;
+        }
+
         public List<Quiz> SelectAll()
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -43,7 +58,7 @@ namespace WISLEY.DAL.Quiztool
 
             string sqlstmt = "Select quiz.*, [User].name, [User].profilesrc from Quiz " +
                 "INNER JOIN [User] ON quiz.userId = [User].Id " +
-                "where status = ''";
+                "where status = '' and totalquestions != 0";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
 
             DataSet ds = new DataSet();

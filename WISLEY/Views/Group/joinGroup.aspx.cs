@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
 using WISLEY.BLL.User;
 
@@ -37,13 +38,15 @@ namespace WISLEY.Views.Group
                 int result = grp.joinGroup(user().email, grpCode);
                 int currentpoints = user().points;
                 Badge badge = new Badge().SelectByBadgeId(user().id.ToString(), 2);
+                Notify notify = new Notify(user().email, user().email, DateTime.Now.ToString(), "badge", -1, -1, 2);
                 if (result == 1)
                 {
                     if (badge.status == "Locked")
                     {
                         currentpoints += 50;
                         user().UpdateWISPoints(user().id, currentpoints);
-                        badge.UpdateBadge(user().id.ToString(), 2, DateTime.Now.ToString(), "Unlocked");
+                        badge.UpdateBadge(user().id.ToString(), 2, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                        notify.AddBadgeNotif();
                     }
                     Session["success"] = "Group joined successfully!";
                     Response.Redirect("~/Views/Board/collab.aspx?groupId="+grp.id);

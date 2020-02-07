@@ -6,6 +6,7 @@
             <div class="card-body">
                 <h4 class="font-weight-bold text-center">Quizzes</h4>
                 <hr class="w-100" />
+                <h5 class="text-danger">Note: Quizzes without at least 1 question will not be listed!</h5>
                 <div class="text-right">
                     <asp:LinkButton runat="server" ID="btnCreate" CssClass="btn btn-info btn-sm" OnClick="btnCreate_Click"><i class="fas fa-plus mr-1"></i>Create Quiz</asp:LinkButton>
                 </div>

@@ -82,5 +82,11 @@ namespace WISLEY.BLL.Quiz
             QuizDAO quizdao = new QuizDAO();
             return quizdao.UpdateTotalQuestions(totalquestions, quizId);
         }
+
+        public int GetQuizCount(string userId)
+        {
+            QuizDAO quizdao = new QuizDAO();
+            return quizdao.GetQuizCount(userId);
+        }
     }
 }

@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Gacha;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.User;
 
 namespace WISLEY.Views.Gacha
 {
@@ -67,6 +69,8 @@ namespace WISLEY.Views.Gacha
             Avatar avatar = new Avatar(addedavatar.src, addedavatar.rarity, user().id.ToString());
             int addresult = avatar.AddAvatar();
             int currentpoints = user().points;
+            Badge badge = new Badge().SelectByBadgeId(user().id.ToString(), 9);
+            Notify notify = new Notify(user().email, user().email, DateTime.Now.ToString(), "badge", -1, -1, 9);
             if (currentpoints < 1000)
             {
                 toast(this, "Not enough WIS Points!", "Error", "error");
@@ -75,6 +79,13 @@ namespace WISLEY.Views.Gacha
             {
                 if (addresult == 1)
                 {
+                    if (badge.status == "Locked")
+                    {
+                        currentpoints += 50;
+                        user().UpdateWISPoints(user().id, currentpoints);
+                        badge.UpdateBadge(user().id.ToString(), 9, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                        notify.AddBadgeNotif();
+                    }
                     Session["SSResults"] = results;
                     Session["SSRarity"] = rarity;
                     currentpoints -= 1000;
@@ -117,6 +128,8 @@ namespace WISLEY.Views.Gacha
             }
 
             int currentpoints = user().points;
+            Badge badge = new Badge().SelectByBadgeId(user().id.ToString(), 10);
+            Notify notify = new Notify(user().email, user().email, DateTime.Now.ToString(), "badge", -1, -1, 10);
             if (currentpoints < 10000)
             {
                 toast(this, "Not enough WIS Points!", "Error", "error");
@@ -125,6 +138,13 @@ namespace WISLEY.Views.Gacha
             {
                 if (addresults.Contains(1))
                 {
+                    if (badge.status == "Locked")
+                    {
+                        currentpoints += 200;
+                        user().UpdateWISPoints(user().id, currentpoints);
+                        badge.UpdateBadge(user().id.ToString(), 10, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                        notify.AddBadgeNotif();
+                    }
                     Session["SSResults"] = results;
                     Session["SSRarity"] = rarity;
                     currentpoints -= 10000;
