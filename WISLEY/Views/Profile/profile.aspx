@@ -9,13 +9,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-fluid rounded mx-auto d-block border" id="imageProfile" src=<%if (user().profilesrc != "")
-                        { %>
-                        "<%=user().profilesrc %>"
-                        <%} %><%else
-                        { %>
-                        src="<%=Page.ResolveUrl("~/Public/img/default.jpg") %>"
-                        <%} %>/>
+                    <img class="img-fluid rounded mx-auto d-block border" onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'" id="imageProfile" src=<%=user().profilesrc %> alt="Image not available" />
                 </div>
                 <div class="col-lg-4">
                     <h3 class="font-weight-bold">
@@ -108,8 +102,8 @@
                         <ItemTemplate>
                             <div class="card-body">
                                 <h4 class="card-title d-inline"><%#Eval("title") %></h4>
-                                <div class="media mt-4 px-1">
-                                    <img class="card-img-100 d-flex z-depth-1 mr-3" src="https://picsum.photos/100"
+                                <div class="media mt-4 px-1 mb-4">
+                                    <img class="card-img-100 d-flex z-depth-1 mr-3" src='<%#Eval("profilesrc") %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'"
                                         alt="Generic placeholder image">
                                     <div class="media-body">
                                         <div class="row">
@@ -142,7 +136,7 @@
                     </asp:Repeater>
                 </div>
                 <div id="badges" class="tab-pane fade m-2 ml-2" role="tabpanel">       
-                    <h3>Unlocked Badges ( <asp:Label ID="LbNofUnlockedBadges" runat="server"></asp:Label> )</h3>
+                    <h4 class="mt-3">Unlocked Badges (<asp:Label ID="LbNofUnlockedBadges" runat="server"></asp:Label>)</h4>
                     <asp:Repeater ID="unlocked_badges" runat="server">
                         <ItemTemplate>
                             <div class="media-body">
@@ -160,8 +154,7 @@
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <br />
-                    <h3>Locked Badges ( <asp:Label ID="LbNofLockedBadges" runat="server"></asp:Label> )</h3>
+                    <h4 class="mt-3">Locked Badges (<asp:Label ID="LbNofLockedBadges" runat="server"></asp:Label>)</h4>
                     <asp:Repeater ID="locked_badges" runat="server">
                         <ItemTemplate>
                             <div class="media-body">
