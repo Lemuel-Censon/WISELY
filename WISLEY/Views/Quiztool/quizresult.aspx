@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.master" AutoEventWireup="true" CodeBehind="quizresult.aspx.cs" Inherits="WISLEY.Views.Quiztool.quizresult" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.master" AutoEventWireup="true" CodeBehind="quizresult.aspx.cs" Inherits="WISLEY.Views.Quiztool.quizresult" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <div class="container">
         <div class="card">
             <div class="card-body">

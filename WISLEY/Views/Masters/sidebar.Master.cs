@@ -28,11 +28,18 @@ namespace WISLEY
                 //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
                 //"ORDER BY Id ASC";
 
-                das.SelectCommand = "SELECT * FROM [Group] " +
-                    "INNER JOIN [GroupUserRelations] " +
-                    "ON [Group].Id = [GroupUserRelations].groupID " +
-                    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
-                    "ORDER BY customOrder ASC";
+                Repeater grpRep = (Repeater)cp.FindControl("groupBtns");
+
+                List<Group> groups = new Group().getGroupsJoined(current_user.email);
+                grpRep.DataSource = groups;
+                grpRep.DataBind();
+
+
+                //das.SelectCommand = "SELECT * FROM [Group] " +
+                //    "INNER JOIN [GroupUserRelations] " +
+                //    "ON [Group].Id = [GroupUserRelations].groupID " +
+                //    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
+                //    "ORDER BY customOrder ASC";
 
                 //if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
                 //{

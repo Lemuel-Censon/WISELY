@@ -24,7 +24,6 @@
                     <asp:Button ID="createGroupBtn" runat="server" Text="Join" class="btn btn-primary" OnClick="join" />
                 </div>
 
-
             </div>
         </div>
     </div>

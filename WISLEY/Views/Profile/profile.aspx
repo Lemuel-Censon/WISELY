@@ -94,10 +94,10 @@
                         <div class="md-form md-outline">
                             <asp:Label AssociatedControlID="TbBio" ID="LbBioDesc" runat="server" Text="Bio Description" Visible="False"></asp:Label>
                             <asp:TextBox ID="TbBio" runat="server" CssClass="form-control" TextMode="MultiLine" Visible="False" Width="700px" Height="300px"></asp:TextBox>
-                        </div>
-                        <div class="text-right">
-                            <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
-                            <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
+                            <div class="text-right flex-fill">
+                                <asp:Button CssClass="btn btn-danger" ID="btnCancelChanges" runat="server" Text="Cancel" Visible="False" OnClick="btnCancelChanges_Click" />
+                                <asp:Button CssClass="btn btn-success" ID="btnSaveChanges" runat="server" Text="Save Changes" Visible="False" OnClick="btnSaveChanges_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                             <div class="media-body">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="55" height="55"/>
+                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="100" height="100"/>
                                     </div>
                                     <div class="col-8">
                                         <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
@@ -165,7 +165,7 @@
                             <div class="media-body">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="55" height="55" style="filter: grayscale(100%)" />
+                                        <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="100" height="100" style="filter: grayscale(100%)" />
                                     </div>
                                     <div class="col-8">
                                         <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
