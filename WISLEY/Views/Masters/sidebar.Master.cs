@@ -24,10 +24,8 @@ namespace WISLEY
 
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
-                //das.SelectCommand = "SELECT * FROM [Group] " +
-                //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
-                //"ORDER BY Id ASC";
 
+            
                 Repeater grpRep = (Repeater)cp.FindControl("groupBtns");
 
                 List<Group> groups = new Group().getGroupsJoined(current_user.email);
@@ -35,28 +33,8 @@ namespace WISLEY
                 grpRep.DataBind();
 
 
-                //das.SelectCommand = "SELECT * FROM [Group] " +
-                //    "INNER JOIN [GroupUserRelations] " +
-                //    "ON [Group].Id = [GroupUserRelations].groupID " +
-                //    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
-                //    "ORDER BY customOrder ASC";
-
-                //if (getGroupIds().Count > 0 && getGroupIds()[0] != "")
-                //{
-                //das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
-                //das.SelectCommand = "SELECT * FROM [Group] " +
-                //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') " +
-                //"ORDER BY Id ASC";
-                //if (getGroupIds().Count > 0)
-                //{
-                //    das.SelectCommand = "SELECT * FROM [Group] WHERE Id in (" + current_user.inGroupsId + ") ORDER BY Id ASC";
-
-                //}
-                //}
 
                 List<Planner> todolist = new Planner().SelectByUser(currUser().id);
-                //scheduleitems.DataSource = todolist;
-                //scheduleitems.DataBind();
 
                 Repeater schedule = (Repeater)cp.FindControl("scheduleitems");
                 schedule.DataSource = todolist;
@@ -120,6 +98,8 @@ namespace WISLEY
         {
             Response.Redirect("~/Views/Group/createGroup.aspx");
         }
+
+
 
         //============================================// Getting Details from DB //============================================//
 
