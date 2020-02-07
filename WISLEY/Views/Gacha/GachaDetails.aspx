@@ -1,18 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/navbar.Master" AutoEventWireup="true" CodeBehind="GachaDetails.aspx.cs" Inherits="WISLEY.Views.Gacha.GachaDetail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style1 {
-            margin-left: 40px;
-        }
         .auto-style2 {
             text-align: center;
             width: 1145px;
         }
-        .auto-style3 {
-            margin-left: 344px;
-        }
         .auto-style4 {
-            margin-left: 349px;
+            margin-left: 320px;
         }
     </style>
 </asp:Content>
