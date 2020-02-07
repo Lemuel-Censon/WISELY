@@ -180,6 +180,18 @@ namespace WISLEY
                 Session["postId"] = e.CommandArgument.ToString();
                 Response.Redirect(Page.ResolveUrl("~/Views/Board/viewpost.aspx"));
             }
+            if (e.CommandName == "download")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string grpId = commandArgs[0];
+                string fileName = commandArgs[1];
+                string folderPath = Server.MapPath("~/Public/uploads/posts/") + grpId + "/" + user().id;
+
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("content-disposition", $"filename={fileName}");
+                Response.TransmitFile(folderPath + "\\" + fileName);
+            }
         }
 
         protected void userquiz_ItemDataBound(object sender, RepeaterItemEventArgs e)
