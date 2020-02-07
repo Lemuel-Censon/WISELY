@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.master" AutoEventWireup="true" CodeBehind="schedule.aspx.cs" Inherits="WISLEY.Views.Schedule.schedules" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="schedule.aspx.cs" Inherits="WISLEY.Views.Schedule.schedules" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="groupPosts" runat="server">
     <link rel="stylesheet" type="text/css" href="<%= Page.ResolveUrl("~/Public/css/planner.css") %>" />
 
     <div class="col-12">
@@ -40,7 +40,7 @@
                 <div class="input-group md-form md-outline">
                     <input type="text" id="search" class="form-control" placeholder="Find by Title" />
                     <div class="input-group-append">
-                        <button type="button" class="tn btn-md btn-info m-0 px-3 py-2 waves-effect" id="btnSearch"><i class="fas fa-search"></i></button>
+                        <button type="button" class="btn btn-md btn-info m-0 px-3 py-2 waves-effect" id="btnSearch"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
 
@@ -48,14 +48,14 @@
                     <ItemTemplate>
                         <div class="card plannerCards">
                             <div class="card-body">
-                                <p class="card-title font-weight-bold plannerTitle" data-pname="<%#Eval("todoTitle") %>">Title: <%#Eval("todoTitle") %></p>
+                                <p class="card-title font-weight-bold plannerTitle" data-pname="<%#Eval("todoTitle") %>"><%#Eval("todoTitle") %></p>
                                 <hr />
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="card-text">Description: <%#Eval("todoDescription") %></p>
+                                        <p class="card-text"><%#Eval("todoDescription") %></p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <i class="fas fa-clock mr-1"></i><span>Date: <%#Eval("todoDate") %></span>
+                                        <i class="fas fa-clock mr-1"></i><span><%#Eval("todoDate") %></span>
                                     </div>
                                 </div>
                                 <hr />
@@ -96,11 +96,18 @@
                         </div>
                     </FooterTemplate>
                 </asp:Repeater>
-
-                <h4 class="card-title font-weight-bold" id="searchMsg" style="display:none;">No results found!</h4>
             </div>
         </div>
     </div>
 
     <script src="<%= Page.ResolveUrl("~/Public/js/planners.js") %>" type="text/javascript"></script>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="groupResources" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="groupAssignments" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="groupMembers" runat="server">
 </asp:Content>

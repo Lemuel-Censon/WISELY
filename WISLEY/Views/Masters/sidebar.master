@@ -142,7 +142,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <asp:LinkButton runat="server" ID="btnView" CssClass="btn btn-info btn-sm" Text="View" CommandName="view" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>

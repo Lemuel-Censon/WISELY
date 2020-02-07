@@ -6,8 +6,8 @@
             <h3 class="text-center font-weight-bold">Edit To-do-list</h3>
             <asp:HiddenField runat="server" ID="todoID" />
 
-            <asp:Label ID="LblToDoDate" runat="server" Text="Date selected: "></asp:Label>
-            <asp:Label ID="LblSelectedDate" runat="server"></asp:Label>
+            <asp:Label ID="LblToDoDate" CssClass="font-weight-bold" runat="server" Text="Date selected: "></asp:Label>
+            <asp:Label ID="LblSelectedDate" CssClass="font-weight-bold" runat="server"></asp:Label>
             <%--<asp:TextBox ID="tbSelectedDate" runat="server" CssClass="form-control"></asp:TextBox>--%>
             
             <div class="md-form md-outline">

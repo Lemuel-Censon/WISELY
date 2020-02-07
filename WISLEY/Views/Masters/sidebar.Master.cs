@@ -139,7 +139,11 @@ namespace WISLEY
 
         protected void scheduleRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-
+            if (e.CommandName == "edit")
+            {
+                Session["todoID"] = e.CommandArgument.ToString();
+                Response.Redirect(Page.ResolveUrl("~/Views/Schedule/editToDo.aspx"));
+            }
         }
 
         protected void scheduleRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
