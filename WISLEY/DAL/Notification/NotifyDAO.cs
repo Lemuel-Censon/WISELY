@@ -72,7 +72,7 @@ namespace WISLEY.DAL.Notification
                     string senderName = row["sendername"].ToString();
                     string groupName = row["name"].ToString();
                     string postName = row["title"].ToString();
-                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, Id, senderName, groupName, postName);
+                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, Id, -1, senderName, groupName, postName);
                     postnotif.Add(obj);
                 }
 
@@ -138,7 +138,7 @@ namespace WISLEY.DAL.Notification
                     int groupId = int.Parse(row["groupId"].ToString());
                     string senderName = row["sendername"].ToString();
                     string groupName = row["name"].ToString();
-                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, -1, Id, senderName, groupName);
+                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, -1, -1, Id, senderName, groupName);
                     invnotif.Add(obj);
                 }
 
@@ -181,13 +181,76 @@ namespace WISLEY.DAL.Notification
                     string senderName = row["sendername"].ToString();
                     string groupName = row["name"].ToString();
                     string postName = row["title"].ToString();
-                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, Id, senderName, groupName, postName);
+                    obj = new Notify(senderId, receiverId, datecreated, type, groupId, postId, -1, Id, senderName, groupName, postName);
                     commnotif.Add(obj);
                 }
 
             }
 
             return commnotif;
+        }
+
+        public int InsertBadgeNotif(Notify badgenotif)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "INSERT INTO Notification (senderId, receiverId, badgeId, datecreated, type, status)" +
+                             "VALUES (@paraSenderID, @paraReceiverID, @paraBadgeID, @paraDatecreate, @paraType, @paraStatus)";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraSenderID", badgenotif.senderEmail);
+            sqlCmd.Parameters.AddWithValue("@paraReceiverID", badgenotif.receiverEmail);
+            sqlCmd.Parameters.AddWithValue("@paraBadgeID", badgenotif.badgeId);
+            sqlCmd.Parameters.AddWithValue("@paraDatecreate", badgenotif.datecreated);
+            sqlCmd.Parameters.AddWithValue("@paraType", badgenotif.type);
+            sqlCmd.Parameters.AddWithValue("@paraStatus", badgenotif.status);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
+        }
+
+        public List<Notify> SelectBadgeNotifs(string userEmail)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "SELECT Notification.*, [Badge].alt FROM NOTIFICATION " +
+                    "INNER JOIN [Badge] ON Notification.badgeId = [Badge].Id " +
+                    "WHERE Notification.receiverId = @paraUserId AND Notification.type = 'badge' AND Notification.status = ''";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraUserId", userEmail);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            Notify obj = null;
+            List<Notify> badgenotif = new List<Notify>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    string senderId = row["senderId"].ToString();
+                    string receiverId = row["receiverId"].ToString();
+                    string datecreated = row["datecreated"].ToString();
+                    string type = row["type"].ToString();
+                    int Id = int.Parse(row["Id"].ToString());
+                    string badgeName = row["name"].ToString();
+                    obj = new Notify(senderId, receiverId, datecreated, type, -1, -1, -1, Id, "", "", "", badgeName);
+                    badgenotif.Add(obj);
+                }
+
+            }
+
+            return badgenotif;
         }
 
         public int ClearNotifs(string notifId)
