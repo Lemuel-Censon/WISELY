@@ -10,7 +10,7 @@
 
                 <div id="reorderListDiv" class="vh-50 overflow-auto">
                     <h2 class="col-12 text-center"> Sidebar </h2>
-                    <div class="border vh-40">
+                    <div class="border vh-40 overflow-auto">
 
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
@@ -96,13 +96,9 @@
                                     <asp:LinkButton ID="showGroupLabel" runat="server" Text='Show Group'
                                         CommandName="showGroup" CommandArgument='<%#Eval("groupId") %>'
                                         class="dropdown-item" />
-                                    <%--<a ID="hideGroupLabel" runat="server" Text='Hide Group'
-                                            CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>' class="dropdown-item" href="#"><%# Eval("groupId") %></a>--%>
                                 </div>
                             </div>
                         </div>
-                        <%--                        <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("name")%>'
-                            class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1" Style="text-transform: unset;" />--%>
                     </ItemTemplate>
 
                     <FooterTemplate>

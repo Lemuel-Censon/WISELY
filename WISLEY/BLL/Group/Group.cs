@@ -17,12 +17,18 @@ namespace WISLEY.BLL.Group
         public string joinCode { get; set; }
         public int status { get; set; }
 
+        public string userEmail { get; set; }
+        public int customOrder { get; set; }
+        public int show { get; set; }
+
         public Group()
         {
 
         }
 
-        public Group(string Name, string Description, int Weightage, int id = -1, string joinCode = "", int status = 1)
+        public Group(string Name, string Description, int Weightage = -1, 
+            int id = -1, string joinCode = "", int status = 1,
+            string userEmail = "", int customOrder = -1, int show = 1)
         {
             name = Name;
             description = Description;
@@ -30,6 +36,10 @@ namespace WISLEY.BLL.Group
             this.id = id;
             this.joinCode = joinCode;
             this.status = status;
+
+            this.userEmail = userEmail;
+            this.customOrder = customOrder;
+            this.show = show;
         }
 
         public int addGroup(string email)
@@ -54,8 +64,6 @@ namespace WISLEY.BLL.Group
 
         }
 
-
-
         public int updateGroup(int id, string desc, int weightage)
         {
             GroupDAO groupDAO = new GroupDAO();
@@ -77,19 +85,19 @@ namespace WISLEY.BLL.Group
 
         public List<Group> getGroupsJoined(string email)
         {
-            List<Group> grpList = new List<Group>(); 
+
             GroupDAO groupDAO = new GroupDAO();
-            List<int> grpIdList = groupDAO.SelectUserGroupsJoined(email);
+            List<Group> grpIdList = groupDAO.SelectUserGroupsJoined(email);
 
-            if (grpIdList.Count > 0){
-                for (int j = 0; j < grpIdList.Count; j++)
-                {
-                    Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
-                    grpList.Add(grp);
-                }
-            }
+            //if (grpIdList.Count > 0){
+            //    for (int j = 0; j < grpIdList.Count; j++)
+            //    {
+            //        Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
+            //        grpList.Add(grp);
+            //    }
+            //}
 
-            return grpList;
+            return grpIdList;
         }
 
         public List<string> getGroupMembers(string groupId)
