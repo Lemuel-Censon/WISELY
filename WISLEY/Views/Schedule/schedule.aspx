@@ -49,17 +49,18 @@
                         <div class="card plannerCards">
                             <div class="card-body">
                                 <p class="card-title font-weight-bold plannerTitle" data-pname="<%#Eval("todoTitle") %>"><%#Eval("todoTitle") %></p>
-                                <hr />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="card-text"><%#Eval("todoDescription") %></p>
-                                    </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <i class="fas fa-clock mr-1"></i><span><%#Eval("todoDate") %></span>
                                     </div>
                                 </div>
                                 <hr />
-                                <div class="text-right">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="card-text"><%#Eval("todoDescription") %></p>
+                                    </div>
+                                </div>
+                                <%--<div class="text-right">
                                     <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>">Delete</button>
                                     <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                 </div>
@@ -84,7 +85,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                     </ItemTemplate>
@@ -106,8 +107,5 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="groupResources" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="groupAssignments" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="groupMembers" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="groupMembers" runat="server">
 </asp:Content>

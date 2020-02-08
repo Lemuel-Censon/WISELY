@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.Master" AutoEventWireup="true" CodeBehind="todoplan.aspx.cs" Inherits="WISLEY.todoplan" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="todoplan.aspx.cs" Inherits="WISLEY.todoplan" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="groupPosts" runat="server">
     <div class="card">
         <div class="card-body">
             <h3 class="text-center font-weight-bold">Add To-do-list</h3>
@@ -25,4 +25,10 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="groupResources" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="groupMembers" runat="server">
 </asp:Content>

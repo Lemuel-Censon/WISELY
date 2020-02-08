@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/sidebar.Master" AutoEventWireup="true" CodeBehind="editToDo.aspx.cs" Inherits="WISLEY.Views.Schedule.editToDo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/group.Master" AutoEventWireup="true" CodeBehind="editToDo.aspx.cs" Inherits="WISLEY.Views.Schedule.editToDo" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sidebarContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="groupPosts" runat="server">
     <div class="card">
         <div class="card-body">
             <h3 class="text-center font-weight-bold">Edit To-do-list</h3>
@@ -27,3 +27,10 @@
         </div>
     </div>
 </asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="groupResources" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="groupMembers" runat="server">
+</asp:Content>
+
