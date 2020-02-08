@@ -24,7 +24,7 @@ namespace WISLEY.Views.Notification
                 List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
                 commentnotifs.DataSource = commnotifications;
                 commentnotifs.DataBind();
-                List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email);
+                List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email, user().id);
                 badgenotifs.DataSource = badgenotifications;
                 badgenotifs.DataBind();
             }
@@ -41,7 +41,7 @@ namespace WISLEY.Views.Notification
             List<Notify> postnotifications = new Notify().SelectPostNotif(user().email);
             List<Notify> invnotifications = new Notify().SelectInvNotif(user().email);
             List<Notify> commnotifications = new Notify().SelectCommNotif(user().email);
-            List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email);
+            List<Notify> badgenotifications = new Notify().SelectBadgeNotif(user().email, user().id);
             notifscount.Add(postnotifications.Count);
             notifscount.Add(commnotifications.Count);
             notifscount.Add(invnotifications.Count);

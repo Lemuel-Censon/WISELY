@@ -146,7 +146,6 @@
     <Content Include="Views\Profile\editprofile.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\index.aspx" />
-    <Content Include="Views\Profile\leaderboard.aspx" />
     <Content Include="Views\Auth\login.aspx" />
     <Content Include="obj\addons\datatables-select.min.css" />
     <Content Include="obj\addons\datatables.min.css" />
@@ -371,13 +370,6 @@
     </Compile>
     <Compile Include="Views\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Profile\leaderboard.aspx.cs">
-      <DependentUpon>leaderboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Profile\leaderboard.aspx.designer.cs">
-      <DependentUpon>leaderboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Auth\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

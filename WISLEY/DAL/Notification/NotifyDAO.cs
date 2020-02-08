@@ -216,16 +216,18 @@ namespace WISLEY.DAL.Notification
             return result;
         }
 
-        public List<Notify> SelectBadgeNotifs(string userEmail)
+        public List<Notify> SelectBadgeNotifs(string userEmail, int userId)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlstmt = "SELECT Notification.*, [Badge].alt FROM NOTIFICATION " +
-                    "INNER JOIN [Badge] ON Notification.badgeId = [Badge].Id " +
-                    "WHERE Notification.receiverId = @paraUserId AND Notification.type = 'badge' AND Notification.status = ''";
+                    "INNER JOIN [Badge] ON Notification.badgeId = [Badge].badgeId " +
+                    "WHERE Notification.receiverId = @paraUserEmail AND Notification.type = 'badge' " +
+                    "AND Notification.status = '' AND [Badge].userId = @paraUserId";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
-            da.SelectCommand.Parameters.AddWithValue("@paraUserId", userEmail);
+            da.SelectCommand.Parameters.AddWithValue("@paraUserEmail", userEmail);
+            da.SelectCommand.Parameters.AddWithValue("@paraUserId", userId);
 
             DataSet ds = new DataSet();
             da.Fill(ds);

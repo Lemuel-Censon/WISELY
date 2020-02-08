@@ -80,10 +80,10 @@ namespace WISLEY.BLL.Notification
             return notifydao.InsertBadgeNotif(this);
         }
 
-        public List<Notify> SelectBadgeNotif(string userEmail)
+        public List<Notify> SelectBadgeNotif(string userEmail, int userId)
         {
             NotifyDAO notifydao = new NotifyDAO();
-            return notifydao.SelectBadgeNotifs(userEmail);
+            return notifydao.SelectBadgeNotifs(userEmail, userId);
         }
 
         public int ClearNotifs(string notifId)
