@@ -6,52 +6,64 @@
         <div class="row justify-content-around">
             <h1 class="col-12 text-center mb-3">All Groups</h1>
 
-            <div class="col-lg-5 col-md-12 card-body border border-primary rounded z-depth-1">
+            <div class="
+                <% if (user().userType == "Teacher")
+                {%>col-lg-3 <% }
+                else
+                { %> 
+                col-lg-5
+                <% } %>
+                col-md-12 card-body border border-primary rounded z-depth-1">
 
                 <div id="reorderListDiv" class="vh-50 overflow-auto">
-                    <h2 class="col-12 text-center"> Sidebar </h2>
+                    <h2 class="col-12 text-center">Sidebar </h2>
                     <div class="border vh-40 overflow-auto">
 
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-                        <ajaxtoolkit:reorderlist
-                            id="AllGroupReorderList"
+                        <ajaxToolkit:ReorderList
+                            ID="AllGroupReorderList"
                             runat="server"
-                            allowreorder="True"
-                            draghandlealignment="Left" iteminsertlocation="Beginning"
-                            datasourceid="SQLgroupData" datakeyfield="groupID"
-                            sortorderfield="customOrder"
-                            postbackonreorder="false"
-                            onitemcommand="AllGroupReorderList_groupOrderCommand">
+                            AllowReorder="True"
+                            DragHandleAlignment="Left" ItemInsertLocation="Beginning"
+                            DataSourceID="SQLgroupData" DataKeyField="groupID"
+                            SortOrderField="customOrder"
+                            PostBackOnReorder="false"
+                            OnItemCommand="AllGroupReorderList_groupOrderCommand"
+                            OnItemDataBound="AllGroupReorderList_onItemDataBound">
 
-                        <DragHandleTemplate>
-                            <div class="mr-2">
-                                <a><i class="fas fa-bars align-middle"></i></a>
-                            </div>
-                        </DragHandleTemplate>
-
-                        <ItemTemplate>
-                            <div class="row justify-content-between m-0 ">
-                                <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
-                                    <%#Eval("name")%>
-                                </h5>
-
-                                <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
-                                    <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v align-middle text-right text-grey"></i>
-                                        </a>
-                                    <div class="dropdown-menu">
-                                        <asp:LinkButton ID="hideGroupLabel" runat="server" Text='Hide Group'
-                                            CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>' 
-                                            class="dropdown-item"/>
-                                        <%--<a ID="hideGroupLabel" runat="server" Text='Hide Group'
-                                            CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>' class="dropdown-item" href="#"><%# Eval("groupId") %></a>--%>
-                                  </div>
+                            <DragHandleTemplate>
+                                <div class="mr-2">
+                                    <a><i class="fas fa-bars align-middle"></i></a>
                                 </div>
-                            </div>
+                            </DragHandleTemplate>
 
-                        </ItemTemplate>
-                    </ajaxtoolkit:reorderlist>
+                            <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="grpName" Value='<%#Eval("name") %>' />
+
+                                <div class="row justify-content-between m-0 ">
+                                    <asp:Label class="align-middle col-10 align-content-between text-left m-0 h6 font-weight-normal" 
+                                        style="text-transform: none;" 
+                                        ID="grpNameLabel"
+                                        runat="server">
+                                    </asp:Label>
+
+                                    <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
+                                        <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v align-middle text-right text-grey"></i>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <asp:LinkButton ID="hideGroupLabel" runat="server" Text='Hide Group'
+                                                CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>'
+                                                class="dropdown-item" />
+                                            <%--<a ID="hideGroupLabel" runat="server" Text='Hide Group'
+                                            CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>' class="dropdown-item" href="#"><%# Eval("groupId") %></a>--%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </ItemTemplate>
+                        </ajaxToolkit:ReorderList>
                     </div>
 
                 </div>
@@ -75,48 +87,100 @@
 
             </div>
 
-            <div class="col-lg-5 col-md-12 card-body border border-primary rounded z-depth-1">
-                                    <h2 class="col-12 text-center"> Hidden Groups </h2>
-                    <div class="border vh-40">
-                <asp:Repeater
-                    runat="server" ID="hiddenGroupsBtns" DataSourceID="SQLhiddenGroupData"
-                    onitemcommand="hiddenGroupsBtns_groupOrderCommand">
+            <div class="
+                <% if (user().userType == "Teacher")
+                {%>col-lg-3 <% }
+                else
+                { %> 
+                col-lg-5
+                <% } %>
+                col-md-12 card-body border border-primary rounded z-depth-1">
+                <h2 class="col-12 text-center">Hidden Groups </h2>
+                <div class="border vh-40">
+                    <asp:Repeater
+                        runat="server" ID="hiddenGroupsBtns" DataSourceID="SQLhiddenGroupData"
+                        OnItemCommand="hiddenGroupsBtns_groupOrderCommand">
 
-                    <ItemTemplate>
-                        <div class="white border list-item pr-0 p-3 mb-3 z-depth-1 mx-1 row justify-content-between">
-                            <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
-                                <%#Eval("name")%>
-                            </h5>
+                        <ItemTemplate>
+                            <div class="white border list-item pr-0 p-3 mb-3 z-depth-1 mx-1 row justify-content-between">
+                                <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
+                                    <%#Eval("name")%>
+                                </h5>
 
-                            <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
-                                <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v align-middle text-right text-grey"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <asp:LinkButton ID="showGroupLabel" runat="server" Text='Show Group'
-                                        CommandName="showGroup" CommandArgument='<%#Eval("groupId") %>'
-                                        class="dropdown-item" />
+                                <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
+                                    <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v align-middle text-right text-grey"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <asp:LinkButton ID="showGroupLabel" runat="server" Text='Show Group'
+                                            CommandName="showGroup" CommandArgument='<%#Eval("groupId") %>'
+                                            class="dropdown-item" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ItemTemplate>
+                        </ItemTemplate>
 
-                    <FooterTemplate>
-                        <div class="row col-12 justify-content-center align-content-start <% if (hiddenGroupsBtns.Items.Count == 0)
-                                    { %> visible <%}
-                                    else
-                                    { %> invisible <%} %>">
-                            <h6 class="text-center col-12 pb-2">All Groups are active
-                            </h6>
-                        </div>
-                    </FooterTemplate>
-                </asp:Repeater>
+                        <FooterTemplate>
+                            <div class="row col-12 justify-content-center align-content-start <% if (hiddenGroupsBtns.Items.Count == 0)
+                                { %> visible <%}
+                                else
+                                { %> invisible <%} %>">
+                                <h6 class="text-center col-12 pb-2">All Groups are active
+                                </h6>
+                            </div>
+                        </FooterTemplate>
+                    </asp:Repeater>
 
-                <asp:SqlDataSource ID="SQLhiddenGroupData"
-                    ConnectionString="<%$ connectionStrings: ConnStr%>"
-                    runat="server" />
-                        </div>
+                    <asp:SqlDataSource ID="SQLhiddenGroupData"
+                        ConnectionString="<%$ connectionStrings: ConnStr%>"
+                        runat="server" />
+                </div>
             </div>
+            <% if (user().userType == "Teacher")
+                {%>
+            <div class="col-lg-3 col-md-12 card-body border border-primary rounded z-depth-1">
+                <h2 class="col-12 text-center">Disabled Groups </h2>
+                <div class="border vh-40">
+                    <asp:Repeater
+                        runat="server" ID="Repeater1" DataSourceID="SQLinactiveGroupData"
+                        OnItemCommand="inactiveGroupsBtns_groupOrderCommand">
+
+                        <ItemTemplate>
+                            <div class="white border list-item pr-0 p-3 mb-3 z-depth-1 mx-1 row justify-content-between">
+                                <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
+                                    <%#Eval("name")%>
+                                </h5>
+
+                                <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
+                                    <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v align-middle text-right text-grey"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <asp:LinkButton ID="showGroupLabel" runat="server" Text='Enable Group'
+                                            CommandName="activateGroup" CommandArgument='<%#Eval("groupId") %>'
+                                            class="dropdown-item" />
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+
+                        <FooterTemplate>
+                            <div class="row col-12 justify-content-center align-content-start <% if (hiddenGroupsBtns.Items.Count == 0)
+                                { %> visible <%}
+                                else
+                                { %> invisible <%} %>">
+                                <h6 class="text-center col-12 pb-2">There are no inactive groups
+                                </h6>
+                            </div>
+                        </FooterTemplate>
+                    </asp:Repeater>
+
+                    <asp:SqlDataSource ID="SQLinactiveGroupData"
+                        ConnectionString="<%$ connectionStrings: ConnStr%>"
+                        runat="server" />
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 

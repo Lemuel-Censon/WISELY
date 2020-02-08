@@ -21,6 +21,15 @@ namespace WISLEY.Views.Group
                     Session["error"] = "You must be a teacher to edit a group!";
                     Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
                 }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        groupNameTB.Text = getGroupDetails().name;
+                        groupDescriptionTB.Text = getGroupDetails().description;
+                    }
+
+                }
             }
             else
             {
@@ -43,10 +52,14 @@ namespace WISLEY.Views.Group
 
 
 
-        public bool ValidateInput(string description, string weightage)
+        public bool ValidateInput(string name, string description, string weightage)
         {
             bool valid = false;
-            if (String.IsNullOrEmpty(description))
+            if (String.IsNullOrEmpty(name))
+            {
+                toast(this, "Please enter the group name!", "Error", "error");
+            }
+            else if (String.IsNullOrEmpty(description))
             {
                 toast(this, "Please enter the group description!", "Error", "error");
             }
@@ -62,20 +75,20 @@ namespace WISLEY.Views.Group
             return valid;
         }
 
- 
         public void updateGroup(object sender, EventArgs e)
         {
+            string grpName = groupNameTB.Text.Trim();
             string grpDescription = groupDescriptionTB.Text.Trim();
             //string grpWeightage = groupWeightageTB.Text.Trim();
             string grpWeightage = "0";
 
-            if (ValidateInput(grpDescription, grpWeightage))
+            if (ValidateInput(grpName, grpDescription, grpWeightage))
             {
                 int intGrpWeightage = 0;
 
                 if (int.TryParse(grpWeightage, out intGrpWeightage))
                 {
-                    int result = getGroupDetails().updateGroup(getGroupDetails().id, grpDescription, intGrpWeightage);
+                    int result = getGroupDetails().updateGroup(getGroupDetails().id, grpName, grpDescription, intGrpWeightage);
     
                     if (result == 1)
                     {
@@ -84,7 +97,7 @@ namespace WISLEY.Views.Group
                     }
                     else if (result == -1)
                     {
-                        toast(this, "Group name already taken.", "Error", "error");
+                        toast(this, "Group name already taken. Please choose another name!", "Error", "error");
 
                     }
                     else
@@ -100,5 +113,27 @@ namespace WISLEY.Views.Group
             }
 
         }
+
+        public void redirectBack(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Board/collab.aspx?groupId=" + getGroupDetails().id);
+        }
+
+        public void disableGroup(object sender, EventArgs e)
+        {
+            BLL.Group.Group grp = new BLL.Group.Group();
+            int result = grp.disableGroup(getGroupDetails().id.ToString());
+            if(result != 1)
+            {
+                toast(this, "Unable to disable group. Please contact administrator", "Error", "error");
+            }
+            else
+            {
+                Session["success"] = "Group disabled successfully!";
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+
+            }
+        }
+
     }
 }

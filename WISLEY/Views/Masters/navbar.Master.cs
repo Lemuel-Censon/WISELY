@@ -57,7 +57,7 @@ namespace WISLEY
                 }
             }
             //System.Diagnostics.Debug.WriteLine("Nav Loaded");
-            showAllSession();
+            //showAllSession();
         }
 
         public User user()

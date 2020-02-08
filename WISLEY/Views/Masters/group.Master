@@ -11,18 +11,18 @@
             string grpId = getGroupDetails().id.ToString();
     %>
 
-    <div class="card card-body rounded-top mb-3">
+    <div class="card card-body rounded-top mb-3 pt-2">
         <% if (user().userType == "Teacher")
             { %>
-        <div class="row justify-content-end">
-            <a href="<%=Page.ResolveUrl("~/Views/Group/editGroup.aspx?groupId=" + Request.QueryString["groupId"]) %>"><i class="fas fa-edit fa-lg text-primary mr-2"></i></a>
+        <div class="row justify-content-end mt-0">
+            <a href="<%=Page.ResolveUrl("~/Views/Group/editGroup.aspx?groupId=" + Request.QueryString["groupId"]) %>"><i class="fas fa-edit text-primary mr-2"></i></a>
         </div>
         <% } %>
         <div class="row justify-content-center">
 
-            <h1 class="text-left col-12">
+            <h2 class="text-left col-12">
                 <%= grpName %>
-            </h1>
+            </h2>
 
             <p class="text-left col-12">
                 <%= grpDesc %>

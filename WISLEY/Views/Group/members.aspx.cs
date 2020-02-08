@@ -47,8 +47,8 @@ namespace WISLEY.Views.Group
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HiddenField userEmail = (HiddenField)e.Item.FindControl("userEmail");
-                System.Diagnostics.Debug.WriteLine(userEmail.Value);
-                System.Diagnostics.Debug.WriteLine(user().email);
+                //System.Diagnostics.Debug.WriteLine(userEmail.Value);
+                //System.Diagnostics.Debug.WriteLine(user().email);
 
                 if(user().userType != "Teacher")
                 {
@@ -60,8 +60,7 @@ namespace WISLEY.Views.Group
                     System.Diagnostics.Debug.WriteLine("entered");
 
                     e.Item.FindControl("userDeleteBtn").Visible = false;
-                    //e.Item.FindControl("delete").Visible = false;
-                    //e.Item.FindControl("btnLike").Visible = true;
+
                 }
             }
 

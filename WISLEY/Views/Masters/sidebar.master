@@ -36,13 +36,14 @@
                         <div class="vh-30 overflow-auto mt-0">
                             <asp:Repeater
                                 runat="server" ID="groupBtns"
-                                OnItemCommand="groupItemCommand">
+                                OnItemCommand="groupItemCommand"
+                                OnItemDataBound="groupItemDataBound">
                                 <ItemTemplate>
+                                    <asp:HiddenField runat="server" ID="grpBtnName" Value='<%#Eval("name") %>' />
+                                    <asp:LinkButton ID="groupRedirect" runat="server" CommandName="redirectToGroup" CommandArgument='<%#Eval("Id") %>'
+                                        class="btn btn-block btn-white text-left border border-primary rounded-0 mb-1" Style="text-transform: unset;"
+                                        Visible='<%# (Eval("show").ToString() == "1") && (Eval("status").ToString() == "1") %>' />
 
-                                    <asp:LinkButton ID="groupRedirect" runat="server" Text='<%#Eval("name")%>' CommandName="redirectToGroup" CommandArgument='<%#Eval("Id") %>'
-                                        class="btn btn-block btn-white text-left border border-primary rounded-0 mb-1" Style="text-transform: unset;" 
-                                        visible='<%# (Eval("show").ToString() == "1") %>'/>
-                     
                                 </ItemTemplate>
 
                                 <FooterTemplate>
@@ -83,11 +84,13 @@
                     <div class="row justify-content-center m-0 p-0">
 
                         <div class="btn-group btn-block">
-                        <a id="showAllGroupsBtn" class="btn btn-sm btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All </a>
+                            <a id="showAllGroupsBtn" class="btn btn-sm btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All </a>
 
 
-                        <a id="joinGroupBtn" class="btn btn-sm  btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0" href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>">Join Group </a>
-                            </div>
+                            <asp:Button ID="joinGroupBtn" class="btn btn-sm btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0"
+                                data-toggle="modal" data-target="#joinGroupModal" OnClientClick="return false;">Join Group 
+                            </asp:Button>
+                        </div>
                         <% if (TeacherCheck())
                         {
                         %>
@@ -180,6 +183,45 @@
 
 
 
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="joinGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Join Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row justify-content-start">
+                        <div class="col-2">
+                            <label for="groupCodeTB">Group Code</label>
+                        </div>
+                        <div class="col-10">
+                            <asp:TextBox ID="groupCodeTB" class="form-control" runat="server"></asp:TextBox>
+                            <p class="small">Please enter the code of the group you want to join </p>
+                        </div>
+                    </div>
+
+<%--                    <div class="row justify-content-end">
+                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" class="btn btn-danger" OnClick="back" />
+                        <asp:Button ID="Button1" runat="server" Text="Join" class="btn btn-primary" OnClick="join" />
+                    </div>--%>
+                    <%--                    href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"--%>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+<%--                    <button type="button" class="btn btn-primary">Join Group</button>--%>
+                    <asp:Button ID="Button1" runat="server" Text="Join" class="btn btn-primary" OnClick="join" />
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>
 

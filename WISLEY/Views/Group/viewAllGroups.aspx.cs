@@ -15,38 +15,39 @@ namespace WISLEY.Views.Group
         {
             if (Session["email"] != null)
             {
-                User current_user = new User().SelectByEmail(Session["email"].ToString());
-
-                //ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
-                //SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
-                //das.SelectCommand = "SELECT * FROM [Group] " +
-                //"WHERE Id IN (SELECT groupID FROM [GroupUserRelations] WHERE userEmail = '" + current_user.email + "') and active = 1 " +
-                //"ORDER BY Id ASC";
-
-
-
-
                 SQLgroupData.SelectCommand = "SELECT * FROM [Group] " +
                     "INNER JOIN [GroupUserRelations] " +
                     "ON [Group].Id = [GroupUserRelations].groupID " +
-                    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 1 " +
+                    "WHERE userEmail = '" + user().email + "' and active = 1 and show = 1 " +
                     "ORDER BY customOrder ASC";
 
                 SQLhiddenGroupData.SelectCommand = "SELECT * FROM [Group] " +
                     "INNER JOIN [GroupUserRelations] " +
                     "ON [Group].Id = [GroupUserRelations].groupID " +
-                    "WHERE userEmail = '" + current_user.email + "' and active = 1 and show = 0 " +
+                    "WHERE userEmail = '" + user().email + "' and active = 1 and show = 0 " +
                     "ORDER BY customOrder ASC";
 
-                //SQLgroupData.SelectCommand = "SELECT * FROM [GroupUserRelations] " +
-                //"WHERE userEmail = '" + current_user.email + "' and show = 1 " +
-                //"ORDER BY customOrder ASC";
-
-
-
-
-
+                SQLinactiveGroupData.SelectCommand = "SELECT * FROM [Group] " +
+                    "INNER JOIN [GroupUserRelations] " +
+                    "ON [Group].Id = [GroupUserRelations].groupID " +
+                    "WHERE userEmail = '" + user().email + "' and active = 0" +
+                    "ORDER BY customOrder ASC";
             }
+        }
+
+        public string Truncate(string value, int maxLength)
+        {
+
+            if (string.IsNullOrEmpty(value) || value.Length <= maxLength)
+            {
+                return value;
+            }
+            else
+            {
+                value = value.Substring(0, maxLength) + "..";
+                return value;
+            }
+
         }
 
         public User user()
@@ -71,7 +72,7 @@ namespace WISLEY.Views.Group
                 BLL.Group.Group grp = new BLL.Group.Group();
 
                 int result = grp.hideJoinedGroup(current_user.email, e.CommandArgument.ToString());
-                if(result == 1)
+                if (result == 1)
                 {
                     Response.Redirect(Request.RawUrl);
 
@@ -81,9 +82,28 @@ namespace WISLEY.Views.Group
             }
         }
 
+        public void AllGroupReorderList_onItemDataBound(object source, ReorderListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HiddenField grpName = (HiddenField)e.Item.FindControl("grpName");
+
+                Label grpNameLabel = (Label)e.Item.FindControl("grpNameLabel");
+                if (user().userType == "Teacher")
+                {
+                    grpNameLabel.Text = Truncate(grpName.Value, 20);
+                }
+                else
+                {
+                    grpNameLabel.Text = Truncate(grpName.Value, 40);
+                }
+
+            }
+        }
+
         protected void hiddenGroupsBtns_groupOrderCommand(object source, RepeaterCommandEventArgs e)
         {
-            if(e.CommandName == "showGroup")
+            if (e.CommandName == "showGroup")
             {
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
                 BLL.Group.Group grp = new BLL.Group.Group();
@@ -98,6 +118,22 @@ namespace WISLEY.Views.Group
 
         }
 
+        protected void inactiveGroupsBtns_groupOrderCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "activateGroup")
+            {
+                User current_user = new User().SelectByEmail(Session["email"].ToString());
+                BLL.Group.Group grp = new BLL.Group.Group();
+
+                int result = grp.enableGroup(e.CommandArgument.ToString());
+                if (result == 1)
+                {
+                    Response.Redirect(Request.RawUrl);
+
+                }
+            }
+
+        }
 
         public void test()
         {

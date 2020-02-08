@@ -14,7 +14,6 @@
                     </div>
                     <div class="col-10">
                         <asp:TextBox ID="groupNameTB" class="form-control" runat="server"></asp:TextBox>
-                        <%--<input type="text" id="groupName" class="form-control">--%>
                         <p class="small">This will be the name of your group </p>
                     </div>
                 </div>

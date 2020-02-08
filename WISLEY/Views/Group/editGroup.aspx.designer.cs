@@ -13,6 +13,15 @@ namespace WISLEY.Views.Group {
     public partial class editGroup {
         
         /// <summary>
+        /// groupNameTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox groupNameTB;
+        
+        /// <summary>
         /// groupDescriptionTB control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,23 @@ namespace WISLEY.Views.Group {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cancelBtn;
+        
+        /// <summary>
+        /// diableGrpBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button diableGrpBtn;
+        
+        /// <summary>
+        /// disableGroupBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button disableGroupBtn;
     }
 }
