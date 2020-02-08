@@ -165,11 +165,11 @@ namespace WISLEY.DAL.Collab
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlstmt = "SELECT post.*, [User].name as username, [User].profilesrc, [Group].name as grpname FROM ((POST " +
+            string sqlstmt = "SELECT post.*, [User].name as username, [User].profilesrc FROM ((POST " +
                         "INNER JOIN [User] ON post.userId = [User].Id) " +
                         "INNER JOIN [Group] ON post.groupId = [Group].Id) " +
-                        "WHERE userId in " +
-                        "(Select Id from [User] where email = @paraEmail) " +
+                        "WHERE [Group].Id in " +
+                        "(Select [GroupUserRelations].groupId from [GroupUserRelations] where userEmail = @paraEmail) " +
                         "AND post.status = '' ORDER BY Id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
