@@ -9,7 +9,7 @@
     <div class="row justify-content-around" runat="server">
         <div class="col-lg-3 col-md-5">
             <div class="position-fixed col-lg-3 col-md-5 row">
-                <div class="card card-body border border-primary mb-4">
+                <div class="card card-body border border-primary mb-4 z-depth-1">
                     <div class="row justify-content-center">
                         <div class="col-4">
                             <img src='<%=user().profilesrc %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'" class="mx-auto md-block w-100 h-100">
@@ -24,10 +24,7 @@
                     </div>
                 </div>
 
-                <div class="card card-body border border-primary py-3">
-
-
-
+                <div class="card card-body border border-primary py-3 z-depth-1">
                     <div class="">
 
                         <h4 class="text-center mx-auto">Groups</h4>
@@ -41,7 +38,7 @@
                                 <ItemTemplate>
                                     <asp:HiddenField runat="server" ID="grpBtnName" Value='<%#Eval("name") %>' />
                                     <asp:LinkButton ID="groupRedirect" runat="server" CommandName="redirectToGroup" CommandArgument='<%#Eval("Id") %>'
-                                        class="btn btn-block btn-white text-left border border-primary rounded-0 mb-1" Style="text-transform: unset;"
+                                        class="btn btn-block btn-white text-primary text-left border border-primary rounded-0 mb-1" Style="text-transform: unset;"
                                         Visible='<%# (Eval("show").ToString() == "1") && (Eval("status").ToString() == "1") %>' />
 
                                 </ItemTemplate>
@@ -83,18 +80,18 @@
                     { %>
                     <div class="row justify-content-center m-0 p-0">
 
-                        <div class="btn-group btn-block">
-                            <a id="showAllGroupsBtn" class="btn btn-sm btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All </a>
+                        <div class="btn-group btn-block p-0">
+                            <a id="showAllGroupsBtn" class="btn btn-sm btn-outline-primary text-left rounded-0 mb-1 text-center m-0" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All Groups</a>
 
 
-                            <asp:Button ID="joinGroupBtn" class="btn btn-sm btn-block btn-primary text-left rounded-0 mb-1 text-center z-depth-0"
+                            <asp:Button ID="joinGroupBtn" class="btn btn-sm btn-outline-primary text-left rounded-0 mb-1 text-center m-0"
                                 data-toggle="modal" data-target="#joinGroupModal" OnClientClick="return false;">Join Group 
                             </asp:Button>
                         </div>
                         <% if (TeacherCheck())
                         {
                         %>
-                        <a id="createGroupBtn" class="btn btn-sm btn-block btn-success text-left rounded-0 mb-1 text-center"
+                        <a id="createGroupBtn" class="btn btn-sm btn-block btn-outline-success text-left rounded-0 mb-1 text-center"
                             href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>">Create Group </a>
                         <% } %>
                     </div>
@@ -110,9 +107,9 @@
 
         <div class="col-lg-3 d-lg-block d-md-none">
             <div class="position-fixed col-3 row">
-                <div class="card card-body mb-4">
+                <div class="card card-body mb-4 border border-primary py-3 z-depth-1">
                     <div class="row justify-content-center">
-                        <h1 class="col-12 text-center">Schedule</h1>
+                        <h2 class="col-12 text-center">Schedule</h2>
                         <div class="col-12">
                             <!-- Social shares button -->
                             <asp:Repeater ID="scheduleitems" runat="server" OnItemCommand="scheduleRepeater_ItemCommand" OnItemDataBound="scheduleRepeater_ItemDataBound">

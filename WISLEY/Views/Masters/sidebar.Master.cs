@@ -22,18 +22,22 @@ namespace WISLEY
             System.Diagnostics.Debug.WriteLine(pageName);
             if (Session["email"] != null)
             {
+                if (Request.QueryString["groupId"] != null && !isGroupMember(user().email))
+                {
+                    Session["error"] = "You are not a member of this group.";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+                }
+
                 User current_user = new User().SelectByEmail(Session["email"].ToString());
 
                 ContentPlaceHolder cp = (ContentPlaceHolder)this.Master.Master.FindControl("contentHolder1");
                 SqlDataSource das = (SqlDataSource)cp.FindControl("groupData");
-
 
                 Repeater grpRep = (Repeater)cp.FindControl("groupBtns");
 
                 List<Group> groups = new Group().getGroupsJoined(current_user.email);
                 grpRep.DataSource = groups;
                 grpRep.DataBind();
-
 
 
                 List<Planner> todolist = new Planner().SelectByUser(user().id);
@@ -44,8 +48,24 @@ namespace WISLEY
             }
             else
             {
-
+                Session["error"] = "Please log in.";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
+        }
+
+        public bool isGroupMember(string email)
+        {
+            Group grp = new Group();
+            List<Group> grpList = grp.getGroupsJoined(email);
+            bool isMember = false;
+            for (int i = 0; i < grpList.Count; i++)
+            {
+                if (grpList[i].id == int.Parse(Request.QueryString["groupId"]))
+                {
+                    isMember = true;
+                }
+            }
+            return isMember;
         }
 
         public void toast(Page page, string message, string title, string type)

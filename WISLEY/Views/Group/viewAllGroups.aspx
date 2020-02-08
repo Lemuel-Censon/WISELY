@@ -42,11 +42,14 @@
                                 <asp:HiddenField runat="server" ID="grpName" Value='<%#Eval("name") %>' />
 
                                 <div class="row justify-content-between m-0 ">
-                                    <asp:Label class="align-middle col-10 align-content-between text-left m-0 h6 font-weight-normal" 
-                                        style="text-transform: none;" 
+                                    <asp:HyperLink 
+                                        class="align-middle col-10 align-content-between text-left m-0 h6 font-weight-normal"
+                                        Style="text-transform: none;"
+                                        NavigateUrl='<%# Eval("groupId", "~/Views/Board/collab.aspx?groupId={0}") %>'
                                         ID="grpNameLabel"
                                         runat="server">
-                                    </asp:Label>
+                                    </asp:HyperLink>
+<%--                                   CommandName="redirectToGroup" CommandArgument="<%#Eval("groupId").ToString()%>"--%>
 
                                     <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
                                         <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,8 +59,7 @@
                                             <asp:LinkButton ID="hideGroupLabel" runat="server" Text='Hide Group'
                                                 CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>'
                                                 class="dropdown-item" />
-                                            <%--<a ID="hideGroupLabel" runat="server" Text='Hide Group'
-                                            CommandName="hideGroup" CommandArgument='<%#Eval("groupId") %>' class="dropdown-item" href="#"><%# Eval("groupId") %></a>--%>
+
                                         </div>
                                     </div>
                                 </div>
@@ -98,14 +100,22 @@
                 <h2 class="col-12 text-center">Hidden Groups </h2>
                 <div class="border vh-40">
                     <asp:Repeater
-                        runat="server" ID="hiddenGroupsBtns" DataSourceID="SQLhiddenGroupData"
-                        OnItemCommand="hiddenGroupsBtns_groupOrderCommand">
+                        runat="server" ID="hiddenGroupsBtns"
+                        DataSourceID="SQLhiddenGroupData"
+                        OnItemCommand="hiddenGroupsBtns_groupOrderCommand"
+                        OnItemDataBound="repeaterGroupsBtns_onItemDataBound">
 
                         <ItemTemplate>
+                            <asp:HiddenField runat="server" ID="grpName" Value='<%#Eval("name") %>' />
+
+
                             <div class="white border list-item pr-0 p-3 mb-3 z-depth-1 mx-1 row justify-content-between">
-                                <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
-                                    <%#Eval("name")%>
-                                </h5>
+                                <asp:HyperLink class="align-middle col-10 align-content-between text-left m-0 h6 font-weight-normal"
+                                    Style="text-transform: none;"
+                                    NavigateUrl='<%# Eval("groupId", "~/Views/Board/collab.aspx?groupId={0}") %>'
+                                    ID="grpNameLabel"
+                                    runat="server">
+                                </asp:HyperLink>
 
                                 <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
                                     <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -142,14 +152,20 @@
                 <h2 class="col-12 text-center">Disabled Groups </h2>
                 <div class="border vh-40">
                     <asp:Repeater
-                        runat="server" ID="Repeater1" DataSourceID="SQLinactiveGroupData"
-                        OnItemCommand="inactiveGroupsBtns_groupOrderCommand">
+                        runat="server" ID="inactiveGroupsBtns" DataSourceID="SQLinactiveGroupData"
+                        OnItemCommand="inactiveGroupsBtns_groupOrderCommand"
+                        OnItemDataBound="repeaterGroupsBtns_onItemDataBound">
 
                         <ItemTemplate>
+                            <asp:HiddenField runat="server" ID="grpName" Value='<%#Eval("name") %>' />
+
                             <div class="white border list-item pr-0 p-3 mb-3 z-depth-1 mx-1 row justify-content-between">
-                                <h5 class="align-middle col-8 align-content-between text-left m-0" style="text-transform: none;">
-                                    <%#Eval("name")%>
-                                </h5>
+                                <asp:HyperLink class="align-middle col-10 align-content-between text-left m-0 h6 font-weight-normal"
+                                    Style="text-transform: none;"
+                                    NavigateUrl='<%# Eval("groupId", "~/Views/Board/collab.aspx?groupId={0}") %>'
+                                    ID="grpNameLabel"
+                                    runat="server">
+                                </asp:HyperLink>
 
                                 <div class="align-middle col-2 align-content-between m-0 row justify-content-end dropdown">
                                     <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -165,7 +181,7 @@
                         </ItemTemplate>
 
                         <FooterTemplate>
-                            <div class="row col-12 justify-content-center align-content-start <% if (hiddenGroupsBtns.Items.Count == 0)
+                            <div class="row col-12 justify-content-center align-content-start <% if (inactiveGroupsBtns.Items.Count == 0)
                                 { %> visible <%}
                                 else
                                 { %> invisible <%} %>">

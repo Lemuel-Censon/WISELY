@@ -17,10 +17,7 @@ namespace WISLEY.Views.Resources
             resTypeData.SelectCommand = $"SELECT * FROM [grpResourceType] " +
                 $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
                 $"ORDER BY [grpResourceType].customOrder ASC";
-            //resTypeData.SelectCommand = $"SELECT [grpResourceType].*, [grpResource].fileName as files FROM [grpResourceType] " +
-            //    $"INNER JOIN [grpResource] ON [grpResourceType].resourceType = [grpResource].resourceType " +
-            //    $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
-            //    $"ORDER BY [grpResourceType].customOrder ASC";
+
         }
 
         public BLL.Group.Group getGroupDetails()

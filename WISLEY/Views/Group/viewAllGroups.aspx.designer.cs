@@ -67,13 +67,13 @@ namespace WISLEY.Views.Group {
         protected global::System.Web.UI.WebControls.SqlDataSource SQLhiddenGroupData;
         
         /// <summary>
-        /// Repeater1 control.
+        /// inactiveGroupsBtns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Repeater inactiveGroupsBtns;
         
         /// <summary>
         /// SQLinactiveGroupData control.

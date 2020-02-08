@@ -49,7 +49,7 @@ namespace WISLEY.Views.Resources
             }
             else
             {
-                Session["error"] = "You must be logged in to edit a group!";
+                Session["error"] = "You must be logged in to view resources!";
                 Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
             }
         }

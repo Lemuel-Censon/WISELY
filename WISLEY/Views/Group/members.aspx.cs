@@ -14,9 +14,18 @@ namespace WISLEY.Views.Group
         {
             if (Session["email"] != null)
             {
-                memberData.SelectCommand = "Select * from [User] " +
+                if (Request.QueryString["groupId"] != null && !isGroupMember(user().email))
+                {
+                    Session["error"] = "You are not a member of this group.";
+                    Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
+                }
+                else
+                {
+                    memberData.SelectCommand = "Select * from [User] " +
                     "where email in (Select userEmail from [GroupUserRelations] where groupID = '" + getGroupDetails().id + "')";
-                
+
+                }
+
             }
             else
             {
@@ -24,6 +33,21 @@ namespace WISLEY.Views.Group
                 Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
             }
 
+        }
+
+        public bool isGroupMember(string email)
+        {
+            BLL.Group.Group grp = new BLL.Group.Group();
+            List<BLL.Group.Group> grpList = grp.getGroupsJoined(email);
+            bool isMember = false;
+            for (int i = 0; i < grpList.Count; i++)
+            {
+                if (grpList[i].id == int.Parse(Request.QueryString["groupId"]))
+                {
+                    isMember = true;
+                }
+            }
+            return isMember;
         }
 
         public void toast(Page page, string message, string title, string type)
@@ -50,7 +74,7 @@ namespace WISLEY.Views.Group
                 //System.Diagnostics.Debug.WriteLine(userEmail.Value);
                 //System.Diagnostics.Debug.WriteLine(user().email);
 
-                if(user().userType != "Teacher")
+                if (user().userType != "Teacher")
                 {
                     e.Item.FindControl("userDeleteBtn").Visible = false;
                 }

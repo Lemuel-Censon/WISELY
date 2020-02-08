@@ -33,6 +33,11 @@ namespace WISLEY.Views.Group
                     "WHERE userEmail = '" + user().email + "' and active = 0" +
                     "ORDER BY customOrder ASC";
             }
+            else
+            {
+                Session["error"] = "You must be logged in to view all groups!";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
         }
 
         public string Truncate(string value, int maxLength)
@@ -78,7 +83,10 @@ namespace WISLEY.Views.Group
 
                 }
 
-
+            }
+            else if(e.CommandName == "redirectToGroup")
+            {
+                Response.Redirect("~/Views/Board/collab.aspx?groupId=" + e.CommandArgument.ToString());
             }
         }
 
@@ -88,7 +96,8 @@ namespace WISLEY.Views.Group
             {
                 HiddenField grpName = (HiddenField)e.Item.FindControl("grpName");
 
-                Label grpNameLabel = (Label)e.Item.FindControl("grpNameLabel");
+                HyperLink grpNameLabel = (HyperLink)e.Item.FindControl("grpNameLabel");
+
                 if (user().userType == "Teacher")
                 {
                     grpNameLabel.Text = Truncate(grpName.Value, 20);
@@ -114,6 +123,26 @@ namespace WISLEY.Views.Group
                     Response.Redirect(Request.RawUrl);
 
                 }
+            }
+
+        }
+
+        protected void repeaterGroupsBtns_onItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HiddenField grpName = (HiddenField)e.Item.FindControl("grpName");
+
+                HyperLink grpNameLabel = (HyperLink)e.Item.FindControl("grpNameLabel");
+                if (user().userType == "Teacher")
+                {
+                    grpNameLabel.Text = Truncate(grpName.Value, 20);
+                }
+                else
+                {
+                    grpNameLabel.Text = Truncate(grpName.Value, 40);
+                }
+
             }
 
         }
