@@ -162,7 +162,7 @@ namespace WISLEY.DAL.Group
             int rec_cnt = ds.Tables[0].Rows.Count;
             System.Diagnostics.Debug.WriteLine(rec_cnt);
 
-            List <BLL.Group.Group> groupObjList = new List<BLL.Group.Group>();
+            List<BLL.Group.Group> groupObjList = new List<BLL.Group.Group>();
 
             if (rec_cnt > 0)
             {
@@ -224,14 +224,65 @@ namespace WISLEY.DAL.Group
             return userIDList;
         }
 
+        public List<User> SelectNonMembers(string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlstmt = "Select * from [User] " +
+                "where email not in (Select userEmail from [GroupUserRelations] where groupID = @paraGroupID)";
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlstmt, myConn);
+            sqlCmd.SelectCommand.Parameters.AddWithValue("@paraGroupID", groupId);
+
+            DataSet ds = new DataSet();
+            sqlCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            List<User> userIDList = new List<User>();
+            if (rec_cnt > 0)
+            {
+                for (int i = 0; i < rec_cnt; i++)
+                {
+                    DataRow row = ds.Tables[0].Rows[i];
+                    int Id = int.Parse(row["Id"].ToString());
+                    string profilesrc = row["profilesrc"].ToString();
+                    string userEmail = row["email"].ToString();
+                    string name = row["name"].ToString();
+                    string password = row["password"].ToString();
+                    string salt = row["salt"].ToString();
+                    string contactNo = row["contactNo"].ToString();
+                    string gender = row["gender"].ToString();
+                    string dob = row["dob"].ToString();
+                    string accType = row["accType"].ToString();
+                    string bio = row["bio"].ToString();
+                    int points = int.Parse(row["wisPoints"].ToString());
+
+                    User obj = new User(
+                        id: Id,
+                        email: userEmail,
+                        userType: accType,
+                        name: name,
+                        password: password,
+                        salt: salt,
+                        dob: dob,
+                        contactNo: contactNo,
+                        gender: gender,
+                        bio: bio,
+                        points: points);
+
+                    userIDList.Add(obj);
+                }
+            }
+            System.Diagnostics.Debug.WriteLine(userIDList.Count);
+            return userIDList;
+        }
+
         public int joinGroup(string email, string code)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             int result = 0;
-            //int groupId = int.Parse(SelectGroupByAttribute("joinCode", code).id.ToString());
-            //bool isInList = SelectUserGroupsJoined(email).IndexOf(groupId) != -1;
             string checkGroupStmt = "Select * from [GroupUserRelations] " +
                 "where userEmail = @paraUserEmail and groupID = (Select Id from [Group] where joinCode = @paraCode)";
             SqlDataAdapter sqlCheckCmd = new SqlDataAdapter(checkGroupStmt, myConn);
@@ -247,7 +298,7 @@ namespace WISLEY.DAL.Group
             if (rec_cnt < 1)
             {
 
-                //Creating Group
+                //Joining Group
                 string sqlStmt = "INSERT INTO [GroupUserRelations] (userEmail, groupID, customOrder) " +
                      "VALUES (@paraEmail, @paraGroupID, @paraOrder)";
 
@@ -384,6 +435,94 @@ namespace WISLEY.DAL.Group
             return inviteCode;
 
 
+        }
+
+        public int addMemberToGroup(string email, string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            int result = 0;
+
+            string checkGroupStmt = "Select * from [GroupUserRelations] " +
+                "where userEmail = @paraUserEmail and groupID = @paraGroupId";
+
+            SqlDataAdapter sqlCheckCmd = new SqlDataAdapter(checkGroupStmt, myConn);
+
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraUserEmail", email);
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraGroupId", groupId);
+
+            DataSet ds = new DataSet();
+            sqlCheckCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            if(rec_cnt < 1)
+            {
+                //Adding To Group
+                string sqlStmt = "INSERT INTO [GroupUserRelations] (userEmail, groupID, customOrder) " +
+                     "VALUES (@paraEmail, @paraGroupID, @paraOrder)";
+
+                // Execute NonQuery return an integer value
+                SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+                sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+                sqlCmd.Parameters.AddWithValue("@paraGroupID", groupId);
+                sqlCmd.Parameters.AddWithValue("@paraOrder", higherJoinedGroupOrder(email) + 1);
+
+                myConn.Open();
+                result = sqlCmd.ExecuteNonQuery(); //Result 
+                myConn.Close();
+            }
+            else
+            {
+                result = -1;
+            }
+           
+
+            return result;
+        }
+
+        public int removeMemberFromGroup(string email, string groupId)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            int result = 0;
+
+            string checkGroupStmt = "Select * from [GroupUserRelations] " +
+                "where userEmail = @paraUserEmail and groupID = @paraGroupId";
+
+            SqlDataAdapter sqlCheckCmd = new SqlDataAdapter(checkGroupStmt, myConn);
+
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraUserEmail", email);
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraGroupId", groupId);
+
+            DataSet ds = new DataSet();
+            sqlCheckCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            if (rec_cnt > 0)
+            {
+                //Adding To Group
+                string sqlStmt = "Delete from [GroupUserRelations] " +
+                     "Where userEmail = @paraEmail and groupID = @paraGroupID";
+
+                // Execute NonQuery return an integer value
+                SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+                sqlCmd.Parameters.AddWithValue("@paraEmail", email);
+                sqlCmd.Parameters.AddWithValue("@paraGroupID", groupId);
+
+
+                myConn.Open();
+                result = sqlCmd.ExecuteNonQuery(); //Result 
+                myConn.Close();
+            }
+            else
+            {
+                result = -1;
+            }
+
+
+            return result;
         }
 
 

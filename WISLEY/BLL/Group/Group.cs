@@ -6,6 +6,7 @@ using WISLEY.BLL.Resources;
 using WISLEY.DAL.Group;
 using WISLEY.DAL.Resources;
 
+
 namespace WISLEY.BLL.Group
 {
     public class Group
@@ -89,14 +90,6 @@ namespace WISLEY.BLL.Group
             GroupDAO groupDAO = new GroupDAO();
             List<Group> grpIdList = groupDAO.SelectUserGroupsJoined(email);
 
-            //if (grpIdList.Count > 0){
-            //    for (int j = 0; j < grpIdList.Count; j++)
-            //    {
-            //        Group grp = groupDAO.SelectGroupByAttribute("Id", grpIdList[j].ToString());
-            //        grpList.Add(grp);
-            //    }
-            //}
-
             return grpIdList;
         }
 
@@ -108,7 +101,6 @@ namespace WISLEY.BLL.Group
 
         public List<grpResourceType> getGroupResourceTypes(int grpId)
         {
-            //List<grpResourceType> typeList = new List<grpResourceType>();
             grpResourceTypeDAO RsTypeDAO = new grpResourceTypeDAO();
             return RsTypeDAO.GetGrpResourceTypes(grpId);
         }
@@ -125,5 +117,26 @@ namespace WISLEY.BLL.Group
             return groupDAO.showJoinedGroup(email, groupId);
         }
 
+        public List<BLL.Profile.User> getAddableUsers(string groupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            List<BLL.Profile.User> addableUserList = groupDAO.SelectNonMembers(groupId);
+            System.Diagnostics.Debug.WriteLine(addableUserList.Count);
+
+            return addableUserList;
+
+        }
+
+        public int addMemberToGroup(string email, string groupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.addMemberToGroup(email, groupId);
+        }
+
+        public int removeMemberFromGroup(string email, string groupId)
+        {
+            GroupDAO groupDAO = new GroupDAO();
+            return groupDAO.removeMemberFromGroup(email, groupId);
+        }
     }
 }

@@ -31,17 +31,20 @@
 
         <% if (user().userType == "Teacher")
             { %>
-        <div class="row justify-content-start">
+        <div class="row justify-content-start col-12">
 
-            <p class="text-left col-3 my-auto">
+            <p class="text-left my-auto">
                 Invite code: <span class="group-code black-text black"><%= grpCode %></span>
                 <small></small>
             </p>
 
-            <div class="col-6">
+            <div class="">
                 <asp:Button ID="grpCodeReset" Text="Reset Group Code"
                     class="btn btn-sm btn-primary"
                     runat="server" OnClick="resetGroupCode" />
+                <asp:Button ID="addMemberBtn" Text="Add Member"
+                    class="btn btn-sm btn-primary"
+                    runat="server" OnClick="redirectToAddMember" />
             </div>
 
         </div>
@@ -70,10 +73,10 @@
                     aria-selected="true">Resources</a>
             </li>
 
-            <li class="nav-item">
+<%--            <li class="nav-item">
                 <a class="nav-link" id="assignments-tab-classic-shadow" data-toggle="tab"
                     href="#assignments-classic-shadow" role="tab" aria-controls="assignments-classic-shadow"
-                    aria-selected="true">Assignments</a>
+                    aria-selected="true">Assignments</a>--%>
 
             <li class="nav-item <% if (pageName == "members")
                 {%>  waves-light active show <% } %>"
@@ -115,13 +118,13 @@
 
             </div>
 
-            <div class="tab-pane fade" id="assignments-classic-shadow" role="tabpanel"
+  <%--          <div class="tab-pane fade" id="assignments-classic-shadow" role="tabpanel"
                 aria-labelledby="assignments-tab-classic-shadow">
 
                 <asp:ContentPlaceHolder ID="groupAssignments" runat="server">
                 </asp:ContentPlaceHolder>
 
-            </div>
+            </div>--%>
 
             <div class="tab-pane fade <% if (pageName == "members")
                 {%> active show <% } %>"

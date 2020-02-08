@@ -40,7 +40,10 @@ namespace WISLEY
                 schedule.DataSource = todolist;
                 schedule.DataBind();
             }
+            else
+            {
 
+            }
         }
 
         public bool TeacherCheck() //Checks whether user is a teacher and returns a bool
@@ -87,6 +90,12 @@ namespace WISLEY
         {
             var grp = getGroupDetails();
             int result = grp.resetGroupJoinCode(grp.id);
+        }
+
+        public void redirectToAddMember(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Group/addMember.aspx?groupId=" + Request.QueryString["groupId"].ToString());
+
         }
 
         public void redirectToJoinGroup(object sender, EventArgs e)
