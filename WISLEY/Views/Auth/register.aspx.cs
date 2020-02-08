@@ -137,7 +137,7 @@ namespace WISLEY
                     badge10.AddBadge();
                     badge11.AddBadge();
                     badge12.AddBadge();
-                    Session["registered"] = "register";
+                    Session["success"] = "You have been registered successfully! Please log in.";
                     Response.Redirect(Page.ResolveUrl("~/Views/Auth/login.aspx"));
                 }
 

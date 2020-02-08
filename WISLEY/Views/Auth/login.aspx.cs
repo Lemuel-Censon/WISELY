@@ -13,15 +13,15 @@ namespace WISLEY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["password"] != null)
+            if (Session["email"] != null)
             {
-                toast(this, Session["password"].ToString(), "Success", "success");
-                Session["password"] = null;
+                Session["error"] = "You are already logged in!";
+                Response.Redirect(Page.ResolveUrl("~/Views/Board/collab.aspx"));
             }
-            if (Session["registered"] != null)
+            if (Session["success"] != null)
             {
-                toast(this, "You have been registered successfully! Please log in.", "Success", "success");
-                Session["registered"] = null;
+                toast(this, Session["success"].ToString(), "Success", "success");
+                Session["success"] = null;
             }
         }
 
@@ -110,19 +110,11 @@ namespace WISLEY
         {
             if (ValidateInput())
             {
-                if (Session["email"] == null)
-                {
-                    Session["email"] = TbEmail.Text;
-                    int uid = user().id;
-                    Session["uid"] = uid;
-                    Session["success"] = "Logged in successfully!";
-                    Response.Redirect("~/Views/Board/collab.aspx");
-                }
-                else
-                {
-                    Session["error"] = "You are already logged in!";
-                    Response.Redirect("~/Views/Board/collab.aspx");
-                }
+                Session["email"] = TbEmail.Text;
+                int uid = user().id;
+                Session["uid"] = uid;
+                Session["success"] = "Logged in successfully!";
+                Response.Redirect("~/Views/Board/collab.aspx");
             }
         }
     }

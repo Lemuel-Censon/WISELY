@@ -54,23 +54,16 @@ namespace WISLEY.Views.Gacha
             Response.Redirect(Page.ResolveUrl("~/Views/Profile/profile.aspx"));
         }
 
-        protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void avatars_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (avatars.Items.Count < 1)
+            List<Avatar> useravatars = new Avatar().SelectByUser(user().id);
+            if (useravatars.Count < 1 && e.Item.ItemType == ListItemType.Footer)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    e.Item.FindControl("LbErr").Visible = true;
-                }
+                e.Item.FindControl("LbErr").Visible = true;
             }
             else
             {
-                if (e.Item.ItemType == ListItemType.Item)
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
                     HiddenField rarity = (HiddenField)e.Item.FindControl("avatarrarity");
                     Image avatar = (Image)e.Item.FindControl("avatarimg");
