@@ -134,7 +134,7 @@
                                         </div>
 
                                         <div class="text-center" style="margin-bottom:8px;">
-                                            <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>">Delete</button>
+                                            <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>" data-backdrop="false">Delete</button>
                                             <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
 

@@ -13,12 +13,6 @@ namespace WISLEY
 {
     public partial class profile : System.Web.UI.Page
     {
-        public int postcount()
-        {
-            Post post = new Post();
-            return post.SelectByUser(LbEmail.Text).Count;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["email"] != null && Session["uid"] != null)
@@ -73,7 +67,6 @@ namespace WISLEY
                     {
                         LbBio.Text = user.bio;
                     }
-                    postcount();
                     List <Post> userposts = new Post().SelectByUser(userid.Value);
                     List <Quiz> quizposts = new Quiz().SelectByUserId(userid.Value);
                     List <Badge> unlockedbadges = new Badge().SelectByUserId(userid.Value, "Unlocked");
@@ -164,12 +157,10 @@ namespace WISLEY
 
         protected void userpost_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (userpost.Items.Count < 1)
+            List<Post> userposts = new Post().SelectByUser(userid.Value);
+            if (userposts.Count < 1 && e.Item.ItemType == ListItemType.Footer)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    e.Item.FindControl("LbErr").Visible = true;
-                }
+                e.Item.FindControl("LbErr").Visible = true;
             }
         }
 
@@ -196,12 +187,10 @@ namespace WISLEY
 
         protected void userquiz_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (userquiz.Items.Count < 1)
+            List<Quiz> quizposts = new Quiz().SelectByUserId(userid.Value);
+            if (quizposts.Count < 1 && e.Item.ItemType == ListItemType.Footer)
             {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    e.Item.FindControl("LbErr").Visible = true;
-                }
+                e.Item.FindControl("LbErr").Visible = true;
             }
         }
 
