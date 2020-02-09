@@ -188,6 +188,15 @@ namespace WISLEY
         protected void userquiz_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             List<Quiz> quizposts = new Quiz().SelectByUserId(userid.Value);
+            foreach (RepeaterItem rt in userquiz.Items)
+            {
+                int totalquestions = int.Parse((rt.FindControl("LbNofQuestions") as Label).Text);
+                if (totalquestions == 0)
+                {
+                    rt.FindControl("viewquiz").Visible = false;
+                    rt.FindControl("LbUnavailable").Visible = true;
+                }
+            }
             if (quizposts.Count < 1 && e.Item.ItemType == ListItemType.Footer)
             {
                 e.Item.FindControl("LbErr").Visible = true;

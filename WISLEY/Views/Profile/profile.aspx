@@ -226,10 +226,11 @@
                                                     <span class="text-muted"><i class="fas fa-clock mr-1"></i>Created on: <%#Eval("datecreated") %>
                                                     </span>
                                                     <br />
-                                                    <span class="text-muted"><i class="fas fa-exclamation-circle mr-1"></i>No of. Questions: <%#Eval("totalquestions") %></span>
+                                                    <span class="text-muted"><i class="fas fa-exclamation-circle mr-1"></i>No of. Questions: <asp:Label ID="LbNofQuestions" runat="server" Text='<%#Eval("totalquestions") %>'></asp:Label></span>
                                                 </div>
                                             </div>
                                             <div class="text-right mt-2 card-header border-0 font-weight-bold">
+                                                <asp:Label ID="LbUnavailable" runat="server" CssClass="text-danger" Text="Quiz Unavailable!" Visible="false"></asp:Label>
                                                 <asp:LinkButton runat="server" ID="viewquiz" CssClass="btn btn-success btn-sm" CommandName="viewquiz" CommandArgument='<%#Eval("Id") %>'>Take Quiz >></asp:LinkButton>
                                             </div>
                                         </div>
