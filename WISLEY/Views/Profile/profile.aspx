@@ -11,9 +11,7 @@
                 <div class="card-body">
                     <h3 class="font-weight-bold text-center col-12">Quick Links</h3>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>"><i class="fas fa-home mr-1"></i>Home</a>
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Resources/resource.aspx") %>"><i class="fas fa-graduation-cap mr-1"></i>My Grades</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Schedule/schedule.aspx") %>"><i class="fas fa-calendar-alt mr-1"></i>My Calendar</a>
-                    <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Resources/resource.aspx") %>"><i class="fas fa-code mr-1"></i>My Resources</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Board/collab.aspx") %>"><i class="fas fa-users mr-1"></i>My Groups</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Gacha/gacha.aspx") %>"><i class="fas fa-portrait mr-1"></i>Gacha</a>
                     <a class="btn btn-block btn-white text-left border-left border-danger rounded-0 mb-1 blue-text" href="<%= Page.ResolveUrl("~/Views/Quiztool/quizcreator.aspx") %>"><i class="fas fa-question-circle mr-1"></i>Quiz Creator</a>
@@ -144,7 +142,7 @@
                                 <div class="media-body">
                                     <div class="row">
                                         <div class="col-4">
-                                            <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="100" height="100" />
+                                            <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' class="img-fluid" width="100" height="100" />
                                         </div>
                                         <div class="col-8">
                                             <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
@@ -162,7 +160,7 @@
                                 <div class="media-body">
                                     <div class="row">
                                         <div class="col-4">
-                                            <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' width="100" height="100" style="filter: grayscale(100%)" />
+                                            <img src='<%#Eval("src") %>' alt='<%#Eval("alt") %>' class="img-fluid" width="100" height="100" style="filter: grayscale(100%)" />
                                         </div>
                                         <div class="col-8">
                                             <p><i class="fas fa-exclamation-circle mr-1"></i><span class="font-weight-bold">Requirement: </span><%#Eval("requirement") %></p>
