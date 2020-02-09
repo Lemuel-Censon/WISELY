@@ -39,7 +39,7 @@ namespace WISLEY
             {
                 Session["email"] = TbEmail.Text;
                 Session["success"] = "Your email address has been verified!"; 
-                Response.Redirect("verifyaccount.aspx");
+                Response.Redirect("changepassword.aspx");
             }
         }
 

@@ -111,7 +111,7 @@ namespace WISLEY
 
                 User user = new User(email, hash, salt, "Student", name, "", "", "", 0, "");
                 int result = user.AddUser();
-                Badge badge1 = new Badge(1, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Beginner", "Become a WISELY member", 0, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                Badge badge1 = new Badge(1, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Beginner.png", "Beginner", "Become a WISELY member.", 0, "", "Locked");
                 Badge badge2 = new Badge(2, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Group.png", "Join a Group", "Join a group.", 50, "", "Locked");
                 Badge badge3 = new Badge(3, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Post.png", "Create a post", "Create a post.", 50, "", "Locked");
                 Badge badge4 = new Badge(4, user.GetLastID().ToString(), "../../Public/img/Badges/Badge_Quiz.png", "Create a quiz", "Create a quiz.", 50, "", "Locked");

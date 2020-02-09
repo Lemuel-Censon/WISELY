@@ -5,7 +5,9 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WISLEY.BLL.Notification;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.User;
 
 namespace WISLEY
 {
@@ -112,6 +114,14 @@ namespace WISLEY
             {
                 Session["email"] = TbEmail.Text;
                 int uid = user().id;
+                int currentpoints = user().points;
+                Badge badge = new Badge().SelectByBadgeId(user().id.ToString(), 1);
+                Notify notify = new Notify(user().email, user().email, DateTime.Now.ToString(), "badge", -1, -1, 1);
+                if (badge.status == "Locked")
+                {
+                    badge.UpdateBadge(user().id.ToString(), 1, DateTime.Now.ToString("dd/MM/yyyy"), "Unlocked");
+                    notify.AddBadgeNotif();
+                }
                 Session["uid"] = uid;
                 Session["success"] = "Logged in successfully!";
                 Response.Redirect("~/Views/Board/collab.aspx");

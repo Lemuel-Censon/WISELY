@@ -223,7 +223,6 @@
     <Content Include="Public\js\toast\toastr.js" />
     <Content Include="Public\js\toast\toastr.min.js" />
     <Content Include="Views\Schedule\todoplan.aspx" />
-    <Content Include="Views\Profile\verifyaccount.aspx" />
     <Content Include="Views\Board\viewpost.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -499,13 +498,6 @@
     </Compile>
     <Compile Include="Views\Schedule\todoplan.aspx.designer.cs">
       <DependentUpon>todoplan.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Profile\verifyaccount.aspx.cs">
-      <DependentUpon>verifyaccount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Profile\verifyaccount.aspx.designer.cs">
-      <DependentUpon>verifyaccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Board\viewpost.aspx.cs">
       <DependentUpon>viewpost.aspx</DependentUpon>
