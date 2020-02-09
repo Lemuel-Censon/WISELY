@@ -2,45 +2,45 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="groupPosts" runat="server">
     <% string inGroup = Request.QueryString["groupId"];  %>
-    <% if (String.IsNullOrEmpty(inGroup))
-        {%>
-    <h3 class="font-weight-bold text-center mt-2">Collaboration Board</h3>
-    <%} %>
     <div class="container">
         <asp:ScriptManager runat="server" ID="postscript">
         </asp:ScriptManager>
         <asp:Label runat="server" ID="LbEmail" Visible="false"></asp:Label>
         <div class="card">
-            <div class="card-body">
-                <div class="md-form md-outline">
+            <div class="card-body p-3">
+                <% if (String.IsNullOrEmpty(inGroup))
+                    {%>
+                <h3 class="font-weight-bold text-center">Collaboration Board</h3>
+                <%} %>
+                <div class="md-form md-outline m-0">
                     <asp:Label ID="LbPost" AssociatedControlID="tbtitle" runat="server" Text="Post Title"></asp:Label>
                     <asp:TextBox ID="tbtitle" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
-                <hr />
-                <div class="md-form md-outline">
+                <hr class="m-0" />
+                <div class="md-form md-outline mt-2 m-0">
                     <asp:Label ID="LbDesc" AssociatedControlID="tbcontent" runat="server" Text="Post Description"></asp:Label>
                     <asp:TextBox ID="tbcontent" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="6"></asp:TextBox>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row m-0">
+                    <div class="col-lg-5">
                         <div class="custom-file">
                             <asp:FileUpload ID="fileUpload" runat="server" CssClass="custom-file-input" />
                             <asp:Label ID="LbFile" AssociatedControlID="fileUpload" runat="server" Text="Upload a file" CssClass="custom-file-label"></asp:Label>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <asp:DropDownList runat="server" ID="ddlgrp" Visible="false" CssClass="custom-select"></asp:DropDownList>
                     </div>
-                </div>
-                <div class="text-right">
-                    <asp:Button CssClass="btn btn-success ml-auto" ID="btnpost" runat="server" Text="Post" OnClick="btnpost_Click" />
+                    <div class="col-lg-2 text-right">
+                        <asp:Button CssClass="btn btn-success btn-sm ml-auto" ID="btnpost" runat="server" Text="Post" OnClick="btnpost_Click" />
+                    </div>
                 </div>
             </div>
         </div>
         <div class="card mt-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-3 order-md-2">
+            <div class="card-body p-0">
+                <div class="row m-0">
+                    <div class="col-12 col-md-6 order-3 order-md-2 m-0">
                         <select class="md-form md-outline custom-select sort-select">
                             <option selected disabled>Sort By</option>
                             <option>Oldest first</option>
@@ -49,7 +49,7 @@
                             <option>Most Liked</option>
                         </select>
                     </div>
-                    <div class="col-12 col-md-6 order-1 order-md-3 mt-2 mt-md-0">
+                    <div class="col-12 col-md-6 order-1 order-md-3 m-0">
                         <div class="input-group md-form md-outline">
                             <input type="text" id="search" class="form-control" placeholder="Search by Title" />
                             <div class="input-group-append">
@@ -58,14 +58,14 @@
                         </div>
                     </div>
                 </div>
-                <hr />
+                <hr class="ml-3 mr-3 m-0" />
             </div>
             <asp:UpdatePanel runat="server" ID="postpanel" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div id="postcon">
                         <asp:Repeater runat="server" ID="postinfo" OnItemCommand="postinfo_ItemCommand" OnItemDataBound="postinfo_ItemDataBound">
                             <ItemTemplate>
-                                <div class="postcards" data-id='<%#Eval("Id") %>' data-views='<%#Eval("views") %>' data-likes='<%#Eval("likes") %>'>
+                                <div class="postcards card m-3" data-id='<%#Eval("Id") %>' data-views='<%#Eval("views") %>' data-likes='<%#Eval("likes") %>'>
                                     <div class="card-body" id="post<%#Eval("Id") %>">
                                         <asp:HiddenField runat="server" ID="postuserID" Value='<%#Eval("userId") %>' />
                                         <div class="row">
