@@ -63,7 +63,7 @@
                                                 {
                                             %>
                                             <h5 class="text-center col-12 m-0 py-2">or</h5>
-                                            <button runat="server" class="btn btn-success text-left col-10 rounded-0 text-center "
+                                            <button runat="server" class="btn btn-outline-success text-left col-10 rounded-0 text-center "
                                                 data-toggle="modal" data-target="#createGroupModal" onclick="return false;">
                                                 <i class="fas fa-plus"></i>&nbsp;&nbsp;  Create a Group
 
@@ -150,10 +150,6 @@
                                                     <p class="card-text"><%#Eval("todoDescription") %></p>
                                                 </div>
                                             </div>
-
-                                            <%--<div class="text-center">
-                                                <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
-                                            </div>--%>
                                         </div>
 
                                         <div class="text-center" style="margin-bottom: 8px;">
