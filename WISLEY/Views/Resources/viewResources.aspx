@@ -51,13 +51,22 @@
                     </div>
                 </div>
             </ItemTemplate>
+
+            <FooterTemplate>
+                <% if (resHeaders.Items.Count < 1)
+                    { %>
+                <div class="row">
+                    <h3 class="col-12 text-center">There are no resources uploaded for this group</h3>
+                </div>
+                <%}%>
+            </FooterTemplate>
         </asp:Repeater>
 
         <asp:SqlDataSource ID="resTypeData"
             ConnectionString="<%$ connectionStrings: ConnStr%>"
             runat="server"></asp:SqlDataSource>
 
-                <% if (user().userType == "Teacher")
+        <% if (user().userType == "Teacher")
             { %>
         <a class="btn btn-light" href="<%= Page.ResolveUrl("~/Views/Resources/resourceUpload.aspx?groupId=" + getGroupDetails().id.ToString())%>">Upload Resource </a>
         <%} %>

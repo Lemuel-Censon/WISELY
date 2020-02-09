@@ -89,7 +89,7 @@
                         <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-1" aria-labelledby="profileDD">
                             <a class="dropdown-item" href="<%= Page.ResolveUrl("~/Views/Profile/profile.aspx") %>">
                                 <i class="fas fa-id-card mr-1"></i>My Profile</a>
-                            <a class="dropdown-item" href="<%= Page.ResolveUrl("~/Views/Board/collab.aspx") %>">
+                            <a class="dropdown-item" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">
                                 <i class="fas fa-users mr-1"></i>My Groups</a>
                             <a class="dropdown-item" href="<%= Page.ResolveUrl("~/Views/Schedule/schedule.aspx") %>">
                                 <i class="fas fa-calendar mr-1"></i>My Schedule</a>

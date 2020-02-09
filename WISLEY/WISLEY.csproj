@@ -134,10 +134,8 @@
     <Content Include="Views\Gacha\Gacha.aspx" />
     <Content Include="Views\Gacha\GachaDetails.aspx" />
     <Content Include="Views\Gacha\GachaSummon.aspx" />
-    <Content Include="Views\Group\createGroup.aspx" />
     <Content Include="Views\Group\editGroup.aspx" />
     <Content Include="Views\Group\addMember.aspx" />
-    <Content Include="Views\Group\joinGroup.aspx" />
     <Content Include="Views\Group\members.aspx" />
     <Content Include="Views\Group\viewAllGroups.aspx" />
     <Content Include="Views\Notification\viewnotif.aspx" />
@@ -215,7 +213,6 @@
     <Content Include="Views\Quiztool\quizzes.aspx" />
     <Content Include="Views\Quiztool\viewquiz.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
-    <Content Include="Views\Resources\Test.aspx" />
     <Content Include="Views\Resources\viewResources.aspx" />
     <Content Include="Views\Schedule\editToDo.aspx" />
     <Content Include="Views\Schedule\schedule.aspx" />
@@ -288,13 +285,6 @@
     <Compile Include="Views\Gacha\GachaSummon.aspx.designer.cs">
       <DependentUpon>GachaSummon.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Group\createGroup.aspx.cs">
-      <DependentUpon>createGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Group\createGroup.aspx.designer.cs">
-      <DependentUpon>createGroup.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Group\editGroup.aspx.cs">
       <DependentUpon>editGroup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,13 +298,6 @@
     </Compile>
     <Compile Include="Views\Group\addMember.aspx.designer.cs">
       <DependentUpon>addMember.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Group\joinGroup.aspx.cs">
-      <DependentUpon>joinGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Group\joinGroup.aspx.designer.cs">
-      <DependentUpon>joinGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Group\members.aspx.cs">
       <DependentUpon>members.aspx</DependentUpon>
