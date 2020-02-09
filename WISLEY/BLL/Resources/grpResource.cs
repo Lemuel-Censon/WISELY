@@ -50,6 +50,12 @@ namespace WISLEY.BLL.Resources
             return grpResDAO.Insert(this);
         }
 
+        public int deleteResource(string grpId, string resourceType, string fileName)
+        {
+            grpResourceDAO grpResDAO = new grpResourceDAO();
+            return grpResDAO.deleteResource(grpId, resourceType, fileName);
+        }
+
         public int getLatestOrder(int grpId, string resourceType)
         {
             grpResourceDAO grpResDAO = new grpResourceDAO();

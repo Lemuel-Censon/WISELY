@@ -104,37 +104,58 @@ namespace WISLEY.Views.Resources
                 Directory.CreateDirectory(folderPath);
             }
 
+
             if (resourceUploadController.HasFile && resourceType != null)
             {
                 string filename = Path.GetFileName(resourceUploadController.FileName);
 
-                grpResource resource = new grpResource(filename, resourceType, int.Parse(Request.QueryString["groupId"]));
-                int result = resource.insertResource();
+                System.Diagnostics.Debug.WriteLine(folderPath + filename);
 
-                if (result == 1)
+                if (File.Exists(folderPath + filename))
                 {
-                    System.Diagnostics.Debug.WriteLine("Upload success. Check DB");
+                    toast(this, "File already exists!", "Error", "error");
+                    System.Diagnostics.Debug.WriteLine("File already exists!");
 
-                    try
-                    {
-                        resourceUploadController.SaveAs(folderPath + filename);
-                        Session["success"] = "Resources uploaded successfully!";
-                        Response.Redirect("~/Views/Resources/viewResources.aspx?groupId=" + Request.QueryString["groupId"]);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Upload status: The file could not be uploaded. The following error occured: " + ex.Message);
-
-                    }
+                    //Session["error"] = "File already exists!";
+                    //Response.Redirect(Request.RawUrl);
 
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("Failed");
+                    grpResource resource = new grpResource(filename, resourceType, int.Parse(Request.QueryString["groupId"]));
+                    int result = resource.insertResource();
 
+                    if (result == 1)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Upload success. Check DB");
+
+                        try
+                        {
+                            resourceUploadController.SaveAs(@folderPath + filename);
+                            Session["success"] = "Resources uploaded successfully!";
+                            Response.Redirect("~/Views/Resources/viewResources.aspx?groupId=" + Request.QueryString["groupId"]);
+
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine("Upload status: The file could not be uploaded. The following error occured: " + ex.Message);
+
+                        }
+
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Failed");
+
+                    }
                 }
 
+
+
+            }
+            else
+            {
+                toast(this, "Please input a file!", "Error", "error");
 
             }
         }

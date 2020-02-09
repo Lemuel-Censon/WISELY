@@ -34,16 +34,18 @@
                         <h2 class="text-center col-12">File Details </h2>
                         <hr class="col-12 hr-primary" />
                         <h5 class="col-12"><b>File Name:</b></h5>
-                        <p class="col-12"> <%= getFileInfo().Name %></p>
+                        <p class="col-12"><%= getFileInfo().Name %></p>
                         <h5 class="col-12"><b>Group:</b></h5>
-                        <p class="col-12"> <%= getGroupDetails().name %></p>
+                        <p class="col-12"><%= getGroupDetails().name %></p>
                         <h5 class="col-12"><b>Resource Type:</b></h5>
-                        <p class="col-12"> <%= Request.QueryString["resourceType"] %></p>
+                        <p class="col-12"><%= Request.QueryString["resourceType"] %></p>
                     </div>
 
                 </div>
 
-                <div class="row justify-content-around mx-0 h-10 pt-5">
+                <div class="row justify-content-around mx-0 h-10 
+                    <% if(user().userType == "Teacher"){ %> pt-3 <%}else{ %> pt-5 <%} %>
+                    ">
                     <div class="col pt-5">
                         <button runat="server"
                             class="btn btn-sm btn-block btn-outline-primary text-left mb-1 text-center m-0"
@@ -58,6 +60,16 @@
                             Download
                         </button>
                     </div>
+                    <% if(user().userType == "Teacher"){ %>
+                    <div class="col-12 pt-1">
+                        <button runat="server"
+                            data-toggle="modal" data-target="#deleteFileModal" onclick="return false;"
+                            class="btn btn-sm btn-block btn-outline-danger text-left mb-1 text-center m-0"
+                            >
+                            Delete
+                        </button>
+                    </div>
+                    <%} %>
                 </div>
 
 
@@ -68,7 +80,30 @@
 
     </div>
 
-    <%--     src="<%= Page.ResolveUrl("~/Public/uploads/groupResources/18/Practical/T06_Web_Service.pdf") %>" --%>
+    <% if (user().userType == "Teacher")
+        { %>
+    <div class="modal fade" id="deleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center col-12"> Are you sure you want to delete this file?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <asp:Button ID="deleteBtn" runat="server" Text="Delete" class="btn btn-primary" OnClick="deleteResource"/>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scripts" runat="server">
 </asp:Content>

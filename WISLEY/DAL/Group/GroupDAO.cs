@@ -282,7 +282,7 @@ namespace WISLEY.DAL.Group
         }
 
 
-        //Chaing Group Status
+        //Changing Group Status
 
         public int disableGroup(string groupId)
         {
@@ -532,7 +532,7 @@ namespace WISLEY.DAL.Group
 
             if (rec_cnt > 0)
             {
-                //Adding To Group
+              
                 string sqlStmt = "Delete from [GroupUserRelations] " +
                      "Where userEmail = @paraEmail and groupID = @paraGroupID";
 

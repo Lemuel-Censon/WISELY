@@ -39,6 +39,52 @@ namespace WISLEY.DAL.Resources
             return result;
         }
 
+        public int deleteResource(string grpId, string resourceType, string fileName)
+        {
+            int result = 0;
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string checkFileStmt = "Select * from [grpResource] " +
+            "where grpId = @paraGroupId and resourceType = @paraType and fileName = @paraName";
+
+            SqlDataAdapter sqlCheckCmd = new SqlDataAdapter(checkFileStmt, myConn);
+
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraGroupId", grpId);
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraType", resourceType);
+            sqlCheckCmd.SelectCommand.Parameters.AddWithValue("@paraName", fileName);
+
+
+            DataSet ds = new DataSet();
+            sqlCheckCmd.Fill(ds);
+            int rec_cnt = ds.Tables[0].Rows.Count;
+
+            if (rec_cnt > 0)
+            {
+                //Adding To Group
+                string sqlStmt = "Delete from [grpResource] " +
+                     "where grpId = @paraGroupId and resourceType = @paraType and fileName = @paraName";
+
+                // Execute NonQuery return an integer value
+                SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+                sqlCmd.Parameters.AddWithValue("@paraGroupId", grpId);
+                sqlCmd.Parameters.AddWithValue("@paraType", resourceType);
+                sqlCmd.Parameters.AddWithValue("@paraName", fileName);
+
+
+                myConn.Open();
+                result = sqlCmd.ExecuteNonQuery(); //Result 
+                myConn.Close();
+            }
+            else
+            {
+                result = -1;
+            }
+
+            return result;
+        }
+
         public int getLatestOrder(int grpId, string resourceType)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;

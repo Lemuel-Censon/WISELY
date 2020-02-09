@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WISLEY.BLL.Profile;
+using WISLEY.BLL.Resources;
 
 namespace WISLEY.Views.Resources
 {
@@ -51,6 +52,11 @@ namespace WISLEY.Views.Resources
 
         }
 
+        public void toast(Page page, string message, string title, string type)
+        {
+            ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
+        }
+
         public FileInfo getFileInfo()
         {
 
@@ -89,6 +95,41 @@ namespace WISLEY.Views.Resources
             Response.AppendHeader("content-disposition", $"filename={fileName}");
             Response.TransmitFile(folderPath + "/" + resourceType + "/" + fileName);
         }
+
+        public void deleteResource(object sender, EventArgs e)
+        {
+            string grpId = Request.QueryString["groupId"];
+            string resourceType = Request.QueryString["resourceType"];
+            string fileName = Request.QueryString["fileName"];
+
+            string folderPath = Server.MapPath($"~/Public/uploads/groupResources/{grpId}/{resourceType}/{fileName}");
+
+            if (File.Exists(folderPath))
+            {
+                File.Delete(folderPath);
+                grpResource grpRes = new grpResource();
+                int result = grpRes.deleteResource(grpId, resourceType, fileName);
+                if(result == 1)
+                {
+                    Session["success"] = "File Successfully deleted!";
+                    Response.Redirect("~/Views/Resources/viewResources.aspx?groupId=" + grpId);
+                }
+                else
+                {
+                    toast(this, "File deletion error!", "Error", "error");
+                    Response.Redirect("~/Views/Resources/viewResources.aspx?groupId=" + grpId);
+
+                }
+            }
+            else
+            {
+                toast(this, "File does not exist!", "Error", "error");
+                System.Diagnostics.Debug.WriteLine("File already exists!");
+            }
+        }
+
+
+
 
         public BLL.Group.Group getGroupDetails()
         {

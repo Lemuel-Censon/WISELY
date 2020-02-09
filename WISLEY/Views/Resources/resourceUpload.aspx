@@ -8,20 +8,7 @@
             <h1 class="col-12 text-center">Upload Resource</h1>
             <div class="col-7 card-body border border-primary">
 
-
-                <div class="form-row justify-content-start mb-4 pb-4">
-                    <div class="col-3">
-                        <label for="groupCodeTB">File: </label>
-                    </div>
-
-                    <div class="col-6 custom-file">
-                         
-                        <asp:FileUpload ID="resourceUploadController" CssClass="custom-file-input" runat="server" />
-                         <asp:Label ID="LbFile" AssociatedControlID="resourceUploadController" runat="server" Text="Upload a file" CssClass="custom-file-label"/>
-                        <p class="small">Please upload a file </p>  
-                    </div>
-                </div>
-
+                
                 <div class="form-row justify-content-start mb-4">
                     <div class="col-3">
                         <label for="groupCodeTB">File Resource Type: </label>
@@ -43,6 +30,20 @@
                     </div>
                 </div>
 
+
+
+                <div class="form-row justify-content-start mb-4 pb-4">
+                    <div class="col-3">
+                        <label for="groupCodeTB">File: </label>
+                    </div>
+
+                    <div class="col-6 custom-file">
+                         
+                        <asp:FileUpload ID="resourceUploadController" CssClass="custom-file-input" runat="server" />
+                         <asp:Label ID="LbFile" AssociatedControlID="resourceUploadController" runat="server" Text="Upload a file" CssClass="custom-file-label"/>
+                        <p class="small">Please upload a file </p>  
+                    </div>
+                </div>
 
 
                 <div class="row justify-content-end">
