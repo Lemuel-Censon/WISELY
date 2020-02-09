@@ -13,7 +13,6 @@
     <link href="~/Public/css/mdb.min.css" rel="stylesheet" />
     <link href="~/Public/css/toast/toastr.css" rel="stylesheet" runat="server" />
     <link href="~/Public/css/style.css" rel="stylesheet" runat="server" media="screen" />
-
     <script src="<%= ResolveUrl("~/Public/js/jquery.js") %>"></script>
     <script src="<%= ResolveUrl("~/Public/js/toast/toastr.js")%>"></script>
 
@@ -40,9 +39,10 @@
     </asp:ContentPlaceHolder>
 </head>
 
-<body>
+<body class="">
     <form runat="server">
         <asp:Label runat="server" ID="Lbemail" Visible="false"></asp:Label>
+        <% string pageName = getPageName(); %>
 
         <!--Navbar-->
         <nav class="navbar navbar-expand-md navbar-dark z-depth-0 primary-color sticky-top scrolling-navbar blue-gradient" style="padding-left: 12px 1rem !important;">
@@ -120,7 +120,8 @@
         </nav>
         <!--/.Navbar-->
 
-        <main class="container-fluid mx-auto mt-4 min-vh-85">
+        <main class="container-fluid mx-auto min-vh-85 <% if (pageName == "index")
+            {%>  p-0 mt-0 <% } else{ %> mt-4 <% } %>">
 
             <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
             </asp:ContentPlaceHolder>

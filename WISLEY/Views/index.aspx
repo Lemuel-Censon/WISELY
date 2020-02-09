@@ -5,18 +5,18 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder1" runat="server">
 
-        <div class="row min-vh-80">
+        <div class="row min-vh-80 mx-0">
             <div class="col-lg-6">
-                <img src="https://picsum.photos/800/400" class="img-fluid min-vh-80" alt="WISELY" />
+                <img src="<%= Page.ResolveUrl("~/Public/img/Teaching.png")%>" class="img-fluid min-vh-80 mt-n4 ml-3" alt="WISELY" />
             </div>
             <div class="col-lg-6">
 
                 <div class="text-left py-5 px-4">
                     <div class="py-5">
-                        <h2 class="h1-responsive mb-0 mb-md-2">Welcome to WISELY</h2>
+                        <h2 class="h1-responsive mb-0 mb-md-2 text-primary">Welcome to WISELY</h2>
                         <p class="d-none d-md-block">WISELY is a platform for students and teachers to teach and learn in a fun way.</p>
                         <p class="d-none d-md-block">Join us today as a student or teacher for a fun experience in learning!</p>
-                        <a class="btn btn-md btn-info" href="<%= Page.ResolveUrl("~/Views/Auth/register.aspx") %>">
+                        <a class="btn btn-md btn-outline-info" href="<%= Page.ResolveUrl("~/Views/Auth/register.aspx") %>">
                             <i class="fas fa-user-plus mr-1"></i>Get Started
                         </a>
                     </div>
@@ -25,9 +25,9 @@
         </div>
 
 
-        <div class="mt-3">
+        <div class="light-blue lighten-5 vh-50 pt-3">
             <h2 class="text-center font-weight-bold">Why WISELY?</h2>
-            <div class="row">
+            <div class="row mx-0">
                 <div class="col-12 col-md-3 col-lg-4 d-flex align-items-stretch mt-4">
                     <div class="card w-100">
                         <div class="card-body d-flex flex-column">

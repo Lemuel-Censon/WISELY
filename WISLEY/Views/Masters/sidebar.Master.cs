@@ -150,7 +150,80 @@ namespace WISLEY
         }
 
 
+        public bool ValidateInput(string name, string description, string weightage)
+        {
+            bool valid = false;
+            if (String.IsNullOrEmpty(name))
+            {
+                toast(this.Page, "Please enter the group name!", "Error", "error");
+            }
+            else if (String.IsNullOrEmpty(description))
+            {
+                toast(this.Page, "Please enter the group description!", "Error", "error");
+            }
+            else if (String.IsNullOrEmpty(weightage))
+            {
+                toast(this.Page, "Please enter the weightage!", "Error", "error");
+
+            }
+            else
+            {
+                valid = true;
+            }
+            return valid;
+        }
+
+        public void CreateGroup(object sender, EventArgs e)
+        {
+
+            string grpName = groupNameTB.Text.Trim();
+            string grpDescription = groupDescriptionTB.Text.Trim();
+            //string grpWeightage = groupWeightageTB.Text.Trim();
+            string grpWeightage = "0";
+
+
+            if (ValidateInput(grpName, grpDescription, grpWeightage))
+            {
+                int intGrpWeightage = 0;
+
+                if (int.TryParse(grpWeightage, out intGrpWeightage))
+                {
+                    BLL.Group.Group newGoup = new BLL.Group.Group(grpName, grpDescription, intGrpWeightage);
+                    int result = newGoup.addGroup(Session["email"].ToString());
+                    if (result == 1)
+                    {
+                        Session["success"] = "Group created successfully!";
+                        Response.Redirect("~/Views/Board/collab.aspx");
+                    }
+                    else if (result == -1)
+                    {
+                        toast(this.Page, "Group name already taken.", "Error", "error");
+
+                    }
+                    else
+                    {
+                        toast(this.Page, "Unable to create group, please inform system administrator!", "Error", "error");
+                    }
+                }
+                else
+                {
+                    toast(this.Page, "Please enter a numerical weightage.", "Error", "error");
+
+                }
+
+
+            }
+        }
+
+
+
+
+
         //============================================// Redirects //============================================//
+        public void redirectToViewAllGroups(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Group/viewAllGroups.aspx");
+        }
 
         public void redirectToAddMember(object sender, EventArgs e)
         {
@@ -217,6 +290,14 @@ namespace WISLEY
                 LinkButton linkBtn = (LinkButton)e.Item.FindControl("groupRedirect");
                 linkBtn.Text = Truncate(grpBtnName.Value, 30);
 
+            }
+            //if (e.Item.ItemType == ListItemType.Footer && groupBtns.Items.Count < 1)
+
+            if (e.Item.ItemType == ListItemType.Footer && groupBtns.Items.Count < 1)
+            {
+
+                System.Diagnostics.Debug.WriteLine("very empty. Much wow");
+                    
             }
 
         }

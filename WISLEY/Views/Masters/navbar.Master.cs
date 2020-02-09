@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -78,6 +79,13 @@ namespace WISLEY
         {
             int notifcount = new Notify().UserNotifCount(user().email);
             return notifcount;
+        }
+
+        public string getPageName()
+        {
+            string pageName = Path.GetFileNameWithoutExtension(Page.AppRelativeVirtualPath);
+            System.Diagnostics.Debug.WriteLine(pageName);
+            return pageName;
         }
 
     }

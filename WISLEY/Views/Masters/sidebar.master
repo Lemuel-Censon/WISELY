@@ -45,21 +45,29 @@
 
                                 <FooterTemplate>
                                     <% if (groupBtns.Items.Count == 0)
-                                    { %>
+                                        { %>
                                     <div class="row col-12 justify-content-center align-content-start">
 
                                         <h6 class="text-center col-12 pb-2">You are not inside any groups.
                                         </h6>
 
                                         <div class="col-12 row justify-content-center">
-                                            <a id="noGroupJoinBtn" class="btn btn-white text-left col-10 rounded-0 text-center "
-                                                href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Join a Group </a>
+                                            <button runat="server" class="btn btn-outline-primary text-left col-10 rounded-0 text-center"
+                                                data-toggle="modal" data-target="#joinGroupModal"
+                                                onclick="return false;">
+                                                <i class="fas fa-plus"></i>&nbsp;&nbsp;  Join a Group 
+
+                                            </button>
+
                                             <% if (TeacherCheck())
-                                            {
+                                                {
                                             %>
                                             <h5 class="text-center col-12 m-0 py-2">or</h5>
-                                            <a id="noGroupCreateBtn" class="btn btn-success text-left col-10 rounded-0 text-center "
-                                                href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>"><i class="fas fa-plus"></i>&nbsp;&nbsp;  Create a Group</a>
+                                            <button runat="server" class="btn btn-success text-left col-10 rounded-0 text-center "
+                                                data-toggle="modal" data-target="#createGroupModal" onclick="return false;">
+                                                <i class="fas fa-plus"></i>&nbsp;&nbsp;  Create a Group
+
+                                            </button>
                                             <% } %>
                                         </div>
                                     </div>
@@ -77,22 +85,37 @@
 
 
                     <% if (groupBtns.Items.Count != 0)
-                    { %>
+                        { %>
                     <div class="row justify-content-center m-0 p-0">
 
                         <div class="btn-group btn-block p-0">
-                            <a id="showAllGroupsBtn" class="btn btn-sm btn-outline-primary text-left rounded-0 mb-1 text-center m-0" href="<%= Page.ResolveUrl("~/Views/Group/viewAllGroups.aspx") %>">View All Groups</a>
 
+                            <button runat="server"
+                                class="btn btn-sm btn-outline-primary text-left mb-1 text-center m-0"
+                                onserverclick="redirectToViewAllGroups">
+                                View All Groups
 
-                            <asp:Button ID="joinGroupBtn" class="btn btn-sm btn-outline-primary text-left rounded-0 mb-1 text-center m-0"
-                                data-toggle="modal" data-target="#joinGroupModal" OnClientClick="return false;">Join Group 
-                            </asp:Button>
+                            </button>
+
+                            <button
+                                runat="server"
+                                class="btn btn-sm btn-outline-primary text-left mb-1 text-center m-0"
+                                data-toggle="modal" data-target="#joinGroupModal"
+                                onclick="return false;">
+                                Join Group
+                            </button>
+
                         </div>
                         <% if (TeacherCheck())
-                        {
+                            {
                         %>
-                        <a id="createGroupBtn" class="btn btn-sm btn-block btn-outline-success text-left rounded-0 mb-1 text-center"
-                            href="<%= Page.ResolveUrl("~/Views/Group/createGroup.aspx") %>">Create Group </a>
+                        <div class="col-12 p-0">
+                            <button runat="server"
+                                class="btn btn-sm btn-block btn-outline-success text-left rounded-0 mb-1 text-center"
+                                data-toggle="modal" data-target="#createGroupModal" onclick="return false;">
+                                Create Group</button>
+                        </div>
+
                         <% } %>
                     </div>
                     <%} %>
@@ -133,7 +156,7 @@
                                             </div>--%>
                                         </div>
 
-                                        <div class="text-center" style="margin-bottom:8px;">
+                                        <div class="text-center" style="margin-bottom: 8px;">
                                             <button type="button" id="btnDel" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<%#Eval("Id") %>" data-backdrop="false">Delete</button>
                                             <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
@@ -183,7 +206,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- Join Group Modal -->
     <div class="modal fade" id="joinGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog " role="document">
@@ -205,21 +228,58 @@
                         </div>
                     </div>
 
-<%--                    <div class="row justify-content-end">
-                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" class="btn btn-danger" OnClick="back" />
-                        <asp:Button ID="Button1" runat="server" Text="Join" class="btn btn-primary" OnClick="join" />
-                    </div>--%>
-                    <%--                    href="<%= Page.ResolveUrl("~/Views/Group/joinGroup.aspx") %>"--%>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-<%--                    <button type="button" class="btn btn-primary">Join Group</button>--%>
                     <asp:Button ID="Button1" runat="server" Text="Join" class="btn btn-primary" OnClick="join" />
                 </div>
             </div>
         </div>
     </div>
 
+
+    <!-- Create Group Modal -->
+    <% if (user().userType == "Teacher")
+        { %>
+    <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row justify-content-start mb-4">
+                        <div class="col-2">
+                            <label for="groupNameTB">Group Name</label>
+                        </div>
+                        <div class="col-10">
+                            <asp:TextBox ID="groupNameTB" class="form-control" runat="server"></asp:TextBox>
+                            <p class="small">This will be the name of your group </p>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-start mb-4">
+                        <div class="col-2">
+                            <label for="groupDescriptionTB">Group Description</label>
+                        </div>
+                        <div class="col-10">
+                            <asp:TextBox ID="groupDescriptionTB" TextMode="multiline" Columns="50" Rows="5" MaxLength="300" class="form-control" runat="server"></asp:TextBox>
+                            <p class="small">Please tell us more about the group. </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <asp:Button ID="Button2" runat="server" Text="Create" class="btn btn-primary" OnClick="CreateGroup" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
 </asp:Content>
 
 
