@@ -45,7 +45,9 @@
         <% string pageName = getPageName(); %>
 
         <!--Navbar-->
-        <nav class="navbar navbar-expand-md navbar-dark z-depth-0 primary-color sticky-top scrolling-navbar blue-gradient" style="padding-left: 12px 1rem !important;">
+        <nav class="navbar navbar-expand-md navbar-dark z-depth-0 primary-color sticky-top scrolling-navbar blue-gradient
+            <% if (pageName == "viewResourceDetails")
+            {%> vh-10 <% } %>" style="padding-left: 12px 1rem !important;">
 
             <!-- Navbar brand -->
             <a class="navbar-brand" href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">WISELY</a>
@@ -120,13 +122,14 @@
         </nav>
         <!--/.Navbar-->
 
-        <main class="container-fluid mx-auto min-vh-85 <% if (pageName == "index")
+        <main class="container-fluid mx-auto min-vh-85 <% if (pageName == "index" || pageName == "viewResourceDetails")
             {%>  p-0 mt-0 <% } else{ %> mt-4 <% } %>">
 
             <asp:ContentPlaceHolder ID="contentHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </main>
-
+         <% if (pageName != "viewResourceDetails")
+            {%> 
         <footer class="page-footer font-small mt-4 blue">
             <div class="footer-copyright p-3">
                 <a href="<%= Page.ResolveUrl("~/Views/index.aspx") %>">
@@ -136,6 +139,7 @@
                 </span>
             </div>
         </footer>
+         <% } %>
     </form>
 
     <script src="<%= ResolveUrl("~/Public/js/jquery.js") %>"></script>

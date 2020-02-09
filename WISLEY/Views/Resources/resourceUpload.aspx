@@ -9,12 +9,15 @@
             <div class="col-7 card-body border border-primary">
 
 
-                <div class="form-row justify-content-start mb-4">
+                <div class="form-row justify-content-start mb-4 pb-4">
                     <div class="col-3">
                         <label for="groupCodeTB">File: </label>
                     </div>
-                    <div class="col-6">
-                        <asp:FileUpload ID="resourceUploadController" runat="server" />
+
+                    <div class="col-6 custom-file">
+                         
+                        <asp:FileUpload ID="resourceUploadController" CssClass="custom-file-input" runat="server" />
+                         <asp:Label ID="LbFile" AssociatedControlID="resourceUploadController" runat="server" Text="Upload a file" CssClass="custom-file-label"/>
                         <p class="small">Please upload a file </p>  
                     </div>
                 </div>

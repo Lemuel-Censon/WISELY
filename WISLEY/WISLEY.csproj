@@ -121,6 +121,7 @@
     <Content Include="Public\img\Badges\Badge_Thuglife.png" />
     <Content Include="Public\img\Badges\Badge_ToDoList.png" />
     <Content Include="Public\img\default.jpg" />
+    <Content Include="Public\img\fileIcon.png" />
     <Content Include="Public\img\Gacha\banner.jpg" />
     <Content Include="Public\img\Gacha\banner.png" />
     <Content Include="Public\img\Logo\WISELY30.jpg" />
@@ -213,6 +214,7 @@
     <Content Include="Views\Quiztool\quizzes.aspx" />
     <Content Include="Views\Quiztool\viewquiz.aspx" />
     <Content Include="Views\Resources\resourceUpload.aspx" />
+    <Content Include="Views\Resources\viewResourceDetails.aspx" />
     <Content Include="Views\Resources\viewResources.aspx" />
     <Content Include="Views\Schedule\editToDo.aspx" />
     <Content Include="Views\Schedule\schedule.aspx" />
@@ -446,6 +448,13 @@
     </Compile>
     <Compile Include="Views\Resources\resourceUpload.aspx.designer.cs">
       <DependentUpon>resourceUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Resources\viewResourceDetails.aspx.cs">
+      <DependentUpon>viewResourceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Resources\viewResourceDetails.aspx.designer.cs">
+      <DependentUpon>viewResourceDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Resources\viewResources.aspx.cs">
       <DependentUpon>viewResources.aspx</DependentUpon>

@@ -31,15 +31,6 @@ namespace WISLEY.Views.Group {
         protected global::System.Web.UI.WebControls.TextBox groupDescriptionTB;
         
         /// <summary>
-        /// createGroupBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createGroupBtn;
-        
-        /// <summary>
         /// cancelBtn control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace WISLEY.Views.Group {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cancelBtn;
+        
+        /// <summary>
+        /// createGroupBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button createGroupBtn;
         
         /// <summary>
         /// diableGrpBtn control.

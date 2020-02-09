@@ -76,6 +76,16 @@ namespace WISLEY.Views.Resources
                 Response.AppendHeader("content-disposition", $"filename={commandArgs[1]}");
                 Response.TransmitFile(folderPath + "/" + commandArgs[0] + "/" + commandArgs[1]);
             }
+            if (e.CommandName == "View")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+
+                string grpId = Request.QueryString["groupId"];
+                string resourceType = commandArgs[0];
+                string fileName = commandArgs[1];
+
+                Response.Redirect($"~/Views/Resources/viewResourceDetails.aspx?groupId={grpId}&resourceType={resourceType}&fileName={fileName}");
+            }
         }
 
         public List<string> getFileNames(string resType)
