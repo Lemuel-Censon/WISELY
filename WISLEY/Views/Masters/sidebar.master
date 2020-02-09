@@ -161,7 +161,7 @@
                                             <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-info btn-sm" Text="Edit" CommandName="edit" CommandArgument='<%#Eval("Id") %>'></asp:LinkButton>
                                         </div>
 
-                                        <div class="modal fade" id="deleteModal<%#Eval("Id") %>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal<%#Eval("Id") %>" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:155px;">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

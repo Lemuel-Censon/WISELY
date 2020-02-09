@@ -152,13 +152,14 @@ namespace WISLEY.DAL.Schedule
             return result;
         }
 
-        public Planner SelectByDate(string todoDate)
+        public string SelectByDate(string todoDate)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(DBConnect);
 
             string sqlStmt = "SELECT * FROM Planner " +
-                "WHERE dateSelected = @paraToDoDate";
+                "WHERE dateSelected = @paraToDoDate " +
+                "AND status = ''";
 
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConnection);
 
@@ -168,22 +169,16 @@ namespace WISLEY.DAL.Schedule
 
             da.Fill(ds);
 
-            Planner plannerObj = new Planner();
-
             int count = ds.Tables[0].Rows.Count;
+            string dateofToDo = "";
 
             if (count > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
-                int userId = int.Parse(row["userId"].ToString());
-                string dateSelected = row["dateSelected"].ToString();
-                string title = row["ToDotitle"].ToString();
-                string description = row["description"].ToString();
-                string status = row["status"].ToString();
-                plannerObj = new Planner(userId, dateSelected, title, description, status);
+                dateofToDo = row["dateSelected"].ToString();
             }
 
-            return plannerObj;
+            return dateofToDo;
         }
     }
 }

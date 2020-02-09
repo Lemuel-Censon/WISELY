@@ -69,7 +69,7 @@ namespace WISLEY.Views.Schedule
 
             if (dateSelecteed < DateTime.Today)
             {
-                toast(this, "Selected date must be after today!", "Error", "error");
+                toast(this, "Selected date must be today or after today!", "Error", "error");
             }
 
             else
@@ -84,8 +84,19 @@ namespace WISLEY.Views.Schedule
         {
             if (validateSelectedDate())
             {
-                Session["selectDate"] = calendarPlan.SelectedDate.ToString("dddd, dd MMMMM yyyy");
-                Response.Redirect("todoplan.aspx");
+                string dateSelected = calendarPlan.SelectedDate.ToString("dddd, dd MMMMM yyyy");
+                string plannerDate = new Planner().SelectByDate(dateSelected);
+
+                if (plannerDate.ToString() == dateSelected)
+                {
+                    toast(this, "You already have plans on this selected date!", "Error", "error");
+                }
+
+                else
+                {
+                    Session["selectDate"] = calendarPlan.SelectedDate.ToString("dddd, dd MMMMM yyyy");
+                    Response.Redirect("todoplan.aspx");
+                }
             }
         }
 
@@ -126,24 +137,24 @@ namespace WISLEY.Views.Schedule
                 Response.Redirect(Page.ResolveUrl("~/Views/Schedule/editToDo.aspx"));
             }
 
-            if (e.CommandName == "delToDo")
-            {
-                string todoID = e.CommandArgument.ToString();
-                Planner todolist = new Planner();
-                int result = todolist.DeleteToDo(todoID, "deleted");
+            //if (e.CommandName == "delToDo")
+            //{
+            //    string todoID = e.CommandArgument.ToString();
+            //    Planner todolist = new Planner();
+            //    int result = todolist.DeleteToDo(todoID, "deleted");
                 
-                if (result == 1)
-                {
-                    Session["success"] = "To-do-list has been deleted successfully!";
-                    Response.Redirect("schedule.aspx");
-                }
+            //    if (result == 1)
+            //    {
+            //        Session["success"] = "To-do-list has been deleted successfully!";
+            //        Response.Redirect("schedule.aspx");
+            //    }
 
-                else
-                {
-                    Session["error"] = "To-do-list cannot be deleted, please inform system administrator!";
-                    Response.Redirect("schedule.aspx");
-                }
-            }
+            //    else
+            //    {
+            //        Session["error"] = "To-do-list cannot be deleted, please inform system administrator!";
+            //        Response.Redirect("schedule.aspx");
+            //    }
+            //}
         }
 
         protected void todolistRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)

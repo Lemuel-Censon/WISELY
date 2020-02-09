@@ -61,7 +61,7 @@ namespace WISLEY.BLL.Schedule
             return plannerDAO.DeleteToDoList(todoId, status);
         }
 
-        public Planner SelectByDate(string selectedDate)
+        public string SelectByDate(string selectedDate)
         {
             PlannerDAO plannerDAO = new PlannerDAO();
             return plannerDAO.SelectByDate(selectedDate);
