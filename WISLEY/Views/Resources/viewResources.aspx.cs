@@ -126,9 +126,9 @@ namespace WISLEY.Views.Resources
             return fileNames;
         }
 
-        public string getQuery(object cat)
+        public string getQuery(object resType, object grpId)
         {
-            return "SELECT * FROM [grpResource] WHERE resourceType ='" + cat.ToString() + "'";
+            return "SELECT * FROM [grpResource] WHERE resourceType ='" + resType.ToString() + "'" + " and grpId ='" + grpId.ToString() + "'";
         }
 
         public User user()

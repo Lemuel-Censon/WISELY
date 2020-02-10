@@ -76,7 +76,7 @@
                                 </div>
 
                                 <asp:SqlDataSource ID='resTypeFilesData' runat='server' ConnectionString="<%$ connectionStrings: ConnStr%>"
-                                    SelectCommand='<%# getQuery(Eval("resourceType")) %>' />
+                                    SelectCommand='<%# getQuery(Eval("resourceType"), Eval("grpId")) %>' />
 
                             </div>
                         </div>
