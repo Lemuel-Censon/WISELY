@@ -14,10 +14,33 @@ namespace WISLEY.Views.Resources
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            resTypeData.SelectCommand = $"SELECT * FROM [grpResourceType] " +
-                $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
-                $"ORDER BY [grpResourceType].customOrder ASC";
+            if (Session["email"] != null)
+            {
+                if (Session["success"] != null)
+                {
+                    toast(this, Session["success"].ToString(), "Success", "success");
+                    Session["success"] = null;
+                }
+                if (Session["error"] != null)
+                {
+                    toast(this, Session["error"].ToString(), "Error", "error");
+                    Session["error"] = null;
+                }
+                resTypeData.SelectCommand = $"SELECT * FROM [grpResourceType] " +
+                    $"where [grpResourceType].grpId = {Request.QueryString["groupId"]} " +
+                    $"ORDER BY [grpResourceType].customOrder ASC";
+            }
+            else
+            {
+                Session["error"] = "You must be logged in to view resources!";
+                Response.Redirect(Page.ResolveUrl("~/Views/index.aspx"));
+            }
 
+        }
+
+        public void toast(Page page, string message, string title, string type)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "toastmsg", "toastnotif('" + message + "','" + title + "','" + type.ToLower() + "');", true);
         }
 
         public BLL.Group.Group getGroupDetails()

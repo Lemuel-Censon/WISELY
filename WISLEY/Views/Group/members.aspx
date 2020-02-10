@@ -11,7 +11,7 @@
                     <asp:HiddenField runat="server" ID="userEmail" Value='<%#Eval("email") %>' />
 
                     <div class="col-2">
-                        <img src='<%=user().profilesrc %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'"
+                        <img src='<%# Eval("profilesrc") %>' onerror="this.src='<%=Page.ResolveUrl("~/Public/img/default.jpg") %>'"
                             class="img-fluid img-thumbnail" />
                     </div>
 

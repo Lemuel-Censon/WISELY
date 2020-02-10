@@ -74,7 +74,7 @@
                     ConnectionString="<%$ connectionStrings: ConnStr%>"
                     OldValuesParameterFormatString="original_{0}"
                     runat="server"
-                    UpdateCommand='UPDATE [GroupUserRelations] SET [customOrder] = @customOrder WHERE [groupID] = @original_groupID'>
+                    UpdateCommand='UPDATE [GroupUserRelations] SET [customOrder] = @customOrder WHERE [groupID] = @original_groupID and [userEmail] = @userEmail'>
 
                     <UpdateParameters>
                         <asp:Parameter Name="userEmail" Type="String" />

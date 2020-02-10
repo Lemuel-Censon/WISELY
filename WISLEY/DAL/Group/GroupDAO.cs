@@ -272,7 +272,9 @@ namespace WISLEY.DAL.Group
                         contactNo: contactNo,
                         gender: gender,
                         bio: bio,
-                        points: points);
+                        points: points,
+                        profilesrc: profilesrc
+                        );
 
                     userIDList.Add(obj);
                 }

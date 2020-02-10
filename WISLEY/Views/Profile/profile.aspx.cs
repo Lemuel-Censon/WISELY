@@ -94,6 +94,11 @@ namespace WISLEY
         public User user()
         {
             User user = new User().SelectByEmail(Session["email"].ToString());
+            if (Request.QueryString["id"] != null)
+            {
+                user = new User().SelectById(Request.QueryString["id"]);
+            }
+
             return user;
         }
 

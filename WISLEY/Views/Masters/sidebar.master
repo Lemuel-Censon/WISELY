@@ -20,6 +20,9 @@
                             <h5 class="text-center">Name: 
                             <span id="LbUsername"></span>
                             </h5>
+                            <h5 class="text-center">
+                                <span><%=user().userType %></span>
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -133,7 +136,7 @@
                 <div class="card card-body mb-4 border border-primary py-3 z-depth-1">
                     <div class="row justify-content-center">
                         <h2 class="col-12 text-center">Schedule</h2>
-                        <div class="col-12">
+                        <div class="col-12 vh-65 overflow-auto mt-0">
                             <!-- Social shares button -->
                             <asp:Repeater ID="scheduleitems" runat="server" OnItemCommand="scheduleRepeater_ItemCommand" OnItemDataBound="scheduleRepeater_ItemDataBound">
                                 <ItemTemplate>
