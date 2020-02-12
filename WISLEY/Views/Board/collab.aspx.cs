@@ -429,9 +429,9 @@ namespace WISLEY
                     e.Item.FindControl("btnEdit").Visible = false;
                     e.Item.FindControl("btnLike").Visible = true;
                 }
-                if (int.Parse(postuser.Value) != user().id || user().userType == "Teacher")
+                if (int.Parse(postuser.Value) == user().id || user().userType == "Teacher")
                 {
-                    e.Item.FindControl("btnDelete").Visible = false;
+                    e.Item.FindControl("delete").Visible = true;
                 }
             }
 

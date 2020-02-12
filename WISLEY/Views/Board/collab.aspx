@@ -76,7 +76,7 @@
                                             <div class="col-lg-6 text-right">
                                                 <asp:LinkButton runat="server" CommandName="like" CommandArgument='<%#Eval("Id") %>' ID="btnLike" CssClass="btn btn-sm btn-danger" Visible="false"><i class="fas fa-heart"></i></asp:LinkButton>
                                                 <asp:LinkButton runat="server" CommandName="editpost" ID="btnEdit" Text="Edit" CssClass="btn btn-sm btn-info"></asp:LinkButton>
-                                                <div runat="server" id="delete" class="d-inline">
+                                                <div runat="server" id="delete" class="d-inline" visible="false">
                                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delmodal<%#Eval("Id") %>">
                                                         Delete
                                                     </button>
